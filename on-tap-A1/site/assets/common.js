@@ -32,11 +32,43 @@ OB.shuffle = function(arr,seed){const a=arr.slice();let s=seed||7;for(let i=a.le
 const synth = window.speechSynthesis;
 let EN=null;
 function rank(v){if(!/^en/i.test(v.lang))return -1;let s=0,n=v.name;if(/en[-_](US|GB)/i.test(v.lang))s+=10;if(/Natural|Neural|Online|Premium|Enhanced/i.test(n))s+=30;if(/Google/i.test(n))s+=18;if(/Samantha|Ava|Allison|Serena|Daniel|Karen|Moira|Aria|Jenny|Guy|Libby|Sonia|Emma/i.test(n))s+=15;if(/Fred|Albert|Bad News|Bells|Boing|Bubbles|Cellos|Jester|Organ|Trinoids|Whisper|Zarvox|Wobble|Superstar|Junior|Ralph|Kathy|Grandma|Grandpa|Rocko|Shelley|Flo|Eddy|Reed|Sandy/i.test(n))s-=40;return s;}
-function loadVoices(){if(!synth)return;const en=synth.getVoices().filter(v=>rank(v)>=0).sort((a,b)=>rank(b)-rank(a));EN=en[0]||null;}
-if(synth){loadVoices();synth.onvoiceschanged=loadVoices;}
+const VKEY='ob-voice',RKEY='ob-vrate';
+let ALLV=[];
+function pref(){try{return localStorage.getItem(VKEY)||''}catch(e){return''}}
+const gb=v=>/en[-_]GB/i.test(v.lang)?25:0;
+function loadVoices(){if(!synth)return;
+  ALLV=synth.getVoices().filter(v=>rank(v)>=0);
+  const saved=pref();const pick=saved&&ALLV.find(v=>v.voiceURI===saved);
+  /* mặc định: ưu tiên giọng Anh (en-GB) nếu máy có */
+  const sorted=ALLV.slice().sort((a,b)=>(rank(b)+gb(b))-(rank(a)+gb(a)));
+  EN=pick||sorted[0]||null;buildVoiceUI();}
+const ACC={'en-GB':'Anh','en-US':'Mỹ','en-AU':'Úc','en-IN':'Ấn Độ','en-IE':'Ireland','en-ZA':'Nam Phi','en-CA':'Canada','en-NZ':'New Zealand'};
+function vlabel(v){const a=ACC[v.lang.replace('_','-')]||v.lang;return 'Giọng '+a+' · '+v.name.replace(/^(Microsoft|Google)\s*/,'').replace(/ - English.*$/,'');}
+function rateMul(){try{return parseFloat(localStorage.getItem(RKEY))||1}catch(e){return 1}}
+function buildVoiceUI(){
+  if(!document.body)return;
+  let box=document.getElementById('voicebox');
+  if(!box){box=document.createElement('div');box.id='voicebox';box.style.cssText='position:fixed;left:12px;bottom:12px;z-index:31;font-size:13px';document.body.appendChild(box);}
+  if(!ALLV.length){box.innerHTML='';return;}
+  const open=box.dataset.open==='1';
+  const opts=ALLV.slice().sort((a,b)=>(rank(b)+gb(b))-(rank(a)+gb(a))).map(v=>`<option value="${v.voiceURI}"${EN&&v.voiceURI===EN.voiceURI?' selected':''}>${vlabel(v)}</option>`).join('');
+  const r=rateMul();
+  box.innerHTML=`<button class="b" id="vbtn" style="border-radius:999px;font-size:13px;padding:5px 12px" aria-expanded="${open}">🔊 Giọng đọc</button>`+
+   (open?`<div class="card" style="background:var(--paper);border:1.5px solid var(--line);position:absolute;left:0;bottom:44px;width:290px;margin:0"><b>Chọn giọng đọc</b>
+    <select id="vsel" style="width:100%;margin:6px 0;padding:6px;border-radius:8px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font:inherit">${opts}</select>
+    <div class="row" style="gap:6px">Tốc độ: <select id="vrate" style="padding:4px;border-radius:8px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font:inherit"><option value="0.8"${r===0.8?' selected':''}>Chậm</option><option value="1"${r===1?' selected':''}>Vừa</option><option value="1.15"${r===1.15?' selected':''}>Nhanh</option></select> <button class="b" id="vtest" style="padding:4px 10px">▶ Nghe thử</button></div>
+    <div class="tip">Giọng nghe tự nhiên nhất thường có chữ “Natural” hoặc “Online”. Mỗi máy có các giọng khác nhau.</div></div>`:'');
+  document.getElementById('vbtn').onclick=()=>{box.dataset.open=open?'0':'1';buildVoiceUI();};
+  if(open){
+    document.getElementById('vsel').onchange=e=>{try{localStorage.setItem(VKEY,e.target.value)}catch(x){}EN=ALLV.find(v=>v.voiceURI===e.target.value)||EN;OB.speak('Hello! This is my voice.',1);};
+    document.getElementById('vrate').onchange=e=>{try{localStorage.setItem(RKEY,e.target.value)}catch(x){}};
+    document.getElementById('vtest').onclick=()=>OB.speak('Hello! There is a library next to my school.',1);
+  }
+}
+if(synth){loadVoices();synth.onvoiceschanged=loadVoices;document.addEventListener('DOMContentLoaded',buildVoiceUI);}
 OB.speak = function(text,rate,onend){
   if(!synth){OB.toast('Trình duyệt này không đọc được âm thanh. Hãy dùng Chrome hoặc Safari.');return;}
-  synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=EN?EN.lang:'en-US';if(EN)u.voice=EN;u.rate=rate||0.9;if(onend)u.onend=onend;
+  synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=EN?EN.lang:'en-US';if(EN)u.voice=EN;u.rate=(rate||0.9)*rateMul();if(onend)u.onend=onend;
   setTimeout(()=>synth.speak(u),40);
 };
 OB.stopSpeak = ()=>{synth&&synth.cancel();};
