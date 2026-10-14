@@ -1,8 +1,8 @@
 window.STUDY = {
-  lesson: 'CU A1 U3 Tu hoc',
+  lesson: 'CU A1 U3 Tu hoc 1',
   filePrefix: 'TuHoc',
-  title: 'Tự học Unit 3 · My Home Town',
-  sub: 'Close-up A1+ · Từ vựng, Ngữ pháp, Đọc, Nói — học từng bước, từ dễ đến khó.',
+  title: 'Tự học Unit 3 · Link 1: Từ vựng',
+  sub: 'Close-up A1+ · Link 1/2: Khởi động và Từ vựng. Xong link này em làm tiếp Link 2 (Ngữ pháp, Đọc, Nói).',
   intro: 'Làm theo thứ tự: bước sau chỉ mở khi em xong bước trước. Phần <b>lý thuyết</b>: đọc xong nhớ tick “Em đã đọc kỹ”. Sai không sao, em được thử lại.',
   emoji: '🏙️', stampTitle: 'Unit 3', stampSub: 'My Home Town',
 
@@ -35,6 +35,7 @@ window.STUDY = {
     {id:'r3',new:['geton','getoff','catch','miss','ride','arrive'],review:['restaurant','city','village','waiter','police','firefighter','actor','hospital']}
   ],
 
+  only: ['warm','vocab'],
   parts: [
   {id:'warm',title:'Khởi động',steps:[
     {id:'w-bs',type:'brainstorm',title:'Brainstorm: MY TOWN',sub:'3 phút · đánh thức những từ em đã biết',
@@ -123,22 +124,8 @@ window.STUDY = {
       <tr><td><b>in front of</b></td><td>phía trước</td><td><b>behind</b></td><td>phía sau</td></tr>
       <tr><td><b>next to</b></td><td>bên cạnh</td><td><b>opposite</b></td><td>đối diện (bên kia đường)</td></tr>
       <tr><td><b>between</b></td><td>ở giữa (2 nơi)</td><td><b>under</b></td><td>dưới</td></tr></table></div>
-      <p>Nhìn bản đồ đường <b>Green Street</b>:</p>
-      <div class="tbl"><table class="mapt"><tr><td>Bakery</td><td>Library</td><td>Chemist</td></tr><tr class="street"><td colspan="3">GREEN STREET</td></tr><tr><td>Cinema</td><td>Hospital</td><td>Supermarket</td></tr></table></div>
-      <div class="card">The library is <b>between</b> the bakery and the chemist.<br>The hospital is <b>opposite</b> the library.<br>The cinema is <b>next to</b> the hospital.<br><br>📖 Sau bài này, em mở sách làm <b>Workbook tr.21, bài B</b>.</div>`},
-    {id:'g-q2',type:'items',title:'Luyện: đọc bản đồ Green Street',sub:'Bước 4 · Điền giới từ và xếp câu',
-     intro:'<b>Bản đồ:</b> hàng trên: Bakery · Library · Chemist. Hàng dưới (bên kia đường): Cinema · Hospital · Supermarket.',
-     items:[
-      {kind:'choice',q:'The library is ___ the bakery and the chemist.',o:['between','opposite','behind'],a:0,x:'Library đứng giữa hai cửa hàng → <b>between</b>.'},
-      {kind:'choice',q:'The hospital is ___ the library.',o:['next to','opposite','between'],a:1,x:'Hospital ở bên kia đường, đối diện library → <b>opposite</b>.'},
-      {kind:'choice',q:'The cinema is ___ the hospital.',o:['opposite','next to','behind'],a:1,x:'Cinema và hospital đứng cạnh nhau → <b>next to</b>.'},
-      {kind:'choice',q:'The bakery is ___ the cinema.',o:['next to','opposite','between'],a:1,x:'Bakery và cinema nằm hai bên đường → <b>opposite</b>.'},
-      {kind:'choice',q:'The chemist is ___ the supermarket.',o:['opposite','between','next to'],a:0,x:'Chemist và supermarket đối diện nhau → <b>opposite</b>.'},
-      {kind:'order',q:'Xếp các từ thành câu đúng:',w:['The','cinema','is','next','to','the','hospital'],a:'The cinema is next to the hospital',hint:'Bắt đầu bằng “The cinema …”',x:'The cinema is next to the hospital.'},
-      {kind:'order',q:'Xếp các từ thành câu hỏi đúng:',w:['Is','there','a','library','near','here'],a:'Is there a library near here',hint:'Câu hỏi bắt đầu bằng “Is”.',x:'Is there a library near here?'},
-      {kind:'order',q:'Xếp các từ thành câu đúng:',w:['The','bakery','is','opposite','the','cinema'],a:'The bakery is opposite the cinema',hint:'Bắt đầu bằng “The bakery …”',x:'The bakery is opposite the cinema.'}
-    ]},
-    {id:'g-r3',type:'read',title:'Đọc: Present continuous (đang làm gì)',sub:'Bước 5 · Lý thuyết',html:`
+      <div class="card">My school is <b>next to</b> the park.<br>The bank is <b>opposite</b> the library.<br>The cat is <b>under</b> the table.<br><br>📖 Sau bài này, em mở sách làm <b>Workbook tr.21, bài B</b>.</div>`},
+    {id:'g-r3',type:'read',title:'Đọc: Present continuous (đang làm gì)',sub:'Bước 4 · Lý thuyết',html:`
       <p>Dùng để nói việc <b>đang xảy ra ngay bây giờ</b>. Công thức: <b>am / is / are + V-ing</b>.</p>
       <div class="tbl"><table><tr><th></th><th>Ví dụ</th></tr>
       <tr><td>＋</td><td>I <b>am reading</b>. She <b>is cooking</b>. They <b>are playing</b>.</td></tr>
@@ -146,7 +133,7 @@ window.STUDY = {
       <tr><td>？</td><td><b>Are</b> you reading? What <b>is</b> she doing? Where <b>are</b> they going?</td></tr></table></div>
       <div class="card"><b>Cách thêm -ing:</b><br>• bỏ <i>e</i>: make → <b>making</b>, leave → <b>leaving</b><br>• gấp đôi phụ âm cuối: put → <b>putting</b>, sit → <b>sitting</b>, run → <b>running</b><br>• còn lại thêm -ing: rain → <b>raining</b>, play → <b>playing</b></div>
       <div class="card"><b>Phân biệt:</b> <i>usually, often, every day</i> → present simple (thói quen). <i>Look!, Be quiet!, now, at the moment</i> → present continuous (đang xảy ra).<br>📖 Sau bài này, em mở sách làm <b>Workbook tr.21, bài C và D</b>.</div>`},
-    {id:'g-q3',type:'items',title:'Luyện: present continuous',sub:'Bước 6 · Thêm -ing, chọn thì, tự chia động từ',items:[
+    {id:'g-q3',type:'items',title:'Luyện: present continuous',sub:'Bước 5 · Thêm -ing, chọn thì, tự chia động từ',items:[
       {kind:'fill',q:'Thêm -ing: <b>make</b> → ?',a:['making'],hint:'Bỏ e rồi thêm -ing.',x:'make → <b>making</b>.'},
       {kind:'fill',q:'Thêm -ing: <b>put</b> → ?',a:['putting'],hint:'Gấp đôi chữ t.',x:'put → <b>putting</b>.'},
       {kind:'fill',q:'Thêm -ing: <b>run</b> → ?',a:['running'],hint:'Gấp đôi chữ n.',x:'run → <b>running</b>.'},
@@ -162,7 +149,7 @@ window.STUDY = {
       {kind:'fill',q:'Gõ dạng đúng: They ___ (not play) football at the moment.',a:["aren't playing"],hint:"aren't + V-ing",x:"They <b>aren't playing</b> football at the moment."},
       {kind:'fill',q:'Gõ <b>am / is / are</b>: ___ you doing your homework now?',a:['are'],hint:'Chủ ngữ là “you”.',x:'<b>Are</b> you doing your homework now?'}
     ]},
-    {id:'g-w',type:'write',title:'Viết: nói về khu phố của em (Level 3)',sub:'Bước 7 · Dùng cả 3 điểm ngữ pháp',
+    {id:'g-w',type:'write',title:'Viết: nói về khu phố của em (Level 3)',sub:'Bước 6 · Dùng cả 3 điểm ngữ pháp',
      prompt:'Viết 5 câu về khu phố của em.',
      tips:`<b>Em cần có:</b> 1 câu <i>there is / there are</i> · 1 câu <i>there isn't / aren't</i> · 1 câu có giới từ · 1 câu present continuous · 1 câu hỏi <i>Is there …?</i><br>Ví dụ: <i>There is a market near my house. There isn't a cinema in my village. The school is opposite the park. My mum is cooking now. Is there a library near your house?</i>`,
      min:25,
