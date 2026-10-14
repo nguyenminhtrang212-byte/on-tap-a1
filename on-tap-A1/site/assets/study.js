@@ -48,7 +48,7 @@ function weight(step){
 
 /* ---------- dữ liệu phẳng ---------- */
 const STEPS=[];
-D.parts.forEach(p=>p.steps.forEach(s=>STEPS.push(Object.assign({},s,{part:p}))));
+D.parts.filter(p=>!D.only||D.only.includes(p.id)).forEach(p=>p.steps.forEach(s=>STEPS.push(Object.assign({},s,{part:p}))));
 STEPS.push({id:'finish',type:'finish',title:'Hoàn thành và nộp tiến độ',sub:'Gửi kết quả cho thầy/cô',part:{id:'fin',title:'Hoàn thành'}});
 const isDone=s=>!!(ST.steps[s.id]&&ST.steps[s.id].done);
 const req=s=>!s.optional;
