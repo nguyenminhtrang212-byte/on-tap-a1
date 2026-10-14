@@ -1,8 +1,8 @@
 window.STUDY = {
-  lesson: 'CU A1 U1-3 Tu hoc tong hop',
+  lesson: 'CU A1 U1-3 Tu hoc tong hop 1',
   filePrefix: 'TuHocTH',
-  title: 'Tự học tổng hợp · Units 1–3',
-  sub: 'This Is Me! · Friends & Fun · My Home Town — gom kiến thức 3 unit, học từng bước từ dễ đến khó.',
+  title: 'Tự học tổng hợp · Link 1: Từ vựng',
+  sub: 'Units 1–3 · Link 1/2: Khởi động và Từ vựng. Xong link này em làm tiếp Link 2 (Ngữ pháp, Đọc, Nói).',
   intro: 'Làm theo thứ tự: bước sau chỉ mở khi em xong bước trước. Từ vựng cũ sẽ <b>quay lại</b> (ôn lại khoảng 40%) và mỗi lần quay lại sẽ khó hơn một chút. Phần <b>lý thuyết</b>: đọc xong nhớ tick “Em đã đọc kỹ”.',
   emoji: '🌟', stampTitle: 'Units 1–3', stampSub: 'Tổng hợp',
 
@@ -33,6 +33,7 @@ window.STUDY = {
     {id:'r3',new:['stadium','hospital','library','supermarket','waiter','firefighter'],review:['surname','hoodie','trainers','sociable','creative','grandma','uncle']}
   ],
 
+  only: ['warm','vocab'],
   parts: [
   {id:'warm',title:'Khởi động',steps:[
     {id:'w-bs',type:'brainstorm',title:'Brainstorm: MY LIFE',sub:'3 phút · đánh thức những từ em đã biết',
