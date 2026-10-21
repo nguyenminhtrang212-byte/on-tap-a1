@@ -11,11 +11,11 @@ document.addEventListener('click',e=>{
   const g=G[el.dataset.k];if(!g)return;
   const n=+(el.dataset.n||0);
   const nxt=el.nextElementSibling;if(nxt&&nxt.classList.contains('glpop'))nxt.remove();
-  if(n===2){el.dataset.n=0;el.classList.remove('on');return;}
+  if(n===1){el.dataset.n=0;el.classList.remove('on');return;}
   const pop=document.createElement('span');pop.className='glpop';
-  pop.innerHTML=`🔊 <b>${g.w}</b> <span>${g.ipa}</span> · <span class="pos">${g.pos}</span>`+(n===1?`<span class="vn">🇻🇳 ${g.vi}</span>`:'');
-  el.after(pop);el.dataset.n=n+1;el.classList.add('on');
-  if(n===0){if(window.OB)OB.speak(g.w,0.8);seen.add(el.dataset.k);upd();}
+  pop.innerHTML=`🔊 <b>${g.w}</b> <span>${g.ipa}</span> · <span class="pos">${g.pos}</span>`+`<span class="vn">🇻🇳 ${g.vi}</span>`;
+  el.after(pop);el.dataset.n=1;el.classList.add('on');
+  if(window.OB)OB.speak(g.w,0.8);seen.add(el.dataset.k);upd();
 });
 function upd(){
   const c=document.querySelector('input[id^="c_"][data-gate="gloss"]');
