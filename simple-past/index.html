@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simple Past – Thì quá khứ đơn (A1–A2)</title>
+<style>
+:root{--red:#8b0000;--ink:#1f2a37;--mut:#5b6675;--bg:#f6f7fb;--card:#fff;--line:#e2e6ee;--pri:#2457c5;--ok:#1b8a4b;--okbg:#e6f6ec;--bad:#c0392b;--badbg:#fdecea;--hi:#fff4c2}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;color-scheme:light}
+#top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);padding:8px 12px 6px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:800;font-size:15px}
+.brand small{font-weight:600;color:var(--mut)}
+.bar{height:9px;background:#e7ebf3;border-radius:6px;margin:6px 0;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#2457c5,#1b8a4b);width:0;transition:width .3s}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:3px}
+.chip{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:18px;padding:4px 10px;font-size:13px;font-weight:700;cursor:pointer;color:var(--ink)}
+.chip.cur{border-color:var(--pri);background:#e8eefc;color:var(--pri)}
+.chip.done{border-color:var(--ok);background:var(--okbg);color:var(--ok)}
+main{max-width:780px;margin:0 auto;padding:14px 12px 110px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+h1{font-size:22px;margin:6px 0}
+h2{font-size:18px;margin:0 0 6px}
+h3{font-size:16px;margin:10px 0 4px}
+.ins{color:var(--red);font-weight:800}
+.vi{color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#eef2fa}
+.tip{background:var(--hi);border-left:4px solid #e0b400;padding:8px 10px;border-radius:8px;margin:8px 0;font-size:14px}
+.w{border-bottom:2px dotted var(--pri);color:var(--pri);font-weight:700;cursor:pointer;white-space:nowrap}
+.past{background:#e6f6ec;border-radius:5px;padding:0 3px;font-weight:700}
+.read{display:flex;gap:8px;align-items:center;font-weight:800;color:var(--red);margin:10px 0 4px;cursor:pointer}
+.read input{width:20px;height:20px}
+.lock{background:#f1f3f8;border:1.5px dashed #b9c1d3;border-radius:12px;padding:12px;text-align:center;color:var(--mut);font-weight:700}
+.q{border-top:1px dashed var(--line);padding:10px 0}
+.q:first-of-type{border-top:0}
+.qt{font-weight:700;margin-bottom:6px}
+.qn{display:inline-block;background:#e8eefc;color:var(--pri);border-radius:50%;width:24px;height:24px;text-align:center;font-size:13px;line-height:24px;margin-right:6px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:2px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:15px;cursor:pointer;text-align:left;font-family:inherit}
+.opt:hover{border-color:var(--pri)}
+.opt.good{border-color:var(--ok);background:var(--okbg);font-weight:700}
+.opt.bad{border-color:var(--bad);background:var(--badbg);text-decoration:line-through}
+.fb{font-size:14px;margin-top:6px}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+input[type=text],textarea{font:inherit;border:2px solid var(--line);border-radius:10px;padding:8px 10px;width:100%}
+input.fillin{width:170px}
+textarea{min-height:64px}
+button.btn{background:var(--pri);color:#fff;border:0;border-radius:10px;padding:9px 16px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
+button.btn.sec{background:#fff;color:var(--pri);border:2px solid var(--pri)}
+button.btn.red{background:var(--bad)}
+button.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bs{display:inline-block;margin:3px;border:2px solid var(--line);background:#fff;border-radius:16px;padding:4px 11px;cursor:pointer;font-size:14px;font-family:inherit}
+.bs.on{background:#e8eefc;border-color:var(--pri);color:var(--pri);font-weight:800}
+#nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 12px;display:flex;justify-content:space-between;gap:8px;z-index:20}
+#sheet{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.25);padding:16px;z-index:40;display:none}
+#sheet .big{font-size:24px;font-weight:800;color:var(--pri)}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;display:none;align-items:center;justify-content:center;padding:14px}
+#modal .box{background:#fff;border-radius:16px;padding:18px;max-width:460px;width:100%;max-height:85vh;overflow:auto}
+.mist{display:inline-block;background:var(--badbg);color:var(--bad);border:1.5px solid var(--bad);border-radius:14px;padding:2px 10px;margin:3px;font-weight:700;cursor:pointer}
+.score{font-size:30px;font-weight:900}
+.story{font-size:18px;line-height:1.9;background:#fffdf5;border:1px solid #eadfae;border-radius:12px;padding:12px}
+.small{font-size:13px;color:var(--mut)}
+.pill{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:800;background:#eef2fa;color:var(--pri)}
+</style>
+</head>
+<body>
+<div id="top">
+  <div class="brand"><span>🕰️ Simple Past – Thì quá khứ đơn</span><small id="who"></small></div>
+  <div class="bar"><i id="barfill"></i></div>
+  <div class="row" style="justify-content:space-between"><span class="small" id="pct">0%</span><span class="small">Bấm số bước để xem trước – máy sẽ nhắc phần chưa xong</span></div>
+  <div class="chips" id="chips"></div>
+</div>
+<main id="main"></main>
+<div id="nav"></div>
+<div id="sheet"></div>
+<div id="modal"><div class="box" id="mbox"></div></div>
+
+<script>
+/* ===== CẤU HÌNH ===== */
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwnf8X3_Xfk9F_8HQtBwSFU_s28sRjxKb0aFaHCA4ybmMJvgaztBAbdvaFzITdbVXBt/exec';
+const LESSON='SimplePast_A1A2';
+
+/* ===== TỪ ĐIỂN (bấm vào từ để nghe + xem nghĩa) ===== */
+// [nguyên mẫu, V2, loại, IPA nguyên mẫu, IPA V2, nghĩa]
+const VERBS=[
+['play','played','R','/pleɪ/','/pleɪd/','chơi'],['watch','watched','R','/wɒtʃ/','/wɒtʃt/','xem'],['visit','visited','R','/ˈvɪzɪt/','/ˈvɪzɪtɪd/','thăm'],
+['study','studied','R','/ˈstʌdi/','/ˈstʌdid/','học'],['stop','stopped','R','/stɒp/','/stɒpt/','dừng lại'],['live','lived','R','/lɪv/','/lɪvd/','sống'],
+['cook','cooked','R','/kʊk/','/kʊkt/','nấu ăn'],['clean','cleaned','R','/kliːn/','/kliːnd/','lau dọn'],['help','helped','R','/help/','/helpt/','giúp đỡ'],
+['walk','walked','R','/wɔːk/','/wɔːkt/','đi bộ'],['talk','talked','R','/tɔːk/','/tɔːkt/','nói chuyện'],['work','worked','R','/wɜːk/','/wɜːkt/','làm việc'],
+['like','liked','R','/laɪk/','/laɪkt/','thích'],['plan','planned','R','/plæn/','/plænd/','lên kế hoạch'],['cry','cried','R','/kraɪ/','/kraɪd/','khóc'],
+['want','wanted','R','/wɒnt/','/ˈwɒntɪd/','muốn'],['go','went','I','/ɡəʊ/','/went/','đi'],['have','had','I','/hæv/','/hæd/','có / ăn'],
+['eat','ate','I','/iːt/','/et/','ăn'],['see','saw','I','/siː/','/sɔː/','nhìn thấy'],['buy','bought','I','/baɪ/','/bɔːt/','mua'],
+['make','made','I','/meɪk/','/meɪd/','làm / tạo ra'],['do','did','I','/duː/','/dɪd/','làm'],['get','got','I','/ɡet/','/ɡɒt/','nhận / có được'],
+['take','took','I','/teɪk/','/tʊk/','lấy / chụp'],['write','wrote','I','/raɪt/','/rəʊt/','viết'],['read','read','I','/riːd/','/red/','đọc (V2 viết giống nhưng đọc là /red/)'],
+['come','came','I','/kʌm/','/keɪm/','đến'],['drink','drank','I','/drɪŋk/','/dræŋk/','uống'],['sleep','slept','I','/sliːp/','/slept/','ngủ'],
+['meet','met','I','/miːt/','/met/','gặp'],['give','gave','I','/ɡɪv/','/ɡeɪv/','cho / tặng'],['wake','woke','I','/weɪk/','/wəʊk/','thức dậy'],
+['be','was','I','/biː/','/wɒz/','thì / là / ở (was/were)']
+];
+const DICT={};
+VERBS.forEach(v=>{DICT[v[0]]={ipa:v[3],vi:v[5]+' (nguyên mẫu)'};DICT[v[1]]={ipa:v[4],vi:v[5]+' → quá khứ (V2 của '+v[0]+')'};});
+Object.assign(DICT,{
+yesterday:{ipa:'/ˈjestədeɪ/',vi:'hôm qua'},ago:{ipa:'/əˈɡəʊ/',vi:'cách đây / trước đây'},last:{ipa:'/lɑːst/',vi:'trước / vừa qua'},
+tomorrow:{ipa:'/təˈmɒrəʊ/',vi:'ngày mai'},now:{ipa:'/naʊ/',vi:'bây giờ'},weekend:{ipa:'/ˌwiːkˈend/',vi:'cuối tuần'},
+park:{ipa:'/pɑːk/',vi:'công viên'},breakfast:{ipa:'/ˈbrekfəst/',vi:'bữa sáng'},diary:{ipa:'/ˈdaɪəri/',vi:'nhật ký'},
+badminton:{ipa:'/ˈbædmɪntən/',vi:'cầu lông'},photo:{ipa:'/ˈfəʊtəʊ/',vi:'bức ảnh'},busy:{ipa:'/ˈbɪzi/',vi:'bận rộn'},
+afternoon:{ipa:'/ˌɑːftəˈnuːn/',vi:'buổi chiều'},evening:{ipa:'/ˈiːvnɪŋ/',vi:'buổi tối'},happy:{ipa:'/ˈhæpi/',vi:'vui vẻ'},
+film:{ipa:'/fɪlm/',vi:'bộ phim'},family:{ipa:'/ˈfæməli/',vi:'gia đình'},friends:{ipa:'/frendz/',vi:'những người bạn'},
+sunday:{ipa:'/ˈsʌndeɪ/',vi:'Chủ nhật'},zoo:{ipa:'/zuː/',vi:'sở thú'},childhood:{ipa:'/ˈtʃaɪldhʊd/',vi:'thời thơ ấu'}
+});
+
+/* ===== TIỆN ÍCH ===== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const R=s=>s.replace(/\[\[([^\]]+)\]\]/g,(m,k)=>'<span class="w" data-k="'+esc(k.toLowerCase())+'">'+esc(k)+'</span>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');
+const V2ALL=new Set(VERBS.map(v=>v[1]));VERBS.forEach(v=>{if(v[2]==='I')V2ALL.add(v[1]);});
+['was','were','went','ate','saw','bought','made','did','got','took','wrote','came','drank','slept','met','gave','woke','had','left','ran','swam','sang','said','told','found','lost','won'].forEach(x=>V2ALL.add(x));
+const IRR=new Set(VERBS.filter(v=>v[2]==='I').map(v=>v[1]));
+['left','ran','swam','sang','said','told','found','lost','won'].forEach(x=>IRR.add(x));
+function speak(t,rate){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=rate||.9;speechSynthesis.speak(u);}catch(e){}}
+const KEY='sp_'+LESSON;
+function def(){return{name:'',step:0,read:{},q:{},brain:[],tr:{},fr:{},viewed:{},sent:false,recPct:null,recWrong:[],recTranscript:'',recDur:0,skips:0,done:false};}
+let S=def();try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(def(),JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* ===== NỘI DUNG LÝ THUYẾT ===== */
+const TH1=R(`
+<p class="ins">Đọc kỹ phần này, sau đó tick "Em đã đọc" để mở câu hỏi.</p>
+<p><b>Thì quá khứ đơn (Past Simple)</b> dùng để nói về một hành động <b>đã xảy ra và đã kết thúc</b> trong quá khứ.
+<span class="vi">Trong tiếng Việt mình hay thấy chữ <i>"đã"</i>, <i>"hôm qua"</i>, <i>"tuần trước"</i>… Tiếng Anh thì <b>đổi dạng động từ</b> (V2).</span></p>
+<table><tr><th>Tiếng Việt</th><th>Tiếng Anh</th><th>Thì nào?</th></tr>
+<tr><td>Hôm qua em <b>đã xem</b> phim.</td><td>I <span class="past">[[watched]]</span> a film yesterday.</td><td><b>Quá khứ đơn</b> ✅ (xong rồi)</td></tr>
+<tr><td>Mỗi tối em xem phim.</td><td>I [[watch]] a film every night.</td><td>Hiện tại đơn (thói quen)</td></tr>
+<tr><td>Bây giờ em <b>đang</b> xem phim.</td><td>I am watching a film now.</td><td>Hiện tại tiếp diễn (đang diễn ra)</td></tr>
+<tr><td>Ngày mai em <b>sẽ</b> xem phim.</td><td>I will watch a film tomorrow.</td><td>Tương lai (chưa xảy ra)</td></tr></table>
+<div class="tip">💡 <b>Mẹo nhận biết bằng tiếng Việt:</b> Câu nói về việc <b>đã làm xong</b> (đã…, hôm qua…, năm ngoái…, … trước) → trong tiếng Anh dùng <b>quá khứ đơn</b>.<br>
+Tiếng Việt <b>không đổi</b> động từ: "ăn" – "đã ăn". Tiếng Anh <b>có đổi</b>: eat → <span class="past">[[ate]]</span>.</div>`);
+const TH2=R(`
+<p class="ins">Đọc kỹ bảng dấu hiệu thời gian, rồi tick "Em đã đọc".</p>
+<p>Khi trong câu có <b>cụm chỉ thời gian đã qua</b>, ta dùng quá khứ đơn. Bấm vào từ gạch chấm để nghe.</p>
+<table><tr><th>Dấu hiệu (signal)</th><th>Nghĩa</th><th>Ví dụ</th></tr>
+<tr><td>[[yesterday]] (morning / afternoon / evening)</td><td>hôm qua (sáng / chiều / tối)</td><td>I [[played]] football yesterday.</td></tr>
+<tr><td>[[last]] night / week / month / year / Sunday / weekend</td><td>tối qua / tuần / tháng / năm / Chủ nhật / cuối tuần trước</td><td>We [[went]] to the park last Sunday.</td></tr>
+<tr><td>two days [[ago]], a week ago, 3 years ago</td><td>hai ngày trước, một tuần trước…</td><td>She [[bought]] a bag two days ago.</td></tr>
+<tr><td>in 2020, in 2015…</td><td>vào năm 2020…</td><td>He [[lived]] in Hue in 2015.</td></tr>
+<tr><td>when I was a child / ten years old</td><td>khi tôi còn nhỏ / 10 tuổi</td><td>I [[was]] shy when I was ten.</td></tr></table>
+<div class="tip">⚠️ <b>Không dùng quá khứ đơn</b> với: <b>[[tomorrow]]</b>, next week (tương lai); <b>[[now]]</b>, at the moment (đang xảy ra); <b>every day, often, usually, always</b> (thói quen hiện tại).<br>
+📍 Vị trí: đầu câu (có dấu phẩy) hoặc cuối câu: <i>Yesterday, I cooked dinner.</i> = <i>I cooked dinner yesterday.</i></div>`);
+const TH3=R(`
+<p class="ins">Đọc kỹ cách tạo V2, rồi tick "Em đã đọc". Bấm vào động từ để nghe và xem nghĩa.</p>
+<h3>1) Động từ có quy tắc (Regular verbs): thêm -ed</h3>
+<table><tr><th>Quy tắc</th><th>Ví dụ</th></tr>
+<tr><td>Thông thường: thêm <b>-ed</b></td><td>[[play]] → <span class="past">[[played]]</span> · [[watch]] → <span class="past">[[watched]]</span> · [[cook]] → <span class="past">[[cooked]]</span></td></tr>
+<tr><td>Tận cùng bằng <b>-e</b>: chỉ thêm <b>-d</b></td><td>[[live]] → <span class="past">[[lived]]</span> · [[like]] → <span class="past">[[liked]]</span></td></tr>
+<tr><td>Phụ âm + <b>y</b>: đổi y → <b>-ied</b></td><td>[[study]] → <span class="past">[[studied]]</span> · [[cry]] → <span class="past">[[cried]]</span> <i>(nhưng play → played vì trước y là nguyên âm a)</i></td></tr>
+<tr><td>1 nguyên âm + 1 phụ âm (từ ngắn): <b>gấp đôi phụ âm</b></td><td>[[stop]] → <span class="past">[[stopped]]</span> · [[plan]] → <span class="past">[[planned]]</span></td></tr></table>
+<p class="small">Cách đọc -ed: sau t/d → /ɪd/ (visited, wanted) · sau p, k, ch, sh, s, f → /t/ (watched, cooked) · còn lại → /d/ (played, lived).</p>
+<h3>2) Động từ bất quy tắc (Irregular verbs): phải học thuộc</h3>
+<table><tr><th>Nguyên mẫu</th><th>V2</th><th>Nguyên mẫu</th><th>V2</th></tr>
+<tr><td>[[go]]</td><td class="past">[[went]]</td><td>[[eat]]</td><td class="past">[[ate]]</td></tr>
+<tr><td>[[see]]</td><td class="past">[[saw]]</td><td>[[buy]]</td><td class="past">[[bought]]</td></tr>
+<tr><td>[[make]]</td><td class="past">[[made]]</td><td>[[have]]</td><td class="past">[[had]]</td></tr>
+<tr><td>[[take]]</td><td class="past">[[took]]</td><td>[[write]]</td><td class="past">[[wrote]]</td></tr>
+<tr><td>[[come]]</td><td class="past">[[came]]</td><td>[[meet]]</td><td class="past">[[met]]</td></tr>
+<tr><td>[[drink]]</td><td class="past">[[drank]]</td><td>[[sleep]]</td><td class="past">[[slept]]</td></tr>
+<tr><td>[[do]]</td><td class="past">[[did]]</td><td>[[be]] (is/am)</td><td class="past">[[was]] (were)</td></tr></table>
+<div class="tip">💡 Không nói <i>goed</i>, <i>eated</i>, <i>buyed</i>. Đúng là <b>went, ate, bought</b>.</div>`);
+
+/* ===== NGÂN HÀNG CÂU HỎI ===== */
+const CL=['Quá khứ (đã xong)','Hiện tại (thường xuyên / đang)','Tương lai (sẽ)'];
+const QZ={
+tq1:[
+ {t:'mc',q:'Past Simple dùng để nói về hành động…',o:['đang xảy ra ngay bây giờ','đã xảy ra và đã kết thúc','sẽ xảy ra vào ngày mai'],a:1,x:'Quá khứ đơn = việc đã xảy ra và đã kết thúc.',tag:'Khái niệm'},
+ {t:'mc',q:'Khi nói về quá khứ, động từ tiếng Anh thường…',o:['giữ nguyên như tiếng Việt','thêm -s','đổi sang dạng V2'],a:2,x:'Tiếng Anh đổi dạng động từ: watch → watched, go → went.',tag:'Khái niệm'}],
+a1:[
+ {t:'mc',q:'Hôm qua em đã ăn phở.',o:CL,a:0,x:'"Hôm qua… đã…" → việc đã xong.',tag:'Nhận biết'},
+ {t:'mc',q:'Mỗi sáng em uống sữa.',o:CL,a:1,x:'"Mỗi sáng" là thói quen hiện tại.',tag:'Nhận biết'},
+ {t:'mc',q:'Tuần sau chúng tôi sẽ đi Đà Nẵng.',o:CL,a:2,x:'"Tuần sau… sẽ…" → tương lai.',tag:'Nhận biết'},
+ {t:'mc',q:'Năm ngoái bố tôi mua một chiếc xe máy.',o:CL,a:0,x:'"Năm ngoái" → đã xong.',tag:'Nhận biết'},
+ {t:'mc',q:'Bây giờ cô ấy đang đọc sách.',o:CL,a:1,x:'"Bây giờ… đang…" → đang diễn ra.',tag:'Nhận biết'},
+ {t:'mc',q:'Ba ngày trước tôi gặp lại bạn cũ.',o:CL,a:0,x:'"Ba ngày trước" → đã xong.',tag:'Nhận biết'}],
+b1:[
+ {t:'mc',vi:'Hôm qua em đã xem phim.',q:'Chọn câu tiếng Anh ở thì quá khứ đơn:',o:['I watched a film yesterday.','I watch a film yesterday.','I am watching a film yesterday.'],a:0,x:'watched = watch + ed.',tag:'Chọn câu QKĐ'},
+ {t:'mc',vi:'Sáng qua cô ấy đã đi học lúc 7 giờ.',q:'Chọn câu tiếng Anh ở thì quá khứ đơn:',o:['She goes to school at seven.','She is going to school at seven.','She went to school at seven.'],a:2,x:'go → went (bất quy tắc).',tag:'Chọn câu QKĐ'},
+ {t:'mc',vi:'Chúng tôi đã chơi bóng đá tuần trước.',q:'Chọn câu tiếng Anh ở thì quá khứ đơn:',o:['We play football last week.','We played football last week.','We will play football last week.'],a:1,x:'play → played.',tag:'Chọn câu QKĐ'},
+ {t:'mc',vi:'Bố tôi đã nấu bữa tối.',q:'Chọn câu tiếng Anh ở thì quá khứ đơn:',o:['My dad cooks dinner.','My dad will cook dinner.','My dad cooked dinner.'],a:2,x:'cook → cooked.',tag:'Chọn câu QKĐ'},
+ {t:'mc',vi:'Tôi đã mua một cuốn sách mới.',q:'Chọn câu tiếng Anh ở thì quá khứ đơn:',o:['I bought a new book.','I buy a new book.','I am buying a new book.'],a:0,x:'buy → bought (bất quy tắc).',tag:'Chọn câu QKĐ'},
+ {t:'mc',vi:'Họ đã thăm bà ngoại cuối tuần trước.',q:'Chọn câu tiếng Anh ở thì quá khứ đơn:',o:['They visit their grandma last weekend.','They visited their grandma last weekend.','They are visiting their grandma.'],a:1,x:'visit → visited.',tag:'Chọn câu QKĐ'}],
+tq2:[
+ {t:'mc',q:'"Two days ago" nghĩa là gì?',o:['hai ngày nữa','hai ngày trước','mỗi hai ngày'],a:1,x:'ago = cách đây, trước đây.',tag:'Dấu hiệu'},
+ {t:'mc',q:'Dấu hiệu nào KHÔNG dùng với quá khứ đơn?',o:['last Sunday','tomorrow','yesterday morning'],a:1,x:'tomorrow là tương lai.',tag:'Dấu hiệu'}],
+a2:[
+ {t:'mc',q:'Which time phrase tells us to use the past simple?',o:['tomorrow','two days ago','every day'],a:1,x:'ago = đã qua.',tag:'Dấu hiệu'},
+ {t:'mc',q:'Which time phrase tells us to use the past simple?',o:['last night','next week','now'],a:0,x:'last night = tối qua.',tag:'Dấu hiệu'},
+ {t:'mc',q:'Which time phrase tells us to use the past simple?',o:['often','usually','yesterday afternoon'],a:2,x:'often, usually = thói quen hiện tại.',tag:'Dấu hiệu'},
+ {t:'mc',q:'Which time phrase tells us to use the past simple?',o:['in 2019','at the moment','next year'],a:0,x:'in + năm đã qua.',tag:'Dấu hiệu'},
+ {t:'mc',q:'Which time phrase tells us to use the past simple?',o:['always','last summer','soon'],a:1,x:'last summer = mùa hè năm ngoái.',tag:'Dấu hiệu'},
+ {t:'mc',q:'Which time phrase tells us to use the past simple?',o:['on Sundays','when I was ten','tomorrow morning'],a:1,x:'when I was ten = lúc 10 tuổi (đã qua).',tag:'Dấu hiệu'}],
+b2:[
+ {t:'mc',q:'I ___ to the zoo last Sunday.',o:['go','went','goes'],a:1,x:'last Sunday → went.',tag:'Chọn dạng động từ'},
+ {t:'mc',q:'She ___ her homework two hours ago.',o:['did','does','do'],a:0,x:'two hours ago → did.',tag:'Chọn dạng động từ'},
+ {t:'mc',q:'We ___ football yesterday.',o:['play','are playing','played'],a:2,x:'yesterday → played.',tag:'Chọn dạng động từ'},
+ {t:'mc',q:'My brother ___ a new bike in 2022.',o:['buys','bought','buy'],a:1,x:'in 2022 → bought.',tag:'Chọn dạng động từ'},
+ {t:'mc',q:'They ___ in Da Nang when they were children.',o:['live','lives','lived'],a:2,x:'when they were children → lived.',tag:'Chọn dạng động từ'},
+ {t:'mc',q:'I ___ breakfast at 7 o\'clock every day.',o:['eat','ate','eaten'],a:0,x:'every day = thói quen hiện tại → eat (cẩn thận bẫy!).',tag:'Chọn dạng động từ'}],
+tq3:[
+ {t:'mc',q:'V2 của "study" là…',o:['studyed','studied','studed'],a:1,x:'Phụ âm + y → bỏ y, thêm ied.',tag:'Quy tắc -ed'},
+ {t:'mc',q:'V2 của "go" là…',o:['goed','gone','went'],a:2,x:'go là động từ bất quy tắc: went.',tag:'Bất quy tắc'}],
+a3:[
+ {t:'mc',q:'play → played',o:['Có quy tắc (+ed)','Bất quy tắc'],a:0,x:'play + ed.',tag:'Phân loại'},
+ {t:'mc',q:'go → went',o:['Có quy tắc (+ed)','Bất quy tắc'],a:1,x:'went không có -ed.',tag:'Phân loại'},
+ {t:'mc',q:'watch → watched',o:['Có quy tắc (+ed)','Bất quy tắc'],a:0,x:'watch + ed.',tag:'Phân loại'},
+ {t:'mc',q:'eat → ate',o:['Có quy tắc (+ed)','Bất quy tắc'],a:1,x:'ate: bất quy tắc.',tag:'Phân loại'},
+ {t:'mc',q:'visit → visited',o:['Có quy tắc (+ed)','Bất quy tắc'],a:0,x:'visit + ed.',tag:'Phân loại'},
+ {t:'mc',q:'buy → bought',o:['Có quy tắc (+ed)','Bất quy tắc'],a:1,x:'bought: bất quy tắc.',tag:'Phân loại'},
+ {t:'mc',q:'see → saw',o:['Có quy tắc (+ed)','Bất quy tắc'],a:1,x:'saw: bất quy tắc.',tag:'Phân loại'},
+ {t:'mc',q:'clean → cleaned',o:['Có quy tắc (+ed)','Bất quy tắc'],a:0,x:'clean + ed.',tag:'Phân loại'}],
+b3:[
+ {t:'fill',q:'play →',a:['played'],tip:'Thêm -ed.',tag:'Viết V2'},
+ {t:'fill',q:'live →',a:['lived'],tip:'Tận cùng bằng -e: chỉ thêm -d.',tag:'Viết V2'},
+ {t:'fill',q:'study →',a:['studied'],tip:'Phụ âm + y: đổi y thành -ied.',tag:'Viết V2'},
+ {t:'fill',q:'stop →',a:['stopped'],tip:'Từ ngắn 1 nguyên âm + 1 phụ âm: gấp đôi phụ âm cuối + ed.',tag:'Viết V2'},
+ {t:'fill',q:'watch →',a:['watched'],tip:'Thêm -ed.',tag:'Viết V2'},
+ {t:'fill',q:'go →',a:['went'],tip:'Bất quy tắc, phải học thuộc: go – went.',tag:'Viết V2'},
+ {t:'fill',q:'eat →',a:['ate'],tip:'Bất quy tắc: eat – ate.',tag:'Viết V2'},
+ {t:'fill',q:'buy →',a:['bought'],tip:'Bất quy tắc: buy – bought.',tag:'Viết V2'},
+ {t:'fill',q:'see →',a:['saw'],tip:'Bất quy tắc: see – saw.',tag:'Viết V2'},
+ {t:'fill',q:'write →',a:['wrote'],tip:'Bất quy tắc: write – wrote.',tag:'Viết V2'}]
+};
+
+const TRANS=[
+ {vi:'Hôm qua tôi xem phim.',hint:'watch · yesterday · film/movie',m:'I watched a film yesterday.',pats:[/\byesterday\b/,/\bwatched\b/,/\b(film|movie)s?\b/]},
+ {vi:'Tuần trước chúng tôi đi công viên.',hint:'go · last week · park',m:'We went to the park last week.',pats:[/\blast week\b/,/\bwent\b/,/\bpark\b/]},
+ {vi:'Mẹ tôi nấu bữa tối hôm qua.',hint:'cook · dinner · last night / yesterday',m:'My mother cooked dinner yesterday.',pats:[/\b(yesterday|last night)\b/,/\bcooked\b/,/\b(dinner|rice|meal)\b/]},
+ {vi:'Em gái tôi mua một chiếc áo mới hai ngày trước.',hint:'buy · new · shirt/dress · ago',m:'My sister bought a new shirt two days ago.',pats:[/\btwo days ago\b/,/\bbought\b/,/\b(shirt|dress|jacket|t-shirt|coat|blouse|skirt)\b/]},
+ {vi:'Năm ngoái bạn tôi học tiếng Anh ở Hà Nội.',hint:'study · last year · English',m:'My friend studied English in Hanoi last year.',pats:[/\blast year\b/,/\bstudied\b/,/\benglish\b/]}
+];
+const FREE=[
+ {p:'1. Write one thing you did last weekend. Use a time phrase (last weekend, yesterday…).',need:'time'},
+ {p:'2. Write about food or shopping. Use an IRREGULAR verb (ate, bought, went, saw, made…).',need:'irr'},
+ {p:'3. Write about a friend or family member. Use a REGULAR verb (played, visited, cooked, cleaned…).',need:'reg'}
+];
+const BANK={
+ 'Places':['park','cinema','zoo','market','grandma\'s house','beach'],
+ 'Verbs':['play','watch','visit','cook','clean','study','go','eat','buy','see','make','meet'],
+ 'People':['my friends','my mom','my brother','my cousin','my teacher'],
+ 'Time':['yesterday','last weekend','last Sunday','two days ago']
+};
+const STORY=`Last Sunday, Lan had a busy day. She woke up at six o'clock and cooked breakfast for her family. After breakfast, she cleaned her room and studied English for one hour. In the afternoon, she went to the park with her friends. They played badminton and ate ice cream. They saw a small dog and took a photo of it. In the evening, Lan watched a film and wrote in her diary. She slept at ten o'clock. It was a happy day!`;
+
+/* ===== CÁC BƯỚC & YÊU CẦU ===== */
+const STEPS=[
+ {n:'Hiểu',icon:'🧠',th:TH1,tq:'tq1',qs:[['a1','A. Đọc câu tiếng Việt – việc này xảy ra khi nào?','Chọn đúng nhóm thời gian của câu tiếng Việt.'],['b1','B. Chọn câu tiếng Anh ở thì quá khứ đơn','Đọc câu tiếng Việt, chọn câu tiếng Anh đúng.']],h:'Bước 1 · Hiểu thì quá khứ đơn'},
+ {n:'Dấu hiệu',icon:'⏰',th:TH2,tq:'tq2',qs:[['a2','A. Tìm dấu hiệu thời gian','Chọn cụm từ cho biết phải dùng quá khứ đơn.'],['b2','B. Chọn dạng động từ đúng','Dựa vào dấu hiệu thời gian, chọn động từ.']],h:'Bước 2 · Dấu hiệu thời gian'},
+ {n:'Động từ V2',icon:'✍️',th:TH3,tq:'tq3',qs:[['a3','A. Có quy tắc hay bất quy tắc?','Chọn loại động từ.'],['b3','B. Viết dạng V2','Gõ dạng quá khứ (V2) của động từ.']],h:'Bước 3 · Động từ dạng V2'},
+ {n:'Viết',icon:'💡',h:'Bước 4 · Brainstorm và viết câu'},
+ {n:'Đọc to',icon:'🎙️',h:'Bước 5 · Đọc to câu chuyện'},
+ {n:'Nộp bài',icon:'📨',h:'Bước 6 · Nộp bài'}
+];
+function qDone(k){const st=S.q[k];return !!st&&QZ[k].every((_,i)=>st.ok[i]);}
+function qCount(k){const st=S.q[k];return st?QZ[k].filter((_,i)=>st.ok[i]).length:0;}
+function qFirst(k){const st=S.q[k];return st?QZ[k].filter((_,i)=>st.first[i]===1).length:0;}
+function reqs(i){
+ const s=STEPS[i],r=[];
+ if(s.tq){
+  r.push({l:'Chưa tick "Em đã đọc kỹ phần lý thuyết"',d:!!S.read[i]});
+  r.push({l:'Câu hỏi lý thuyết: còn '+(QZ[s.tq].length-qCount(s.tq))+' câu chưa đúng',d:qDone(s.tq)});
+  s.qs.forEach(q=>r.push({l:q[1].split('.')[0]+': còn '+(QZ[q[0]].length-qCount(q[0]))+' câu chưa đúng',d:qDone(q[0])}));
+ }else if(i===3){
+  r.push({l:'Brainstorm: chọn hoặc thêm ít nhất 6 ý ('+S.brain.length+'/6)',d:S.brain.length>=6});
+  r.push({l:'Dịch câu: còn '+(TRANS.filter((_,j)=>!(S.tr[j]&&S.tr[j].ok)).length)+' câu chưa đạt',d:TRANS.every((_,j)=>S.tr[j]&&S.tr[j].ok)});
+  r.push({l:'Viết câu của em: còn '+(FREE.filter((_,j)=>!(S.fr[j]&&S.fr[j].ok)).length)+' câu chưa đạt',d:FREE.every((_,j)=>S.fr[j]&&S.fr[j].ok)});
+ }else if(i===4){
+  r.push({l:'Chưa ghi âm đọc câu chuyện',d:S.recPct!==null||S.sent||!!recBlob});
+  r.push({l:'Chưa bấm 📤 gửi bản ghi cho cô',d:S.sent});
+ }
+ return r;
+}
+function stepPct(i){if(i===5)return S.done?1:0;const r=reqs(i);return r.filter(x=>x.d).length/r.length;}
+function overall(){let t=0;for(let i=0;i<5;i++)t+=stepPct(i);return Math.round(t/5*100);}
+
+/* ===== VẼ GIAO DIỆN ===== */
+function head(){
+ const p=overall();$('#barfill').style.width=p+'%';$('#pct').textContent='Hoàn thành '+p+'%';
+ $('#who').textContent=S.name?('👤 '+S.name):'';
+ $('#chips').innerHTML=STEPS.map((s,i)=>{const d=i<5?stepPct(i)===1:S.done;return '<button class="chip '+(i===S.step?'cur ':'')+(d?'done':'')+'" data-go="'+i+'">'+(d?'✅':(i+1))+' '+s.icon+' '+s.n+'</button>';}).join('');
+}
+function qHTML(k){
+ const items=QZ[k],st=S.q[k]||(S.q[k]={ok:[],first:[],v:[],bad:[]});
+ return items.map((it,i)=>{
+  const ok=st.ok[i],bad=st.bad[i]||[];let h='<div class="q"><div class="qt"><span class="qn">'+(i+1)+'</span>';
+  if(it.vi)h+='<span class="ins">'+esc(it.vi)+'</span><br>';
+  h+=esc(it.q).replace('___','<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>')+'</div>';
+  if(it.t==='mc'){
+   h+='<div class="opts">'+it.o.map((o,j)=>'<button class="opt '+(ok&&j===it.a?'good':(bad.indexOf(j)>-1?'bad':''))+'" data-q="'+k+'" data-i="'+i+'" data-j="'+j+'" '+(ok?'disabled':'')+'>'+esc(o)+'</button>').join('')+'</div>';
+  }else{
+   h+='<div class="row"><input type="text" class="fillin" data-fill="'+k+'-'+i+'" value="'+esc(st.v[i]||'')+'" '+(ok?'readonly':'')+' autocapitalize="none" autocomplete="off"><button class="btn" data-chk="'+k+'" data-i="'+i+'" '+(ok?'disabled':'')+'>Kiểm tra</button></div>';
+  }
+  if(ok)h+='<div class="fb ok">✅ Đúng! '+esc(it.x||it.tip||'')+'</div>';
+  else if(bad.length)h+='<div class="fb no">❌ Chưa đúng, thử lại. '+(it.t==='fill'?'Gợi ý: '+esc(it.tip):'')+'</div>';
+  return h+'</div>';
+ }).join('');
+}
+function renderTheoryStep(i){
+ const s=STEPS[i],r=!!S.read[i];
+ let h='<h1>'+s.h+'</h1><div class="card">'+s.th+'<label class="read"><input type="checkbox" data-read="'+i+'" '+(r?'checked':'')+'> Em đã đọc kỹ phần lý thuyết</label></div>';
+ h+='<div class="card"><h2>❓ Câu hỏi nhanh về lý thuyết</h2>'+(r?qHTML(s.tq):'<div class="lock">🔒 Tick "Em đã đọc kỹ phần lý thuyết" để mở câu hỏi</div>')+'</div>';
+ s.qs.forEach(q=>{h+='<div class="card"><h2>'+q[1]+'</h2><p class="ins">'+q[2]+'</p>'+(r?qHTML(q[0]):'<div class="lock">🔒 Hãy đọc lý thuyết trước</div>')+'</div>';});
+ return h;
+}
+function renderWrite(){
+ let h='<h1>'+STEPS[3].h+'</h1>';
+ h+='<div class="card"><h2>💡 A. Brainstorm (English only)</h2><p class="ins">What did you do last weekend? Choose words below or add your own. Pick at least 6 ideas.</p>';
+ Object.keys(BANK).forEach(c=>{h+='<div><b>'+c+':</b> '+BANK[c].map(w=>'<button class="bs '+(S.brain.indexOf(w)>-1?'on':'')+'" data-bs="'+esc(w)+'">'+esc(w)+'</button>').join('')+'</div>';});
+ h+='<div class="row" style="margin-top:8px"><input type="text" id="bsIn" placeholder="Add your own word…" style="max-width:260px"><button class="btn sec" data-bsadd="1">+ Add</button></div>';
+ h+='<p><b>My ideas ('+S.brain.length+'):</b> '+(S.brain.length?S.brain.map(w=>'<span class="pill">'+esc(w)+'</span>').join(' '):'<span class="small">none yet</span>')+'</p></div>';
+ h+='<div class="card"><h2>🇻🇳 → 🇬🇧 B. Dịch sang tiếng Anh (quá khứ đơn)</h2><p class="ins">Viết cả câu, nhớ viết hoa chữ đầu và có dấu chấm cuối câu.</p>';
+ TRANS.forEach((t,j)=>{const st=S.tr[j]||{};h+='<div class="q"><div class="qt"><span class="qn">'+(j+1)+'</span>'+esc(t.vi)+'</div><div class="small">Gợi ý từ: '+esc(t.hint)+'</div><textarea data-tr="'+j+'" '+(st.ok?'readonly':'')+'>'+esc(st.v||'')+'</textarea><div class="row" style="margin-top:6px">'+(st.ok?'':'<button class="btn" data-trchk="'+j+'">Kiểm tra</button><button class="btn sec" data-trmodel="'+j+'">Xem câu mẫu</button>')+'</div>'+(st.msg?'<div class="fb '+(st.ok?'ok':'no')+'">'+st.msg+'</div>':'')+(S.viewed[j]&&!st.ok?'<div class="fb">📖 Câu mẫu: <b>'+esc(t.m)+'</b></div>':'')+'</div>';});
+ h+='</div><div class="card"><h2>✏️ C. Viết câu của em (English only)</h2><p class="ins">Use ideas from your brainstorm. Write about your own weekend!</p>';
+ FREE.forEach((f,j)=>{const st=S.fr[j]||{};h+='<div class="q"><div class="qt">'+esc(f.p)+'</div><textarea data-fr="'+j+'" '+(st.ok?'readonly':'')+'>'+esc(st.v||'')+'</textarea>'+(st.ok?'':'<div class="row" style="margin-top:6px"><button class="btn" data-frchk="'+j+'">Check</button></div>')+(st.msg?'<div class="fb '+(st.ok?'ok':'no')+'">'+st.msg+'</div>':'')+'</div>';});
+ return h+'</div>';
+}
+function storyHTML(){return esc(STORY).replace(/[A-Za-z']+/g,w=>'<span class="w" data-k="'+w.toLowerCase()+'">'+w+'</span>');}
+function renderRead(){
+ let h='<h1>'+STEPS[4].h+'</h1><div class="card"><p class="ins">1) Bấm "Nghe mẫu". 2) Bấm "Ghi âm" và đọc to cả câu chuyện. 3) Bấm "Dừng", xem điểm rồi gửi cho cô. Bấm vào từ bất kỳ để nghe từ đó.</p>';
+ h+='<div class="story" id="story">'+storyHTML()+'</div>';
+ h+='<div class="row" style="margin-top:10px"><button class="btn sec" id="bModel">🔊 Nghe mẫu</button><button class="btn" id="bRec">⏺ Ghi âm</button><button class="btn red" id="bStop" style="display:none">⏹ Dừng</button></div>';
+ h+='<div id="recInfo" class="small" style="margin-top:8px"></div><audio id="player" controls style="display:none;width:100%;margin-top:8px"></audio><div id="recRes"></div>';
+ h+='<div class="row" style="margin-top:8px"><button class="btn" id="bSend" style="display:none">📤 Gửi bản ghi cho cô</button></div><div id="sendInfo" class="fb"></div></div>';
+ return h;
+}
+function recResHTML(){
+ if(S.recPct===null&&!S.sent)return '';
+ let h='';
+ if(S.recPct!==null){h+='<div class="score" style="color:'+(S.recPct>=70?'var(--ok)':'var(--bad)')+'">'+S.recPct+'% chính xác</div>';
+  h+=S.recWrong.length?'<p class="ins">Những từ máy chưa nghe rõ – bấm để nghe lại và luyện:</p>'+S.recWrong.map(w=>'<span class="mist" data-k="'+esc(w)+'">🔊 '+esc(w)+'</span>').join(''):'<p class="fb ok">🎉 Máy nghe được hết các từ!</p>';
+ }else h+='<p class="small">Máy chưa nghe được giọng em để chấm điểm (hãy đọc to và rõ hơn, hoặc dùng Chrome). Em vẫn gửi bản ghi để cô nghe.</p>';
+ return h;
+}
+function renderSubmit(){
+ let h='<h1>'+STEPS[5].h+'</h1><div class="card"><h2>📊 Em đã làm được</h2><table>';
+ for(let i=0;i<5;i++)h+='<tr><td>'+STEPS[i].icon+' '+STEPS[i].n+'</td><td>'+Math.round(stepPct(i)*100)+'%</td></tr>';
+ h+='</table><p>Điểm đúng ngay lần đầu: Bước 1: '+(qFirst('a1')+qFirst('b1'))+'/12 · Bước 2: '+(qFirst('a2')+qFirst('b2'))+'/12 · Bước 3: '+(qFirst('a3')+qFirst('b3'))+'/18</p>';
+ h+=S.done?'<div class="fb ok" style="font-size:17px">✅ Em đã nộp bài. Cô sẽ nhận xét sớm!</div>':'<button class="btn" id="bSubmit">📨 Nộp bài cho cô</button><div id="subInfo" class="fb"></div>';
+ return h+'</div>';
+}
+function render(){
+ const y=window.scrollY,i=S.step;
+ $('#main').innerHTML=(i<3?renderTheoryStep(i):i===3?renderWrite():i===4?renderRead():renderSubmit());
+ $('#nav').innerHTML='<button class="btn sec" data-nav="-1" '+(i===0?'disabled':'')+'>◀ Quay lại</button>'+(i<5?'<button class="btn" data-nav="1">Tiếp tục ▶</button>':'<span></span>');
+ head();window.scrollTo(0,y);
+ if(i===4&&recBlob)showRec();
+ if(i===4&&(S.recPct!==null||S.sent)){const el=$('#recRes');if(el)el.innerHTML=recResHTML();if(S.sent){const si=$('#sendInfo');if(si){si.className='fb ok';si.textContent='✅ Đã gửi cho cô.';}}}
+}
+
+/* ===== POPUP & MODAL ===== */
+function showWord(k){
+ const d=DICT[k]||{},sh=$('#sheet');
+ sh.innerHTML='<div class="row" style="justify-content:space-between"><div><div class="big">'+esc(k)+'</div><div class="vi">'+(d.ipa?esc(d.ipa):'')+'</div><div><b>'+(d.vi?esc(d.vi):'(từ trong bài)')+'</b></div></div><div class="row"><button class="btn" id="spk">🔊 Nghe</button><button class="btn sec" id="clsw">✕</button></div></div>';
+ sh.style.display='block';speak(k,.8);
+ $('#spk').onclick=()=>speak(k,.8);$('#clsw').onclick=()=>sh.style.display='none';
+}
+function modal(title,body,btns){
+ $('#mbox').innerHTML='<h2 style="color:var(--red)">'+title+'</h2>'+body+'<div class="row" style="margin-top:12px;justify-content:flex-end">'+btns.map((b,i)=>'<button class="btn '+(b.sec?'sec':'')+'" data-mb="'+i+'">'+b.t+'</button>').join('')+'</div>';
+ $('#modal').style.display='flex';
+ $('#mbox').querySelectorAll('[data-mb]').forEach(el=>el.onclick=()=>{$('#modal').style.display='none';const f=btns[+el.dataset.mb].f;if(f)f();});
+}
+function warn(i,after){
+ const miss=reqs(i).filter(x=>!x.d);
+ if(!miss.length)return after();
+ modal('⚠️ Em chưa hoàn thành phần '+STEPS[i].n,'<p>Còn thiếu:</p><ul>'+miss.map(x=>'<li>'+esc(x.l)+'</li>').join('')+'</ul>',[{t:'Quay lại làm tiếp'},{t:'Vẫn tiếp tục',sec:true,f:()=>{S.skips++;save();after();}}]);
+}
+function goStep(n){S.step=n;save();render();window.scrollTo(0,0);}
+
+/* ===== CHẤM CÂU VIẾT ===== */
+function baseChecks(t){
+ const m=[];
+ if(!t.trim())return['Chưa viết gì.'];
+ if(!/^[A-Z]/.test(t.trim()))m.push('Chữ đầu câu phải viết HOA.');
+ if(!/[.!?]$/.test(t.trim()))m.push('Cuối câu cần dấu chấm (.).');
+ if(/\bi\b/.test(t))m.push('Chữ "I" luôn viết hoa.');
+ if(/\b(goed|eated|haved|buyed|maked|seed|taked|writed|comed|doed|getted|meeted|drinked|sleeped|gived)\b/i.test(t))m.push('Động từ bất quy tắc không thêm -ed: went, ate, bought, saw, made…');
+ return m;
+}
+function hasTime(t){return /\b(yesterday|last (night|week|weekend|month|year|summer|sunday|monday|saturday|friday)|\w+ (days?|weeks?|months?|years?|hours?) ago|in (19|20)\d\d|this morning)\b/i.test(t);}
+function words(t){return t.toLowerCase().replace(/[^a-z' ]/g,' ').split(/\s+/).filter(Boolean);}
+function checkTrans(j,t){
+ const m=baseChecks(t),l=t.toLowerCase();
+ if(!m.length||m[0]!=='Chưa viết gì.'){
+  const miss=TRANS[j].pats.filter(p=>!p.test(l)).length;
+  if(miss)m.push('Chưa đủ ý hoặc sai dạng động từ (V2). Xem lại gợi ý từ và dấu hiệu thời gian.');
+ }
+ return m;
+}
+function checkFree(j,t){
+ const m=baseChecks(t),w=words(t),need=FREE[j].need;
+ if(m[0]==='Chưa viết gì.')return m;
+ if(w.length<4)m.push('Câu quá ngắn (cần ít nhất 4 từ).');
+ const hasV=w.some(x=>V2ALL.has(x)||/..ed$/.test(x));
+ if(!hasV)m.push('Chưa thấy động từ ở dạng quá khứ (V2).');
+ if(need==='time'&&!hasTime(t))m.push('Hãy thêm cụm chỉ thời gian (last weekend, yesterday…).');
+ if(need==='irr'&&!w.some(x=>IRR.has(x)))m.push('Hãy dùng một động từ bất quy tắc (ate, bought, went, saw, made…).');
+ if(need==='reg'&&!w.some(x=>/..ed$/.test(x)))m.push('Hãy dùng một động từ có quy tắc (played, visited, cooked…).');
+ if(hasTime(t)&&!hasV)m.push('Có dấu hiệu quá khứ thì động từ phải ở dạng V2.');
+ return m;
+}
+
+/* ===== GHI ÂM & CHẤM ĐỌC ===== */
+let recBlob=null,recMime='',mr=null,sr=null,srText='',t0=0,srOK=false,tick=null,stream=null;
+function showRec(){const p=$('#player');if(p&&recBlob){p.src=URL.createObjectURL(recBlob);p.style.display='block';$('#bSend').style.display='inline-block';}}
+function scoreRead(txt){
+ const sw=words(STORY),bag={};words(txt).forEach(w=>bag[w]=(bag[w]||0)+1);
+ let ok=0;const wrong=[];
+ sw.forEach(w=>{if(bag[w]>0){bag[w]--;ok++;}else if(wrong.indexOf(w)<0)wrong.push(w);});
+ return{pct:Math.round(ok/sw.length*100),wrong};
+}
+async function startRec(){
+ try{
+  stream=await navigator.mediaDevices.getUserMedia({audio:true});
+  const mt=window.MediaRecorder&&MediaRecorder.isTypeSupported('audio/webm')?'audio/webm':(MediaRecorder.isTypeSupported('audio/mp4')?'audio/mp4':'');
+  mr=new MediaRecorder(stream,mt?{mimeType:mt}:{});const chunks=[];recMime=mt||'audio/webm';
+  mr.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};
+  mr.onstop=()=>{recBlob=new Blob(chunks,{type:recMime});stream.getTracks().forEach(t=>t.stop());finishRec();};
+  srText='';srOK=false;
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(SR){sr=new SR();sr.lang='en-US';sr.continuous=true;sr.interimResults=false;srOK=true;sr.onresult=e=>{for(let i=e.resultIndex;i<e.results.length;i++)if(e.results[i].isFinal)srText+=' '+e.results[i][0].transcript;};sr.onerror=()=>{};try{sr.start();}catch(e){}}
+  mr.start();t0=Date.now();
+  $('#bRec').style.display='none';$('#bStop').style.display='inline-block';
+  tick=setInterval(()=>{$('#recInfo').textContent='🔴 Đang ghi âm… '+Math.round((Date.now()-t0)/1000)+' giây';},500);
+ }catch(e){$('#recInfo').innerHTML='<span class="fb no">Không mở được micro. Hãy bấm "Cho phép" micro cho trang này rồi thử lại.</span>';}
+}
+function stopRec(){clearInterval(tick);try{sr&&sr.stop();}catch(e){}try{mr&&mr.state!=='inactive'&&mr.stop();}catch(e){}}
+function finishRec(){
+ S.recDur=Math.round((Date.now()-t0)/1000);S.sent=false;
+ setTimeout(()=>{
+  S.recTranscript=srText.trim();
+  if(srOK&&S.recTranscript){const r=scoreRead(S.recTranscript);S.recPct=r.pct;S.recWrong=r.wrong;}
+  else if(srOK){S.recPct=null;S.recWrong=[];}
+  else{S.recPct=null;S.recWrong=[];}
+  save();
+  $('#bRec').style.display='inline-block';$('#bRec').textContent='⏺ Ghi âm lại';$('#bStop').style.display='none';
+  $('#recInfo').textContent='Đã ghi '+S.recDur+' giây. Nghe lại bản ghi bên dưới.';
+  showRec();$('#recRes').innerHTML=recResHTML();head();
+ },700);
+}
+function post(body){
+ return fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(body)}).then(r=>r.json()).catch(()=>fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(body)}).then(()=>({ok:true,unconfirmed:true})));
+}
+function sendAudio(){
+ const b=$('#bSend'),info=$('#sendInfo');b.disabled=true;info.className='fb';info.textContent='Đang gửi…';
+ const fr=new FileReader();
+ fr.onload=()=>{
+  const b64=String(fr.result).split(',')[1];
+  post({type:'audio',name:S.name,lesson:LESSON,file:'DocTruyen_01.'+(recMime.indexOf('mp4')>-1?'m4a':'webm'),label:'Đọc truyện Lan\'s Sunday',score:S.recPct,dur:S.recDur,target:STORY,transcript:S.recTranscript,mime:recMime,audio:b64})
+  .then(r=>{if(r&&r.ok){S.sent=true;save();info.className='fb ok';info.textContent='✅ Đã gửi cho cô.';head();}else{b.disabled=false;info.className='fb no';info.textContent='Gửi chưa được, thử lại nhé.';}});
+ };
+ fr.readAsDataURL(recBlob);
+}
+
+/* ===== NỘP BÀI ===== */
+function buildPayload(){
+ const all=[];let weak=[];
+ const sec=(k,title)=>QZ[k].forEach((it,i)=>{const st=S.q[k]||{};all.push({part:title,question:(it.vi?it.vi+' | ':'')+it.q,answer:st.first&&st.first[i]===1?'đúng lần đầu':'sai lần đầu / chưa làm',correct:it.t==='fill'?it.a[0]:it.o[it.a],result:st.ok&&st.ok[i]?'Đúng':'Chưa đúng'});});
+ [['tq1','B1 Lý thuyết'],['a1','B1 Nhận biết'],['b1','B1 Chọn câu QKĐ'],['tq2','B2 Lý thuyết'],['a2','B2 Dấu hiệu'],['b2','B2 Chọn dạng'],['tq3','B3 Lý thuyết'],['a3','B3 Phân loại'],['b3','B3 Viết V2']].forEach(p=>{sec(p[0],p[1]);const n=QZ[p[0]].length;if(qFirst(p[0])/n<.7)weak.push(QZ[p[0]][0].tag);});
+ TRANS.forEach((t,j)=>{const st=S.tr[j]||{};all.push({part:'B4 Dịch câu',question:t.vi,answer:st.v||'',correct:t.m,result:(st.ok?'Đạt':'Chưa đạt')+(S.viewed[j]?' · đã xem mẫu':'')});});
+ FREE.forEach((f,j)=>{const st=S.fr[j]||{};all.push({part:'B4 Viết tự do',question:f.p,answer:st.v||'',correct:'',result:st.ok?'Đạt':'Chưa đạt'});});
+ all.push({part:'B4 Brainstorm',question:'Ý tưởng',answer:S.brain.join(', '),correct:'',result:S.brain.length+' ý'});
+ all.push({part:'B5 Đọc to',question:'Đọc truyện',answer:S.recTranscript||'',correct:STORY,result:(S.recPct===null?'không chấm tự động':S.recPct+'%')+' · từ chưa rõ: '+S.recWrong.join(', ')});
+ const full=[0,1,2,3,4].every(i=>stepPct(i)===1);
+ const sum={
+  vocab:'Hiểu QKĐ: lý thuyết '+qFirst('tq1')+'/2 · nhận biết '+qFirst('a1')+'/6 · chọn câu '+qFirst('b1')+'/6',
+  gram:'Dấu hiệu: '+qFirst('a2')+'/6 · chọn dạng '+qFirst('b2')+'/6 · V2: phân loại '+qFirst('a3')+'/8, viết '+qFirst('b3')+'/10',
+  ctx:'Dịch '+TRANS.filter((_,j)=>S.tr[j]&&S.tr[j].ok).length+'/5 · viết '+FREE.filter((_,j)=>S.fr[j]&&S.fr[j].ok).length+'/3 · brainstorm '+S.brain.length+' ý',
+  rec:(S.sent?'Đã gửi 1 bản đọc truyện':'Chưa gửi bản ghi')+(S.recPct!==null?' · '+S.recPct+'% chính xác':''),
+  para:full&&!S.skips?'ĐẠT YÊU CẦU':'CHƯA ĐẠT YÊU CẦU · đã bỏ qua cảnh báo '+S.skips+' lần',
+  feedback:weak.length?'Cần ôn lại: '+weak.filter((w,i,a)=>a.indexOf(w)===i).join(', '):'Em làm tốt, nắm chắc thì quá khứ đơn!'
+ };
+ return{type:'submit',name:S.name,lesson:LESSON,summary:sum,details:all};
+}
+function doSubmit(){
+ const info=$('#subInfo');info.className='fb';info.textContent='Đang nộp…';
+ post(buildPayload()).then(r=>{if(r&&r.ok){S.done=true;save();render();}else{info.className='fb no';info.textContent='Nộp chưa được, thử lại nhé.';}});
+}
+
+/* ===== SỰ KIỆN ===== */
+document.addEventListener('click',e=>{
+ const t=e.target.closest('button,.w,.mist,input[data-read],[data-go]');if(!t)return;
+ const d=t.dataset;
+ if(t.classList.contains('w')||t.classList.contains('mist')){showWord(d.k);return;}
+ if(d.go!==undefined){goStep(+d.go);return;}
+ if(d.nav){const n=S.step+ +d.nav;if(d.nav==='1'){if(S.step===5)return;warn(S.step,()=>goStep(n));}else goStep(n);return;}
+ if(d.q!==undefined&&d.j!==undefined&&t.classList.contains('opt')){
+  const k=d.q,i=+d.i,j=+d.j,st=S.q[k],it=QZ[k][i];
+  if(j===it.a){st.ok[i]=true;if(st.first[i]==null)st.first[i]=1;}else{st.bad[i]=(st.bad[i]||[]).concat(j);if(st.first[i]==null)st.first[i]=0;}
+  save();render();return;
+ }
+ if(d.chk){
+  const k=d.chk,i=+d.i,st=S.q[k],it=QZ[k][i],inp=document.querySelector('[data-fill="'+k+'-'+i+'"]');
+  const v=(inp.value||'').trim().toLowerCase();st.v[i]=inp.value;
+  if(it.a.indexOf(v)>-1){st.ok[i]=true;if(st.first[i]==null)st.first[i]=1;}else{st.bad[i]=[1];if(st.first[i]==null)st.first[i]=0;}
+  save();render();return;
+ }
+ if(d.read!==undefined){S.read[+d.read]=t.checked;save();render();return;}
+ if(d.bs!==undefined){const w=d.bs,ix=S.brain.indexOf(w);ix>-1?S.brain.splice(ix,1):S.brain.push(w);save();render();return;}
+ if(d.bsadd){const el=$('#bsIn'),w=el.value.trim();if(w&&S.brain.indexOf(w)<0){S.brain.push(w);save();render();}return;}
+ if(d.trchk!==undefined){const j=+d.trchk,ta=document.querySelector('[data-tr="'+j+'"]'),v=ta.value;const m=checkTrans(j,v);S.tr[j]={v:v,ok:!m.length,msg:m.length?'❌ '+m.map(esc).join(' '):'✅ Đúng rồi! '+esc(TRANS[j].m)};save();render();return;}
+ if(d.trmodel!==undefined){S.viewed[+d.trmodel]=true;save();render();return;}
+ if(d.frchk!==undefined){const j=+d.frchk,ta=document.querySelector('[data-fr="'+j+'"]'),v=ta.value;const m=checkFree(j,v);S.fr[j]={v:v,ok:!m.length,msg:m.length?'❌ '+m.map(esc).join(' '):'✅ Great sentence!'};save();render();return;}
+ if(t.id==='bModel'){speak(STORY,.85);return;}
+ if(t.id==='bRec'){startRec();return;}
+ if(t.id==='bStop'){stopRec();return;}
+ if(t.id==='bSend'){sendAudio();return;}
+ if(t.id==='bSubmit'){
+  const miss=[];for(let i=0;i<5;i++)reqs(i).filter(x=>!x.d).forEach(x=>miss.push(STEPS[i].n+': '+x.l));
+  if(!miss.length)doSubmit();else modal('⚠️ Bài chưa hoàn thành','<ul>'+miss.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>',[{t:'Quay lại làm tiếp'},{t:'Vẫn nộp',sec:true,f:()=>{S.skips++;save();doSubmit();}}]);
+ }
+});
+document.addEventListener('input',e=>{
+ const t=e.target;
+ if(t.dataset.tr!==undefined){const j=+t.dataset.tr;S.tr[j]=Object.assign(S.tr[j]||{},{v:t.value});save();}
+ if(t.dataset.fr!==undefined){const j=+t.dataset.fr;S.fr[j]=Object.assign(S.fr[j]||{},{v:t.value});save();}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset.fill){const b=e.target.parentElement.querySelector('[data-chk]');if(b)b.click();}});
+
+/* ===== KHỞI ĐỘNG ===== */
+function start(){
+ render();
+ if(!S.name){
+  modal('👋 Xin chào!','<p>Em gõ <b>họ tên</b> để cô nhận được bài của em:</p><input type="text" id="nm" placeholder="Ví dụ: Nguyen Minh Anh"><p class="small">Khi trình duyệt hỏi, hãy bấm <b>Cho phép</b> micro ở bước đọc to.</p>',[{t:'Bắt đầu học',f:()=>{}}]);
+  const ok=document.querySelector('#mbox [data-mb]');
+  ok.onclick=()=>{const v=($('#nm').value||'').trim();if(!v){$('#nm').style.borderColor='var(--bad)';return;}S.name=v;save();$('#modal').style.display='none';head();};
+ }
+}
+start();
+</script>
+</body>
+</html>
