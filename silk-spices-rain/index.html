@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Silk, Spices &amp; Rain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Charis+SIL:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: one index-card column; sticky part bar during the test; parts shown one at a time */
+:root{
+  --bg:#EEF2F7; --card:#FFFFFF; --ink:#1D2B53; --muted:#5B6785; --rule:#C9D6EE;
+  --hl:#FFE45C; --hl-ink:#1D2B53; --ok:#1E7F5C; --ok-bg:#E3F4EC; --bad:#B83A2E; --bad-bg:#FBE9E6;
+  --margin:#E7837A; --bar:#2a78d6; --shadow:0 1px 0 #C9D6EE, 0 8px 24px -12px rgba(29,43,83,.25);
+  --ui:"Be Vietnam Pro","Segoe UI",Roboto,Arial,sans-serif;
+  --word:"Charis SIL","Doulos SIL","Gentium Plus","Noto Serif",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111827; --card:#1B2438; --ink:#E6EAF2; --muted:#9AA6C2; --rule:#2E3A55;
+    --hl:#E8C93A; --hl-ink:#111827; --ok:#5FD1A4; --ok-bg:#16352C; --bad:#F08A7E; --bad-bg:#3A1F1C;
+    --margin:#9C4D47; --bar:#3987e5; --shadow:0 1px 0 #2E3A55, 0 8px 24px -12px rgba(0,0,0,.6); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111827; --card:#1B2438; --ink:#E6EAF2; --muted:#9AA6C2; --rule:#2E3A55;
+  --hl:#E8C93A; --hl-ink:#111827; --ok:#5FD1A4; --ok-bg:#16352C; --bad:#F08A7E; --bad-bg:#3A1F1C;
+  --margin:#9C4D47; --bar:#3987e5; --shadow:0 1px 0 #2E3A55, 0 8px 24px -12px rgba(0,0,0,.6); color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.5}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--hl);outline-offset:2px;border-radius:6px}
+.wrap{max-width:780px;margin:0 auto;padding-inline:16px;padding-block:20px 56px}
+header h1{font-family:var(--word);font-weight:700;font-size:clamp(28px,6vw,40px);line-height:1.1;margin:6px 0 4px;text-wrap:balance}
+header p{margin:0;color:var(--muted);font-size:15px;max-width:62ch}
+.tabs{display:flex;overflow-x:auto;gap:4px;background:var(--card);padding:4px;border-radius:12px;margin:18px 0 14px;box-shadow:var(--shadow)}
+.tabs button{flex:1 0 auto;border:0;background:transparent;padding:10px 12px;border-radius:9px;font-weight:600;font-size:14px;color:var(--muted);white-space:nowrap}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--card)}
+.tabs button:disabled{opacity:.45;cursor:not-allowed}
+.panel{background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:18px}
+.card{position:relative;background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:20px 18px 18px 38px}
+.card::before{content:"";position:absolute;left:22px;top:0;bottom:0;width:2px;background:var(--margin);opacity:.7}
+.mut{color:var(--muted);font-size:14px}
+.warn{color:var(--bad);font-weight:600}
+.btn{border:1px solid var(--ink);background:transparent;border-radius:10px;padding:11px 16px;font-weight:600}
+.btn.primary{background:var(--ink);color:var(--card)}
+.btn:disabled{opacity:.4;cursor:default}
+.actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.actions .btn{flex:1 1 150px}
+.field{display:flex;flex-direction:column;font-size:13px;color:var(--muted);gap:4px}
+.field input{border:1.5px solid var(--rule);background:var(--card);border-radius:8px;padding:10px 12px;font-size:16px;color:var(--ink)}
+.field input:focus{border-color:var(--ink);outline:none}
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px;margin:14px 0}
+.plan div{border:1px solid var(--rule);border-radius:10px;padding:10px 12px}
+.plan b{display:block;font-family:var(--word);font-size:18px}
+.plan span{font-size:13px;color:var(--muted)}
+details.voice{background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:9px 12px;font-size:14px;margin-top:12px}
+details.voice summary{cursor:pointer;font-weight:600}
+.vrow{display:flex;align-items:flex-end;gap:10px;margin-top:8px;flex-wrap:wrap}
+.vrow label{display:flex;flex-direction:column;font-size:12px;color:var(--muted);flex:1 1 220px;min-width:0}
+.vrow select{border:1px solid var(--rule);background:var(--card);border-radius:6px;padding:6px;font-size:13px;margin-top:2px;max-width:100%}
+/* part bar */
+.tbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bg);padding-block:8px;display:flex;flex-direction:column;gap:8px}
+.trow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.parts{display:flex;gap:4px;flex-wrap:wrap}
+.parts button{border:1.5px solid var(--rule);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--muted)}
+.parts button[aria-pressed="true"]{border-color:var(--ink);color:var(--ink)}
+.parts button .c{font-variant-numeric:tabular-nums;font-weight:500;margin-left:4px}
+.bar{height:4px;background:var(--rule);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);transition:width .3s}
+h2.part{font-family:var(--word);font-size:24px;margin:6px 0 2px}
+.inst{color:var(--muted);font-size:14px;margin:0 0 12px}
+/* passage */
+.passage{font-family:var(--word);font-size:18px;line-height:1.75}
+.passage p{margin:0 0 12px}
+.gapw{display:inline-block;min-width:92px;border-bottom:2px solid var(--ink);text-align:center;padding:0 4px;font-weight:700}
+.gapw.empty{color:var(--muted);font-weight:400}
+.gapw .n{font-family:var(--ui);font-size:12px;color:var(--muted);margin-right:4px;font-weight:600}
+.qs{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.qi{background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:14px 16px}
+.qi .qt{font-weight:600;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
+.qi .qt .n{flex:0 0 26px;height:26px;border-radius:50%;display:inline-grid;place-items:center;font-size:13px;background:var(--rule);color:var(--ink)}
+.qi .qt .s{font-family:var(--word);font-size:18px;font-weight:400;line-height:1.5}
+.qi.done .qt .n{background:var(--ink);color:var(--card)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;padding-left:36px}
+.opt{border:1.5px solid var(--rule);background:var(--card);border-radius:10px;padding:8px 14px;font-family:var(--word);font-size:17px}
+.opt:hover{border-color:var(--ink)}
+.opt[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.dict{display:flex;gap:8px;flex-wrap:wrap;padding-left:36px;align-items:center}
+.dict input{flex:1 1 200px;min-width:0;border:2px solid var(--rule);background:var(--card);border-radius:10px;padding:10px 12px;font-size:18px;font-family:var(--word);color:var(--ink)}
+.dict input:focus{border-color:var(--ink);outline:none}
+.speak{border:1px solid var(--rule);background:transparent;border-radius:999px;padding:6px 12px;font-size:14px;white-space:nowrap}
+.speak.big{background:var(--ink);color:var(--card);border-color:var(--ink);font-weight:600}
+.speak:hover{border-color:var(--ink)}
+u.blank{text-decoration:none;border-bottom:2px solid currentColor;padding:0 26px}
+mark{background:linear-gradient(transparent 55%,var(--hl) 55%);color:inherit;padding:0 2px;font-weight:700}
+.sub{font-family:var(--word);font-size:20px;margin:18px 0 6px}
+/* chart */
+figure.chart{margin:0 0 6px;background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:14px 14px 8px}
+figure.chart figcaption{font-weight:600;font-size:15px}
+figure.chart figcaption span{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.chartbox{position:relative;max-width:100%}
+.chartbox svg{display:block;width:100%;height:auto;overflow:visible}
+.chartbox .tt{position:absolute;pointer-events:none;background:var(--ink);color:var(--card);font-size:13px;padding:4px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%)}
+/* results */
+.result{text-align:center}
+.result .score{font-family:var(--word);font-size:64px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.pscore{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.pscore div{border:1px solid var(--rule);border-radius:10px;padding:8px}
+.pscore b{display:block;font-family:var(--word);font-size:22px;font-variant-numeric:tabular-nums}
+.pscore span{font-size:12px;color:var(--muted)}
+.rvh{font-family:var(--word);font-size:20px;margin:18px 0 0}
+.rv{border-top:1px solid var(--rule);padding:12px 0}
+.rq{font-weight:600;font-size:16px;margin-bottom:6px;display:flex;gap:10px;align-items:baseline}
+.rq .n{flex:0 0 26px;height:26px;border-radius:50%;display:inline-grid;place-items:center;font-size:13px;background:var(--rule);color:var(--ink)}
+.rv.good .n{background:var(--ok-bg);color:var(--ok)}
+.rv.badr .n{background:var(--bad-bg);color:var(--bad)}
+.rq .s{font-family:var(--word);font-weight:400}
+.ra{margin-left:36px;font-size:16px;padding:2px 0}
+.ra.ok{color:var(--ok);font-weight:600}
+.ra.no{color:var(--bad)}
+.rex{margin:4px 0 0 36px;font-size:14px;color:var(--muted);background:var(--bg);border-radius:8px;padding:6px 10px}
+.send h3{font-family:var(--word);font-size:22px;margin:0 0 8px}
+a.btn{text-decoration:none;text-align:center;color:inherit;display:inline-block}
+a.btn.primary{color:var(--card)}
+a.btn.off{opacity:.4}
+#rtext{width:100%;margin-top:10px;border:1px solid var(--rule);border-radius:8px;background:var(--bg);padding:8px;font-size:13px;color:var(--ink);resize:vertical}
+/* vocab */
+.grp{margin-bottom:22px}
+.grp h2{font-family:var(--word);font-size:22px;margin:0 0 4px;text-wrap:balance}
+.grp p{margin:0 0 10px}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:8px}
+.vitem{background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:10px 12px;border-left:3px solid var(--margin);min-width:0}
+.vtop{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.vw{font-family:var(--word);font-size:19px;font-weight:700;line-height:1.2}
+.emo{font-size:20px}
+.vipa{font-family:var(--word);font-size:16px;display:inline-block;background:linear-gradient(transparent 55%,var(--hl) 55%);padding:0 2px;margin-top:2px}
+.vvi{font-size:14px;margin-top:2px}
+.vex{font-family:var(--word);font-size:15px;margin:6px 0 0;color:var(--ink)}
+.note{background:var(--card);border-left:4px solid var(--hl);border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:15px;box-shadow:var(--shadow)}
+.note p{margin:0 0 6px}.note p:last-child{margin:0}
+.model{font-family:var(--word);font-size:18px;line-height:1.7}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--card);padding:10px 16px;border-radius:10px;font-size:14px;max-width:92vw;z-index:30}
+@media (max-width:520px){.opts,.dict{padding-left:0}.card{padding-left:30px}.card::before{left:16px}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Silk, Spices &amp; Rain</h1>
+    <p>Bài kiểm tra từ vựng: đọc hiểu, nghe và chép lại, vận dụng trong câu và Writing Task 1.</p>
+  </header>
+  <div class="tabs" role="tablist" id="tabs">
+    <button role="tab" id="tab-test" data-tab="test" aria-selected="true">Bài kiểm tra</button>
+    <button role="tab" id="tab-vocab" data-tab="vocab" aria-selected="false">Ôn từ vựng</button>
+    <button role="tab" id="tab-wt1" data-tab="wt1" aria-selected="false">Writing Task 1</button>
+  </div>
+  <main id="main"></main>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+// ===== CẤU HÌNH (giáo viên chỉnh) =====
+const SUBMIT={
+  formUrl:"https://docs.google.com/forms/d/e/1FAIpQLSdQbX4Z0l4UpuoXiPftYNRTDNuvTymgIsZ2ssWfy0-xCZ1_mA/viewform",
+  entries:{name:"1195402447",quiz:"848946125",score:"1345236650",detail:"135001292"}
+};
+const QUIZ_NAME="Từ vựng: Silk, Spices & Rain";
+// =====================================
+
+const PASSAGE=[
+ "For thousands of years, China kept the secret of silk to itself. Silk is made from the {1} of the silkworm, a tiny larva that feeds only on the leaves of the mulberry tree. Farmers reared the worms, unwound each cocoon into one long fibre, and the thread was then woven into fabric.",
+ "At first, silk was {2} to royalty and nobles, and peasants were not allowed to wear it. Gradually, however, it became so highly prized that it was used as a form of {3}: officials were sometimes paid their salary in silk, and farmers could pay their taxes in silk instead of grain.",
+ "As demand for this exotic fabric grew in the West, silk became a {4} commodity. Merchants carried it along trade routes that stretched as far as the Mediterranean Sea, and every middleman added to the price. China held a {5} on silk production for centuries. Eventually, according to legend, two monks smuggled silkworm eggs out of China, {6} inside hollow walking sticks, and the silk industry spread to Europe."
+];
+const TF=["TRUE","FALSE","NOT GIVEN"];
+const P1=[
+ {gap:1,opts:["cocoons","tombs","grains"],ans:"cocoons",ex:"cocoon = kén. Tằm nhả tơ làm kén, người ta kéo sợi tơ (fibre) từ kén."},
+ {gap:2,opts:["esteemed","restricted","native"],ans:"restricted",ex:"be restricted to = chỉ giới hạn cho. Câu sau nói nông dân không được mặc."},
+ {gap:3,opts:["harvest","evidence","currency"],ans:"currency",ex:"a form of currency = một loại tiền tệ. Câu sau nói trả lương và nộp thuế bằng lụa."},
+ {gap:4,opts:["lucrative","hollow","sudden"],ans:"lucrative",ex:"lucrative = sinh lời. a lucrative commodity = món hàng đem lại nhiều tiền."},
+ {gap:5,opts:["demand","monopoly","caste"],ans:"monopoly",ex:"hold a monopoly on sth = độc quyền về thứ gì. Chỉ Trung Quốc sản xuất lụa."},
+ {gap:6,opts:["conquered","devised","concealed"],ans:"concealed",ex:"concealed = được giấu. Trứng tằm được giấu trong gậy rỗng (hollow)."},
+ {q:"At first, peasants were allowed to wear silk.",opts:TF,ans:"FALSE",ex:"Bài viết: “peasants were not allowed to wear it”."},
+ {q:"Some officials received their salary in silk.",opts:TF,ans:"TRUE",ex:"Bài viết: “officials were sometimes paid their salary in silk”."},
+ {q:"Silk was more expensive than spices in Europe.",opts:TF,ans:"NOT GIVEN",ex:"Bài không so sánh giá lụa với giá gia vị."}
+];
+const P2=[
+ {s:"Silkworms feed only on the leaves of the [mulberry] tree.",vi:"Tằm chỉ ăn lá cây dâu.",ex:"mulberry: hai chữ r (mul-ber-ry)."},
+ {s:"Arab [merchants] controlled the spice trade for centuries.",vi:"Thương nhân Ả Rập kiểm soát việc buôn gia vị hàng thế kỷ.",ex:"merchants: -er- và -ch-; nhớ thêm s vì là số nhiều."},
+ {s:"Pepper was once a very valuable [commodity].",vi:"Hạt tiêu từng là một món hàng rất giá trị.",ex:"commodity: hai chữ m (com-mod-i-ty)."},
+ {s:"Silver iodide helps tiny drops of [moisture] turn into rain.",vi:"Bạc iodua giúp các giọt hơi ẩm nhỏ biến thành mưa.",ex:"moisture: kết thúc bằng -ture, đọc /ˈmɔɪstʃə/."},
+ {s:"Farmers in dry areas depend on [irrigation] to grow their crops.",vi:"Nông dân vùng khô hạn dựa vào tưới tiêu để trồng trọt.",ex:"irrigation: hai chữ r, đuôi -tion."},
+ {s:"Cloud seeding is still a [controversial] technique.",vi:"Gieo hạt mây vẫn là một kỹ thuật gây tranh cãi.",ex:"controversial: con-tro-ver-sial, đuôi -sial (không phải -cial)."}
+];
+const P3A=[
+ {q:"Many experts are ___ that cloud seeding may alter the rainfall in neighbouring countries.",opts:["esteemed","concerned","restricted"],ans:"concerned",ex:"be concerned that... = lo ngại rằng... Dùng tốt trong Writing Task 2."},
+ {q:"There is still little scientific ___ that firing rockets into clouds produces more rain.",opts:["evidence","authority","particle"],ans:"evidence",ex:"evidence = bằng chứng. little evidence that... = ít bằng chứng cho thấy..."},
+ {q:"Without enough rain, millions of farmers are ___ of losing their crops.",opts:["in demand","within","at risk"],ans:"at risk",ex:"be at risk of + V-ing = có nguy cơ..."},
+ {q:"Local ___ monitor water levels carefully during the dry season.",opts:["peasants","authorities","monks"],ans:"authorities",ex:"authorities = cơ quan chức năng, những người có trách nhiệm theo dõi (monitor)."},
+ {q:"Nutmeg and cloves are ___ to a few small islands in Indonesia.",opts:["native","exotic","lucrative"],ans:"native",ex:"be native to + nơi chốn = có nguồn gốc từ."}
+];
+const WHEAT=[["2000",20],["2005",21.5],["2010",23],["2015",31],["2020",30]];
+const P3B=[
+ {q:"Wheat production rose ___ from 20 to 23 million metric tonnes between 2000 and 2010.",opts:["sharply","gradually","suddenly"],ans:"gradually",ex:"Chỉ tăng 3 triệu tấn trong 10 năm → tăng chậm, đều: gradually."},
+ {q:"This was followed by a ___ increase, to 31 million tonnes in 2015.",opts:["substantial","slight","stable"],ans:"substantial",ex:"Tăng 8 triệu tấn trong 5 năm → mức tăng lớn: substantial."},
+ {q:"Production ___ at 31 million tonnes in 2015.",opts:["fluctuated","declined","peaked"],ans:"peaked",ex:"peak at + số liệu = đạt đỉnh ở mức... 2015 là cột cao nhất."},
+ {q:"By 2020, the figure had fallen ___ to 30 million tonnes.",opts:["slightly","dramatically","substantially"],ans:"slightly",ex:"Chỉ giảm 1 triệu tấn → giảm nhẹ: slightly."}
+];
+
+/* ---------- vocabulary from the notebook ---------- */
+const VOCAB=[
+ {g:"Lụa và Con đường Tơ lụa",d:"Bài đọc về nghề nuôi tằm, dệt lụa và lụa trong xã hội Trung Hoa cổ.",w:[
+  ["silk","/sɪlk/","lụa","🧵"],["silkworm","/ˈsɪlkwɜːm/","con tằm","🐛"],["cocoon","/kəˈkuːn/","kén","🥚"],["mulberry","/ˈmʌlbəri/","cây dâu (tằm)","🌳"],
+  ["larva","/ˈlɑːvə/","ấu trùng (số nhiều: larvae)","🐛"],["rear","/rɪə/","nuôi","🤲"],["fibre","/ˈfaɪbə/","sợi","🧶"],["woven","/ˈwəʊvn/","được dệt","🪡"],
+  ["harvesting","/ˈhɑːvɪstɪŋ/","thu hoạch","🧺"],["devise","/dɪˈvaɪz/","nghĩ ra (devised)","💡"],["persuade","/pəˈsweɪd/","thuyết phục","🗣️"],["subsequently","/ˈsʌbsɪkwəntli/","sau đó","➡️"],
+  ["attempt to address","/əˈtempt tu əˈdres/","nỗ lực giải quyết","🛠️"],["royalty","/ˈrɔɪəlti/","hoàng gia","👑"],["noble","/ˈnəʊbl/","quý tộc","🎩"],["peasant","/ˈpeznt/","nông dân","👨‍🌾"],
+  ["caste","/kɑːst/","tầng lớp, đẳng cấp","🪜"],["currency","/ˈkʌrənsi/","tiền tệ","💰"],["salary","/ˈsæləri/","tiền lương","💵"],["tax","/tæks/","thuế","🧾"],
+  ["grain","/ɡreɪn/","ngũ cốc","🌾"],["be paid in sth","/bi peɪd ɪn/","được trả bằng (thứ gì)","🤝"],["restricted to","/rɪˈstrɪktɪd tə/","bị giới hạn ở","🚫"],["prized","/praɪzd/","được coi trọng","🏆"],
+  ["gradually","/ˈɡrædʒuəli/","dần dần","📈"],["spread","/spred/","lan rộng","🌍"],["indication","/ˌɪndɪˈkeɪʃn/","dấu hiệu","🔎"],["tomb","/tuːm/","lăng mộ","🪦"],
+  ["monk","/mʌŋk/","nhà sư","🧘"],["recapture","/ˌriːˈkæptʃə/","giành lại","🔁"],["diplomatic","/ˌdɪpləˈmætɪk/","thuộc ngoại giao","🤝"]]},
+ {g:"Buôn bán gia vị",d:"Bài đọc về thương mại gia vị giữa châu Á và châu Âu.",w:[
+  ["demand","/dɪˈmɑːnd/","nhu cầu","🛒"],["exotic","/ɪɡˈzɒtɪk/","kỳ lạ, đến từ xứ xa","🌺"],["fabric","/ˈfæbrɪk/","vải","🧵"],["lucrative","/ˈluːkrətɪv/","sinh lời","💹"],
+  ["commodity","/kəˈmɒdəti/","hàng hóa","📦"],["stretch","/stretʃ/","kéo dài","↔️"],["the Mediterranean Sea","/ˌmedɪtəˈreɪniən siː/","biển Địa Trung Hải","🌊"],["merchant","/ˈmɜːtʃənt/","thương nhân","🧑‍💼"],
+  ["entire","/ɪnˈtaɪə/","toàn bộ","⭕"],["middleman","/ˈmɪdlmæn/","người trung gian","🔗"],["native to","/ˈneɪtɪv tə/","có nguồn gốc từ","📍"],["eventually","/ɪˈventʃuəli/","cuối cùng","🏁"],
+  ["smuggle","/ˈsmʌɡl/","buôn lậu","🕵️"],["conceal","/kənˈsiːl/","che giấu","🙈"],["hollow","/ˈhɒləʊ/","rỗng","🕳️"],["monopoly","/məˈnɒpəli/","sự độc quyền","🔒"],
+  ["conquer","/ˈkɒŋkə/","chinh phục","⚔️"],["capture","/ˈkæptʃə/","chiếm được","🏴"],["settle","/ˈsetl/","định cư","🏠"],["processed","/ˈprəʊsest/","được chế biến","🏭"],
+  ["esteemed","/ɪˈstiːmd/","được đánh giá cao","⭐"]]},
+ {g:"Nông nghiệp và làm mưa nhân tạo",d:"Bài đọc “Every drop counts” về kỹ thuật làm mưa.",w:[
+  ["wheat","/wiːt/","lúa mì","🌾"],["crop","/krɒp/","mùa vụ, cây trồng","🌱"],["annual","/ˈænjuəl/","hằng năm","📅"],["substantial","/səbˈstænʃl/","đáng kể","📊"],
+  ["anxiously","/ˈæŋkʃəsli/","một cách lo lắng","😟"],["fail to deliver","/feɪl tə dɪˈlɪvə/","không mang lại (kết quả)","❌"],["sudden","/ˈsʌdn/","đột ngột","⚡"],["loud","/laʊd/","to (âm thanh)","🔊"],
+  ["roar","/rɔː/","tiếng gầm","🦁"],["field","/fiːld/","cánh đồng","🌾"],["mile","/maɪl/","dặm (≈1,6 km)","📏"],["within","/wɪˈðɪn/","trong vòng","⏱️"],
+  ["technique","/tekˈniːk/","kỹ thuật","🔧"],["silver iodide","/ˌsɪlvər ˈaɪədaɪd/","bạc iodua","🧪"],["tiny","/ˈtaɪni/","rất nhỏ","🤏"],["drop","/drɒp/","giọt","💧"],
+  ["moisture","/ˈmɔɪstʃə/","hơi ẩm","💦"],["turn into","/tɜːn ˈɪntuː/","biến thành","🔄"],["particle","/ˈpɑːtɪkl/","hạt","⚛️"],["melt","/melt/","tan chảy","🧊"],
+  ["expert","/ˈekspɜːt/","chuyên gia","🎓"],["microwave","/ˈmaɪkrəweɪv/","vi sóng","📡"],["prevent","/prɪˈvent/","ngăn chặn","🛑"],["dominate","/ˈdɒmɪneɪt/","chiếm ưu thế","🥇"],
+  ["monitor","/ˈmɒnɪtə/","theo dõi","👀"],["measure","/ˈmeʒə/","đo lường","📐"],["operation","/ˌɒpəˈreɪʃn/","hoạt động","⚙️"],["authority","/ɔːˈθɒrəti/","cơ quan chức năng","🏛️"],
+  ["equip","/ɪˈkwɪp/","trang bị","🎒"],["claim","/kleɪm/","tuyên bố, khẳng định","📢"],["metric tonne","/ˌmetrɪk ˈtʌn/","tấn","⚖️"],["at risk","/ət rɪsk/","có nguy cơ","⚠️"],
+  ["evidence","/ˈevɪdəns/","bằng chứng","🔍"],["potential","/pəˈtenʃl/","tiềm năng","🌟"],["agriculture","/ˈæɡrɪkʌltʃə/","nông nghiệp","🚜"],["concerned","/kənˈsɜːnd/","lo lắng, lo ngại","😧"],
+  ["alter","/ˈɔːltə/","thay đổi","🔀"],["controversial","/ˌkɒntrəˈvɜːʃl/","gây tranh cãi","💬"],["irrigation","/ˌɪrɪˈɡeɪʃn/","tưới tiêu","🚿"]]}
+];
+const WT1=[
+ {g:"Động từ chỉ xu hướng",w:[
+  ["rise / increase","/raɪz/ · /ɪnˈkriːs/","tăng","Wheat production rose from 20 to 23 million tonnes."],
+  ["fall / decline","/fɔːl/ · /dɪˈklaɪn/","giảm","The figure declined to 30 million tonnes in 2020."],
+  ["peak at","/piːk ət/","đạt đỉnh ở mức","Production peaked at 31 million tonnes in 2015."],
+  ["reach","/riːtʃ/","đạt tới","Production reached 23 million tonnes in 2010."],
+  ["remain stable","/rɪˈmeɪn ˈsteɪbl/","giữ ổn định","Prices remained stable throughout the period."],
+  ["fluctuate","/ˈflʌktʃueɪt/","dao động","Rainfall fluctuated between 50 and 80 mm."]]},
+ {g:"Mức độ và tốc độ thay đổi",w:[
+  ["gradually / steadily","/ˈɡrædʒuəli/ · /ˈstedɪli/","dần dần / đều đặn","The figure rose gradually between 2000 and 2010."],
+  ["sharply / dramatically","/ˈʃɑːpli/ · /drəˈmætɪkli/","mạnh / đột biến","Production increased sharply after 2010."],
+  ["slightly","/ˈslaɪtli/","nhẹ","Production fell slightly in 2020."],
+  ["substantial / significant","/səbˈstænʃl/ · /sɪɡˈnɪfɪkənt/","đáng kể","There was a substantial increase between 2010 and 2015."]]},
+ {g:"Số liệu và so sánh",w:[
+  ["annual","/ˈænjuəl/","hằng năm","The chart shows annual wheat production."],
+  ["metric tonnes","/ˌmetrɪk ˈtʌnz/","tấn","Production is measured in millions of metric tonnes."],
+  ["approximately","/əˈprɒksɪmətli/","khoảng","Production was approximately 30 million tonnes in 2020."],
+  ["the figure for","/ðə ˈfɪɡə fə/","số liệu của","The figure for 2015 was the highest."],
+  ["overall","/ˌəʊvərˈɔːl/","nhìn chung","Overall, production increased over the period."],
+  ["account for","/əˈkaʊnt fə/","chiếm (tỉ lệ)","Wheat accounted for 40% of all crops."],
+  ["proportion","/prəˈpɔːʃn/","tỉ lệ","A large proportion of farmland depends on irrigation."],
+  ["respectively","/rɪˈspektɪvli/","lần lượt","Production was 20 and 23 million tonnes in 2000 and 2010 respectively."],
+  ["compared with","/kəmˈpeəd wɪð/","so với","Compared with 2000, production in 2020 was 50% higher."],
+  ["whereas","/weərˈæz/","trong khi","Production rose sharply until 2015, whereas it fell slightly after that."]]}
+];
+const MODEL="The bar chart shows annual wheat production in one country between 2000 and 2020, measured in millions of metric tonnes. Overall, production increased over the period and peaked in 2015. From 2000 to 2010, the figure rose gradually from 20 to 23 million tonnes. This was followed by a substantial increase to 31 million tonnes in 2015. However, by 2020 production had fallen slightly to approximately 30 million tonnes.";
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const plain=s=>s.replace(/[\[\]]/g,"");
+const target=s=>s.match(/\[(.+?)\]/)[1];
+const blanked=s=>esc(s).replace(/\[(.+?)\]/,'<u class="blank"></u>');
+const marked=s=>esc(s).replace(/\[(.+?)\]/,"<mark>$1</mark>");
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(t._h);t._h=setTimeout(()=>t.hidden=true,3200)}
+const norm=s=>String(s||"").toLowerCase().replace(/[’`]/g,"'").replace(/[.,!?]/g,"").replace(/\s+/g," ").trim();
+
+/* ---------- voice ---------- */
+let ALLV=[],VO=null;
+function vScore(v){let s=0;const n=v.name;
+  if(/Natural|Neural|Online/i.test(n))s+=60;
+  if(/Premium|Enhanced/i.test(n))s+=45;
+  if(/Google UK English/i.test(n))s+=30;
+  if(/Sonia|Libby|Maisie|Ryan|Thomas|Serena|Daniel|Kate|Arthur|Martha|Stephanie/i.test(n))s+=20;
+  if(v.lang==="en-GB")s+=15;else if(/^en[-_](US|AU|IE|NZ|CA)/i.test(v.lang))s+=6;
+  if(/compact|espeak|Zarvox|Bad News|Bells|Trinoids|Whisper|Albert|Bubbles|Cellos|Jester|Organ|Superstar|Boing|Wobble|Junior|Ralph|Kathy|Grandma|Grandpa|Rocko|Shelley|Sandy|Flo|Eddy|Reed/i.test(n))s-=80;
+  return s}
+function loadVoices(){
+  try{ALLV=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang)).sort((a,b)=>vScore(b)-vScore(a))}catch(e){ALLV=[]}
+  const saved=store.get("srVoice","");
+  VO=ALLV.find(v=>v.name===saved)||ALLV[0]||null;
+  drawVoice();
+}
+try{loadVoices();speechSynthesis.onvoiceschanged=loadVoices}catch(e){}
+function say(t,rate){
+  try{speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(t);u.lang="en-GB";u.rate=rate||.92;
+    if(VO){u.voice=VO;u.lang=VO.lang}
+    setTimeout(()=>speechSynthesis.speak(u),40);
+  }catch(e){toast("Trình duyệt này không đọc được. Hãy mở bằng Chrome, Edge hoặc Safari.")}
+}
+function drawVoice(){
+  const el=$("#voice");if(!el)return;
+  if(!ALLV.length){el.innerHTML=`<summary>🔊 Giọng đọc</summary><p class="mut">Trình duyệt này chưa có giọng tiếng Anh. Hãy mở bằng Chrome, Edge hoặc Safari.</p>`;return}
+  el.innerHTML=`<summary>🔊 Giọng đọc: ${esc(VO.name.replace(/Microsoft |Online |\(Natural\) - /g,"").split(/[ (-]/)[0])}</summary>
+   <div class="vrow"><label>Chọn giọng<select id="vsel">${ALLV.map(v=>`<option value="${esc(v.name)}" ${v===VO?"selected":""}>${esc(v.name.replace(/Microsoft |Online |\(Natural\) - /g,"").slice(0,48))}</option>`).join("")}</select></label><button class="speak" id="vtest">Nghe thử</button></div>
+   <p class="mut">Giọng tự nhiên nhất: mở bằng <b>Microsoft Edge</b> (giọng “Natural”) hoặc <b>Safari trên iPhone/iPad</b>.</p>`;
+  $("#vsel").onchange=e=>{VO=ALLV.find(v=>v.name===e.target.value);store.set("srVoice",VO.name)};
+  $("#vtest").onclick=()=>say("Silk was once so highly prized that it was used as a form of currency.");
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b){e.preventDefault();say(b.dataset.say,b.dataset.slow?.7:.92)}});
+
+/* ---------- state ---------- */
+const ST={name:store.get("srName",""),phase:"intro",part:1,ans:{},result:null,tab:"test"};
+const ALLQ=[
+ ...P1.map((q,i)=>({id:"r"+i,part:1,...q})),
+ ...P2.map((q,i)=>({id:"d"+i,part:2,...q,ans:target(q.s)})),
+ ...P3A.map((q,i)=>({id:"a"+i,part:3,...q})),
+ ...P3B.map((q,i)=>({id:"b"+i,part:3,wt1:true,...q}))
+];
+const partQs=p=>ALLQ.filter(q=>q.part===p);
+const answered=q=>ST.ans[q.id]!=null&&String(ST.ans[q.id]).trim()!=="";
+
+/* ---------- tabs ---------- */
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{if(b.disabled)return;ST.tab=b.dataset.tab;render()});
+function render(){
+  const locked=ST.phase==="test";
+  document.querySelectorAll("#tabs button").forEach(b=>{
+    b.setAttribute("aria-selected",String(b.dataset.tab===ST.tab));
+    if(b.dataset.tab!=="test"){b.disabled=locked;b.title=locked?"Mở lại sau khi nộp bài":""}
+  });
+  if(ST.tab==="vocab")return renderVocab();
+  if(ST.tab==="wt1")return renderWT1();
+  if(ST.phase==="intro")return renderIntro();
+  if(ST.phase==="test")return renderTest();
+  renderResult();
+}
+
+/* ---------- intro ---------- */
+function renderIntro(){
+  $("#main").innerHTML=`<div class="card">
+   <h2 class="part" style="margin-top:0">Trước khi bắt đầu</h2>
+   <p class="inst">Bài có ${ALLQ.length} câu, chia 3 phần. Em làm theo tốc độ của mình, xong thì bấm Nộp bài.</p>
+   <div class="plan">
+    <div><b>Phần 1 · Đọc hiểu</b><span>${P1.length} câu</span></div>
+    <div><b>Phần 2 · Nghe và chép</b><span>${P2.length} câu</span></div>
+    <div><b>Phần 3 · Vận dụng</b><span>${P3A.length+P3B.length} câu, có Writing Task 1</span></div>
+   </div>
+   <label class="field" for="stName">Họ tên<input id="stName" autocomplete="name" value="${esc(ST.name)}" placeholder="Nhập họ tên của em"></label>
+   <p class="mut" style="margin:10px 0 0">Nhớ mở loa hoặc đeo tai nghe cho Phần 2. Bấm “Nghe thử” bên dưới để kiểm tra âm thanh.</p>
+   <div class="actions"><button class="btn primary" id="startBtn">Bắt đầu làm bài</button></div>
+  </div>
+  <details class="voice" id="voice"><summary>🔊 Giọng đọc</summary></details>`;
+  drawVoice();
+  $("#stName").oninput=e=>{ST.name=e.target.value;store.set("srName",ST.name.trim())};
+  $("#startBtn").onclick=()=>{
+    if(!ST.name.trim()){toast("Em hãy nhập họ tên trước nhé.");$("#stName").focus();return}
+    ST.phase="test";ST.part=1;ST.ans={};
+    render();window.scrollTo({top:0});
+  };
+}
+/* ---------- test ---------- */
+function partBtn(p,label){
+  const qs=partQs(p),n=qs.filter(answered).length;
+  return `<button data-part="${p}" aria-pressed="${ST.part===p}">${label}<span class="c">${n}/${qs.length}</span></button>`;
+}
+function renderTest(){
+  const total=ALLQ.length,done=ALLQ.filter(answered).length;
+  let body="";
+  if(ST.part===1)body=part1();
+  if(ST.part===2)body=part2();
+  if(ST.part===3)body=part3();
+  $("#main").innerHTML=`<div class="tbar">
+    <div class="trow"><div class="parts">${partBtn(1,"Đọc hiểu")}${partBtn(2,"Nghe &amp; chép")}${partBtn(3,"Vận dụng")}</div></div>
+    <div class="bar"><i style="width:${done/total*100}%"></i></div></div>
+   ${body}
+   <div class="actions">
+    ${ST.part>1?`<button class="btn" id="prevP">← Phần ${ST.part-1}</button>`:""}
+    ${ST.part<3?`<button class="btn primary" id="nextP">Sang Phần ${ST.part+1} →</button>`:`<button class="btn primary" id="submitBtn">Nộp bài (${done}/${total} câu)</button>`}
+   </div>
+   <div id="confirm"></div>`;
+  document.querySelectorAll("[data-part]").forEach(b=>b.onclick=()=>goPart(+b.dataset.part));
+  if($("#prevP"))$("#prevP").onclick=()=>goPart(ST.part-1);
+  if($("#nextP"))$("#nextP").onclick=()=>goPart(ST.part+1);
+  if($("#submitBtn"))$("#submitBtn").onclick=confirmSubmit;
+  document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ST.ans[b.dataset.q]=b.dataset.v;renderTestKeepScroll()});
+  document.querySelectorAll("[data-dict]").forEach(inp=>{
+    inp.oninput=()=>{ST.ans[inp.dataset.dict]=inp.value;refreshCounts()};
+    inp.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();const all=[...document.querySelectorAll("[data-dict]")],i=all.indexOf(inp);if(all[i+1])all[i+1].focus()}};
+  });
+  if(ST.part===3)drawChart("chartT");
+}
+function goPart(p){ST.part=p;render();window.scrollTo({top:$("#main").offsetTop-8})}
+function renderTestKeepScroll(){const y=window.scrollY;render();window.scrollTo({top:y})}
+function refreshCounts(){
+  document.querySelectorAll("[data-part]").forEach(b=>{const qs=partQs(+b.dataset.part);b.querySelector(".c").textContent=`${qs.filter(answered).length}/${qs.length}`});
+  const total=ALLQ.length,done=ALLQ.filter(answered).length;
+  const bar=$(".bar i");if(bar)bar.style.width=done/total*100+"%";
+  const sb=$("#submitBtn");if(sb)sb.textContent=`Nộp bài (${done}/${total} câu)`;
+  document.querySelectorAll("[data-dict]").forEach(i=>i.closest(".qi").classList.toggle("done",!!i.value.trim()));
+}
+function confirmSubmit(){
+  const left=ALLQ.filter(q=>!answered(q)).length;
+  if(!left){grade();return}
+  $("#confirm").innerHTML=`<div class="note" style="margin-top:12px"><p><b>Em còn ${left} câu chưa làm.</b> Câu bỏ trống sẽ tính là sai.</p>
+   <div class="actions"><button class="btn" id="cBack">Quay lại làm tiếp</button><button class="btn primary" id="cGo">Vẫn nộp bài</button></div></div>`;
+  $("#cBack").onclick=()=>{$("#confirm").innerHTML=""};
+  $("#cGo").onclick=grade;
+  $("#confirm").scrollIntoView({block:"center"});
+}
+function optRow(q){
+  return `<div class="opts">${q.opts.map(o=>`<button class="opt" data-q="${q.id}" data-v="${esc(o)}" aria-pressed="${ST.ans[q.id]===o}">${esc(o)}</button>`).join("")}</div>`;
+}
+function qBlock(q,n,text){
+  return `<div class="qi ${answered(q)?"done":""}"><div class="qt"><span class="n">${n}</span><span class="s">${text}</span></div>${optRow(q)}</div>`;
+}
+function part1(){
+  const qs=partQs(1);
+  const html=PASSAGE.map(p=>"<p>"+esc(p).replace(/\{(\d)\}/g,(m,g)=>{
+    const q=qs.find(x=>x.gap==+g),a=ST.ans[q.id];
+    return `<span class="gapw ${a?"":"empty"}"><span class="n">${g}</span>${a?esc(a):"______"}</span>`;
+  })+"</p>").join("");
+  return `<h2 class="part">Phần 1 · Đọc hiểu</h2>
+   <p class="inst">Đọc bài “The secret of silk”. Câu 1–6: chọn từ đúng điền vào chỗ trống. Câu 7–9: chọn TRUE, FALSE hoặc NOT GIVEN.</p>
+   <div class="card passage"><h3 class="sub" style="margin-top:0">The secret of silk</h3>${html}</div>
+   <div class="qs">
+    ${qs.filter(q=>q.gap).map(q=>qBlock(q,q.gap,`Chỗ trống ${q.gap}`)).join("")}
+    <h3 class="sub">TRUE / FALSE / NOT GIVEN</h3>
+    ${qs.filter(q=>!q.gap).map((q,i)=>qBlock(q,7+i,esc(q.q))).join("")}
+   </div>`;
+}
+function part2(){
+  return `<h2 class="part">Phần 2 · Nghe và chép lại</h2>
+   <p class="inst">Bấm 🔊 để nghe câu, rồi gõ từ còn thiếu. Viết đúng chính tả, vì trong IELTS Listening sai chính tả là mất điểm. Có thể nghe lại nhiều lần.</p>
+   <div class="qs">${partQs(2).map((q,i)=>`<div class="qi ${answered(q)?"done":""}">
+     <div class="qt"><span class="n">${10+i}</span><span class="s">${blanked(q.s)}</span></div>
+     <div class="dict"><button class="speak big" data-say="${esc(plain(q.s))}">🔊 Nghe</button><button class="speak" data-say="${esc(plain(q.s))}" data-slow="1">🐢 Chậm</button>
+      <input id="in-${q.id}" data-dict="${q.id}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Gõ từ em nghe được" value="${esc(ST.ans[q.id]||"")}" aria-label="Câu ${10+i}"></div>
+   </div>`).join("")}</div>`;
+}
+function chartFigure(id){
+  return `<figure class="chart"><figcaption>Annual wheat production in Country X, 2000–2020<span>Đơn vị: million metric tonnes (triệu tấn)</span></figcaption><div class="chartbox" id="${id}"></div></figure>`;
+}
+function part3(){
+  const a=partQs(3).filter(q=>!q.wt1),b=partQs(3).filter(q=>q.wt1);
+  return `<h2 class="part">Phần 3 · Vận dụng trong câu</h2>
+   <p class="inst">Chọn từ đúng cho mỗi câu. Đây là những câu em có thể dùng trong Writing và Speaking.</p>
+   <div class="qs">${a.map((q,i)=>qBlock(q,16+i,esc(q.q).replace("___",'<u class="blank"></u>'))).join("")}</div>
+   <h3 class="sub">Writing Task 1: mô tả biểu đồ</h3>
+   <p class="inst">Nhìn biểu đồ, chọn từ phù hợp để hoàn thành câu mô tả.</p>
+   ${chartFigure("chartT")}
+   <div class="qs">${b.map((q,i)=>qBlock(q,21+i,esc(q.q).replace("___",'<u class="blank"></u>'))).join("")}</div>`;
+}
+
+/* ---------- chart ---------- */
+function drawChart(id){
+  const box=document.getElementById(id);if(!box)return;
+  const W=560,H=280,L=44,R=12,T=24,B=34,max=35,ticks=[0,10,20,30];
+  const pw=W-L-R,ph=H-T-B,bw=pw/WHEAT.length;
+  const y=v=>T+ph-(v/max)*ph;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Bar chart: wheat production 20, 21.5, 23, 31 and 30 million tonnes in 2000, 2005, 2010, 2015 and 2020.">`;
+  ticks.forEach(t=>{s+=`<line x1="${L}" x2="${W-R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--rule)" stroke-width="1"/><text x="${L-8}" y="${y(t)+4}" text-anchor="end" font-size="12" fill="var(--muted)" font-family="var(--ui)">${t}</text>`});
+  WHEAT.forEach(([yr,v],i)=>{
+    const x=L+i*bw+bw*0.22,w=bw*0.56,top=y(v),h=y(0)-top,r=4;
+    s+=`<path d="M${x},${y(0)} V${top+r} Q${x},${top} ${x+r},${top} H${x+w-r} Q${x+w},${top} ${x+w},${top+r} V${y(0)} Z" fill="var(--bar)" data-tip="${yr}: ${v} million tonnes" tabindex="0"/>`;
+    s+=`<text x="${x+w/2}" y="${top-6}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)" font-family="var(--ui)">${v}</text>`;
+    s+=`<text x="${x+w/2}" y="${H-B+18}" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="var(--ui)">${yr}</text>`;
+  });
+  s+=`<line x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}" stroke="var(--muted)" stroke-width="1"/></svg><div class="tt" hidden></div>`;
+  box.innerHTML=s;
+  const tt=box.querySelector(".tt");
+  const show=(el,cx,cy)=>{const r=box.getBoundingClientRect();tt.textContent=el.dataset.tip;tt.style.left=(cx-r.left)+"px";tt.style.top=(cy-r.top)+"px";tt.hidden=false};
+  box.querySelectorAll("[data-tip]").forEach(el=>{
+    el.addEventListener("pointermove",e=>show(el,e.clientX,e.clientY));
+    el.addEventListener("pointerleave",()=>tt.hidden=true);
+    el.addEventListener("focus",()=>{const b=el.getBoundingClientRect();show(el,b.left+b.width/2,b.top)});
+    el.addEventListener("blur",()=>tt.hidden=true);
+  });
+}
+
+/* ---------- grading ---------- */
+function isRight(q){const a=ST.ans[q.id];return q.part===2?norm(a)===norm(q.ans):a===q.ans}
+function qPlain(q,n){
+  if(q.part===1&&q.gap)return `Đọc hiểu, chỗ trống ${q.gap}`;
+  if(q.part===1)return q.q;
+  if(q.part===2)return plain(q.s).replace(q.ans,"____");
+  return q.q;
+}
+function grade(){
+  try{speechSynthesis.cancel()}catch(e){}
+  const rows=ALLQ.map((q,i)=>({q,n:i+1,a:(ST.ans[q.id]||"").trim(),ok:isRight(q)}));
+  const score=rows.filter(r=>r.ok).length;
+  const per=[1,2,3].map(p=>{const r=rows.filter(x=>x.q.part===p);return [r.filter(x=>x.ok).length,r.length]});
+  const detail=rows.filter(r=>!r.ok).map(r=>`Câu ${r.n}: "${r.a||"(bỏ trống)"}" → đúng "${r.q.ans}"`);
+  detail.unshift(`Đọc hiểu ${per[0][0]}/${per[0][1]}, Nghe chép ${per[1][0]}/${per[1][1]}, Vận dụng ${per[2][0]}/${per[2][1]}.`);
+  ST.result={rows,score,n:rows.length,per,detail};
+  ST.phase="done";ST.tab="test";render();window.scrollTo({top:0});
+}
+function renderResult(){
+  const {rows,score,n,per}=ST.result,pct=score/n;
+  const msg=pct>=.9?"Rất tốt! Em nắm chắc từ vựng bài này.":pct>=.6?"Khá ổn. Xem lại các câu sai bên dưới nhé.":"Cần ôn thêm. Mở tab Ôn từ vựng, nghe lại từng từ rồi làm lại bài.";
+  const sec=(p,title)=>`<h3 class="rvh">${title}</h3>`+rows.filter(r=>r.q.part===p).map(r=>`<div class="rv ${r.ok?"good":"badr"}">
+    <div class="rq"><span class="n">${r.n}</span><span class="s">${esc(qPlain(r.q))}</span></div>
+    ${r.ok?`<div class="ra ok">✓ ${esc(r.a)}</div>`:`<div class="ra no">✗ <s>${esc(r.a||"(bỏ trống)")}</s></div><div class="ra ok">✓ ${esc(r.q.ans)}</div>`}
+    ${!r.ok||r.q.part===2?`<div class="rex">${esc(r.q.ex)}${r.q.part===2?` <button class="speak" data-say="${esc(plain(r.q.s))}">🔊</button><br>${esc(r.q.vi)}`:""}</div>`:""}
+  </div>`).join("");
+  $("#main").innerHTML=`<div class="panel result"><div class="mut">${esc(ST.name)}</div><div class="score">${score}/${n}</div><p>${msg}</p>
+    <div class="pscore"><div><b>${per[0][0]}/${per[0][1]}</b><span>Đọc hiểu</span></div><div><b>${per[1][0]}/${per[1][1]}</b><span>Nghe và chép</span></div><div><b>${per[2][0]}/${per[2][1]}</b><span>Vận dụng</span></div></div></div>
+   <div class="panel send" style="margin-top:14px" id="send"></div>
+   <div class="panel" style="margin-top:14px">
+    <h3 class="rvh" style="margin-top:0">Nghe lại bài đọc</h3>
+    <p class="mut">Nghe bài “The secret of silk” với đầy đủ đáp án, vừa nghe vừa nhìn chữ.</p>
+    <div class="actions" style="margin-top:6px"><button class="btn" data-say="${esc(fullPassage())}">🔊 Nghe bài đọc</button><button class="btn" data-say="${esc(fullPassage())}" data-slow="1">🐢 Nghe chậm</button></div>
+    <div class="passage" style="margin-top:10px">${PASSAGE.map(p=>"<p>"+esc(p).replace(/\{(\d)\}/g,(m,g)=>`<mark>${esc(P1[g-1].ans)}</mark>`)+"</p>").join("")}</div>
+    ${sec(1,"Phần 1 · Đọc hiểu")}${sec(2,"Phần 2 · Nghe và chép")}${sec(3,"Phần 3 · Vận dụng")}
+   </div>
+   <div class="actions"><button class="btn" id="redo">Làm lại bài</button><button class="btn primary" id="toVocab">Ôn từ vựng</button></div>`;
+  drawSend();
+  $("#redo").onclick=()=>{ST.phase="intro";ST.result=null;render()};
+  $("#toVocab").onclick=()=>{ST.tab="vocab";render();window.scrollTo({top:0})};
+}
+function fullPassage(){return PASSAGE.map(p=>p.replace(/\{(\d)\}/g,(m,g)=>P1[g-1].ans)).join(" ")}
+function formLink(){
+  const e=SUBMIT.entries,r=ST.result,p=new URLSearchParams();
+  if(!SUBMIT.formUrl||!e.name)return "";
+  p.set("usp","pp_url");
+  const put=(k,v)=>p.set(k.startsWith("entry.")?k:"entry."+k,v);
+  put(e.name,ST.name.trim());put(e.quiz,QUIZ_NAME);put(e.score,`${r.score}/${r.n}`);
+  put(e.detail,r.detail.join("\n").slice(0,1500));
+  return SUBMIT.formUrl.split("?")[0]+"?"+p.toString();
+}
+function drawSend(){
+  const r=ST.result,need=!ST.name.trim(),fl=formLink();
+  const text=`Họ tên: ${ST.name||"(chưa nhập)"}\nBài: ${QUIZ_NAME}\nĐiểm: ${r.score}/${r.n}\nNộp lúc: ${new Date().toLocaleString("vi-VN")}\n${r.detail.join("\n")}`;
+  $("#send").innerHTML=`<h3>Gửi kết quả cho giáo viên</h3>
+   ${need?`<p class="warn">Nhập họ tên trước khi gửi.</p>`:""}
+   <label class="field" for="sn2">Họ tên<input id="sn2" value="${esc(ST.name)}"></label>
+   <div class="actions">${fl?`<a class="btn primary ${need?"off":""}" href="${esc(fl)}" target="_blank" rel="noopener">Gửi qua Google Form</a>`:""}<button class="btn" id="copy">Sao chép kết quả</button></div>
+   <p class="mut">Google Form sẽ mở với kết quả đã điền sẵn. Em chỉ cần bấm <b>Gửi</b> (Submit), không cần đăng nhập.</p>
+   <textarea id="rtext" readonly rows="5">${esc(text)}</textarea>`;
+  $("#sn2").onchange=e=>{ST.name=e.target.value.trim();store.set("srName",ST.name);drawSend()};
+  $("#copy").onclick=async()=>{
+    let ok=false;try{await navigator.clipboard.writeText(text);ok=true}catch(e){}
+    if(!ok){const t=$("#rtext");t.select();try{ok=document.execCommand("copy")}catch(e){}}
+    $("#copy").textContent=ok?"Đã sao chép":"Hãy bôi đen và sao chép";
+  };
+  document.querySelectorAll("#send a.off").forEach(a=>a.onclick=e=>{e.preventDefault();$("#sn2").focus()});
+}
+
+/* ---------- review tabs ---------- */
+function renderVocab(){
+  $("#main").innerHTML=`<div class="note"><p><b>${VOCAB.reduce((s,g)=>s+g.w.length,0)} từ</b> lấy từ vở ghi, chia theo 3 bài đọc. Bấm 🔊 để nghe, 🐢 để nghe chậm.</p>
+   <p class="mut">Một số từ trong vở đã được sửa chính tả: anual → annual, reas → rear, ettle → settle, iodicle → iodide, contrecversial → controversial.</p></div>
+   ${VOCAB.map(g=>`<section class="grp"><h2>${esc(g.g)}</h2><p class="mut">${esc(g.d)}</p><div class="vgrid">${g.w.map(([w,ipa,vi,emo])=>`<div class="vitem">
+     <div class="vtop"><span class="vw">${esc(w)}</span><span class="emo" aria-hidden="true">${emo}</span></div>
+     <span class="vipa">${esc(ipa)}</span>
+     <div class="vvi">${esc(vi)}</div>
+     <div class="actions" style="margin-top:6px;gap:6px"><button class="speak" data-say="${esc(w)}">🔊</button><button class="speak" data-say="${esc(w)}" data-slow="1">🐢</button></div>
+   </div>`).join("")}</div></section>`).join("")}`;
+}
+function renderWT1(){
+  $("#main").innerHTML=`<div class="note"><p>Những từ hay dùng nhất khi mô tả biểu đồ trong <b>Writing Task 1</b>. Ví dụ đều dựa trên biểu đồ lúa mì bên dưới, để em thấy từ được dùng thế nào.</p></div>
+   ${chartFigure("chartW")}
+   <div class="panel" style="margin:14px 0 22px">
+    <h2 class="sub" style="margin-top:0">Đoạn mẫu</h2>
+    <p class="model">${esc(MODEL)}</p>
+    <div class="actions" style="margin-top:6px"><button class="btn" data-say="${esc(MODEL)}">🔊 Nghe đoạn mẫu</button><button class="btn" data-say="${esc(MODEL)}" data-slow="1">🐢 Nghe chậm</button></div>
+    <p class="mut" style="margin-bottom:0">Cấu trúc: câu giới thiệu (biểu đồ cho thấy gì) → <b>Overall</b> (xu hướng chính) → chi tiết theo thời gian kèm số liệu.</p>
+   </div>
+   ${WT1.map(g=>`<section class="grp"><h2>${esc(g.g)}</h2><div class="vgrid">${g.w.map(([w,ipa,vi,ex])=>`<div class="vitem">
+     <div class="vw">${esc(w)}</div><span class="vipa">${esc(ipa)}</span><div class="vvi">${esc(vi)}</div>
+     <p class="vex">${esc(ex)}</p>
+     <div class="actions" style="margin-top:6px;gap:6px"><button class="speak" data-say="${esc(w.replace(" / ",", "))}">🔊 Từ</button><button class="speak" data-say="${esc(ex)}">🔊 Câu</button></div>
+   </div>`).join("")}</div></section>`).join("")}`;
+  drawChart("chartW");
+}
+
+render();
+</script>
+</body>
+</html>
