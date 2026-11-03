@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading – Business Customs Around the World</title>
+<style>
+:root{--bg:#fbf8f3;--card:#fff;--ink:#222;--mut:#666;--red:#8b0000;--line:#e6dfd3;--ok:#1f8a4c;--bad:#c0392b;--org:#f39c12;--acc:#1d6f8a;--accbg:#e3f3f8;--ck:#d6ecf5}
+@media (prefers-color-scheme:dark){:root{--bg:#171717;--card:#222;--ink:#eee;--mut:#aaa;--red:#ff9a9a;--line:#3a3a3a;--ok:#5fd18b;--bad:#ff8a7a;--acc:#7cc7de;--accbg:#173038;--ck:#1f4553}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#top{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);padding:8px 12px}
+#bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden}
+#barfill{height:100%;width:0;background:var(--ok);transition:width .3s}
+#pct{font-size:13px;color:var(--mut);margin:2px 0 6px}
+#chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:20px;padding:3px 9px;font-size:12.5px;cursor:pointer}
+.chip.cur{border-color:var(--acc);background:var(--accbg);font-weight:700}
+.chip.done{border-color:var(--ok)}
+main{max-width:860px;margin:0 auto;padding:14px 12px 90px}
+h1{margin:10px 0 2px;font-size:24px}
+h2{font-size:20px;margin:6px 0}
+h3{font-size:17px;margin:14px 0 4px}
+.sub{color:var(--mut);margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.ins{color:var(--red);font-weight:700}
+.step{display:none}.step.show{display:block}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px}
+button.pri{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:700}
+button.pri:disabled{opacity:.5}
+button.sm{padding:3px 9px;font-size:14px}
+.next{display:block;margin:18px auto 0;padding:10px 26px;font-size:17px}
+.passage p{margin:.6em 0;font-size:18px;line-height:2.1}
+.w{cursor:pointer;border-radius:3px;padding:0 1px}
+.w:hover{background:var(--accbg)}
+.w.ck{background:var(--ck)}
+.w.sel{background:var(--org);color:#000}
+.ch{border-bottom:1px dotted var(--acc)}
+.ch.on{background:var(--accbg);border-bottom:2px solid var(--acc);border-radius:4px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+select,input[type=text],textarea{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+textarea{width:100%;min-height:62px}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--card);border-top:2px solid var(--acc);padding:10px 14px;display:none;box-shadow:0 -4px 16px rgba(0,0,0,.25);max-height:62vh;overflow:auto}
+#sheet.show{display:block}
+.ent{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0}
+.ent.ph{border-color:var(--acc);background:var(--accbg)}
+.ent .big{font-size:20px;font-weight:700}
+.tag{font-size:12px;border-radius:10px;padding:1px 8px;background:var(--line);margin-right:6px}
+.ipa{color:var(--acc);font-family:"Segoe UI",Arial,sans-serif}
+.pos{color:var(--mut);font-style:italic}
+.cnt{display:flex;gap:14px;flex-wrap:wrap;font-weight:700}
+.mini{height:8px;background:var(--line);border-radius:5px;overflow:hidden;margin-top:3px;width:150px}
+.mini i{display:block;height:100%;background:var(--acc);width:0}
+.mywords .it{display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:6px 0}
+.mywords .it b{min-width:120px}
+.cks span{display:inline-block;background:var(--ck);border-radius:12px;padding:1px 10px;margin:2px;font-size:14px;cursor:pointer}
+.opt{display:block;width:100%;text-align:left;margin:5px 0}
+.opt.ok{background:#d9f2e3;border-color:var(--ok);color:#0b4d27}
+.opt.no{background:#fbe0dc;border-color:var(--bad);color:#6d1a10}
+.q{border-bottom:1px solid var(--line);padding:10px 0}
+.q:last-child{border:0}
+.fb{font-size:14px;margin-top:4px}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.gc{border-left:4px solid var(--acc);padding:6px 12px;margin:10px 0;background:var(--accbg);border-radius:0 8px 8px 0}
+.gc .ex{font-style:italic}
+.gc mark{background:var(--org);color:#000;padding:0 3px;border-radius:3px}
+table{border-collapse:collapse;width:100%}
+td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;font-size:15px}
+th{background:var(--accbg)}
+.pbox{border:1px solid var(--line);border-radius:10px;padding:10px;margin:10px 0}
+.rec{color:var(--bad);font-weight:700}
+.tr .vi{font-weight:700}
+.meta{font-size:13px;color:var(--mut)}
+.score{font-weight:700}
+.dg{font-size:17px;margin-top:6px}
+.dg .g{color:var(--ok);font-weight:700}.dg .r{color:var(--bad);font-weight:700}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+#modal.show{display:flex}
+#modal .box{background:var(--card);border-radius:14px;max-width:460px;width:100%;padding:18px;max-height:85vh;overflow:auto}
+#modal ul{padding-left:20px}
+.row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:12px}
+.stamp{display:inline-block;background:var(--accbg);color:var(--acc);border-radius:20px;padding:2px 12px;font-size:13px;font-weight:700}
+</style>
+</head>
+<body>
+<div id="top">
+  <div id="bar"><div id="barfill"></div></div>
+  <div id="pct"></div>
+  <div id="chips"></div>
+</div>
+<main>
+  <span class="stamp">Reading · Business English</span>
+  <h1>Business Customs Around the World</h1>
+  <p class="sub">Phong tục kinh doanh ở các nước · Em tự học theo 7 bước, làm xong từng phần rồi bấm “Tiếp tục”.</p>
+
+  <!-- ========== BƯỚC 1 ========== -->
+  <section class="step" id="s1">
+    <div class="card">
+      <h2>1 · Đọc và click từ</h2>
+      <p class="ins">Cách làm: đọc hoặc nghe cả bài. Em có thể bấm vào BẤT KỲ từ nào. Máy sẽ cho em xem nghĩa của từ đó và cả CỤM từ chứa nó (ví dụ bấm “business” sẽ thấy cụm “doing business”), kèm phiên âm, loại từ và phát âm. Bấm “Lưu” để đưa từ hoặc cụm vào danh sách của em.</p>
+      <div class="cnt" id="cnt"></div>
+      <div class="tools">
+        <button class="pri" id="playAll">▶ Nghe cả bài</button>
+        <button id="stopAll">⏹ Dừng</button>
+        <label>Tốc độ <select id="rate"><option value="0.7">Chậm</option><option value="0.85" selected>Vừa</option><option value="1">Bình thường</option></select></label>
+        <label>Giọng <select id="voice"></select></label>
+      </div>
+      <div class="passage" id="passage"></div>
+    </div>
+    <div class="card mywords">
+      <h3>⭐ Từ và cụm em đã lưu (<span id="selN">0</span>)</h3>
+      <div id="myList" class="meta">Chưa lưu mục nào.</div>
+      <h3>👆 Các từ em đã click</h3>
+      <div id="ckList" class="cks meta">Chưa click từ nào.</div>
+    </div>
+    <button class="pri next" data-next="1">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 2 ========== -->
+  <section class="step" id="s2">
+    <div class="card">
+      <h2>2 · Kiểm tra từ và cụm</h2>
+      <p class="ins">Chọn nghĩa tiếng Việt đúng. Bài kiểm tra ưu tiên các từ, cụm em đã lưu hoặc đã click ở bước 1. Chọn sai thì chọn lại cho đến khi đúng.</p>
+      <div id="quiz"></div>
+      <div class="meta" id="quizInfo"></div>
+    </div>
+    <button class="pri next" data-next="2">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 3 ========== -->
+  <section class="step" id="s3">
+    <div class="card">
+      <h2>3 · Kiểm tra hiểu bài</h2>
+      <p class="ins">Đọc lại bài nếu cần, rồi chọn đáp án đúng. Chọn sai thì chọn lại.</p>
+      <div id="cq"></div>
+      <div class="meta" id="cqInfo"></div>
+    </div>
+    <button class="pri next" data-next="3">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 4 ========== -->
+  <section class="step" id="s4">
+    <div class="card">
+      <h2>4 · Nghe và chép lại</h2>
+      <p class="ins">Bấm 🔊 để nghe (bấm 🐢 để nghe chậm, nghe bao nhiêu lần cũng được), rồi gõ lại câu em nghe được. Bấm “Kiểm tra”: chữ đúng hiện màu xanh, chữ thiếu hoặc sai hiện gạch đỏ. Cần đúng từ 85% trở lên để đạt.</p>
+      <div id="dict"></div>
+      <div class="meta" id="dictInfo"></div>
+    </div>
+    <button class="pri next" data-next="4">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 5 ========== -->
+  <section class="step" id="s5">
+    <div class="card">
+      <h2>5 · Ngữ pháp trọng tâm</h2>
+      <p class="ins">Đọc kỹ 4 điểm ngữ pháp dưới đây (có câu lấy ngay từ bài đọc), rồi tick “Em đã đọc kỹ”. Bài tập chỉ mở sau khi em tick.</p>
+
+      <div class="gc">
+        <b>① Câu mệnh lệnh (Imperatives) – hướng dẫn, nhắc nhở</b>
+        <div>Khẳng định: <b>V (nguyên mẫu)</b> · Phủ định: <b>Do not / Don’t + V</b></div>
+        <div class="ex"><mark>Take</mark> it with both hands. · <mark>Be</mark> on time. · <mark>Do not put</mark> it in your back pocket.</div>
+        <div class="meta">Không có chủ ngữ “you”. Không thêm -s, không thêm “to”.</div>
+      </div>
+
+      <div class="gc">
+        <b>② should / should not – lời khuyên</b>
+        <div><b>S + should (not) + V (nguyên mẫu)</b></div>
+        <div class="ex">You <mark>should apologise</mark>. · You <mark>should not use</mark> your left hand.</div>
+        <div class="meta">Sai: “should to apologise”, “shoulds”. Phủ định rút gọn: shouldn’t.</div>
+      </div>
+
+      <div class="gc">
+        <b>③ Câu điều kiện loại 1: If + hiện tại đơn, S + may / can / should + V</b>
+        <div class="ex"><mark>If you are late</mark>, people <mark>may think</mark> you are not serious. · <mark>If you do not know</mark> the local customs, doing business can be difficult.</div>
+        <div class="meta">Mệnh đề if dùng <b>hiện tại đơn</b>, KHÔNG dùng will. Sai: “If you will be late”.</div>
+      </div>
+
+      <div class="gc">
+        <b>④ Từ nối: although · so · until</b>
+        <table>
+          <tr><th>Từ</th><th>Nghĩa</th><th>Ví dụ trong bài</th></tr>
+          <tr><td><b>although</b></td><td>mặc dù (tương phản)</td><td><i><mark>although</mark> a handshake is also common</i></td></tr>
+          <tr><td><b>so</b></td><td>vì vậy (kết quả)</td><td><i>…first impression, <mark>so</mark> it is useful to learn the basics</i></td></tr>
+          <tr><td><b>until</b></td><td>cho đến khi</td><td><i>…the surname <mark>until</mark> a colleague invites them…</i></td></tr>
+        </table>
+        <div class="meta">Sai: “Although …, but …” (chỉ dùng một trong hai). Sau until/if/when vẫn dùng hiện tại đơn khi nói về tương lai.</div>
+      </div>
+
+      <label class="ins"><input type="checkbox" id="gTick"> Em đã đọc kỹ phần ngữ pháp trọng tâm</label>
+    </div>
+
+    <div class="card" id="gEx" style="display:none">
+      <h2>Bài tập ngữ pháp</h2>
+      <p class="ins">Làm đúng tất cả các câu mới được tiếp tục. Điểm tính theo lần trả lời đầu tiên.</p>
+      <div id="gQs"></div>
+      <div class="meta" id="gInfo"></div>
+    </div>
+    <button class="pri next" data-next="5">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 6 ========== -->
+  <section class="step" id="s6">
+    <div class="card">
+      <h2>6 · Đọc to và ghi âm</h2>
+      <p class="ins">Đọc to từng đoạn. Bấm 🔊 nghe mẫu, bấm ● để ghi âm, bấm ■ để dừng, bấm ▶ nghe lại. Em được ghi lại nhiều lần. Bản ghi chỉ được gửi cho cô khi em bấm “Nộp bài” ở bước cuối. Khi trình duyệt hỏi, hãy bấm Cho phép micro.</p>
+      <div id="recs"></div>
+      <div class="meta" id="recInfo"></div>
+    </div>
+    <button class="pri next" data-next="6">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 7 ========== -->
+  <section class="step" id="s7">
+    <div class="card">
+      <h2>7 · Dịch thuật</h2>
+      <p class="ins">Phần A: dịch từng câu tiếng Việt sang tiếng Anh. Máy chấm theo ý chính và lỗi viết cơ bản, cô sẽ xem lại bài của em sau. Câu đạt khi từ 0,8 điểm trở lên. Xem câu mẫu thì câu đó tối đa 0,5 điểm.</p>
+      <div id="trs"></div>
+      <div class="meta" id="trInfo"></div>
+    </div>
+    <div class="card">
+      <h3>Phần B: dịch Anh → Việt (không chấm điểm, cô sẽ nhận xét)</h3>
+      <p class="ins">Dịch hai câu sau sang tiếng Việt tự nhiên.</p>
+      <div class="q"><div>1. <i>A small mistake can spoil a good first impression.</i></div><textarea id="b1" placeholder="Bản dịch của em…"></textarea></div>
+      <div class="q"><div>2. <i>If you are late, people may think you are not serious.</i></div><textarea id="b2" placeholder="Bản dịch của em…"></textarea></div>
+    </div>
+    <div class="card">
+      <h3>📨 Nộp bài</h3>
+      <div class="meta">Họ tên: <b id="nm"></b></div>
+      <div id="sumBox" class="meta"></div>
+      <button class="pri next" id="submit">Nộp bài cho cô</button>
+      <div id="subMsg" class="meta" style="text-align:center;margin-top:8px"></div>
+    </div>
+  </section>
+</main>
+
+<div id="sheet"></div>
+<div id="modal"><div class="box" id="mbox"></div></div>
+
+<script>
+/* ===== NỘI DUNG BÀI: DATA START ===== */
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwnf8X3_Xfk9F_8HQtBwSFU_s28sRjxKb0aFaHCA4ybmMJvgaztBAbdvaFzITdbVXBt/exec'; // cổng chung (Kết quả Speaking). Đổi nếu dùng cổng riêng.
+const LESSON='Reading Business Customs';
+const MIN_CLICK=10, MIN_SAVE=5, DICT_PASS=0.85, PASS=0.8;
+
+/* Bài đọc: [cN|cụm từ] đánh dấu cụm; mọi từ đều bấm được */
+const PARAS=[
+ "[c1|Doing business] [c2|in another country] [c3|can be difficult] if you [c4|do not know] the [c5|local customs]. [c6|A small mistake] can [c7|spoil a good first impression], so [c8|it is useful to] [c9|learn the basics] before you [c10|meet a new partner].",
+ "In Japan, people [c11|often greet each other] [c12|with a bow], although [c13|a handshake is also common]. When you [c14|receive a business card], [c15|take it with both hands] and [c16|read it carefully]. [c17|Do not put it] quickly [c18|in your back pocket].",
+ "In Germany, [c19|punctuality is very important]. [c20|If you are late], people [c21|may think] you are [c22|not serious], so you [c23|should apologise] and [c24|avoid being late] again. People [c25|usually use] Herr or Frau and the surname [c26|until a colleague invites them] to use [c27|a first name].",
+ "In the UK, meetings often [c28|begin with small talk] about [c29|the weather or the weekend]. In the UAE, you [c30|should not use] [c31|your left hand] to [c32|shake hands] or to [c33|pass documents].",
+ "The [c34|best advice] is simple: [c35|be on time], [c36|be polite], [c37|watch what local people do], and [c38|ask if you are not sure]. Then you will [c39|make a good impression] wherever you work."
+];
+/* Cụm: [text, IPA, loại, nghĩa] */
+const CH={
+ c1:['doing business','/ˈduːɪŋ ˈbɪznəs/','cụm V-ing','làm ăn, làm kinh doanh'],
+ c2:['in another country','/ɪn əˈnʌðə ˈkʌntri/','cụm giới từ','ở một nước khác'],
+ c3:['can be difficult','/kən bi ˈdɪfɪkəlt/','cụm động từ','có thể khó khăn'],
+ c4:['do not know','/duː nɒt nəʊ/','cụm động từ','không biết'],
+ c5:['local customs','/ˈləʊkl ˈkʌstəmz/','cụm danh từ','phong tục địa phương'],
+ c6:['a small mistake','/ə smɔːl mɪˈsteɪk/','cụm danh từ','một lỗi nhỏ'],
+ c7:['spoil a good first impression','/spɔɪl ə ɡʊd fɜːst ɪmˈpreʃn/','cụm động từ','làm hỏng ấn tượng ban đầu tốt đẹp'],
+ c8:['it is useful to','/ɪt ɪz ˈjuːsfl tuː/','cấu trúc','thật hữu ích khi (làm gì)'],
+ c9:['learn the basics','/lɜːn ðə ˈbeɪsɪks/','cụm động từ','học những điều cơ bản'],
+ c10:['meet a new partner','/miːt ə njuː ˈpɑːtnə/','cụm động từ','gặp một đối tác mới'],
+ c11:['often greet each other','/ˈɒfn ɡriːt iːtʃ ˈʌðə/','cụm động từ','thường chào hỏi nhau'],
+ c12:['with a bow','/wɪð ə baʊ/','cụm giới từ','bằng cái cúi chào'],
+ c13:['a handshake is also common','/ə ˈhændʃeɪk ɪz ˈɔːlsəʊ ˈkɒmən/','mệnh đề','bắt tay cũng phổ biến'],
+ c14:['receive a business card','/rɪˈsiːv ə ˈbɪznəs kɑːd/','cụm động từ','nhận danh thiếp'],
+ c15:['take it with both hands','/teɪk ɪt wɪð bəʊθ hændz/','mệnh lệnh','cầm nó bằng cả hai tay'],
+ c16:['read it carefully','/riːd ɪt ˈkeəfəli/','mệnh lệnh','đọc nó cẩn thận'],
+ c17:['do not put it','/duː nɒt pʊt ɪt/','mệnh lệnh phủ định','đừng để/nhét nó'],
+ c18:['in your back pocket','/ɪn jɔː bæk ˈpɒkɪt/','cụm giới từ','trong túi quần sau của bạn'],
+ c19:['punctuality is very important','/ˌpʌŋktʃuˈæləti ɪz ˈveri ɪmˈpɔːtnt/','mệnh đề','đúng giờ là rất quan trọng'],
+ c20:['if you are late','/ɪf juː ɑː leɪt/','mệnh đề if','nếu bạn đến muộn'],
+ c21:['may think','/meɪ θɪŋk/','cụm động từ','có thể nghĩ rằng'],
+ c22:['not serious','/nɒt ˈsɪəriəs/','cụm tính từ','không nghiêm túc'],
+ c23:['should apologise','/ʃʊd əˈpɒlədʒaɪz/','cụm động từ','nên xin lỗi'],
+ c24:['avoid being late','/əˈvɔɪd ˈbiːɪŋ leɪt/','cụm động từ','tránh bị trễ'],
+ c25:['usually use','/ˈjuːʒuəli juːz/','cụm động từ','thường dùng'],
+ c26:['until a colleague invites them','/ənˈtɪl ə ˈkɒliːɡ ɪnˈvaɪts ðem/','mệnh đề','cho đến khi đồng nghiệp mời họ'],
+ c27:['a first name','/ə fɜːst neɪm/','cụm danh từ','tên riêng (tên gọi)'],
+ c28:['begin with small talk','/bɪˈɡɪn wɪð smɔːl tɔːk/','cụm động từ','bắt đầu bằng chuyện xã giao'],
+ c29:['the weather or the weekend','/ðə ˈweðə ɔː ðə ˌwiːkˈend/','cụm danh từ','thời tiết hoặc cuối tuần'],
+ c30:['should not use','/ʃʊd nɒt juːz/','cụm động từ','không nên dùng'],
+ c31:['your left hand','/jɔː left hænd/','cụm danh từ','tay trái của bạn'],
+ c32:['shake hands','/ʃeɪk hændz/','cụm động từ','bắt tay'],
+ c33:['pass documents','/pɑːs ˈdɒkjumənts/','cụm động từ','đưa, chuyển tài liệu'],
+ c34:['best advice','/best ədˈvaɪs/','cụm danh từ','lời khuyên tốt nhất'],
+ c35:['be on time','/bi ɒn taɪm/','mệnh lệnh','đúng giờ'],
+ c36:['be polite','/bi pəˈlaɪt/','mệnh lệnh','hãy lịch sự'],
+ c37:['watch what local people do','/wɒtʃ wɒt ˈləʊkl ˈpiːpl duː/','mệnh lệnh','quan sát người địa phương làm gì'],
+ c38:['ask if you are not sure','/ɑːsk ɪf juː ɑː nɒt ʃɔː/','mệnh lệnh','hỏi nếu bạn không chắc'],
+ c39:['make a good impression','/meɪk ə ɡʊd ɪmˈpreʃn/','cụm động từ','tạo ấn tượng tốt']
+};
+/* Từ đơn: [IPA, loại từ, nghĩa] */
+const W={
+ 'a':['/ə/','art.','một'],'about':['/əˈbaʊt/','prep.','về'],'advice':['/ədˈvaɪs/','n.','lời khuyên'],'again':['/əˈɡen/','adv.','lại, một lần nữa'],'also':['/ˈɔːlsəʊ/','adv.','cũng'],
+ 'although':['/ɔːlˈðəʊ/','conj.','mặc dù'],'and':['/ænd/','conj.','và'],'another':['/əˈnʌðə/','det.','khác, một … khác'],'apologise':['/əˈpɒlədʒaɪz/','v.','xin lỗi'],'are':['/ɑː/','v.','thì, là (dạng của be)'],
+ 'ask':['/ɑːsk/','v.','hỏi'],'avoid':['/əˈvɔɪd/','v.','tránh'],'back':['/bæk/','adj.','phía sau'],'basics':['/ˈbeɪsɪks/','n.','những điều cơ bản'],'be':['/biː/','v.','thì, là, ở'],
+ 'before':['/bɪˈfɔː/','conj.','trước khi'],'begin':['/bɪˈɡɪn/','v.','bắt đầu'],'being':['/ˈbiːɪŋ/','v.','đang là / bị (dạng -ing của be)'],'best':['/best/','adj.','tốt nhất'],'both':['/bəʊθ/','det.','cả hai'],
+ 'bow':['/baʊ/','n.','cái cúi chào'],'business':['/ˈbɪznəs/','n.','kinh doanh, việc làm ăn'],'can':['/kæn/','modal v.','có thể'],'card':['/kɑːd/','n.','thẻ, danh thiếp'],'carefully':['/ˈkeəfəli/','adv.','một cách cẩn thận'],
+ 'colleague':['/ˈkɒliːɡ/','n.','đồng nghiệp'],'common':['/ˈkɒmən/','adj.','phổ biến, thường gặp'],'country':['/ˈkʌntri/','n.','đất nước'],'customs':['/ˈkʌstəmz/','n.','phong tục, tập quán'],'difficult':['/ˈdɪfɪkəlt/','adj.','khó khăn'],
+ 'do':['/duː/','v.','làm; trợ động từ'],'documents':['/ˈdɒkjumənts/','n.','tài liệu, giấy tờ'],'doing':['/ˈduːɪŋ/','v.','đang làm (dạng -ing của do)'],'each':['/iːtʃ/','det.','mỗi'],'first':['/fɜːst/','adj.','đầu tiên'],
+ 'frau':['/fraʊ/','n.','bà (tiếng Đức)'],'germany':['/ˈdʒɜːməni/','n.','nước Đức'],'good':['/ɡʊd/','adj.','tốt'],'greet':['/ɡriːt/','v.','chào hỏi'],'hand':['/hænd/','n.','bàn tay'],
+ 'hands':['/hændz/','n.','những bàn tay'],'handshake':['/ˈhændʃeɪk/','n.','cái bắt tay'],'herr':['/hɛr/','n.','ông (tiếng Đức)'],'if':['/ɪf/','conj.','nếu'],'important':['/ɪmˈpɔːtnt/','adj.','quan trọng'],
+ 'impression':['/ɪmˈpreʃn/','n.','ấn tượng'],'in':['/ɪn/','prep.','ở, trong'],'invites':['/ɪnˈvaɪts/','v.','mời (ngôi thứ 3 số ít)'],'is':['/ɪz/','v.','thì, là'],'it':['/ɪt/','pron.','nó'],
+ 'japan':['/dʒəˈpæn/','n.','Nhật Bản'],'know':['/nəʊ/','v.','biết'],'late':['/leɪt/','adj.','muộn, trễ'],'learn':['/lɜːn/','v.','học'],'left':['/left/','adj.','bên trái'],
+ 'local':['/ˈləʊkl/','adj.','địa phương, của nơi đó'],'make':['/meɪk/','v.','làm, tạo ra'],'may':['/meɪ/','modal v.','có thể (khả năng)'],'meet':['/miːt/','v.','gặp'],'meetings':['/ˈmiːtɪŋz/','n.','các cuộc họp'],
+ 'mistake':['/mɪˈsteɪk/','n.','lỗi lầm, sai sót'],'name':['/neɪm/','n.','tên'],'new':['/njuː/','adj.','mới'],'not':['/nɒt/','adv.','không'],'often':['/ˈɒfn/','adv.','thường'],
+ 'on':['/ɒn/','prep.','trên, vào'],'or':['/ɔː/','conj.','hoặc'],'other':['/ˈʌðə/','adj.','khác'],'partner':['/ˈpɑːtnə/','n.','đối tác'],'pass':['/pɑːs/','v.','đưa, chuyển cho'],
+ 'people':['/ˈpiːpl/','n.','mọi người'],'pocket':['/ˈpɒkɪt/','n.','túi (quần, áo)'],'polite':['/pəˈlaɪt/','adj.','lịch sự'],'punctuality':['/ˌpʌŋktʃuˈæləti/','n.','sự đúng giờ'],'put':['/pʊt/','v.','đặt, để, nhét'],
+ 'quickly':['/ˈkwɪkli/','adv.','nhanh, vội vàng'],'read':['/riːd/','v.','đọc'],'receive':['/rɪˈsiːv/','v.','nhận'],'serious':['/ˈsɪəriəs/','adj.','nghiêm túc'],'shake':['/ʃeɪk/','v.','lắc, bắt (tay)'],
+ 'should':['/ʃʊd/','modal v.','nên'],'simple':['/ˈsɪmpl/','adj.','đơn giản'],'small':['/smɔːl/','adj.','nhỏ'],'so':['/səʊ/','conj.','vì vậy'],'spoil':['/spɔɪl/','v.','làm hỏng'],
+ 'sure':['/ʃɔː/','adj.','chắc chắn'],'surname':['/ˈsɜːneɪm/','n.','họ (tên họ)'],'take':['/teɪk/','v.','cầm, lấy'],'talk':['/tɔːk/','n.','cuộc nói chuyện'],'the':['/ðə/','art.','(mạo từ xác định)'],
+ 'them':['/ðem/','pron.','họ, chúng'],'then':['/ðen/','adv.','khi đó, sau đó'],'think':['/θɪŋk/','v.','nghĩ'],'time':['/taɪm/','n.','thời gian, lần'],'to':['/tuː/','prep.','đến; để (làm gì)'],
+ 'uae':['/ˌjuː eɪ ˈiː/','n.','Các Tiểu vương quốc Ả Rập Thống nhất'],'uk':['/ˌjuː ˈkeɪ/','n.','Vương quốc Anh'],'until':['/ənˈtɪl/','conj.','cho đến khi'],'use':['/juːz/','v.','dùng, sử dụng'],'useful':['/ˈjuːsfl/','adj.','hữu ích'],
+ 'usually':['/ˈjuːʒuəli/','adv.','thường thường'],'very':['/ˈveri/','adv.','rất'],'watch':['/wɒtʃ/','v.','quan sát, xem'],'weather':['/ˈweðə/','n.','thời tiết'],'weekend':['/ˌwiːkˈend/','n.','cuối tuần'],
+ 'what':['/wɒt/','pron.','cái mà, điều mà'],'when':['/wen/','conj.','khi'],'wherever':['/weərˈevə/','conj.','ở bất cứ nơi đâu'],'will':['/wɪl/','modal v.','sẽ'],'with':['/wɪð/','prep.','với, bằng'],
+ 'work':['/wɜːk/','v.','làm việc'],'you':['/juː/','pron.','bạn'],'your':['/jɔː/','det.','của bạn']
+};
+const STOP=new Set('a the in to and or you your it is are be being do with on about if so not can may will should each other them then what when very also again herr frau'.split(' '));
+
+const CQ=[
+ {q:'What can spoil a good first impression?',o:['A small mistake','A long meeting','A new partner'],a:0,x:'“A small mistake can spoil a good first impression.” (Một lỗi nhỏ có thể làm hỏng ấn tượng ban đầu.)'},
+ {q:'In Japan, what should you do when you receive a business card?',o:['Put it quickly in your back pocket','Take it with both hands and read it carefully','Give it back to the person'],a:1,x:'Nhận bằng hai tay và đọc cẩn thận; không nhét vội vào túi quần sau.'},
+ {q:'True or false? In Japan, people never shake hands.',o:['True','False'],a:1,x:'Sai. Bài nói bắt tay (handshake) cũng phổ biến.'},
+ {q:'In Germany, what should you do if you are late?',o:['Say nothing','Apologise and avoid being late again','Use a first name'],a:1,x:'Nếu đến muộn nên xin lỗi và tránh trễ lần nữa.'},
+ {q:'When do people in Germany start using first names?',o:['At the first meeting','When a colleague invites them to','Never'],a:1,x:'Họ dùng Herr/Frau + họ cho đến khi đồng nghiệp mời dùng tên riêng.'},
+ {q:'How do meetings in the UK often begin?',o:['With a bow','With a business card','With small talk'],a:2,x:'Họp ở Anh thường bắt đầu bằng chuyện xã giao về thời tiết hoặc cuối tuần.'},
+ {q:'Which hand should you not use in the UAE to shake hands or pass documents?',o:['The right hand','The left hand','Both hands'],a:1,x:'Không dùng tay trái (left hand).'},
+ {q:'What is the best advice in the text?',o:['Learn German before every trip','Avoid meeting new partners','Be on time, be polite, watch what local people do, and ask if you are not sure'],a:2,x:'Đây là lời khuyên cuối bài.'}
+];
+const DICT=[
+ 'A small mistake can spoil a good first impression.',
+ 'Take it with both hands and read it carefully.',
+ 'If you are late, people may think you are not serious.',
+ 'You should apologise and avoid being late again.',
+ 'In the UAE, you should not use your left hand to shake hands.',
+ 'Be on time, be polite, watch what local people do, and ask if you are not sure.'
+];
+const GRAM=[
+ {q:'___ it with both hands.',o:['Take','Taking','To take'],a:0,x:'Câu mệnh lệnh dùng động từ nguyên mẫu: Take it…'},
+ {q:'___ put the card in your back pocket.',o:['Not','Don’t','No'],a:1,x:'Mệnh lệnh phủ định: Don’t / Do not + V.'},
+ {q:'If you ___ late, people may think you are not serious.',o:['will be','are','were being'],a:1,x:'Mệnh đề if dùng hiện tại đơn, không dùng will.'},
+ {q:'You ___ apologise if you are late.',o:['should to','shoulds','should'],a:2,x:'should + V nguyên mẫu, không có to, không thêm -s.'},
+ {q:'In the UAE, you ___ use your left hand to pass documents.',o:['should not','not should','do not should'],a:0,x:'Phủ định của should là should not (shouldn’t).'},
+ {q:'___ a handshake is common, many people also bow.',o:['Because','Although','So'],a:1,x:'Although = mặc dù (tương phản).'},
+ {q:'A small mistake can spoil the impression, ___ it is useful to learn the basics.',o:['although','until','so'],a:2,x:'so = vì vậy (chỉ kết quả).'},
+ {q:'Use Herr or Frau ___ a colleague invites you to use a first name.',o:['because','until','although'],a:1,x:'until = cho đến khi.'},
+ {q:'___ you are not sure, you should ask.',o:['If','Until','Although'],a:0,x:'If = nếu (điều kiện).'},
+ {q:'Although it is common to shake hands, ___ bow in Japan.',o:['but people also','people also','so people also'],a:1,x:'Đã có although thì không dùng but / so ở mệnh đề sau.'},
+ {q:'Don’t ___ late for the meeting.',f:['be'],x:'Mệnh lệnh phủ định: Don’t + be + adj.'},
+ {q:'If you ___ (not know) the customs, you may make a mistake.',f:['do not know','don\'t know','dont know'],x:'If + hiện tại đơn: do not know.'},
+ {q:'If you are not sure, you ___ ask. (lời khuyên)',f:['should'],x:'should + V = lời khuyên.'},
+ {q:'Hold the card ___ both hands.',f:['with'],x:'with both hands = bằng cả hai tay.'}
+];
+const T=[
+ {vi:'Làm kinh doanh ở nước khác có thể khó nếu bạn không biết phong tục địa phương.',m:'Doing business in another country can be difficult if you do not know the local customs.',k:[[/business/,'“kinh doanh”: business'],[/countr|abroad/,'“nước”: country'],[/difficult|hard/,'“khó”: difficult'],[/\bif\b/,'“nếu”: if'],[/(do not|don't|dont|doesn't) know/,'“không biết”: do not know'],[/custom/,'“phong tục”: customs']]},
+ {vi:'Một lỗi nhỏ có thể làm hỏng ấn tượng đầu tiên tốt đẹp.',m:'A small mistake can spoil a good first impression.',k:[[/small|little/,'“nhỏ”: small'],[/mistake/,'“lỗi”: mistake'],[/spoil|ruin/,'“làm hỏng”: spoil'],[/impression/,'“ấn tượng”: impression']]},
+ {vi:'Ở Nhật, mọi người thường chào nhau bằng cái cúi chào.',m:'In Japan, people often greet each other with a bow.',k:[[/japan/,'“Nhật”: Japan'],[/greet/,'“chào hỏi”: greet'],[/\bbow/,'“cúi chào”: bow'],[/often|usually/,'“thường”: often']]},
+ {vi:'Khi nhận danh thiếp, hãy dùng cả hai tay và đọc cẩn thận.',m:'When you receive a business card, take it with both hands and read it carefully.',k:[[/card/,'“danh thiếp”: business card'],[/both hands/,'“cả hai tay”: both hands'],[/read/,'“đọc”: read'],[/careful/,'“cẩn thận”: carefully']]},
+ {vi:'Ở Đức, đúng giờ rất quan trọng.',m:'In Germany, punctuality is very important.',k:[[/german/,'“Đức”: Germany'],[/punctual|on time/,'“đúng giờ”: punctuality / on time'],[/important/,'“quan trọng”: important']]},
+ {vi:'Nếu bạn đến muộn, bạn nên xin lỗi.',m:'If you are late, you should apologise.',k:[[/\bif\b/,'“nếu”: if'],[/late/,'“muộn”: late'],[/should/,'“nên”: should'],[/apologi[sz]e|sorry/,'“xin lỗi”: apologise']]},
+ {vi:'Ở UAE, bạn không nên dùng tay trái để bắt tay.',m:'In the UAE, you should not use your left hand to shake hands.',k:[[/uae/,'“UAE”'],[/should not|shouldn't|shouldnt/,'“không nên”: should not'],[/left hand/,'“tay trái”: left hand'],[/shake/,'“bắt tay”: shake hands']]},
+ {vi:'Hãy đúng giờ, lịch sự và hỏi nếu bạn không chắc.',m:'Be on time, be polite, and ask if you are not sure.',k:[[/on time/,'“đúng giờ”: on time'],[/polite/,'“lịch sự”: polite'],[/\bask\b/,'“hỏi”: ask'],[/\bif\b/,'“nếu”: if'],[/not sure/,'“không chắc”: not sure']]}
+];
+/* ===== DATA END ===== */
+
+/* ---------- tiện ích ---------- */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s).toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const STEPS=[{id:'s1',n:'1 Đọc & click'},{id:'s2',n:'2 Kiểm tra từ'},{id:'s3',n:'3 Hiểu bài'},{id:'s4',n:'4 Nghe & chép'},{id:'s5',n:'5 Ngữ pháp'},{id:'s6',n:'6 Ghi âm'},{id:'s7',n:'7 Dịch thuật'}];
+let S={name:'',ck:[],sv:[],quiz:null,qd:{},cd:{},dd:{},gTick:false,gd:{},td:{},tb:{},cur:0,skips:0};
+const KEY='bc2:'+LESSON;
+function save(){try{localStorage.setItem(KEY+':'+S.name,JSON.stringify(S));localStorage.setItem(KEY+':last',S.name)}catch(e){}}
+function load(n){try{const r=localStorage.getItem(KEY+':'+n);if(r){S=Object.assign(S,JSON.parse(r))}}catch(e){}}
+const blobs={};
+const plain=p=>p.replace(/\[c\d+\|([^\]]+)\]/g,'$1');
+/* mục từ điển: id 'w:xxx' hoặc 'c:cN' */
+function ent(id){
+  if(id.startsWith('c:')){const c=CH[id.slice(2)];return c?{id,t:c[0],ipa:c[1],pos:c[2],vi:c[3],ph:true}:null}
+  const k=id.slice(2),w=W[k];return w?{id,t:k,ipa:w[0],pos:w[1],vi:w[2],ph:false}:{id,t:k,ipa:'',pos:'',vi:'(chưa có trong từ điển bài này)',ph:false}
+}
+
+/* ---------- âm thanh ---------- */
+let voices=[];
+function fillVoices(){voices=(speechSynthesis.getVoices()||[]).filter(v=>/^en/i.test(v.lang));const sel=$('#voice');sel.innerHTML=voices.map((v,i)=>`<option value="${i}">${esc(v.name)} (${v.lang})</option>`).join('')||'<option>Mặc định</option>';const uk=voices.findIndex(v=>/GB/i.test(v.lang));if(uk>=0)sel.value=uk}
+if('speechSynthesis' in window){fillVoices();speechSynthesis.onvoiceschanged=fillVoices}
+function speak(text,rate,onend){
+  if(!('speechSynthesis' in window)){return}
+  const u=new SpeechSynthesisUtterance(text);const v=voices[+$('#voice').value];
+  if(v){u.voice=v;u.lang=v.lang}else u.lang='en-GB';
+  u.rate=rate||+$('#rate').value;if(onend)u.onend=onend;speechSynthesis.speak(u)
+}
+function stopSpeak(){try{speechSynthesis.cancel()}catch(e){}}
+
+/* ---------- hộp thoại ---------- */
+function modal(html,btns){const b=$('#mbox');b.innerHTML=html+'<div class="row" id="mb"></div>';btns.forEach(x=>{const e=document.createElement('button');e.textContent=x.t;if(x.pri)e.className='pri';e.onclick=()=>{$('#modal').classList.remove('show');x.f&&x.f()};$('#mb').appendChild(e)});$('#modal').classList.add('show')}
+
+/* ---------- mức hoàn thành ---------- */
+function missing(i){
+  const m=[];
+  if(i===0){
+    if(S.ck.length<MIN_CLICK)m.push(`Em mới click ${S.ck.length}/${MIN_CLICK} từ.`);
+    if(S.sv.length<MIN_SAVE)m.push(`Em mới lưu ${S.sv.length}/${MIN_SAVE} từ hoặc cụm.`)
+  }
+  if(i===1){if(!S.quiz)m.push('Em chưa mở bài kiểm tra từ.');else{const n=S.quiz.filter((_,k)=>!S.qd[k]).length;if(n)m.push(`Còn ${n} câu từ vựng chưa đúng.`)}}
+  if(i===2){const n=CQ.filter((_,k)=>!S.cd[k]).length;if(n)m.push(`Còn ${n} câu hiểu bài chưa đúng.`)}
+  if(i===3){const n=DICT.filter((_,k)=>!(S.dd[k]&&S.dd[k].ok)).length;if(n)m.push(`Còn ${n} câu nghe chép chưa đạt.`)}
+  if(i===4){if(!S.gTick)m.push('Em chưa tick “đã đọc kỹ” phần ngữ pháp.');const n=GRAM.filter((_,k)=>!S.gd[k]).length;if(n)m.push(`Còn ${n} câu bài tập ngữ pháp chưa đúng.`)}
+  if(i===5){const n=PARAS.filter((_,k)=>!blobs[k]).length;if(n)m.push(`Còn ${n} đoạn chưa ghi âm.`)}
+  if(i===6){const n=T.filter((_,k)=>!(S.td[k]&&S.td[k].ok)).length;if(n)m.push(`Còn ${n} câu dịch chưa đạt.`)}
+  return m
+}
+function frac(i){
+  if(i===0)return (Math.min(1,S.ck.length/MIN_CLICK)+Math.min(1,S.sv.length/MIN_SAVE))/2;
+  if(i===1)return S.quiz?S.quiz.filter((_,k)=>S.qd[k]).length/S.quiz.length:0;
+  if(i===2)return CQ.filter((_,k)=>S.cd[k]).length/CQ.length;
+  if(i===3)return DICT.filter((_,k)=>S.dd[k]&&S.dd[k].ok).length/DICT.length;
+  if(i===4)return ((S.gTick?1:0)+GRAM.filter((_,k)=>S.gd[k]).length)/(1+GRAM.length);
+  if(i===5)return PARAS.filter((_,k)=>blobs[k]).length/PARAS.length;
+  if(i===6)return T.filter((_,k)=>S.td[k]&&S.td[k].ok).length/T.length
+}
+const isDone=i=>missing(i).length===0;
+function refresh(){
+  const f=STEPS.map((_,i)=>frac(i));const p=Math.round(f.reduce((a,b)=>a+b,0)/STEPS.length*100);
+  $('#barfill').style.width=p+'%';$('#pct').textContent=`Tiến độ: ${p}% · bước ${S.cur+1}/${STEPS.length}`;
+  $('#chips').innerHTML=STEPS.map((s,i)=>`<button class="chip ${i===S.cur?'cur':''} ${isDone(i)?'done':''}" data-i="${i}">${isDone(i)?'✅ ':''}${s.n}</button>`).join('');
+  $$('#chips .chip').forEach(b=>b.onclick=()=>go(+b.dataset.i));
+  renderCnt();save()
+}
+function show(i){S.cur=i;STEPS.forEach((s,k)=>$('#'+s.id).classList.toggle('show',k===i));window.scrollTo({top:0,behavior:'smooth'});$('#sheet').classList.remove('show');if(i===1)buildQuiz();if(i===2)buildCQ();if(i===3)buildDict();if(i===5)buildRecs();if(i===6)buildTr();refresh()}
+function go(i){
+  if(i===S.cur)return;
+  const need=[];for(let k=0;k<i;k++){const m=missing(k);if(m.length)need.push(`<b>${STEPS[k].n}</b><br>${m.join('<br>')}`)}
+  if(!need.length)return show(i);
+  modal(`<h3>⚠️ Em chưa hoàn thành phần trước</h3><ul class="ins"><li>${need.join('</li><li>')}</li></ul>`,[{t:'Quay lại làm tiếp',pri:1},{t:'Vẫn đi tiếp',f:()=>{S.skips++;show(i)}}])
+}
+$$('.next[data-next]').forEach(b=>b.onclick=()=>go(+b.dataset.next));
+
+/* ---------- Bước 1: bài đọc bấm được từng từ ---------- */
+const SENTS=[];
+function wordSpans(text,cid,si){
+  return text.split(/([A-Za-z']+)/).map(p=>/^[A-Za-z']+$/.test(p)?`<span class="w" data-w="${p.toLowerCase()}" data-c="${cid||''}" data-si="${si}">${esc(p)}</span>`:esc(p)).join('')
+}
+function renderPassage(){
+  SENTS.length=0;
+  $('#passage').innerHTML=PARAS.map(par=>{
+    const sents=par.split(/(?<=[.!?])\s+/);
+    return '<p>'+sents.map(s=>{
+      const si=SENTS.push(plain(s))-1;
+      const html=s.replace(/\[(c\d+)\|([^\]]+)\]|([^\[]+)/g,(m,cid,ct,tx)=>cid?`<span class="ch" data-c="${cid}">${wordSpans(ct,cid,si)}</span>`:wordSpans(tx,'',si));
+      return html
+    }).join(' ')+'</p>'
+  }).join('');
+  $$('.w').forEach(w=>w.onclick=()=>clickWord(w));
+  paint()
+}
+function paint(){
+  $$('.w').forEach(w=>{const k=w.dataset.w,c=w.dataset.c;w.classList.toggle('ck',S.ck.includes(k));w.classList.toggle('sel',S.sv.includes('w:'+k)||(c&&S.sv.includes('c:'+c)))})
+}
+function renderCnt(){
+  const a=Math.min(1,S.ck.length/MIN_CLICK)*100,b=Math.min(1,S.sv.length/MIN_SAVE)*100;
+  $('#cnt').innerHTML=`<div>👆 Đã click: ${S.ck.length}/${MIN_CLICK} từ<div class="mini"><i style="width:${a}%"></i></div></div><div>⭐ Đã lưu: ${S.sv.length}/${MIN_SAVE} mục<div class="mini"><i style="width:${b}%"></i></div></div>`;
+  $('#selN').textContent=S.sv.length
+}
+function clickWord(el){
+  const k=el.dataset.w,c=el.dataset.c,si=+el.dataset.si;
+  if(!S.ck.includes(k))S.ck.push(k);
+  $$('.ch.on').forEach(x=>x.classList.remove('on'));
+  if(c){const w=document.querySelector(`.ch[data-c="${c}"]`);w&&w.classList.add('on')}
+  openSheet(k,c,si);paint();renderMy();refresh()
+}
+function entBox(e){
+  const on=S.sv.includes(e.id);
+  return `<div class="ent ${e.ph?'ph':''}"><span class="tag">${e.ph?'CỤM':'TỪ'}</span><span class="big">${esc(e.t)}</span> <span class="ipa">${esc(e.ipa)}</span> <span class="pos">${esc(e.pos)}</span><div style="font-size:18px">${esc(e.vi)}</div><div class="tools"><button class="sm" data-a="n" data-t="${esc(e.t)}">🔊 Nghe</button><button class="sm" data-a="s" data-t="${esc(e.t)}">🐢 Chậm</button><button class="sm pri" data-a="v" data-id="${e.id}">${on?'✖ Bỏ lưu':'⭐ Lưu'+(e.ph?' cụm':' từ')}</button></div></div>`
+}
+function openSheet(k,c,si){
+  const list=[ent('w:'+k)];if(c)list.push(ent('c:'+c));
+  $('#sheet').innerHTML=list.map(entBox).join('')+`<div class="tools"><button class="sm" id="sn">🔊 Nghe cả câu</button><button class="sm" id="sx">Đóng</button></div>`;
+  $('#sheet').classList.add('show');
+  $$('#sheet [data-a]').forEach(b=>b.onclick=()=>{
+    if(b.dataset.a==='v'){toggleSave(b.dataset.id);openSheet(k,c,si)}
+    else{stopSpeak();speak(b.dataset.t,b.dataset.a==='s'?0.6:1)}
+  });
+  $('#sn').onclick=()=>{stopSpeak();speak(SENTS[si])};
+  $('#sx').onclick=()=>{$('#sheet').classList.remove('show');$$('.ch.on').forEach(x=>x.classList.remove('on'))}
+}
+function toggleSave(id){
+  if(S.sv.includes(id))S.sv=S.sv.filter(x=>x!==id);else S.sv.push(id);
+  if(!Object.keys(S.qd).length)S.quiz=null;
+  paint();renderMy();refresh()
+}
+function renderMy(){
+  $('#myList').innerHTML=S.sv.length?S.sv.map(id=>{const e=ent(id);return `<div class="it"><b>${esc(e.t)}</b><span class="ipa">${esc(e.ipa)}</span><span class="pos">${esc(e.pos)}</span><span>${esc(e.vi)}</span><button class="sm" data-a="n" data-t="${esc(e.t)}">🔊</button><button class="sm" data-a="s" data-t="${esc(e.t)}">🐢</button><button class="sm" data-a="x" data-id="${id}">✖</button></div>`}).join(''):'Chưa lưu mục nào.';
+  $$('#myList button').forEach(b=>b.onclick=()=>{if(b.dataset.a==='x')toggleSave(b.dataset.id);else{stopSpeak();speak(b.dataset.t,b.dataset.a==='s'?0.6:1)}});
+  $('#ckList').innerHTML=S.ck.length?S.ck.map(k=>`<span data-k="${esc(k)}">${esc(k)}</span>`).join(''):'Chưa click từ nào.';
+  $$('#ckList span').forEach(s=>s.onclick=()=>openSheet(s.dataset.k,'',0))
+}
+let playing=false;
+$('#playAll').onclick=()=>{stopSpeak();playing=true;let i=0;const next=()=>{if(!playing||i>=PARAS.length)return;speak(plain(PARAS[i++]),null,next)};next()};
+$('#stopAll').onclick=()=>{playing=false;stopSpeak()};
+
+/* ---------- Bước 2: kiểm tra từ / cụm ---------- */
+function buildQuiz(){
+  if(!S.quiz){
+    let pool=[...S.sv];
+    S.ck.forEach(k=>{if(!STOP.has(k)&&W[k]&&!pool.includes('w:'+k))pool.push('w:'+k)});
+    S.ck.forEach(k=>{$$(`.w[data-w="${k}"]`).forEach(w=>{const c=w.dataset.c;if(c&&!pool.includes('c:'+c))pool.push('c:'+c)})});
+    pool=shuffle(pool).slice(0,10);
+    const all=[...Object.keys(CH).map(c=>'c:'+c),...Object.keys(W).filter(k=>!STOP.has(k)).map(k=>'w:'+k)];
+    shuffle(all).forEach(id=>{if(pool.length<10&&!pool.includes(id))pool.push(id)});
+    S.quiz=shuffle(pool).map(id=>{const e=ent(id);const wrong=shuffle(all.filter(x=>x!==id).map(ent).filter(x=>x.vi!==e.vi&&x.ph===e.ph)).slice(0,2).map(x=>x.vi);const opts=shuffle([e.vi,...wrong]);return {id,o:opts,a:opts.indexOf(e.vi)}});
+    S.qd={}
+  }
+  $('#quiz').innerHTML=S.quiz.map((q,i)=>{const e=ent(q.id);const mine=S.sv.includes(q.id)?'⭐ em đã lưu':(e.ph?'':(S.ck.includes(e.t)?'👆 em đã click':''));
+    return `<div class="q" data-i="${i}"><div><span class="tag">${e.ph?'CỤM':'TỪ'}</span><b>${i+1}. ${esc(e.t)}</b> <span class="ipa">${esc(e.ipa)}</span> <button class="sm" data-s="${esc(e.t)}">🔊</button> <span class="meta">${mine}</span></div>${q.o.map((o,j)=>`<button class="opt ${S.qd[i]&&j===q.a?'ok':''}" data-j="${j}">${esc(o)}</button>`).join('')}<div class="fb"></div></div>`}).join('');
+  $$('#quiz .q').forEach(el=>{const i=+el.dataset.i,q=S.quiz[i];
+    el.querySelector('[data-s]').onclick=e=>{stopSpeak();speak(e.target.dataset.s,1)};
+    el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(S.qd[i])return;const j=+b.dataset.j;const fb=el.querySelector('.fb');
+      if(j===q.a){b.classList.add('ok');S.qd[i]={first:q._f===undefined};fb.className='fb ok';fb.textContent='✔ Đúng!'}
+      else{b.classList.add('no');q._f=false;fb.className='fb no';fb.textContent='✘ Chưa đúng, chọn lại nhé.'}
+      refresh();$('#quizInfo').textContent=`Đã đúng ${Object.keys(S.qd).length}/${S.quiz.length} câu.`})
+  });
+  $('#quizInfo').textContent=`Đã đúng ${Object.keys(S.qd).length}/${S.quiz.length} câu.`
+}
+
+/* ---------- Bước 3: hiểu bài ---------- */
+function buildCQ(){
+  $('#cq').innerHTML=CQ.map((c,i)=>{const o=shuffle(c.o.map((t,j)=>({t,r:j===c.a})));c._o=o;
+    return `<div class="q" data-i="${i}"><div><b>${i+1}. ${esc(c.q)}</b></div>${o.map((x,j)=>`<button class="opt ${S.cd[i]&&x.r?'ok':''}" data-j="${j}">${esc(x.t)}</button>`).join('')}<div class="fb ${S.cd[i]?'ok':''}">${S.cd[i]?'✔ '+esc(c.x):''}</div></div>`}).join('');
+  $$('#cq .q').forEach(el=>{const i=+el.dataset.i,c=CQ[i],fb=el.querySelector('.fb');
+    el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(S.cd[i])return;const ok=c._o[+b.dataset.j].r;b.classList.add(ok?'ok':'no');
+      if(ok){S.cd[i]={first:c._f===undefined};fb.className='fb ok';fb.textContent='✔ '+c.x}else{c._f=false;fb.className='fb no';fb.textContent='✘ Chưa đúng, đọc lại bài rồi chọn lại nhé.'}
+      refresh();cqi()})
+  });cqi()
+}
+const cqi=()=>{$('#cqInfo').textContent=`Đã đúng ${Object.keys(S.cd).length}/${CQ.length} câu.`};
+
+/* ---------- Bước 4: nghe và chép lại ---------- */
+const nw=s=>norm(s).replace(/[^a-z' ]/g,' ').split(' ').filter(Boolean).map(w=>w.replace(/ize$/,'ise').replace(/ized$/,'ised'));
+function lcsHit(a,b){
+  const m=a.length,n=b.length,d=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=a[i-1]===b[j-1]?d[i-1][j-1]+1:Math.max(d[i-1][j],d[i][j-1]);
+  const hit=new Set(),hb=new Set();let i=m,j=n;
+  while(i>0&&j>0){if(a[i-1]===b[j-1]){hit.add(i-1);hb.add(j-1);i--;j--}else if(d[i-1][j]>=d[i][j-1])i--;else j--}
+  return {hit,hb}
+}
+function gradeD(i,txt){
+  const ref=DICT[i].split(/\s+/),rw=nw(DICT[i]),tw=nw(txt);
+  const {hit,hb}=lcsHit(rw,tw);
+  const sc=rw.length?Math.round(hit.size/rw.length*100)/100:0;
+  const extra=tw.filter((_,k)=>!hb.has(k));
+  return {sc,hit,extra,ref,rw}
+}
+function buildDict(){
+  $('#dict').innerHTML=DICT.map((s,i)=>{const d=S.dd[i];return `<div class="q" data-i="${i}"><div><b>Câu ${i+1}</b> <button class="sm" data-a="n">🔊 Nghe</button> <button class="sm" data-a="s">🐢 Nghe chậm</button></div><textarea placeholder="Gõ câu em nghe được…">${d?esc(d.text||''):''}</textarea><div class="tools"><button class="sm pri" data-a="chk">Kiểm tra</button><button class="sm" data-a="show">Xem đáp án</button></div><div class="dg"></div><div class="fb"></div></div>`}).join('');
+  $$('#dict .q').forEach(el=>{const i=+el.dataset.i,ta=el.querySelector('textarea'),dg=el.querySelector('.dg'),fb=el.querySelector('.fb');
+    el.querySelector('[data-a=n]').onclick=()=>{stopSpeak();speak(DICT[i],0.9)};
+    el.querySelector('[data-a=s]').onclick=()=>{stopSpeak();speak(DICT[i],0.6)};
+    const draw=(r,full)=>{dg.innerHTML=r.ref.map((w,k)=>full||r.hit.has(k)?`<span class="${r.hit.has(k)?'g':''}">${esc(w)}</span>`:`<span class="r">${'_'.repeat(Math.max(3,w.length))}</span>`).join(' ')+(r.extra.length&&!full?`<div class="meta">Chữ thừa hoặc sai: ${r.extra.map(esc).join(', ')}</div>`:'')};
+    if(S.dd[i]&&S.dd[i].ok){draw(gradeD(i,DICT[i]),true);fb.className='fb ok';fb.textContent=`✔ Đạt · ${S.dd[i].best} điểm`}
+    el.querySelector('[data-a=chk]').onclick=()=>{
+      if(!ta.value.trim()){fb.className='fb no';fb.textContent='Em chưa gõ gì.';return}
+      const r=gradeD(i,ta.value);const prev=S.dd[i]||{};
+      const d={text:ta.value,first:prev.first===undefined?r.sc:prev.first,best:Math.max(prev.best||0,r.sc),ok:prev.ok||r.sc>=DICT_PASS,viewed:prev.viewed};
+      S.dd[i]=d;draw(r,r.sc>=DICT_PASS);
+      fb.className='fb '+(r.sc>=DICT_PASS?'ok':'no');
+      fb.textContent=r.sc>=DICT_PASS?`✔ Đạt · đúng ${Math.round(r.sc*100)}% số từ`:`Đúng ${Math.round(r.sc*100)}% số từ. Nghe lại và sửa các chỗ gạch đỏ nhé.`;
+      refresh();di()
+    };
+    el.querySelector('[data-a=show]').onclick=()=>{
+      modal(`<h3>Xem đáp án?</h3><p class="ins">Xem đáp án thì em nên nghe lại và tự chép lại một lần nữa. Cô sẽ thấy em đã xem đáp án.</p>`,[{t:'Để em nghe lại',pri:1},{t:'Cho em xem',f:()=>{const p=S.dd[i]||{};S.dd[i]=Object.assign(p,{viewed:true});fb.className='fb';fb.innerHTML='Đáp án: <b>'+esc(DICT[i])+'</b>';refresh()}}])
+    }
+  });di()
+}
+const di=()=>{$('#dictInfo').textContent=`Đã đạt ${DICT.filter((_,k)=>S.dd[k]&&S.dd[k].ok).length}/${DICT.length} câu.`};
+
+/* ---------- Bước 5: ngữ pháp ---------- */
+$('#gTick').onchange=e=>{S.gTick=e.target.checked;$('#gEx').style.display=S.gTick?'block':'none';if(S.gTick)buildGram();refresh()};
+function buildGram(){
+  $('#gQs').innerHTML=GRAM.map((g,i)=>{
+    const done=S.gd[i];
+    if(g.o)return `<div class="q" data-i="${i}"><div>${i+1}. ${esc(g.q).replace('___','<b>___</b>')}</div>${g.o.map((o,j)=>`<button class="opt ${done&&j===g.a?'ok':''}" data-j="${j}">${esc(o)}</button>`).join('')}<div class="fb ${done?'ok':''}">${done?'✔ '+esc(g.x):''}</div></div>`;
+    return `<div class="q" data-i="${i}"><div>${i+1}. ${esc(g.q).replace('___','<b>___</b>')}</div><input type="text" ${done?'disabled value="'+esc(g.f[0])+'"':''} placeholder="Gõ đáp án"> <button class="sm" data-c="1">Kiểm tra</button><div class="fb ${done?'ok':''}">${done?'✔ '+esc(g.x):''}</div></div>`
+  }).join('');
+  $$('#gQs .q').forEach(el=>{const i=+el.dataset.i,g=GRAM[i];const fb=el.querySelector('.fb');
+    const mark=ok=>{if(ok){S.gd[i]={first:g._f===undefined};fb.className='fb ok';fb.textContent='✔ '+g.x}else{g._f=false;fb.className='fb no';fb.textContent='✘ Chưa đúng, thử lại nhé.'}refresh();gi()};
+    if(g.o)el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(S.gd[i])return;const ok=+b.dataset.j===g.a;b.classList.add(ok?'ok':'no');mark(ok)});
+    else{const inp=el.querySelector('input'),btn=el.querySelector('[data-c]');const chk=()=>{if(S.gd[i])return;mark(g.f.includes(norm(inp.value).replace(/[.!]$/,'')))};btn.onclick=chk;inp.onkeydown=e=>{if(e.key==='Enter')chk()}}
+  });gi()
+}
+const gi=()=>{$('#gInfo').textContent=`Đã đúng ${Object.keys(S.gd).length}/${GRAM.length} câu.`};
+
+/* ---------- Bước 6: ghi âm ---------- */
+let curRec=null;
+function buildRecs(){
+  $('#recs').innerHTML=PARAS.map((p,i)=>`<div class="pbox" data-i="${i}"><div><b>Đoạn ${i+1}</b></div><div style="margin:4px 0">${esc(plain(p))}</div><div class="tools"><button class="sm" data-a="hear">🔊 Nghe mẫu</button><button class="sm" data-a="rec">● Ghi âm</button><button class="sm" data-a="stop" disabled>■ Dừng</button><button class="sm" data-a="play" disabled>▶ Nghe lại</button><span class="meta st">${blobs[i]?'✅ Đã có bản ghi':'Chưa ghi âm'}</span></div></div>`).join('');
+  $$('#recs .pbox').forEach(el=>{const i=+el.dataset.i;const q=a=>el.querySelector(`[data-a=${a}]`),st=el.querySelector('.st');
+    if(blobs[i])q('play').disabled=false;
+    q('hear').onclick=()=>{stopSpeak();speak(plain(PARAS[i]),0.85)};
+    q('rec').onclick=async()=>{
+      try{
+        stopSpeak();const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+        const mr=new MediaRecorder(stream);const chunks=[];curRec={mr,stream};
+        mr.ondataavailable=e=>chunks.push(e.data);
+        mr.onstop=()=>{stream.getTracks().forEach(t=>t.stop());blobs[i]=new Blob(chunks,{type:mr.mimeType||'audio/webm'});st.innerHTML='✅ Đã có bản ghi (có thể ghi lại)';q('rec').disabled=false;q('stop').disabled=true;q('play').disabled=false;refresh();recInfo()};
+        mr.start();st.innerHTML='<span class="rec">● Đang ghi âm…</span>';q('rec').disabled=true;q('stop').disabled=false
+      }catch(e){st.textContent='⚠️ Không mở được micro. Hãy bấm Cho phép micro rồi thử lại.'}
+    };
+    q('stop').onclick=()=>{if(curRec&&curRec.mr.state==='recording')curRec.mr.stop()};
+    q('play').onclick=()=>{if(blobs[i]){const a=new Audio(URL.createObjectURL(blobs[i]));a.play()}}
+  });recInfo()
+}
+const recInfo=()=>{$('#recInfo').textContent=`Đã ghi âm ${PARAS.filter((_,k)=>blobs[k]).length}/${PARAS.length} đoạn. Chưa gửi cho cô cho đến khi em bấm “Nộp bài”.`};
+
+/* ---------- Bước 7: dịch thuật ---------- */
+function gradeT(i,txt){
+  const t=T[i],tx=' '+norm(txt).replace(/[.,!?;:]/g,' ')+' ',errs=[],miss=[];
+  let hit=0;t.k.forEach(([re,h])=>{if(re.test(tx))hit++;else miss.push(h)});
+  let sc=hit/t.k.length;const raw=txt.trim();
+  if(raw&&!/^[A-Z]/.test(raw)){sc-=.1;errs.push('Chữ cái đầu câu cần viết hoa.')}
+  if(raw&&!/[.!?]$/.test(raw)){sc-=.1;errs.push('Thiếu dấu chấm cuối câu.')}
+  if(/(^|[^A-Za-z])i([^A-Za-z]|$)/.test(raw)){sc-=.1;errs.push('Đại từ “I” phải viết hoa.')}
+  return {sc:Math.max(0,Math.round(sc*100)/100),miss,errs,hit}
+}
+function buildTr(){
+  $('#trs').innerHTML=T.map((t,i)=>{const d=S.td[i];return `<div class="q tr" data-i="${i}"><div class="vi">${i+1}. ${esc(t.vi)}</div><textarea placeholder="Viết câu tiếng Anh…">${d?esc(d.text||''):''}</textarea><div class="meta wc"></div><div class="tools"><button class="sm pri" data-a="chk">Chấm câu này</button><button class="sm" data-a="mod">Xem câu mẫu</button></div><div class="fb"></div></div>`}).join('');
+  $$('#trs .tr').forEach(el=>{const i=+el.dataset.i,t=T[i],ta=el.querySelector('textarea'),fb=el.querySelector('.fb'),wc=el.querySelector('.wc');
+    const mw=t.m.split(' ').length;
+    const upd=()=>{const n=ta.value.trim()?ta.value.trim().split(/\s+/).length:0;wc.innerHTML=`${n} từ · câu cần khoảng ${mw} từ`+(n&&n<mw*0.6?' <b style="color:var(--bad)">⚠️ còn thiếu chữ</b>':'')};
+    ta.oninput=upd;upd();
+    if(S.td[i]&&S.td[i].ok){fb.className='fb ok';fb.innerHTML=`✔ Đạt · ${S.td[i].best} điểm`}
+    el.querySelector('[data-a=chk]').onclick=()=>{
+      const txt=ta.value;if(!txt.trim()){fb.className='fb no';fb.textContent='Em chưa viết gì.';return}
+      const r=gradeT(i,txt);const prev=S.td[i]||{};const viewed=!!S.tb[i];
+      const shown=viewed?Math.min(r.sc,.5):r.sc;
+      const d={text:txt,first:prev.first===undefined?shown:prev.first,best:Math.max(prev.best||0,shown),ok:(prev.ok||r.sc>=PASS),viewed};
+      S.td[i]=d;
+      fb.className='fb '+(r.sc>=PASS?'ok':'no');
+      fb.innerHTML=`<span class="score">${shown} điểm</span>${viewed?' (đã xem mẫu: tối đa 0,5)':''} · ${r.sc>=PASS?'✔ Đạt':'Chưa đạt'}${r.miss.length?'<br>Còn thiếu ý: '+r.miss.map(esc).join('; '):''}${r.errs.length?'<br>Lỗi: '+r.errs.join(' '):''}`;
+      refresh();trInfo()
+    };
+    el.querySelector('[data-a=mod]').onclick=()=>{
+      modal(`<h3>Xem câu mẫu?</h3><p class="ins">Xem mẫu thì câu này chỉ được tối đa 0,5 điểm. Em có chắc không?</p>`,[{t:'Để em tự làm',pri:1},{t:'Cho em xem',f:()=>{S.tb[i]=1;fb.className='fb';fb.innerHTML='Câu mẫu: <b>'+esc(t.m)+'</b>';refresh()}}])
+    };
+  });trInfo()
+}
+const trInfo=()=>{$('#trInfo').textContent=`Đã đạt ${T.filter((_,k)=>S.td[k]&&S.td[k].ok).length}/${T.length} câu.`;sumBox()};
+function totalT(){return T.reduce((a,_,k)=>a+((S.td[k]&&S.td[k].best)||0),0)}
+function sumBox(){const t=Math.round(totalT()/T.length*100)/10;$('#sumBox').innerHTML=`Điểm dịch thuật tạm tính: <b>${t}/10</b> · Đã click ${S.ck.length} từ · Đã lưu ${S.sv.length} mục · Bản ghi: ${PARAS.filter((_,k)=>blobs[k]).length}/${PARAS.length}`}
+
+/* ---------- Nộp bài ---------- */
+async function post(o){const r=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)});return r.json()}
+const b64=b=>new Promise(res=>{const f=new FileReader();f.onload=()=>res(String(f.result).split(',')[1]);f.readAsDataURL(b)});
+async function doSubmit(){
+  const msg=$('#subMsg'),btn=$('#submit');btn.disabled=true;
+  try{
+    for(let i=0;i<PARAS.length;i++){
+      if(!blobs[i])continue;msg.textContent=`Đang gửi bản ghi ${i+1}/${PARAS.length}…`;
+      const ext=/mp4/.test(blobs[i].type)?'m4a':'webm';
+      const r=await post({type:'audio',name:S.name,lesson:LESSON,file:`Doan_${i+1}.${ext}`,mime:blobs[i].type,audio:await b64(blobs[i]),label:`Đoạn ${i+1}`,target:plain(PARAS[i])});
+      if(!r.ok)throw new Error(r.error||'audio')
+    }
+    msg.textContent='Đang gửi bảng điểm…';
+    const tt=Math.round(totalT()/T.length*100)/10;
+    const nOK=T.filter((_,k)=>S.td[k]&&S.td[k].ok).length;
+    const allDone=STEPS.every((_,i)=>isDone(i));
+    const details=[];
+    details.push({part:'Từ đã click',question:`${S.ck.length} từ`,answer:S.ck.join(', '),correct:'',result:S.ck.length>=MIN_CLICK?'đủ':'chưa đủ'});
+    details.push({part:'Từ/cụm đã lưu',question:`${S.sv.length} mục`,answer:S.sv.map(id=>ent(id).t).join(' | '),correct:'',result:''});
+    (S.quiz||[]).forEach((q,i)=>{const e=ent(q.id);details.push({part:'Kiểm tra từ',question:e.t,answer:S.qd[i]?e.vi:'',correct:e.vi,result:S.qd[i]?(S.qd[i].first?'đúng lần đầu':'đúng sau khi sửa'):'chưa đúng'})});
+    CQ.forEach((c,i)=>details.push({part:'Hiểu bài',question:c.q,answer:'',correct:c.o[c.a],result:S.cd[i]?(S.cd[i].first?'đúng lần đầu':'đúng sau khi sửa'):'chưa đúng'}));
+    DICT.forEach((s,i)=>{const d=S.dd[i]||{};details.push({part:'Nghe chép',question:s,answer:d.text||'',correct:s,result:`lần đầu ${d.first==null?'-':d.first} · tốt nhất ${d.best||0}${d.ok?' · ĐẠT':' · CHƯA ĐẠT'}${d.viewed?' · đã xem đáp án':''}`})});
+    GRAM.forEach((g,i)=>details.push({part:'Ngữ pháp',question:g.q,answer:'',correct:g.o?g.o[g.a]:g.f[0],result:S.gd[i]?(S.gd[i].first?'đúng lần đầu':'đúng sau khi sửa'):'chưa đúng'}));
+    T.forEach((t,i)=>{const d=S.td[i]||{};details.push({part:'Dịch Việt→Anh',question:t.vi,answer:d.text||'',correct:t.m,result:`lần đầu ${d.first==null?'-':d.first} · tốt nhất ${d.best||0}${d.ok?' · ĐẠT':' · CHƯA ĐẠT'}${S.tb[i]?' · đã xem mẫu':''}`})});
+    details.push({part:'Dịch Anh→Việt',question:'A small mistake can spoil a good first impression.',answer:$('#b1').value,correct:'(cô nhận xét)',result:''});
+    details.push({part:'Dịch Anh→Việt',question:'If you are late, people may think you are not serious.',answer:$('#b2').value,correct:'(cô nhận xét)',result:''});
+    const r=await post({type:'submit',name:S.name,lesson:LESSON,summary:{vocab:`Click ${S.ck.length} từ · lưu ${S.sv.length} mục · kiểm tra từ ${Object.keys(S.qd).length}/${(S.quiz||[]).length}`,gram:`Ngữ pháp ${Object.keys(S.gd).length}/${GRAM.length}`,ctx:`Hiểu bài ${Object.keys(S.cd).length}/${CQ.length} · Nghe chép ${DICT.filter((_,k)=>S.dd[k]&&S.dd[k].ok).length}/${DICT.length}`,rec:`${PARAS.filter((_,k)=>blobs[k]).length}/${PARAS.length} bản ghi`,para:`Dịch thuật ${tt}/10 · đạt ${nOK}/${T.length} câu · ${allDone?'ĐẠT YÊU CẦU':'CHƯA ĐẠT YÊU CẦU'} · đã bỏ qua cảnh báo ${S.skips} lần`,feedback:'Cô xem lại bài và nhận xét sau.'},details});
+    if(!r.ok)throw new Error(r.error||'submit');
+    msg.innerHTML='<b style="color:var(--ok)">✅ Đã nộp bài! Cô sẽ xem lại và nhận xét cho em.</b>';
+  }catch(e){msg.textContent='⚠️ Chưa gửi được ('+e.message+'). Kiểm tra mạng rồi bấm Nộp bài lại.';btn.disabled=false}
+}
+$('#submit').onclick=()=>{
+  const need=[];for(let k=0;k<STEPS.length;k++){const m=missing(k);if(m.length)need.push(`<b>${STEPS[k].n}</b><br>${m.join('<br>')}`)}
+  if(!need.length)return doSubmit();
+  modal(`<h3>⚠️ Bài chưa hoàn thành</h3><ul class="ins"><li>${need.join('</li><li>')}</li></ul><p class="meta">Điểm dịch thuật tạm tính: ${Math.round(totalT()/T.length*100)/10}/10</p>`,[{t:'Quay lại sửa',pri:1},{t:'Vẫn nộp',f:()=>{S.skips++;doSubmit()}}])
+};
+
+/* ---------- Khởi động ---------- */
+function start(){
+  $('#nm').textContent=S.name;renderPassage();renderMy();
+  if(S.gTick){$('#gTick').checked=true;$('#gEx').style.display='block';buildGram()}
+  show(S.cur||0)
+}
+(function(){
+  let last='';try{last=localStorage.getItem(KEY+':last')||''}catch(e){}
+  modal(`<h3>Xin chào! 👋</h3><p class="ins">Em hãy gõ họ và tên để cô nhận được bài của em.</p><input type="text" id="nameIn" style="width:100%" placeholder="Họ và tên" value="${esc(last)}">`,[{t:'Bắt đầu',pri:1}]);
+  $('#mb button').onclick=()=>{const v=$('#nameIn').value.trim();if(!v){$('#nameIn').focus();return}S.name=v;load(v);S.name=v;$('#modal').classList.remove('show');start()}
+})();
+</script>
+</body>
+</html>
