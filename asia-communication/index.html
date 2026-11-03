@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Professional Communication in Asia – Giao tiếp công sở ở Châu Á</title>
+<style>
+:root{--bg:#fbf8f3;--card:#fff;--ink:#222;--mut:#666;--red:#8b0000;--line:#e6dfd3;--ok:#1f8a4c;--bad:#c0392b;--org:#f39c12;--acc:#1d6f8a;--accbg:#e3f3f8;--ck:#d6ecf5}
+@media (prefers-color-scheme:dark){:root{--bg:#171717;--card:#222;--ink:#eee;--mut:#aaa;--red:#ff9a9a;--line:#3a3a3a;--ok:#5fd18b;--bad:#ff8a7a;--acc:#7cc7de;--accbg:#173038;--ck:#1f4553}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body.so main{padding-bottom:40vh}
+#top{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);padding:8px 12px}
+#bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden}
+#barfill{height:100%;width:0;background:var(--ok);transition:width .3s}
+#pct{font-size:13px;color:var(--mut);margin:2px 0 6px}
+#chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:20px;padding:3px 10px;font-size:13px;cursor:pointer}
+.chip.cur{border-color:var(--acc);background:var(--accbg);font-weight:700}
+.chip.done{border-color:var(--ok)}
+main{max-width:860px;margin:0 auto;padding:14px 12px 90px}
+h1{margin:10px 0 2px;font-size:24px}
+h2{font-size:20px;margin:6px 0}
+h3{font-size:17px;margin:12px 0 4px}
+.sub{color:var(--mut);margin:0 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.ins{color:var(--red);font-weight:700}
+.step{display:none}.step.show{display:block}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px}
+button.pri{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:700}
+button:disabled{opacity:.5}
+button.sm{padding:3px 9px;font-size:14px}
+.next{display:block;margin:18px auto 0;padding:10px 26px;font-size:17px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+select,input[type=text],textarea{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+textarea{width:100%;min-height:62px}
+.passage p{margin:.6em 0;font-size:18px;line-height:2}
+.w{border-bottom:1px dotted var(--acc);cursor:pointer;border-radius:3px;padding:0 1px}
+.w:hover{background:var(--accbg)}
+.w.ck{background:var(--ck)}
+.cks span{display:inline-block;background:var(--ck);border-radius:12px;padding:1px 10px;margin:2px;font-size:14px;cursor:pointer}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--card);border-top:3px solid var(--acc);padding:10px 14px;display:none;box-shadow:0 -4px 16px rgba(0,0,0,.25);max-height:38vh;overflow:auto}
+#sheet.show{display:block}
+#sheet .big{font-size:21px;font-weight:800}
+.ipa{color:var(--acc);font-family:"Segoe UI",Arial,sans-serif}
+.pos{color:var(--mut);font-style:italic}
+.opt{display:block;width:100%;text-align:left;margin:5px 0}
+.opt.ok{background:#d9f2e3;border-color:var(--ok);color:#0b4d27}
+.opt.no{background:#fbe0dc;border-color:var(--bad);color:#6d1a10}
+.q{border-bottom:1px solid var(--line);padding:10px 0}
+.q:last-child{border:0}
+.fb{font-size:14px;margin-top:4px}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.tg span{display:inline-block;border-radius:10px;padding:0 9px;font-size:12px;margin-right:4px;background:var(--accbg);color:var(--acc);font-weight:700}
+.sent{font-size:19px;font-weight:700;margin:4px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.good{background:#e8f6ec;color:#14532d;border-radius:8px;padding:6px 10px;margin-top:6px;font-size:14px}
+@media (prefers-color-scheme:dark){.good{background:#173a25;color:#b8f0cc}}
+.gc{border-left:4px solid var(--acc);padding:6px 12px;margin:10px 0;background:var(--accbg);border-radius:0 8px 8px 0}
+.gc .ex{font-style:italic}
+.gc mark{background:var(--org);color:#000;padding:0 3px;border-radius:3px}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.vc{border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:14px}
+.vc b{font-size:16px}
+.dg{font-size:17px;margin-top:6px}
+.dg .g{color:var(--ok);font-weight:700}.dg .r{color:var(--bad);font-weight:700}
+.pbox{border:1px solid var(--line);border-radius:10px;padding:10px;margin:10px 0}
+.rec{color:var(--bad);font-weight:700}
+.meta{font-size:13px;color:var(--mut)}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+#modal.show{display:flex}
+#modal .box{background:var(--card);border-radius:14px;max-width:460px;width:100%;padding:18px;max-height:85vh;overflow:auto}
+#modal ul{padding-left:20px}
+.row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:12px}
+.stamp{display:inline-block;background:var(--accbg);color:var(--acc);border-radius:20px;padding:2px 12px;font-size:13px;font-weight:700}
+</style>
+</head>
+<body>
+<div id="top">
+  <div id="bar"><div id="barfill"></div></div>
+  <div id="pct"></div>
+  <div id="chips"></div>
+</div>
+<main>
+  <span class="stamp">Business English · Asia</span>
+  <h1>Professional Communication in Asia</h1>
+  <p class="sub">Giao tiếp công sở ở Châu Á: nhận biết cách nói chuyên nghiệp và chưa chuyên nghiệp.</p>
+  <div class="tools"><label>Tốc độ nghe <select id="rate"><option value="0.7">Chậm</option><option value="0.85" selected>Vừa</option><option value="1">Bình thường</option></select></label><label>Giọng <select id="voice"></select></label></div>
+
+  <!-- ========== BƯỚC 1: READING ========== -->
+  <section class="step" id="s1">
+    <div class="card">
+      <h2>1 · Reading</h2>
+      <p class="ins">Đọc hoặc nghe cả bài. Bấm các từ có gạch chấm để xem phiên âm, nghĩa và nghe phát âm (bấm ít nhất <span id="minC"></span> từ). Sau đó trả lời câu hỏi hiểu bài.</p>
+      <div class="tools"><button class="pri" id="playAll">▶ Nghe cả bài</button><button id="stopAll">⏹ Dừng</button><span class="meta" id="ckn"></span></div>
+      <div class="passage" id="passage"></div>
+    </div>
+    <div class="card">
+      <h3>Hiểu bài</h3>
+      <div id="cq"></div>
+      <div class="meta" id="cqInfo"></div>
+    </div>
+    <button class="pri next" data-next="1">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 2: NHẬN BIẾT ========== -->
+  <section class="step" id="s2">
+    <div class="card">
+      <h2>2 · Nhận biết: chuyên nghiệp hay chưa?</h2>
+      <p class="ins">Phần A: đọc câu nói và chọn “Professional” hoặc “Unprofessional”. Chọn sai thì chọn lại.</p>
+      <div id="ra"></div>
+      <div class="meta" id="raInfo"></div>
+    </div>
+    <div class="card">
+      <h3>Phần B: hiểu văn hóa</h3>
+      <p class="ins">Chọn cách hiểu hoặc cách làm phù hợp nhất.</p>
+      <div id="rb"></div>
+      <div class="meta" id="rbInfo"></div>
+    </div>
+    <button class="pri next" data-next="2">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 3: NGỮ PHÁP ========== -->
+  <section class="step" id="s3">
+    <div class="card">
+      <h2>3 · Cấu trúc ngữ pháp</h2>
+      <p class="ins">Đọc 5 cấu trúc dưới đây, rồi tick “Em đã đọc kỹ” để mở bài tập.</p>
+      <div class="gc"><b>① Nhờ vả lịch sự</b><div><b>Would you mind + V-ing…?</b> · <b>Could you + V…?</b> · <b>May I + V…?</b></div><div class="ex"><mark>Would you mind explaining</mark> that again? · <mark>Could you send</mark> me the report? · <mark>May I ask</mark> a question?</div><div class="meta">Would you mind + V-ing (không dùng “to”).</div></div>
+      <div class="gc"><b>② Từ chối khéo, làm câu nhẹ hơn</b><div><b>I am afraid + S + V</b> · <b>S + might + V</b> · <b>Could we + V…?</b></div><div class="ex"><mark>I am afraid we cannot</mark> accept this price. · That <mark>might be</mark> difficult. <mark>Could we look</mark> at another option?</div><div class="meta">might không thêm -s: He might say no.</div></div>
+      <div class="gc"><b>③ Lời khuyên, quy tắc</b><div><b>It is important / polite + to V</b> · <b>should (not) + V</b> · <b>Do not + V</b></div><div class="ex">It is <mark>important to be</mark> polite. · You <mark>should not criticise</mark> a colleague in public.</div></div>
+      <div class="gc"><b>④ Nếu … thì (điều kiện loại 1)</b><div><b>If + hiện tại đơn, S + may / might + V</b></div><div class="ex"><mark>If you criticise</mark> someone in public, that person <mark>may lose</mark> face.</div><div class="meta">Mệnh đề If dùng hiện tại đơn, không dùng will.</div></div>
+      <div class="gc"><b>⑤ Thay vì</b><div><b>instead of + noun / V-ing</b></div><div class="ex">People say “That might be difficult” <mark>instead of</mark> “No”. · Talk to them privately <mark>instead of criticising</mark> them in public.</div></div>
+      <label class="ins"><input type="checkbox" id="gTick"> Em đã đọc kỹ phần cấu trúc</label>
+    </div>
+    <div class="card" id="gEx" style="display:none">
+      <h2>Bài tập</h2>
+      <p class="ins">Làm đúng tất cả các câu mới được tiếp tục.</p>
+      <div id="gQs"></div>
+      <div class="meta" id="gInfo"></div>
+    </div>
+    <button class="pri next" data-next="3">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 4: TỪ VỰNG ========== -->
+  <section class="step" id="s4">
+    <div class="card">
+      <h2>4 · Từ vựng</h2>
+      <p class="ins">Xem nhanh các từ (bấm 🔊 để nghe), rồi làm bài kiểm tra.</p>
+      <div class="vg" id="vlist"></div>
+    </div>
+    <div class="card">
+      <h3>Bài kiểm tra (10 câu)</h3>
+      <div id="vq"></div>
+      <div class="meta" id="vqInfo"></div>
+    </div>
+    <button class="pri next" data-next="4">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 5: NGHE CHÉP ========== -->
+  <section class="step" id="s5">
+    <div class="card">
+      <h2>5 · Nghe và chép lại</h2>
+      <p class="ins">Bấm 🔊 để nghe (🐢 nghe chậm), rồi gõ lại câu em nghe được. Chữ đúng hiện màu xanh, chữ thiếu hiện gạch đỏ. Cần đúng từ 85% để đạt.</p>
+      <div id="dict"></div>
+      <div class="meta" id="dictInfo"></div>
+    </div>
+    <button class="pri next" data-next="5">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== BƯỚC 6: ĐỌC GHI ÂM ========== -->
+  <section class="step" id="s6">
+    <div class="card">
+      <h2>6 · Đọc to và ghi âm</h2>
+      <p class="ins">Đọc to từng đoạn. Bấm 🔊 nghe mẫu, ● ghi âm, ■ dừng, ▶ nghe lại. Được ghi lại nhiều lần. Bản ghi chỉ gửi khi em bấm “Nộp bài”.</p>
+      <div id="recs"></div>
+      <div class="meta" id="recInfo"></div>
+    </div>
+    <div class="card">
+      <h3>📨 Nộp bài</h3>
+      <div class="meta">Họ tên: <b id="nm"></b></div>
+      <div id="sumBox" class="meta"></div>
+      <button class="pri next" id="submit">Nộp bài cho cô</button>
+      <div id="subMsg" class="meta" style="text-align:center;margin-top:8px"></div>
+    </div>
+  </section>
+</main>
+
+<div id="sheet"></div>
+<div id="modal"><div class="box" id="mbox"></div></div>
+
+<script>
+/* ===== NỘI DUNG BÀI: DATA START ===== */
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwnf8X3_Xfk9F_8HQtBwSFU_s28sRjxKb0aFaHCA4ybmMJvgaztBAbdvaFzITdbVXBt/exec'; // cổng chung (Kết quả Speaking). Đổi nếu dùng cổng riêng.
+const LESSON='Professional Communication in Asia';
+const MIN_CLICK=5, DICT_PASS=0.85;
+
+/* Bài đọc: {từ} hoặc {dạng chữ|từ gốc} là từ bấm được */
+const PARAS=[
+ "Asia has many different cultures, but in many Asian countries people care about {respect}, {relationships|relationship} and “{face}”. Face means a person’s good name and dignity. If you {criticise} someone in {public}, that person may lose face. So professional communication is often {polite}, {calm} and {indirect}.",
+ "In Japan, people often say “That might be difficult” instead of “No”. It is a polite way to {refuse}. In South Korea, age and {position} are very important. People use {titles|title} and give and receive {business cards|business card} with both hands.",
+ "In China, building a good relationship usually comes before business. Meals with partners are a good chance to get to know each other. In Thailand, people often {greet} each other with a wai, and they try to stay calm. Showing {anger} in a meeting is {unprofessional}.",
+ "In Vietnam, people often use anh or chị with a name to show respect, and a meeting may start with tea and small talk. A partner may say “I will {consider} it” when they do not agree yet, so listen carefully to the tone.",
+ "In short: listen carefully, use polite language, avoid public criticism, and respect age and position. These customs are common, but every person is different. When you are not sure, ask politely."
+];
+const W={
+ 'respect':['/rɪˈspekt/','n.','sự tôn trọng'],'relationship':['/rɪˈleɪʃnʃɪp/','n.','mối quan hệ'],'face':['/feɪs/','n.','thể diện (danh dự, hình ảnh tốt của một người)'],
+ 'criticise':['/ˈkrɪtɪsaɪz/','v.','chê bai, phê bình'],'public':['/ˈpʌblɪk/','adj.','công khai, trước đám đông'],'polite':['/pəˈlaɪt/','adj.','lịch sự'],
+ 'calm':['/kɑːm/','adj.','bình tĩnh'],'indirect':['/ˌɪndəˈrekt/','adj.','gián tiếp, không nói thẳng'],'refuse':['/rɪˈfjuːz/','v.','từ chối'],
+ 'position':['/pəˈzɪʃn/','n.','vị trí, chức vụ'],'title':['/ˈtaɪtl/','n.','chức danh, danh xưng'],'business card':['/ˈbɪznəs kɑːd/','n.','danh thiếp'],
+ 'greet':['/ɡriːt/','v.','chào hỏi'],'anger':['/ˈæŋɡə/','n.','sự tức giận'],'unprofessional':['/ˌʌnprəˈfeʃənl/','adj.','thiếu chuyên nghiệp'],'consider':['/kənˈsɪdə/','v.','cân nhắc, xem xét']
+};
+const CQ=[
+ {q:'What does “face” mean in this text?',o:['A person’s good name and dignity','A person’s real face','A type of business card'],x:'“Face” ở đây là thể diện: danh dự, hình ảnh tốt của một người.'},
+ {q:'True or false? In Japan, people always say “No” directly.',o:['False','True'],x:'Sai. Người Nhật thường nói “That might be difficult” để từ chối khéo.'},
+ {q:'In South Korea, which things are very important?',o:['Age and position','Gifts and music','Weather and food'],x:'Tuổi và chức vụ rất quan trọng ở Hàn Quốc.'},
+ {q:'In China, what usually comes before business?',o:['Building a good relationship','Signing a contract','Taking photos'],x:'Xây dựng quan hệ tốt thường đến trước kinh doanh.'},
+ {q:'In Thailand, showing anger in a meeting is considered…',o:['unprofessional','funny','normal'],x:'Tỏ ra tức giận trong cuộc họp được xem là thiếu chuyên nghiệp.'},
+ {q:'In Vietnam, what may a partner say when they do not agree yet?',o:['“I will consider it.”','“Yes, of course.”','“Goodbye.”'],x:'Họ có thể nói “I will consider it”, nên cần lắng nghe giọng điệu.'}
+];
+/* Phần A: nhận biết chuyên nghiệp / chưa chuyên nghiệp */
+const RA=[
+ {t:'I understand your point. Let me think about it and reply by Friday.',pro:true,ctx:'Họp với đối tác Nhật',why:'Ghi nhận ý đối tác và hẹn thời gian trả lời: lịch sự và rõ ràng.'},
+ {t:'No. That is a bad idea.',pro:false,ctx:'Họp với đối tác Hàn Quốc',why:'Quá thẳng và chê ý kiến, dễ làm đối tác mất thể diện.',better:'Thank you for the idea. I am afraid we may have some problems. Could we discuss another option?'},
+ {t:'That might be difficult. Could we look at another option?',pro:true,ctx:'Từ chối khéo (kiểu Nhật)',why:'“Might” và “Could we…?” làm lời từ chối mềm mại, mở ra lựa chọn khác.'},
+ {t:'You made a mistake in front of everyone. Fix it now!',pro:false,ctx:'Họp nhóm',why:'Chê trước mọi người làm người khác mất thể diện. Ở nhiều nước châu Á điều này rất nhạy cảm.',better:'Could we talk about the report after the meeting? I would like to check one part with you.'},
+ {t:'Excuse me, Mr Kim. May I ask a question?',pro:true,ctx:'Gặp trưởng phòng Hàn Quốc',why:'Dùng chức danh + họ và “May I…?” thể hiện sự tôn trọng vị trí.'},
+ {t:'Hey Kim, give me your card.',pro:false,ctx:'Lần đầu gặp ở Hàn Quốc',why:'Gọi trống không và ra lệnh. Nên xin danh thiếp lịch sự.',better:'Mr Kim, may I have your business card, please?'},
+ {t:'Thank you for your time. It was a pleasure to meet you.',pro:true,ctx:'Kết thúc buổi gặp',why:'Cảm ơn và kết thúc lịch sự.'},
+ {t:'Why are you late? That is so stupid!',pro:false,ctx:'Họp ở Thái Lan',why:'Tức giận và xúc phạm. Ở Thái Lan, giữ bình tĩnh được đánh giá cao.',better:'I see the meeting started late. Is everything okay? Let us begin when you are ready.'},
+ {t:'I am sorry for the delay. I will send the file today.',pro:true,ctx:'Xin lỗi đối tác',why:'Xin lỗi ngắn gọn và cam kết cụ thể.'},
+ {t:'Whatever. I do not care.',pro:false,ctx:'Đối tác đề nghị đổi kế hoạch',why:'Thiếu tôn trọng và thiếu hợp tác.',better:'I understand. Let us look at the new plan together.'},
+ {t:'Would you mind explaining that again, please?',pro:true,ctx:'Không nghe rõ',why:'“Would you mind + V-ing” là cách nhờ lịch sự.'},
+ {t:'Your English is terrible. Can you speak better?',pro:false,ctx:'Họp với đối tác Trung Quốc',why:'Xúc phạm và làm mất thể diện.',better:'Sorry, I did not catch that. Could you say it again more slowly, please?'}
+];
+/* Phần B: hiểu văn hóa (đáp án đúng là phần tử đầu, máy tự xáo trộn) */
+const RB=[
+ {c:'Nhật Bản',q:'Đối tác Nhật nói: “That might be difficult.” Điều này thường có nghĩa là gì?',o:['Họ có thể đang từ chối một cách lịch sự.','Họ chắc chắn đồng ý.','Họ chưa nghe thấy em nói.'],x:'Người Nhật thường tránh nói “No” trực tiếp. Hãy hỏi nhẹ nhàng về phương án khác.'},
+ {c:'Hàn Quốc',q:'Một giám đốc người Hàn đưa danh thiếp cho em. Em nên làm gì?',o:['Nhận bằng hai tay và đọc kỹ.','Nhận bằng một tay rồi nhét vào túi quần.','Viết ghi chú lên danh thiếp ngay.'],x:'Nhận bằng hai tay và đọc kỹ là thể hiện sự tôn trọng.'},
+ {c:'Trung Quốc',q:'Trong bữa tối đầu tiên, đối tác Trung Quốc hỏi chuyện gia đình và món ăn. Em nên làm gì?',o:['Trò chuyện vui vẻ, vì đó là cách xây dựng quan hệ.','Chỉ nói về giá cả.','Nhìn điện thoại.'],x:'Quan hệ thường đến trước kinh doanh, nên bữa ăn là dịp quan trọng.'},
+ {c:'Thái Lan',q:'Đồng nghiệp làm sai trong buổi họp và em đang bực. Em nên làm gì?',o:['Giữ bình tĩnh và nói riêng với họ sau buổi họp.','La lên để mọi người biết.','Chê bai trước cả nhóm.'],x:'Giữ bình tĩnh và tránh chê bai công khai để bảo vệ thể diện của đồng nghiệp.'},
+ {c:'Việt Nam',q:'Đối tác nói nhỏ nhẹ: “I will consider it.” Cách hiểu tốt nhất là gì?',o:['Họ có thể chưa đồng ý; em nên hỏi nhẹ nhàng họ còn lo điều gì.','Hợp đồng đã chắc chắn.','Em nên rời đi ngay.'],x:'“Tôi sẽ cân nhắc” có thể là chưa đồng ý. Hãy lắng nghe giọng điệu và hỏi khéo.'}
+];
+/* Ngữ pháp: o = trắc nghiệm (a = đáp án), f = gõ đáp án */
+const GRAM=[
+ {q:'Would you mind ___ that again, please?',o:['explaining','explain','to explain'],a:0,x:'Would you mind + V-ing.'},
+ {q:'Could you ___ me the report by Friday?',o:['sending','to send','send'],a:2,x:'Could you + V (nguyên mẫu).'},
+ {q:'I am afraid we ___ accept this price.',o:['not can','cannot','do not can'],a:1,x:'cannot = không thể.'},
+ {q:'That ___ be difficult. Could we try another option?',o:['mights','is might','might'],a:2,x:'might + V, không thêm -s.'},
+ {q:'___ I ask a question?',o:['May','Do','Am'],a:0,x:'May I + V…? = xin phép lịch sự.'},
+ {q:'If you criticise someone in public, that person ___ lose face.',o:['may','will to','is'],a:0,x:'If + hiện tại đơn, S + may + V.'},
+ {q:'It is important ___ polite in a meeting.',o:['being','to be','be'],a:1,x:'It is important + to V.'},
+ {q:'You should not ___ a colleague in front of everyone.',o:['criticise','criticising','to criticise'],a:0,x:'should not + V (nguyên mẫu).'},
+ {q:'If you ___ angry in a meeting, people may think you are unprofessional.',o:['showing','will show','show'],a:2,x:'Mệnh đề If dùng hiện tại đơn: show.'},
+ {q:'Instead of saying “No”, people in Japan often ___ “That might be difficult.”',o:['say','saying','to say'],a:0,x:'often + V (nguyên mẫu).'},
+ {q:'Would you mind ___ (open) the window?',f:['opening'],x:'Would you mind + V-ing → opening.'},
+ {q:'I am afraid I ___ (can / not) join the meeting.',f:['cannot','can not','can\'t','cant'],x:'cannot = không thể.'},
+ {q:'It is polite ___ (use) titles in Korea.',f:['to use'],x:'It is polite + to V → to use.'},
+ {q:'If we ___ (be) late, we should call first.',f:['are'],x:'Mệnh đề If: hiện tại đơn → are.'}
+];
+/* Từ vựng: w, ipa, pos, vi, ex (có ___), dis (2 từ gây nhiễu) */
+const VOC=[
+ {w:'respect',ipa:'/rɪˈspekt/',pos:'n.',vi:'sự tôn trọng',ex:'In Korea, young people show ___ to older people.',dis:['criticise','indirect']},
+ {w:'relationship',ipa:'/rɪˈleɪʃnʃɪp/',pos:'n.',vi:'mối quan hệ',ex:'In China, a good ___ comes before business.',dis:['indirect','criticise']},
+ {w:'face',ipa:'/feɪs/',pos:'n.',vi:'thể diện',ex:'If you criticise someone in public, that person may lose ___.',dis:['polite','indirect']},
+ {w:'criticise',ipa:'/ˈkrɪtɪsaɪz/',pos:'v.',vi:'chê bai, phê bình',ex:'Do not ___ a colleague in front of other people.',dis:['polite','calm']},
+ {w:'public',ipa:'/ˈpʌblɪk/',pos:'adj.',vi:'công khai, trước đám đông',ex:'It is unprofessional to shout in a ___ meeting.',dis:['criticise','refuse']},
+ {w:'calm',ipa:'/kɑːm/',pos:'adj.',vi:'bình tĩnh',ex:'Stay ___ even when you feel angry.',dis:['consider','title']},
+ {w:'indirect',ipa:'/ˌɪndəˈrekt/',pos:'adj.',vi:'gián tiếp, không nói thẳng',ex:'Many Asian cultures use ___ language to say no politely.',dis:['greet','consider']},
+ {w:'polite',ipa:'/pəˈlaɪt/',pos:'adj.',vi:'lịch sự',ex:'It is ___ to say thank you at the end of a meeting.',dis:['anger','title']},
+ {w:'professional',ipa:'/prəˈfeʃənl/',pos:'adj.',vi:'chuyên nghiệp',ex:'Staying calm in a meeting is ___.',dis:['anger','criticise']},
+ {w:'unprofessional',ipa:'/ˌʌnprəˈfeʃənl/',pos:'adj.',vi:'thiếu chuyên nghiệp',ex:'Shouting at a colleague is ___.',dis:['respect','greet']},
+ {w:'refuse',ipa:'/rɪˈfjuːz/',pos:'v.',vi:'từ chối',ex:'A Japanese partner may say “That might be difficult” to ___ politely.',dis:['anger','title']},
+ {w:'consider',ipa:'/kənˈsɪdə/',pos:'v.',vi:'cân nhắc, xem xét',ex:'I will ___ your idea and reply next week.',dis:['public','position']},
+ {w:'position',ipa:'/pəˈzɪʃn/',pos:'n.',vi:'vị trí, chức vụ',ex:'In Korea, age and ___ are very important.',dis:['calm','criticise']},
+ {w:'title',ipa:'/ˈtaɪtl/',pos:'n.',vi:'chức danh, danh xưng',ex:'Use a ___ and a surname, like Director Kim.',dis:['polite','greet']},
+ {w:'greet',ipa:'/ɡriːt/',pos:'v.',vi:'chào hỏi',ex:'In Thailand, people ___ each other with a wai.',dis:['title','calm']},
+ {w:'anger',ipa:'/ˈæŋɡə/',pos:'n.',vi:'sự tức giận',ex:'Showing ___ in a meeting is unprofessional.',dis:['calm','public']},
+ {w:'privately',ipa:'/ˈpraɪvətli/',pos:'adv.',vi:'riêng tư, kín đáo',ex:'If you have a problem with a colleague, talk to them ___.',dis:['public','criticise']}
+];
+const DICT=[
+ 'If you criticise someone in public, that person may lose face.',
+ 'In South Korea, age and position are very important.',
+ 'Showing anger in a meeting is unprofessional.',
+ 'A meeting may start with tea and small talk.',
+ 'Would you mind explaining that again, please?',
+ 'When you are not sure, ask politely.'
+];
+/* ===== DATA END ===== */
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s).toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
+const ucf=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const plain=p=>p.replace(/\{([^}|]+)(?:\|[^}]+)?\}/g,'$1');
+const STEPS=[{id:'s1',n:'1 Reading'},{id:'s2',n:'2 Nhận biết'},{id:'s3',n:'3 Ngữ pháp'},{id:'s4',n:'4 Từ vựng'},{id:'s5',n:'5 Nghe & chép'},{id:'s6',n:'6 Đọc ghi âm'}];
+let S={name:'',ck:[],cd:{},ra:{},rb:{},gTick:false,gd:{},vq:null,vd:{},dd:{},cur:0,skips:0};
+const KEY='asia:'+LESSON;
+function save(){try{localStorage.setItem(KEY+':'+S.name,JSON.stringify(S));localStorage.setItem(KEY+':last',S.name)}catch(e){}}
+function load(n){try{const r=localStorage.getItem(KEY+':'+n);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}}
+const blobs={};
+$('#minC').textContent=MIN_CLICK;
+
+/* ---------- âm thanh + hộp thoại ---------- */
+let voices=[];
+function fillVoices(){voices=(speechSynthesis.getVoices()||[]).filter(v=>/^en/i.test(v.lang));const sel=$('#voice');sel.innerHTML=voices.map((v,i)=>`<option value="${i}">${esc(v.name)} (${v.lang})</option>`).join('')||'<option>Mặc định</option>';const uk=voices.findIndex(v=>/GB/i.test(v.lang));if(uk>=0)sel.value=uk}
+if('speechSynthesis' in window){fillVoices();speechSynthesis.onvoiceschanged=fillVoices}
+function speak(text,rate,onend){if(!('speechSynthesis' in window))return;stopSpeak();const u=new SpeechSynthesisUtterance(text);const v=voices[+$('#voice').value];if(v){u.voice=v;u.lang=v.lang}else u.lang='en-GB';u.rate=rate||+$('#rate').value;if(onend)u.onend=onend;speechSynthesis.speak(u)}
+function stopSpeak(){try{speechSynthesis.cancel()}catch(e){}}
+function modal(html,btns){const b=$('#mbox');b.innerHTML=html+'<div class="row" id="mb"></div>';btns.forEach(x=>{const e=document.createElement('button');e.textContent=x.t;if(x.pri)e.className='pri';e.onclick=()=>{$('#modal').classList.remove('show');x.f&&x.f()};$('#mb').appendChild(e)});$('#modal').classList.add('show')}
+function closeSheet(){$('#sheet').classList.remove('show');document.body.classList.remove('so')}
+
+/* ---------- tiến độ ---------- */
+const nOk=o=>Object.keys(o).length;
+const dictOk=()=>DICT.filter((_,k)=>S.dd[k]&&S.dd[k].ok).length;
+function missing(i){
+  const m=[];
+  if(i===0){if(S.ck.length<MIN_CLICK)m.push(`Em mới bấm ${S.ck.length}/${MIN_CLICK} từ.`);const n=CQ.length-nOk(S.cd);if(n)m.push(`Còn ${n} câu hiểu bài chưa đúng.`)}
+  if(i===1){const a=RA.length-nOk(S.ra),b=RB.length-nOk(S.rb);if(a)m.push(`Phần A: còn ${a} câu chưa đúng.`);if(b)m.push(`Phần B: còn ${b} câu chưa đúng.`)}
+  if(i===2){if(!S.gTick)m.push('Em chưa tick “đã đọc kỹ” phần cấu trúc.');const n=GRAM.length-nOk(S.gd);if(n)m.push(`Còn ${n} câu bài tập chưa đúng.`)}
+  if(i===3){if(!S.vq)m.push('Em chưa mở bài kiểm tra từ vựng.');else{const n=S.vq.length-nOk(S.vd);if(n)m.push(`Còn ${n} câu từ vựng chưa đúng.`)}}
+  if(i===4){const n=DICT.length-dictOk();if(n)m.push(`Còn ${n} câu nghe chép chưa đạt.`)}
+  if(i===5){const n=PARAS.filter((_,k)=>!blobs['r'+k]).length;if(n)m.push(`Còn ${n}/${PARAS.length} đoạn chưa ghi âm.`)}
+  return m
+}
+function frac(i){
+  if(i===0)return (Math.min(1,S.ck.length/MIN_CLICK)+nOk(S.cd)/CQ.length)/2;
+  if(i===1)return (nOk(S.ra)+nOk(S.rb))/(RA.length+RB.length);
+  if(i===2)return ((S.gTick?1:0)+nOk(S.gd))/(1+GRAM.length);
+  if(i===3)return S.vq?nOk(S.vd)/S.vq.length:0;
+  if(i===4)return dictOk()/DICT.length;
+  if(i===5)return PARAS.filter((_,k)=>blobs['r'+k]).length/PARAS.length
+}
+const isDone=i=>missing(i).length===0;
+function refresh(){
+  const f=STEPS.map((_,i)=>frac(i));const p=Math.round(f.reduce((a,b)=>a+b,0)/STEPS.length*100);
+  $('#barfill').style.width=p+'%';$('#pct').textContent=`Tiến độ: ${p}% · bước ${S.cur+1}/${STEPS.length}`;
+  $('#chips').innerHTML=STEPS.map((s,i)=>`<button class="chip ${i===S.cur?'cur':''} ${isDone(i)?'done':''}" data-i="${i}">${isDone(i)?'✅ ':''}${s.n}</button>`).join('');
+  $$('#chips .chip').forEach(b=>b.onclick=()=>go(+b.dataset.i));
+  $('#ckn').textContent=`Đã bấm ${S.ck.length}/${MIN_CLICK} từ`;
+  save()
+}
+function show(i){S.cur=i;closeSheet();STEPS.forEach((s,k)=>$('#'+s.id).classList.toggle('show',k===i));window.scrollTo({top:0,behavior:'smooth'});
+  if(i===0){renderPassage();buildCQ()}if(i===1){buildRA();buildRB()}if(i===2&&S.gTick)buildGram();if(i===3)buildVoc();if(i===4)buildDict();if(i===5)buildRecs();refresh()}
+function go(i){
+  if(i===S.cur)return;
+  const need=[];for(let k=0;k<i;k++){const m=missing(k);if(m.length)need.push(`<b>${STEPS[k].n}</b><br>${m.join('<br>')}`)}
+  if(!need.length)return show(i);
+  modal(`<h3>⚠️ Em chưa hoàn thành phần trước</h3><ul class="ins"><li>${need.join('</li><li>')}</li></ul>`,[{t:'Quay lại làm tiếp',pri:1},{t:'Vẫn đi tiếp',f:()=>{S.skips++;show(i)}}])
+}
+$$('.next[data-next]').forEach(b=>b.onclick=()=>go(+b.dataset.next));
+
+/* ---------- Bước 1: reading ---------- */
+function renderPassage(){
+  $('#passage').innerHTML=PARAS.map(p=>'<p>'+p.replace(/\{([^}|]+)(?:\|([^}]+))?\}/g,(m,t,k)=>{k=(k||t).toLowerCase();return `<span class="w ${S.ck.includes(k)?'ck':''}" data-k="${esc(k)}">${esc(t)}</span>`})+'</p>').join('');
+  $$('#passage .w').forEach(w=>w.onclick=()=>openWord(w.dataset.k))
+}
+function openWord(k){
+  const g=W[k];if(!g)return;if(!S.ck.includes(k))S.ck.push(k);
+  $('#sheet').innerHTML=`<div class="big">${esc(k)} <span class="ipa">${g[0]}</span> <span class="pos">${g[1]}</span></div><div style="font-size:18px">${esc(g[2])}</div><div class="tools"><button class="sm" data-a="n">🔊 Nghe</button><button class="sm" data-a="s">🐢 Chậm</button><button class="sm pri" id="sx">Đóng</button></div>`;
+  $('#sheet').classList.add('show');document.body.classList.add('so');
+  $$('#sheet [data-a]').forEach(b=>b.onclick=()=>speak(k,b.dataset.a==='s'?0.6:1));
+  $('#sx').onclick=closeSheet;
+  renderPassage();refresh()
+}
+$('#playAll').onclick=()=>{stopSpeak();let i=0,on=true;$('#stopAll').onclick=()=>{on=false;stopSpeak()};const next=()=>{if(!on||i>=PARAS.length)return;speak(plain(PARAS[i++]),null,next)};next()};
+$('#stopAll').onclick=()=>stopSpeak();
+function mcq(sel,list,doneObj,opts){
+  /* list: [{q,o,x,...}] với đáp án đúng là o[0]; opts.head(item,i) trả về HTML tiêu đề */
+  $(sel).innerHTML=list.map((c,i)=>{c._o=shuffle(c.o.map((t,j)=>({t,r:j===0})));const d=doneObj[i];
+    return `<div class="q" data-i="${i}">${opts.head(c,i)}${c._o.map((x,j)=>`<button class="opt ${d&&x.r?'ok':''}" data-j="${j}">${esc(x.t)}</button>`).join('')}<div class="fb ${d?'ok':''}">${d?'✔ '+esc(c.x||''):''}</div></div>`}).join('');
+  $$(sel+' .q').forEach(el=>{const i=+el.dataset.i,c=list[i],fb=el.querySelector('.fb');
+    el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(doneObj[i])return;const ok=c._o[+b.dataset.j].r;b.classList.add(ok?'ok':'no');
+      if(ok){doneObj[i]={first:c._f===undefined};fb.className='fb ok';fb.textContent='✔ '+(c.x||'Đúng!')}else{c._f=false;fb.className='fb no';fb.textContent='✘ Chưa đúng, chọn lại nhé.'}
+      refresh();opts.after&&opts.after()})
+  });opts.after&&opts.after()
+}
+function buildCQ(){mcq('#cq',CQ,S.cd,{head:(c,i)=>`<div><b>${i+1}. ${esc(c.q)}</b></div>`,after:()=>{$('#cqInfo').textContent=`Đã đúng ${nOk(S.cd)}/${CQ.length} câu.`}})}
+
+/* ---------- Bước 2: nhận biết ---------- */
+function buildRA(){
+  $('#ra').innerHTML=RA.map((r,i)=>{const d=S.ra[i];
+    return `<div class="q" data-i="${i}"><div class="tg"><span>🌏 ${esc(r.ctx)}</span></div><div class="sent">“${esc(r.t)}” <button class="sm" data-s="1">🔊</button></div><div class="two"><button class="opt" data-v="1">✅ Professional</button><button class="opt" data-v="0">❌ Unprofessional</button></div><div class="fb ${d?'ok':''}"></div></div>`}).join('');
+  $$('#ra .q').forEach(el=>{const i=+el.dataset.i,r=RA[i],fb=el.querySelector('.fb');
+    const showOk=()=>{fb.className='fb ok';fb.innerHTML=`✔ ${esc(r.why)}`+(r.better?`<div class="good">💬 Nói chuyên nghiệp hơn: <b>${esc(r.better)}</b> <button class="sm" data-b="1">🔊</button></div>`:'');const bb=fb.querySelector('[data-b]');if(bb)bb.onclick=()=>speak(r.better)};
+    el.querySelector('[data-s]').onclick=()=>speak(r.t);
+    if(S.ra[i]){el.querySelector(`[data-v="${r.pro?1:0}"]`).classList.add('ok');showOk()}
+    el.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{
+      if(S.ra[i])return;const ok=(b.dataset.v==='1')===r.pro;b.classList.add(ok?'ok':'no');
+      if(ok){S.ra[i]={first:r._f===undefined};showOk()}else{r._f=false;fb.className='fb no';fb.textContent='✘ Chưa đúng. Hãy nghĩ về giọng điệu, sự tôn trọng và thể diện, rồi chọn lại.'}
+      refresh();raI()})
+  });raI()
+}
+const raI=()=>{$('#raInfo').textContent=`Đã đúng ${nOk(S.ra)}/${RA.length} câu.`};
+function buildRB(){mcq('#rb',RB,S.rb,{head:(c,i)=>`<div class="tg"><span>🌏 ${esc(c.c)}</span></div><div><b>${i+1}. ${esc(c.q)}</b></div>`,after:()=>{$('#rbInfo').textContent=`Đã đúng ${nOk(S.rb)}/${RB.length} câu.`}})}
+
+/* ---------- Bước 3: ngữ pháp ---------- */
+$('#gTick').onchange=e=>{S.gTick=e.target.checked;$('#gEx').style.display=S.gTick?'block':'none';if(S.gTick)buildGram();refresh()};
+function buildGram(){
+  $('#gTick').checked=true;$('#gEx').style.display='block';
+  $('#gQs').innerHTML=GRAM.map((g,i)=>{const done=S.gd[i];
+    if(g.o)return `<div class="q" data-i="${i}"><div>${i+1}. ${esc(g.q).replace('___','<b>___</b>')}</div>${g.o.map((o,j)=>`<button class="opt ${done&&j===g.a?'ok':''}" data-j="${j}">${esc(o)}</button>`).join('')}<div class="fb ${done?'ok':''}">${done?'✔ '+esc(g.x):''}</div></div>`;
+    return `<div class="q" data-i="${i}"><div>${i+1}. ${esc(g.q).replace('___','<b>___</b>')}</div><input type="text" ${done?'disabled value="'+esc(g.f[0])+'"':''} placeholder="Gõ đáp án"> <button class="sm" data-c="1">Kiểm tra</button><div class="fb ${done?'ok':''}">${done?'✔ '+esc(g.x):''}</div></div>`}).join('');
+  $$('#gQs .q').forEach(el=>{const i=+el.dataset.i,g=GRAM[i],fb=el.querySelector('.fb');
+    const mark=ok=>{if(ok){S.gd[i]={first:g._f===undefined};fb.className='fb ok';fb.textContent='✔ '+g.x}else{g._f=false;fb.className='fb no';fb.textContent='✘ Chưa đúng, thử lại nhé.'}refresh();gi()};
+    if(g.o)el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(S.gd[i])return;const ok=+b.dataset.j===g.a;b.classList.add(ok?'ok':'no');mark(ok)});
+    else{const inp=el.querySelector('input'),btn=el.querySelector('[data-c]');const chk=()=>{if(S.gd[i])return;mark(g.f.includes(norm(inp.value).replace(/[.!]$/,'')))};btn.onclick=chk;inp.onkeydown=e=>{if(e.key==='Enter')chk()}}
+  });gi()
+}
+const gi=()=>{$('#gInfo').textContent=`Đã đúng ${nOk(S.gd)}/${GRAM.length} câu.`};
+
+/* ---------- Bước 4: từ vựng ---------- */
+function buildVoc(){
+  $('#vlist').innerHTML=VOC.map((v,i)=>`<div class="vc"><b>${esc(v.w)}</b> <span class="ipa">${v.ipa}</span> <span class="pos">${v.pos}</span><br>${esc(v.vi)}<br><button class="sm" data-i="${i}">🔊</button> <button class="sm" data-i="${i}" data-slow="1">🐢</button></div>`).join('');
+  $$('#vlist button').forEach(b=>b.onclick=()=>speak(VOC[+b.dataset.i].w,b.dataset.slow?0.6:1));
+  if(!S.vq){
+    const pick=shuffle([...VOC.keys()]).slice(0,10);
+    S.vq=pick.map((vi,k)=>{const v=VOC[vi];
+      if(k%2===0){const wrong=shuffle(VOC.filter(x=>x.vi!==v.vi)).slice(0,2).map(x=>x.vi);const o=shuffle([v.vi,...wrong]);return {t:'m',v:vi,o,a:o.indexOf(v.vi)}}
+      const o=shuffle([v.w,...v.dis]);return {t:'b',v:vi,o,a:o.indexOf(v.w)}});
+    S.vd={}
+  }
+  $('#vq').innerHTML=S.vq.map((q,i)=>{const v=VOC[q.v];
+    const head=q.t==='m'?`<b>${i+1}. ${esc(v.w)}</b> <span class="ipa">${v.ipa}</span> <button class="sm" data-s="${esc(v.w)}">🔊</button> nghĩa là gì?`:`<b>${i+1}.</b> ${esc(v.ex).replace('___','<b>_____</b>')}`;
+    return `<div class="q" data-i="${i}"><div>${head}</div>${q.o.map((o,j)=>`<button class="opt ${S.vd[i]&&j===q.a?'ok':''}" data-j="${j}">${esc(o)}</button>`).join('')}<div class="fb"></div></div>`}).join('');
+  $$('#vq .q').forEach(el=>{const i=+el.dataset.i,q=S.vq[i],fb=el.querySelector('.fb'),sb=el.querySelector('[data-s]');
+    if(sb)sb.onclick=()=>speak(sb.dataset.s,1);
+    el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(S.vd[i])return;const j=+b.dataset.j;
+      if(j===q.a){b.classList.add('ok');S.vd[i]={first:q._f===undefined};fb.className='fb ok';fb.textContent='✔ Đúng!'}
+      else{b.classList.add('no');q._f=false;fb.className='fb no';fb.textContent='✘ Chưa đúng, chọn lại nhé.'}
+      refresh();vqI()})
+  });vqI()
+}
+const vqI=()=>{$('#vqInfo').textContent=`Đã đúng ${nOk(S.vd)}/${S.vq?S.vq.length:10} câu.`};
+
+/* ---------- Bước 5: nghe chép ---------- */
+const nw=s=>norm(s).replace(/[^a-z' ]/g,' ').split(' ').filter(Boolean).map(w=>w.replace(/ise$/,'ize').replace(/ises$/,'izes'));
+function lcsHit(a,b){
+  const m=a.length,n=b.length,d=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=a[i-1]===b[j-1]?d[i-1][j-1]+1:Math.max(d[i-1][j],d[i][j-1]);
+  const hit=new Set(),hb=new Set();let i=m,j=n;
+  while(i>0&&j>0){if(a[i-1]===b[j-1]){hit.add(i-1);hb.add(j-1);i--;j--}else if(d[i-1][j]>=d[i][j-1])i--;else j--}
+  return {hit,hb}
+}
+function gradeD(i,txt){const ref=DICT[i].split(/\s+/),rw=nw(DICT[i]),tw=nw(txt);const {hit,hb}=lcsHit(rw,tw);return {sc:rw.length?Math.round(hit.size/rw.length*100)/100:0,hit,extra:tw.filter((_,k)=>!hb.has(k)),ref}}
+function buildDict(){
+  $('#dict').innerHTML=DICT.map((s,i)=>{const d=S.dd[i];return `<div class="q" data-i="${i}"><div><b>Câu ${i+1}</b> <button class="sm" data-a="n">🔊 Nghe</button> <button class="sm" data-a="s">🐢 Nghe chậm</button></div><textarea placeholder="Gõ câu em nghe được…">${d?esc(d.text||''):''}</textarea><div class="tools"><button class="sm pri" data-a="chk">Kiểm tra</button><button class="sm" data-a="show">Xem đáp án</button></div><div class="dg"></div><div class="fb"></div></div>`}).join('');
+  $$('#dict .q').forEach(el=>{const i=+el.dataset.i,ta=el.querySelector('textarea'),dg=el.querySelector('.dg'),fb=el.querySelector('.fb');
+    el.querySelector('[data-a=n]').onclick=()=>speak(DICT[i],0.9);
+    el.querySelector('[data-a=s]').onclick=()=>speak(DICT[i],0.6);
+    const draw=(r,full)=>{dg.innerHTML=r.ref.map((w,k)=>full||r.hit.has(k)?`<span class="${r.hit.has(k)?'g':''}">${esc(w)}</span>`:`<span class="r">${'_'.repeat(Math.max(3,w.length))}</span>`).join(' ')+(r.extra.length&&!full?`<div class="meta">Chữ thừa hoặc sai: ${r.extra.map(esc).join(', ')}</div>`:'')};
+    if(S.dd[i]&&S.dd[i].ok){draw(gradeD(i,DICT[i]),true);fb.className='fb ok';fb.textContent=`✔ Đạt · ${S.dd[i].best} điểm`}
+    el.querySelector('[data-a=chk]').onclick=()=>{
+      if(!ta.value.trim()){fb.className='fb no';fb.textContent='Em chưa gõ gì.';return}
+      const r=gradeD(i,ta.value),prev=S.dd[i]||{};
+      S.dd[i]={text:ta.value,first:prev.first===undefined?r.sc:prev.first,best:Math.max(prev.best||0,r.sc),ok:prev.ok||r.sc>=DICT_PASS,viewed:prev.viewed};
+      draw(r,r.sc>=DICT_PASS);fb.className='fb '+(r.sc>=DICT_PASS?'ok':'no');
+      fb.textContent=r.sc>=DICT_PASS?`✔ Đạt · đúng ${Math.round(r.sc*100)}% số từ`:`Đúng ${Math.round(r.sc*100)}% số từ. Nghe lại và sửa các chỗ gạch đỏ nhé.`;
+      refresh();di()
+    };
+    el.querySelector('[data-a=show]').onclick=()=>modal(`<h3>Xem đáp án?</h3><p class="ins">Em nên nghe lại và tự chép thêm một lần. Cô sẽ thấy em đã xem đáp án.</p>`,[{t:'Để em nghe lại',pri:1},{t:'Cho em xem',f:()=>{S.dd[i]=Object.assign(S.dd[i]||{},{viewed:true});fb.className='fb';fb.innerHTML='Đáp án: <b>'+esc(DICT[i])+'</b>';refresh()}}])
+  });di()
+}
+const di=()=>{$('#dictInfo').textContent=`Đã đạt ${dictOk()}/${DICT.length} câu.`};
+
+/* ---------- Bước 6: đọc ghi âm + nộp ---------- */
+let curRec=null;
+function recorder(el,key){
+  el.innerHTML=`<button class="sm" data-a="rec">● Ghi âm</button> <button class="sm" data-a="stop" disabled>■ Dừng</button> <button class="sm" data-a="play" ${blobs[key]?'':'disabled'}>▶ Nghe lại</button> <span class="meta st">${blobs[key]?'✅ Đã có bản ghi':'Chưa ghi âm'}</span>`;
+  const q=a=>el.querySelector(`[data-a=${a}]`),st=el.querySelector('.st');
+  q('rec').onclick=async()=>{
+    try{
+      stopSpeak();const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+      const mr=new MediaRecorder(stream);const chunks=[];curRec={mr,stream};
+      mr.ondataavailable=e=>chunks.push(e.data);
+      mr.onstop=()=>{stream.getTracks().forEach(t=>t.stop());blobs[key]=new Blob(chunks,{type:mr.mimeType||'audio/webm'});st.textContent='✅ Đã có bản ghi (có thể ghi lại)';q('rec').disabled=false;q('stop').disabled=true;q('play').disabled=false;refresh();recI()};
+      mr.start();st.innerHTML='<span class="rec">● Đang ghi âm…</span>';q('rec').disabled=true;q('stop').disabled=false
+    }catch(e){st.textContent='⚠️ Không mở được micro. Hãy bấm Cho phép micro rồi thử lại.'}
+  };
+  q('stop').onclick=()=>{if(curRec&&curRec.mr.state==='recording')curRec.mr.stop()};
+  q('play').onclick=()=>{if(blobs[key])new Audio(URL.createObjectURL(blobs[key])).play()}
+}
+function buildRecs(){
+  $('#recs').innerHTML=PARAS.map((p,i)=>`<div class="pbox" data-i="${i}"><div><b>Đoạn ${i+1}</b> <button class="sm" data-a="hear">🔊 Nghe mẫu</button></div><div style="margin:4px 0">${esc(plain(p))}</div><div class="rc"></div></div>`).join('');
+  $$('#recs .pbox').forEach(el=>{const i=+el.dataset.i;el.querySelector('[data-a=hear]').onclick=()=>speak(plain(PARAS[i]),0.85);recorder(el.querySelector('.rc'),'r'+i)});
+  recI()
+}
+function recI(){$('#recInfo').textContent=`Đã ghi âm ${PARAS.filter((_,k)=>blobs['r'+k]).length}/${PARAS.length} đoạn.`;sumBox()}
+function sumBox(){$('#sumBox').innerHTML=`Reading: bấm ${S.ck.length} từ, hiểu bài ${nOk(S.cd)}/${CQ.length} · Nhận biết ${nOk(S.ra)}/${RA.length} + ${nOk(S.rb)}/${RB.length} · Ngữ pháp ${nOk(S.gd)}/${GRAM.length} · Từ vựng ${nOk(S.vd)}/${S.vq?S.vq.length:10} · Nghe chép ${dictOk()}/${DICT.length} · Bản ghi ${PARAS.filter((_,k)=>blobs['r'+k]).length}/${PARAS.length}`}
+async function post(o){const r=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)});return r.json()}
+const b64=b=>new Promise(res=>{const f=new FileReader();f.onload=()=>res(String(f.result).split(',')[1]);f.readAsDataURL(b)});
+const res=(d)=>d?(d.first?'đúng lần đầu':'đúng sau khi sửa'):'chưa đúng';
+async function doSubmit(){
+  const msg=$('#subMsg'),btn=$('#submit');btn.disabled=true;
+  try{
+    const keys=Object.keys(blobs);
+    for(let n=0;n<keys.length;n++){
+      const k=keys[n],i=+k.slice(1);msg.textContent=`Đang gửi bản ghi ${n+1}/${keys.length}…`;
+      const ext=/mp4/.test(blobs[k].type)?'m4a':'webm';
+      const r=await post({type:'audio',name:S.name,lesson:LESSON,file:`Doan_${i+1}.${ext}`,mime:blobs[k].type,audio:await b64(blobs[k]),label:`Đọc đoạn ${i+1}`,target:plain(PARAS[i])});
+      if(!r.ok)throw new Error(r.error||'audio')
+    }
+    msg.textContent='Đang gửi bài…';
+    const details=[];
+    details.push({part:'Reading – từ đã bấm',question:`${S.ck.length} từ`,answer:S.ck.join(', '),correct:'',result:S.ck.length>=MIN_CLICK?'đủ':'chưa đủ'});
+    CQ.forEach((c,i)=>details.push({part:'Reading – hiểu bài',question:c.q,answer:'',correct:c.o[0],result:res(S.cd[i])}));
+    RA.forEach((r,i)=>details.push({part:'Nhận biết A',question:r.t,answer:'',correct:r.pro?'Professional':'Unprofessional',result:res(S.ra[i])}));
+    RB.forEach((r,i)=>details.push({part:'Nhận biết B',question:r.q,answer:'',correct:r.o[0],result:res(S.rb[i])}));
+    GRAM.forEach((g,i)=>details.push({part:'Ngữ pháp',question:g.q,answer:'',correct:g.o?g.o[g.a]:g.f[0],result:res(S.gd[i])}));
+    (S.vq||[]).forEach((q,i)=>{const v=VOC[q.v];details.push({part:'Từ vựng',question:q.t==='m'?v.w:v.ex,answer:'',correct:q.t==='m'?v.vi:v.w,result:res(S.vd[i])})});
+    DICT.forEach((s,i)=>{const d=S.dd[i]||{};details.push({part:'Nghe chép',question:s,answer:d.text||'',correct:s,result:`lần đầu ${d.first==null?'-':d.first} · tốt nhất ${d.best||0}${d.ok?' · ĐẠT':' · CHƯA ĐẠT'}${d.viewed?' · đã xem đáp án':''}`})});
+    const allDone=STEPS.every((_,i)=>isDone(i));
+    const r=await post({type:'submit',name:S.name,lesson:LESSON,summary:{vocab:`Bấm ${S.ck.length} từ · từ vựng ${nOk(S.vd)}/${S.vq?S.vq.length:10}`,gram:`Ngữ pháp ${nOk(S.gd)}/${GRAM.length}`,ctx:`Hiểu bài ${nOk(S.cd)}/${CQ.length} · nhận biết ${nOk(S.ra)}/${RA.length}+${nOk(S.rb)}/${RB.length} · nghe chép ${dictOk()}/${DICT.length}`,rec:`${PARAS.filter((_,k)=>blobs['r'+k]).length}/${PARAS.length} bản ghi`,para:`${allDone?'ĐẠT YÊU CẦU':'CHƯA ĐẠT YÊU CẦU'} · đã bỏ qua cảnh báo ${S.skips} lần`,feedback:'Cô xem lại bài và nhận xét sau.'},details});
+    if(!r.ok)throw new Error(r.error||'submit');
+    msg.innerHTML='<b style="color:var(--ok)">✅ Đã nộp bài! Cô sẽ nghe và nhận xét cho em.</b>';
+  }catch(e){msg.textContent='⚠️ Chưa gửi được ('+e.message+'). Kiểm tra mạng rồi bấm Nộp bài lại.';btn.disabled=false}
+}
+$('#submit').onclick=()=>{
+  const need=[];for(let k=0;k<STEPS.length;k++){const m=missing(k);if(m.length)need.push(`<b>${STEPS[k].n}</b><br>${m.join('<br>')}`)}
+  if(!need.length)return doSubmit();
+  modal(`<h3>⚠️ Bài chưa hoàn thành</h3><ul class="ins"><li>${need.join('</li><li>')}</li></ul>`,[{t:'Quay lại sửa',pri:1},{t:'Vẫn nộp',f:()=>{S.skips++;doSubmit()}}])
+};
+
+/* ---------- Khởi động ---------- */
+function start(){$('#nm').textContent=S.name;show(S.cur||0)}
+(function(){
+  let last='';try{last=localStorage.getItem(KEY+':last')||''}catch(e){}
+  modal(`<h3>Xin chào! 👋</h3><p class="ins">Em gõ họ và tên để cô nhận được bài.</p><input type="text" id="nameIn" style="width:100%" placeholder="Họ và tên" value="${esc(last)}">`,[{t:'Bắt đầu',pri:1}]);
+  $('#mb button').onclick=()=>{const v=$('#nameIn').value.trim();if(!v){$('#nameIn').focus();return}S.name=v;load(v);S.name=v;$('#modal').classList.remove('show');start()}
+})();
+</script>
+</body>
+</html>
