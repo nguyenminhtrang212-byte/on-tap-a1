@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Communication Skills Check – Kiểm tra giao tiếp công sở</title>
+<style>
+:root{--bg:#fbf8f3;--card:#fff;--ink:#222;--mut:#666;--red:#8b0000;--line:#e6dfd3;--ok:#1f8a4c;--bad:#c0392b;--org:#f39c12;--acc:#1d6f8a;--accbg:#e3f3f8}
+@media (prefers-color-scheme:dark){:root{--bg:#171717;--card:#222;--ink:#eee;--mut:#aaa;--red:#ff9a9a;--line:#3a3a3a;--ok:#5fd18b;--bad:#ff8a7a;--acc:#7cc7de;--accbg:#173038}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#top{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);padding:8px 12px}
+#bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden}
+#barfill{height:100%;width:0;background:var(--ok);transition:width .3s}
+#pct{font-size:13px;color:var(--mut);margin:2px 0 6px}
+#chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:20px;padding:3px 10px;font-size:13px;cursor:pointer}
+.chip.cur{border-color:var(--acc);background:var(--accbg);font-weight:700}
+.chip.done{border-color:var(--ok)}
+main{max-width:860px;margin:0 auto;padding:14px 12px 90px}
+h1{margin:10px 0 2px;font-size:24px}
+h2{font-size:20px;margin:6px 0}
+h3{font-size:17px;margin:12px 0 4px}
+.sub{color:var(--mut);margin:0 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.ins{color:var(--red);font-weight:700}
+.step{display:none}.step.show{display:block}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px}
+button.pri{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:700}
+button:disabled{opacity:.5}
+button.sm{padding:3px 9px;font-size:14px}
+.next{display:block;margin:18px auto 0;padding:10px 26px;font-size:17px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+select,input[type=text],textarea{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+textarea{width:100%;min-height:70px}
+.opt{display:block;width:100%;text-align:left;margin:5px 0}
+.opt.ok{background:#d9f2e3;border-color:var(--ok);color:#0b4d27}
+.opt.no{background:#fbe0dc;border-color:var(--bad);color:#6d1a10}
+.q{border-bottom:1px solid var(--line);padding:10px 0}
+.q:last-child{border:0}
+.fb{font-size:14px;margin-top:4px}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.tg span{display:inline-block;border-radius:10px;padding:0 9px;font-size:12px;margin-right:4px;background:var(--accbg);color:var(--acc);font-weight:700}
+.bank{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.bank>div{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px}
+.bank .goal{display:inline-block;background:var(--accbg);color:var(--acc);border-radius:10px;padding:0 8px;font-size:12px;font-weight:700;margin-bottom:2px}
+.bank details{margin-top:6px}
+.bank summary{cursor:pointer;color:var(--acc);font-weight:700}
+.bank .exr{border-top:1px dashed var(--line);padding:4px 0}
+.bank .exr small,.vi{color:var(--mut)}
+.bank .tpl{background:var(--accbg);border-radius:8px;padding:3px 8px;margin:4px 0}
+.bank .trap{color:var(--bad)}
+.bank b{color:var(--acc)}
+.cnt{display:inline-block;border-radius:10px;background:var(--line);padding:0 8px;font-size:12px;margin-left:4px}
+.cnt.on{background:var(--ok);color:#fff}
+.idea span{display:inline-block;background:var(--accbg);color:var(--acc);border-radius:12px;padding:1px 10px;margin:2px;font-size:14px;cursor:pointer}
+.res{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:15px}
+.res .sc{font-size:18px;font-weight:800}
+.res ul{margin:4px 0;padding-left:20px}
+.res li.ok{color:var(--ok)}.res li.bad{color:var(--bad)}.res li.warn{color:#b9770e}
+.model{background:#e8f6ec;color:#14532d;border-radius:8px;padding:6px 10px;margin-top:6px;font-size:14px}
+@media (prefers-color-scheme:dark){.model{background:#173a25;color:#b8f0cc}.res li.warn{color:#f0b35a}}
+.expert{border-left:5px solid var(--acc);background:var(--accbg);border-radius:0 10px 10px 0;padding:8px 12px;margin-top:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%}
+td,th{border:1px solid var(--line);padding:5px 8px;text-align:left;font-size:15px}
+th{background:var(--accbg)}
+.meta{font-size:13px;color:var(--mut)}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+#modal.show{display:flex}
+#modal .box{background:var(--card);border-radius:14px;max-width:460px;width:100%;padding:18px;max-height:85vh;overflow:auto}
+#modal ul{padding-left:20px}
+.row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:12px}
+.stamp{display:inline-block;background:var(--accbg);color:var(--acc);border-radius:20px;padding:2px 12px;font-size:13px;font-weight:700}
+.big{font-size:34px;font-weight:800;color:var(--acc)}
+</style>
+</head>
+<body>
+<div id="top">
+  <div id="bar"><div id="barfill"></div></div>
+  <div id="pct"></div>
+  <div id="chips"></div>
+</div>
+<main>
+  <span class="stamp">Assessment · Business English</span>
+  <h1>Communication Skills Check</h1>
+  <p class="sub">Kiểm tra hiểu: 30 câu · Phần 1 từ vựng (18) · Phần 2 hồi đáp & yêu cầu (9) · Phần 3 tình huống (3).</p>
+  <div class="tools"><label>Tốc độ nghe <select id="rate"><option value="0.7">Chậm</option><option value="0.85" selected>Vừa</option><option value="1">Bình thường</option></select></label><label>Giọng <select id="voice"></select></label></div>
+
+  <!-- ========== PHẦN 1 ========== -->
+  <section class="step" id="s1">
+    <div class="card">
+      <h2>Phần 1 · Từ vựng: động từ ↔ danh từ về giao tiếp (câu 1–18)</h2>
+      <p class="ins">Chọn dạng từ đúng cho chỗ trống. Mỗi câu chỉ được chọn một lần.</p>
+      <div id="p1"></div>
+      <div class="meta" id="p1Info"></div>
+      <div id="p1Table"></div>
+    </div>
+    <button class="pri next" data-next="1">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== PHẦN 2 ========== -->
+  <section class="step" id="s2">
+    <div class="card">
+      <h2>Phần 2 · Brainstorm: yêu cầu và hồi đáp chuyên nghiệp (câu 19–27)</h2>
+      <p class="ins">Viết 1 câu tiếng Anh cho mỗi tình huống. Một cấu trúc có thể dùng lại cho nhiều câu. Bấm “Chấm” để xem nhận xét, em được sửa và chấm lại.</p>
+      <h3>🧰 Ngân hàng cấu trúc: nghĩa, khi nào dùng, câu nói ngoài đời</h3>
+      <p class="meta">Bấm “Xem chi tiết” ở mỗi cấu trúc để xem công thức, bản dịch, ví dụ có nghe, cách trả lời lại và lỗi người Việt hay mắc.</p>
+      <div class="bank" id="bank"></div>
+    </div>
+    <div class="card"><div id="p2"></div><div class="meta" id="p2Info"></div></div>
+    <button class="pri next" data-next="2">Tiếp tục ▶</button>
+  </section>
+
+  <!-- ========== PHẦN 3 ========== -->
+  <section class="step" id="s3">
+    <div class="card">
+      <h2>Phần 3 · Tình huống và nhận xét cá nhân (câu 28–30)</h2>
+      <p class="ins">Viết 40–70 từ cho mỗi câu. Bấm “Nhận xét của chuyên gia” để được góp ý bằng tiếng Việt về ngôn ngữ và cách xử lý tình huống. Em được sửa và chấm lại. Đây là chấm tự động theo tiêu chí, cô sẽ xem lại bài của em.</p>
+      <div id="p3"></div>
+    </div>
+    <button class="pri next" data-next="3">Xem kết quả ▶</button>
+  </section>
+
+  <!-- ========== KẾT QUẢ ========== -->
+  <section class="step" id="s4">
+    <div class="card">
+      <h2>Kết quả</h2>
+      <div id="result"></div>
+    </div>
+    <div class="card">
+      <h3>📨 Nộp bài</h3>
+      <div class="meta">Họ tên: <b id="nm"></b></div>
+      <button class="pri next" id="submit">Nộp bài cho cô</button>
+      <div id="subMsg" class="meta" style="text-align:center;margin-top:8px"></div>
+    </div>
+  </section>
+</main>
+<div id="modal"><div class="box" id="mbox"></div></div>
+
+<script>
+/* ===== NỘI DUNG BÀI: DATA START ===== */
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwnf8X3_Xfk9F_8HQtBwSFU_s28sRjxKb0aFaHCA4ybmMJvgaztBAbdvaFzITdbVXBt/exec'; // cổng chung (Kết quả Speaking). Đổi nếu dùng cổng riêng.
+const LESSON='Communication Skills Check';
+const P2_PASS=0.7;
+let TOTAL=0; // = số câu P1 + P2 + P3 (gán sau khi khai báo dữ liệu)
+
+/* PHẦN 1: o[0] = đáp án đúng (máy tự xáo trộn). */
+const P1=[
+ {q:'Thank you for your ___. I understand the problem now.  (apologise)',o:['apology','apologise','apologetic'],x:'apologise (v.) → apology (n.). Sau “your” cần danh từ.'},
+ {q:'I have a ___ for the meeting: could we start at 9?  (suggest)',o:['suggestion','suggesting','suggestive'],x:'suggest (v.) → suggestion (n.). “a ___” cần danh từ.'},
+ {q:'We need a clear ___ of the new rules.  (explain)',o:['explanation','explain','explanatory'],x:'explain (v.) → explanation (n.).'},
+ {q:'After a long ___, the team made a decision.  (discuss)',o:['discussion','discuss','discussing'],x:'discuss (v.) → discussion (n.). Sau tính từ “long” cần danh từ.'},
+ {q:'Please ___ me if the meeting time changes.  (information)',o:['inform','information','informative'],x:'information (n.) → inform (v.). Sau “Please” cần động từ nguyên mẫu.'},
+ {q:'We would like to ___ you to our company event.  (invitation)',o:['invite','invitation','invited'],x:'invitation (n.) → invite (v.). Sau “to” cần động từ nguyên mẫu.'},
+ {q:'Could you ___ to my email by Friday?  (response)',o:['respond','response','responsible'],x:'response (n.) → respond (v.). “respond to” = phản hồi.'},
+ {q:'I ___ with you. That is a good idea.  (agreement)',o:['agree','agreement','agreeable'],x:'agreement (n.) → agree (v.). Không nói “I am agree”.'},
+ {q:'We need better ___ between the sales team and the design team.  (communicate)',o:['communication','communicate','communicative'],x:'communicate (v.) → communication (n.). Sau “better” cần danh từ.'},
+ {q:'The manager will ___ the new policy at the meeting tomorrow.  (announcement)',o:['announce','announcement','announcer'],x:'announcement (n.) → announce (v.). Sau “will” cần động từ nguyên mẫu.'},
+ {q:'We have to make a ___ about the budget by Friday.  (decide)',o:['decision','decide','decisive'],x:'decide (v.) → decision (n.). “make a decision” = đưa ra quyết định.'},
+ {q:'Customers often ___ about long waiting times.  (complaint)',o:['complain','complaint','complaining'],x:'complaint (n.) → complain (v.). Sau “often” cần động từ; “complain about” = phàn nàn về.'},
+ {q:'Her ___ of the new project was short and very clear.  (introduce)',o:['introduction','introduce','introductory'],x:'introduce (v.) → introduction (n.). Sau “Her” + chỗ trống + “of” cần danh từ.'},
+ {q:'He received a lot of ___ for his ideas, but he stayed calm.  (criticise)',o:['criticism','criticise','critical'],x:'criticise (v.) → criticism (n.). “a lot of ___” cần danh từ không đếm được.'},
+ {q:'I did not expect his ___ of our offer.  (refuse)',o:['refusal','refuse','refusing'],x:'refuse (v.) → refusal (n.). Sau “his” cần danh từ.'},
+ {q:'We really ___ your help with this project.  (appreciation)',o:['appreciate','appreciation','appreciative'],x:'appreciation (n.) → appreciate (v.). Sau chủ ngữ “We really” cần động từ.'},
+ {q:'They tried to ___ the client to sign the contract.  (persuasion)',o:['persuade','persuasion','persuasive'],x:'persuasion (n.) → persuade (v.). Sau “to” cần động từ nguyên mẫu.'},
+ {q:'The team had a long ___ with the supplier about the price.  (negotiate)',o:['negotiation','negotiate','negotiable'],x:'negotiate (v.) → negotiation (n.). Sau “a long” cần danh từ.'}
+];
+const PAIRS=[['communicate','communication','giao tiếp'],['explain','explanation','giải thích'],['discuss','discussion','thảo luận'],['suggest','suggestion','gợi ý, đề xuất'],['apologise','apology','xin lỗi'],['agree','agreement','đồng ý, thỏa thuận'],['respond','response','phản hồi'],['decide','decision','quyết định'],['inform','information','thông báo, thông tin'],['invite','invitation','mời, lời mời'],['criticise','criticism','chỉ trích, phê bình'],['introduce','introduction','giới thiệu'],['appreciate','appreciation','trân trọng, biết ơn'],['refuse','refusal','từ chối'],['complain','complaint','phàn nàn'],['announce','announcement','thông báo (công bố)'],['persuade','persuasion','thuyết phục'],['negotiate','negotiation','đàm phán'],['request','request','yêu cầu (động từ và danh từ giống nhau)']];
+
+/* Ngân hàng cấu trúc (phát hiện bằng regex trên chữ thường) */
+const STR=[
+ {id:1,name:'Could / Would you + V…?',goal:'Nhờ vả',vi:'Bạn có thể… giúp tôi được không?',
+  tpl:'Could you + động từ nguyên mẫu + (tân ngữ) + (thời gian), please? → “Bạn có thể … giúp tôi … được không?”',
+  use:'Nhờ ai đó làm một việc một cách lịch sự: với đồng nghiệp, nhân viên phục vụ, người lạ. “Would” trang trọng hơn “Could” một chút.',
+  ex:'Could you send me the file, please?',
+  exs:[['Could you pass me the salt, please?','Bạn chuyền giúp tôi lọ muối được không?','Bữa ăn'],['Could you send me the report by 3 pm?','Bạn gửi giúp tôi báo cáo trước 3 giờ chiều được không?','Công việc'],['Would you speak a little more slowly, please?','Bạn nói chậm lại một chút được không ạ?','Họp online']],
+  reply:'Đồng ý: Sure. / Of course. / Certainly. (Vâng, được ạ.)  Chưa làm được: Sorry, I can’t right now, but I can do it at 4. (Xin lỗi, bây giờ tôi chưa làm được, 4 giờ thì được.)',
+  trap:'Đừng dùng “Can you give me…” với sếp hoặc khách hàng (nghe như ra lệnh). Sau “Could you” không thêm “to” (✘ Could you to send).',
+  re:/\b(could|would) you (please )?(?!mind\b|like\b)[a-z]+/},
+ {id:2,name:'Would you mind + V-ing…?',goal:'Nhờ vả (nhẹ nhàng)',vi:'Bạn có phiền… không?',
+  tpl:'Would you mind + động từ thêm -ing + …? → “Bạn có phiền … không?”',
+  use:'Nhờ việc có thể làm phiền người khác một chút (mở cửa sổ, vặn nhỏ nhạc, đợi một lát). Rất lịch sự, hợp khi nhờ hàng xóm hoặc người lớn tuổi.',
+  ex:'Would you mind opening the window?',
+  exs:[['Would you mind opening the window?','Bạn có phiền mở giúp tôi cửa sổ không?','Đời sống'],['Would you mind turning the music down a little?','Bạn có phiền vặn nhạc nhỏ lại một chút không?','Hàng xóm'],['Would you mind waiting a moment?','Bạn vui lòng đợi một lát được không ạ?','Công việc']],
+  reply:'ĐỒNG Ý = Not at all. / Of course not. / No problem. (nghĩa là “không phiền”). Từ chối = I’m sorry, I’d rather you didn’t.',
+  trap:'Người Việt dễ nhầm: trả lời “Not at all” là ĐỒNG Ý giúp, không phải từ chối. Sau “mind” dùng V-ing, không dùng “to” (✘ Would you mind to open).',
+  re:/\bwould you mind\b/},
+ {id:3,name:'I would appreciate it if you could + V…',goal:'Nhờ vả (trang trọng)',vi:'Tôi sẽ rất biết ơn nếu bạn có thể…',
+  tpl:'I would appreciate it if you could + động từ nguyên mẫu + … → “Tôi sẽ rất biết ơn nếu bạn có thể …”',
+  use:'Nhờ việc quan trọng trong email hoặc tin nhắn công việc, nhất là với cấp trên, khách hàng, đối tác. Mức lịch sự cao nhất trong ba cấu trúc nhờ vả.',
+  ex:'I would appreciate it if you could reply today.',
+  exs:[['I would appreciate it if you could reply by Friday.','Tôi sẽ rất biết ơn nếu bạn có thể phản hồi trước thứ Sáu.','Email công việc'],['I would appreciate it if you could confirm the schedule.','Tôi sẽ rất biết ơn nếu bạn có thể xác nhận lịch.','Với đối tác'],['I would be grateful if you could check the invoice.','Tôi sẽ rất biết ơn nếu bạn kiểm tra giúp hóa đơn.','Với kế toán']],
+  reply:'Certainly. I will send it today. (Chắc chắn rồi. Hôm nay tôi sẽ gửi.)  Hoặc: Of course. Please give me until tomorrow. (Dĩ nhiên, xin cho tôi đến ngày mai.)',
+  trap:'Giữ “could” (không dùng “can”) sau “if you”. Đây là câu dài, hợp khi viết hoặc nói trang trọng; với bạn bè dùng “Could you…?” là đủ.',
+  re:/\bi(?: would|'d) (really )?(appreciate it if|be grateful if)\b/},
+ {id:4,name:'May I / Could I / Would it be possible to…?',goal:'Xin phép',vi:'Cho tôi… được không? / Liệu có thể… không?',
+  tpl:'May I + động từ nguyên mẫu…? / Would it be possible to + động từ nguyên mẫu…? → “Cho tôi … được không?”',
+  use:'Xin phép hoặc xin một điều gì (về sớm, mượn đồ, đổi lịch). “May I” lịch sự rõ ràng; “Would it be possible to” mềm nhất, hợp khi xin sếp hoặc xin điều khó.',
+  ex:'May I leave early today?',
+  exs:[['May I leave early today?','Hôm nay tôi về sớm được không ạ?','Với quản lý'],['Could I borrow your pen for a moment?','Tôi mượn bút của bạn một lát được không?','Đồng nghiệp'],['Would it be possible to move the meeting to Monday?','Liệu có thể dời cuộc họp sang thứ Hai được không ạ?','Đổi lịch']],
+  reply:'Đồng ý: Yes, of course. / Sure, go ahead. (Vâng, cứ tự nhiên.)  Từ chối: I’m afraid not, because… (Tiếc là không được, vì…)',
+  trap:'Xin phép là “I” làm chủ ngữ: May I… (✘ May you…). Đừng chỉ nói “I want to go home early” với sếp, nghe như thông báo, không phải xin phép.',
+  re:/\b(may i|could i|would it be possible)\b/},
+ {id:5,name:'Thank you for + N / V-ing',goal:'Cảm ơn',vi:'Cảm ơn bạn vì / đã…',
+  tpl:'Thank you for + danh từ (your help) / V-ing (helping me) → “Cảm ơn bạn vì … / đã …”',
+  use:'Cảm ơn cụ thể, nói rõ cảm ơn vì điều gì. Chuyên nghiệp hơn chỉ nói “Thanks!”, hay dùng ở đầu email và sau cuộc họp. Thêm “I really appreciate it” để ấm áp hơn.',
+  ex:'Thank you for your help.',
+  exs:[['Thank you for your help.','Cảm ơn bạn đã giúp tôi.','Hàng ngày'],['Thank you for inviting me to the party.','Cảm ơn bạn đã mời tôi đến bữa tiệc.','Lời mời'],['Thank you for your quick reply. I really appreciate it.','Cảm ơn bạn đã phản hồi nhanh. Tôi thật sự trân trọng điều đó.','Email']],
+  reply:'You’re welcome. / My pleasure. / No problem. (Không có gì ạ.)',
+  trap:'Sau “for” dùng danh từ hoặc V-ing (✘ Thank you for to help). Nên nói rõ điều được cảm ơn, đừng chỉ nói “Thank you” trống không.',
+  re:/\b(thank you|thanks)( so much| very much)?( for)?\b|\bi (really |truly )?appreciate\b/},
+ {id:6,name:'I am afraid… / Unfortunately, …',goal:'Từ chối khéo',vi:'Tiếc là… / Rất tiếc nhưng…',
+  tpl:'I am afraid (that) + mệnh đề. / Unfortunately, + mệnh đề, but + phương án khác. → “Tiếc là …, nhưng …”',
+  use:'Từ chối hoặc báo tin không tốt một cách mềm mỏng. Ở đây “afraid” không có nghĩa là “sợ”. Từ chối xong nên đưa ngay phương án khác để giữ quan hệ.',
+  ex:'I am afraid I cannot join the meeting.',
+  exs:[['I am afraid I cannot come tonight.','Tiếc là tối nay tôi không đến được.','Từ chối lời mời'],['Unfortunately, we cannot offer a discount, but we can offer free delivery.','Rất tiếc chúng tôi không thể giảm giá, nhưng có thể miễn phí giao hàng.','Với khách hàng'],['I am afraid the manager is in a meeting. Can I take a message?','Tiếc là quản lý đang họp. Tôi ghi lại lời nhắn giúp bạn nhé?','Nghe điện thoại']],
+  reply:'That’s all right. / I understand. Thank you anyway. (Không sao, tôi hiểu. Dù sao cũng cảm ơn bạn.)',
+  trap:'Đừng chỉ nói “No, I can’t”. Cấu trúc tốt: lời cảm ơn + I am afraid + lý do + phương án khác. Tránh “Sorry, but I don’t want”.',
+  re:/\b(i am|i'm) afraid\b|\bunfortunately\b|\b(i am|i'm) sorry,? but\b|\bsorry,? but\b/},
+ {id:7,name:'Would you like me to… / Shall I… / Let me…',goal:'Đề nghị giúp',vi:'Bạn có muốn tôi… không? / Để tôi… nhé',
+  tpl:'Would you like me to + động từ nguyên mẫu…? / Shall I + động từ nguyên mẫu…? / Let me + động từ nguyên mẫu. → “Để tôi … nhé”',
+  use:'Chủ động đề nghị giúp, thể hiện tinh thần phục vụ. Rất hay dùng với khách hàng, đồng nghiệp mới, người lớn tuổi. “Let me” là lời tự nguyện tự tin hơn.',
+  ex:'Shall I help you with that?',
+  exs:[['Would you like me to carry your bag?','Bạn có muốn tôi xách túi giúp không?','Giúp người lạ'],['Shall I book a taxi for you?','Để tôi đặt taxi cho bạn nhé?','Với khách'],['Let me check and call you back.','Để tôi kiểm tra rồi gọi lại cho bạn nhé.','Công việc']],
+  reply:'Nhận lời: Yes, please. That would be great. (Vâng, thế thì tốt quá.)  Từ chối: No, thank you. I can manage. (Không cần đâu, tôi tự làm được.)',
+  trap:'“Would you like me to” + động từ nguyên mẫu, không có “to” thừa sau “Shall I” (✘ Shall I to help). Đề nghị trước khi người ta phải nhờ là điểm cộng lớn ở nơi làm việc.',
+  re:/\b(would you like me to|shall i|let me|would you like (some|to))\b/}
+];
+const INFORMAL=/\b(can you|can i|give me|i want|i need)\b/;
+
+/* PHẦN 2: 9 tình huống. k = ý nội dung cần có [regex, gợi ý tiếng Việt]. m = 2 câu mẫu. */
+const P2=[
+ {tag:['Hàng ngày','Yêu cầu'],sit:'Em ở quán cà phê và muốn nhờ nhân viên mang thêm một cốc nước.',ideas:['water|nước','another glass|thêm một cốc','bring|mang','please|làm ơn'],
+  k:[[/water/,'nước: water'],[/(bring|get|have|another|more|glass|refill)/,'mang / thêm: bring, another glass']],
+  m:['Excuse me, could you bring me another glass of water, please?','Would you mind bringing me some more water, please?']},
+ {tag:['Hàng ngày','Nhờ vả'],sit:'Hàng xóm mở nhạc rất to vào ban đêm. Em nhờ họ lịch sự.',ideas:['loud music|nhạc to','turn down|vặn nhỏ lại','I am trying to sleep|tôi đang cố ngủ'],
+  k:[[/(music|noise|loud|sound|volume)/,'nhạc / tiếng ồn: music, noise'],[/(turn|lower|quiet|reduce|keep it down|down)/,'vặn nhỏ: turn down, lower']],
+  m:['Sorry to bother you, but would you mind turning the music down a little? I am trying to sleep.','Excuse me, could you please lower the music? It is quite late.']},
+ {tag:['Hàng ngày','Từ chối'],sit:'Bạn mời em đi tiệc tối nay nhưng em phải học bài. Em từ chối lịch sự.',ideas:['thank for inviting|cảm ơn đã mời','I have to study|tôi phải học','next weekend|cuối tuần sau'],
+  k:[[/(thank|invit|appreciate)/,'cảm ơn lời mời: thank you for inviting'],[/(cannot|can't|can not|unable|afraid|unfortunately|sorry)/,'từ chối khéo: I am afraid I cannot'],[/(study|exam|homework|busy|work|test|revise)/,'lý do: study, exam']],
+  m:['Thank you for inviting me, but I am afraid I cannot come tonight because I have to study.','Thank you for the invitation. Unfortunately, I have an exam tomorrow, but maybe we can meet next weekend.']},
+ {tag:['Hàng ngày','Cảm ơn'],sit:'Một người lạ giúp em xách túi nặng. Em cảm ơn họ.',ideas:['thank you for helping|cảm ơn đã giúp','kind|tốt bụng','I really appreciate it|tôi rất trân trọng'],
+  k:[[/(thank|appreciate|grateful)/,'cảm ơn: thank you, appreciate'],[/(help|kind|bag)/,'giúp đỡ: help, kind']],
+  m:['Thank you so much for helping me with my bags. I really appreciate it.','That was very kind of you. Thank you for your help.']},
+ {tag:['Công việc','Yêu cầu'],sit:'Em nhờ đồng nghiệp gửi file doanh số trước 3 giờ chiều.',ideas:['send|gửi','the sales file|file doanh số','by 3 pm|trước 3 giờ chiều'],
+  k:[[/(send|email|share)/,'gửi: send'],[/(file|report|document|sales)/,'file doanh số: sales file'],[/(3|three|pm|o'clock|afternoon)/,'thời hạn: by 3 pm']],
+  m:['Could you send me the sales file by 3 pm, please?','I would appreciate it if you could send me the sales report before 3 pm.']},
+ {tag:['Công việc','Xin phép'],sit:'Em xin quản lý cho về sớm vào thứ Sáu.',ideas:['leave early|về sớm','on Friday|vào thứ Sáu','I will finish my work|em sẽ hoàn thành việc'],
+  k:[[/(leave|go home|finish)/,'về: leave early'],[/early/,'sớm: early'],[/friday/,'thứ Sáu: on Friday']],
+  m:['May I leave early on Friday? I will finish my work before I go.','Would it be possible to leave early on Friday afternoon?']},
+ {tag:['Công việc','Hồi đáp'],sit:'Khách hàng xin giảm giá 30% nhưng em không thể. Em trả lời lịch sự và đưa ra lựa chọn khác.',ideas:['discount|giảm giá','I am afraid|tiếc là','free delivery|miễn phí giao hàng','instead|thay vào đó'],
+  k:[[/(discount|price|%|percent|off)/,'giảm giá: discount'],[/(afraid|unfortunately|sorry|cannot|unable|not possible)/,'từ chối khéo: I am afraid we cannot'],[/(instead|however|offer|option|alternative|free|but we can|we can|we could|could offer)/,'lựa chọn khác: we can offer…']],
+  m:['I am afraid we cannot offer a 30% discount, but we can give you 10% off or free delivery.','Thank you for your interest. Unfortunately, 30% is not possible, however we could offer free delivery.']},
+ {tag:['Công việc','Đề nghị giúp'],sit:'Đồng nghiệp mới trông bỡ ngỡ trong ngày đầu. Em đề nghị giúp.',ideas:['show you around|dẫn đi tham quan','help you|giúp bạn','set up|cài đặt'],
+  k:[[/(help|show|assist|guide|set up)/,'giúp: help, show you around'],[/(you|your)/,'hướng về đồng nghiệp: you']],
+  m:['Would you like me to show you around the office?','Shall I help you set up your computer?']},
+ {tag:['Công việc','Làm rõ'],sit:'Trong cuộc họp online, em nghe không rõ. Em nhờ đối tác nhắc lại lịch sự.',ideas:['I did not catch that|tôi chưa nghe rõ','repeat|nhắc lại','more slowly|chậm hơn'],
+  k:[[/(repeat|again|say that|say it|explain|slowly)/,'nhắc lại: repeat, say that again'],[/(sorry|pardon|excuse|did not catch|didn't catch|could you|would you|would you mind)/,'mở đầu lịch sự: sorry, could you']],
+  m:['I am sorry, I did not catch that. Could you repeat it, please?','Would you mind saying that again more slowly?']}
+];
+
+const P2X=[
+ {sug:[1,2],mv:['Xin lỗi, bạn mang giúp tôi thêm một cốc nước được không?','Bạn có phiền mang thêm cho tôi một ít nước không?']},
+ {sug:[2,1],mv:['Xin lỗi đã làm phiền, nhưng bạn có phiền vặn nhạc nhỏ lại một chút không? Tôi đang cố ngủ.','Xin lỗi, bạn vặn nhỏ nhạc giúp được không? Giờ cũng khá khuya rồi.']},
+ {sug:[5,6],mv:['Cảm ơn bạn đã mời, nhưng tiếc là tối nay tôi không đến được vì phải học bài.','Cảm ơn lời mời. Tiếc là mai tôi có bài kiểm tra, nhưng có thể cuối tuần sau mình gặp nhau.']},
+ {sug:[5],mv:['Cảm ơn bạn rất nhiều đã giúp tôi xách túi. Tôi thật sự biết ơn.','Bạn thật tốt bụng. Cảm ơn bạn đã giúp.']},
+ {sug:[1,3],mv:['Bạn gửi giúp tôi file doanh số trước 3 giờ chiều được không?','Tôi sẽ rất biết ơn nếu bạn có thể gửi báo cáo doanh số trước 3 giờ chiều.']},
+ {sug:[4],mv:['Thứ Sáu tôi về sớm được không ạ? Tôi sẽ hoàn thành việc trước khi đi.','Liệu chiều thứ Sáu tôi có thể về sớm được không ạ?']},
+ {sug:[6],mv:['Tiếc là chúng tôi không thể giảm 30%, nhưng có thể giảm 10% hoặc miễn phí giao hàng.','Cảm ơn sự quan tâm của quý khách. Rất tiếc mức 30% là không thể, tuy nhiên chúng tôi có thể miễn phí giao hàng.']},
+ {sug:[7],mv:['Bạn có muốn tôi dẫn bạn đi xem văn phòng không?','Để tôi giúp bạn cài đặt máy tính nhé?']},
+ {sug:[1,2],mv:['Xin lỗi, tôi chưa nghe rõ. Bạn nhắc lại giúp tôi được không?','Bạn có phiền nói lại chậm hơn một chút không?']}
+];
+P2.forEach((q,i)=>Object.assign(q,P2X[i]));
+
+/* PHẦN 3: 3 câu hỏi. Mỗi tiêu chí: t(text, ctx) trả 0..1; ok / no là nhận xét tiếng Việt. */
+const has=(re)=>(t)=>re.test(' '+t.toLowerCase().replace(/[’‘]/g,"'")+' ')?1:0;
+const uniq=(re,t)=>{const m=(' '+t.toLowerCase()+' ').match(new RegExp(re.source,'g'))||[];return new Set(m.map(s=>s.trim())).size};
+const NEG=/(not|never|n't|won't|without|avoid|instead of|rather than|no) (\w+ ){0,3}$/;
+function badWords(t,re){const low=t.toLowerCase().replace(/[’‘]/g,"'");let m,flag=[];const g=new RegExp(re.source,'g');while((m=g.exec(low))){const before=low.slice(Math.max(0,m.index-30),m.index);if(!NEG.test(before))flag.push(m[0])}return flag}
+const P3=[
+ {tag:['Agree / Disagree'],prompt:'Do you agree or disagree? “In a professional meeting, it is better to say “No” directly than to give an indirect answer.” Explain why and give an example.',
+  vi:'Em có đồng ý không? “Trong cuộc họp chuyên nghiệp, nói “No” thẳng thì tốt hơn trả lời gián tiếp.” Hãy giải thích lý do và cho ví dụ.',
+  outline:'Lập trường (I agree / I disagree / It depends) → Lý do (because…) → Ví dụ (for example…) → Mặt khác (however…)',
+  principle:'Chuyên gia giao tiếp liên văn hóa thường không trả lời “đúng/sai” tuyệt đối. Họ nêu lập trường rõ, giải thích bằng lý do, đưa ví dụ cụ thể và cân nhắc bối cảnh (văn hóa, mối quan hệ, mức độ khẩn cấp).',
+  rub:[
+   {t:has(/\b(i (strongly |partly |totally |completely |do not |don't )?(agree|disagree)|it depends|in my opinion|i (think|believe|feel))\b/),ok:'Em nêu rõ lập trường của mình.',no:'Chưa thấy lập trường rõ ràng. Hãy mở đầu bằng “I agree…”, “I disagree…” hoặc “It depends…”.'},
+   {t:has(/\b(because|since|the reason|due to|so that|that is why|as a result)\b/),ok:'Em có đưa lý do (because / since…).',no:'Thiếu lý do. Một lập trường chỉ thuyết phục khi có “because…”.'},
+   {t:(t)=>{const n=uniq(/\b(respect|polite|face|relationship|culture|feel|hurt|offend|embarrass|rude|trust|clear|honest|direct|indirect|misunderstand|save time|mood|professional)\w*/,t);return n>=2?1:n===1?.5:0},ok:'Em dùng đúng các ý then chốt (tôn trọng, thể diện, hiểu lầm, quan hệ…).',no:'Ý còn chung chung. Hãy nhắc đến yếu tố văn hóa/quan hệ như thể diện (face), sự tôn trọng (respect) hoặc nguy cơ hiểu lầm (misunderstanding).'},
+   {t:has(/\b(for example|for instance|such as|e\.g\.|i am afraid|might be difficult|could we|would it be possible|maybe we can)\b/),ok:'Em có ví dụ hoặc mẫu câu cụ thể.',no:'Thiếu ví dụ. Thử: “For example, I would say: I am afraid we cannot…, but could we…?”'},
+   {t:has(/\b(however|but|although|on the other hand|depends|sometimes|in some cases|if)\b/),ok:'Em cân nhắc cả mặt khác hoặc điều kiện (however / depends…).',no:'Chưa cân nhắc mặt khác. Thêm “However…” hoặc “It depends on…” sẽ làm lập luận chín chắn hơn.'}
+  ],
+  flag:null,
+  model:'I partly agree. In some situations, a direct answer saves time and avoids misunderstanding. However, in many Asian cultures, a direct “No” can make the other person lose face, because it may feel rude, so I prefer a polite and clear answer. For example, I would say: “I am afraid we cannot do that, but could we try another option?” This way, I am honest and I still respect the relationship.',
+  why:'Bản mẫu có lập trường (partly agree), lý do, ví dụ cụ thể, và cân nhắc bối cảnh văn hóa.',
+  coach:'Nếu đối tác của em là người Nhật và em đang họp trực tiếp, em sẽ đổi cách nói thế nào? Nếu là email gấp thì sao?'},
+ {tag:['What would you do?'],prompt:'A colleague criticises your idea in front of the whole team. What would you do? Explain your reaction step by step.',
+  vi:'Một đồng nghiệp chê ý tưởng của em trước cả nhóm. Em sẽ làm gì? Hãy kể từng bước phản ứng của em.',
+  outline:'First… → Then… → After the meeting… → Finally… (bình tĩnh → lắng nghe, cảm ơn → trao đổi riêng → cùng cải thiện)',
+  principle:'Khi bị phê bình công khai, người chuyên nghiệp giữ bình tĩnh, lắng nghe và làm rõ vấn đề thay vì phản ứng ngay, rồi trao đổi riêng để bảo vệ thể diện của cả hai bên và hướng tới giải pháp.',
+  rub:[
+   {t:has(/\b(calm|stay calm|keep calm|polite|politely|respectful|professional|breathe|listen)\b/),ok:'Em thể hiện thái độ bình tĩnh, chuyên nghiệp.',no:'Chưa thấy nói đến việc giữ bình tĩnh hoặc lắng nghe. Đây là phản ứng đầu tiên chuyên gia mong đợi.'},
+   {t:has(/\b(thank|appreciate|acknowledge|understand|clarify|ask (him|her|them|what|why)|what exactly|explain why|point of view|feedback)\b/),ok:'Em ghi nhận góp ý hoặc hỏi để làm rõ (thank / clarify).',no:'Chưa thấy em ghi nhận hoặc hỏi làm rõ. Thử: “I would thank my colleague and ask what exactly the problem is.”'},
+   {t:has(/\b(private|privately|after the meeting|after the discussion|one[- ]on[- ]one|in person|talk to (him|her|them)|speak (to|with) (him|her|them)|alone|later)\b/),ok:'Em chọn trao đổi riêng, giúp giữ thể diện cho cả hai.',no:'Thiếu bước trao đổi riêng. Nói chuyện riêng sau cuộc họp thường hiệu quả hơn tranh luận trước đám đông.'},
+   {t:has(/\b(improve|solution|suggest|compromise|together|adjust|revise|improvement|better|evidence|data|option|alternative|work (it )?out)\b/),ok:'Em hướng tới giải pháp mang tính xây dựng.',no:'Chưa thấy giải pháp. Hãy nói em sẽ cùng đồng nghiệp cải thiện ý tưởng như thế nào (improve it together, suggest an option…).'},
+   {t:(t)=>{const n=uniq(/\b(first|firstly|then|next|after that|finally|second|secondly|afterwards)\b/,t);return n>=2?1:n===1?.5:0},ok:'Em trình bày theo trình tự (first / then / finally…).',no:'Đề bài yêu cầu kể từng bước. Dùng First, Then, After that, Finally để người đọc theo dõi dễ hơn.'}
+  ],
+  flag:{re:/\b(shout|yell|argue|fight|angry|revenge|insult|cry|ignore|quit|blame|stupid)\w*/,msg:'Có từ chỉ phản ứng thiếu chuyên nghiệp (shout, argue, angry…) mà không được phủ định. Chuyên gia sẽ trừ điểm vì phản ứng này dễ làm mất thể diện đồng nghiệp.'},
+  model:'First, I would stay calm and listen carefully. Then I would thank my colleague for the feedback and ask what exactly the problem is. After the meeting, I would talk to him privately to understand his point and explain mine. Finally, we could improve the idea together.',
+  why:'Bản mẫu đi theo trình tự: bình tĩnh → ghi nhận → trao đổi riêng → cùng cải thiện, không phản ứng cảm xúc.',
+  coach:'Nếu người chê ý tưởng là sếp của em thì em thay đổi điều gì? Nếu lời chê hoàn toàn đúng thì sao?'},
+ {tag:['What would you say?'],prompt:'Your manager asks you to finish a report tonight, but you already have an important family dinner. What would you say to your manager? Write your reply.',
+  vi:'Quản lý nhờ em hoàn thành báo cáo tối nay, nhưng em đã có bữa tối gia đình quan trọng. Em sẽ nói gì với quản lý? Hãy viết câu trả lời.',
+  outline:'Cảm ơn / tiếc là… → Nêu lý do rõ ràng → Đề xuất phương án (thời hạn mới) → Dùng cấu trúc lịch sự',
+  principle:'Khi từ chối yêu cầu của cấp trên, chuyên gia không nói “No” cụt lủn. Họ mở đầu mềm mỏng, nêu giới hạn rõ ràng, và đưa phương án cụ thể (thời gian mới, phần việc có thể làm ngay) để quản lý vẫn đạt mục tiêu.',
+  rub:[
+   {t:has(/\b(sorry|afraid|unfortunately|thank|appreciate|understand|excuse me|i would love to)\b/),ok:'Em mở đầu mềm mỏng (thank / I am afraid / unfortunately).',no:'Chưa có câu mở đầu mềm mỏng. Thử: “Thank you for trusting me with this report. I am afraid…”'},
+   {t:has(/\b(dinner|family|commitment|appointment|plan|cannot|can't|can not|unable|not possible|not able|already have)\b/),ok:'Em nêu rõ giới hạn và lý do.',no:'Chưa nêu rõ lý do/giới hạn. Quản lý cần biết vì sao em không thể làm tối nay.'},
+   {t:has(/\b(tomorrow|morning|early|by \d|before|deadline|first thing|after dinner|later tonight|this evening|by noon|by lunch)\b/),ok:'Em đưa ra phương án/thời hạn thay thế.',no:'Thiếu phương án thay thế. Thử: “Would it be possible to send it by 8 am tomorrow?”'},
+   {t:(t,a)=>a.structs.length?1:0,ok:'Em dùng cấu trúc lịch sự (Would it be possible / I am afraid / Could I…).',no:'Chưa dùng cấu trúc lịch sự từ ngân hàng cấu trúc ở phần 2 (ví dụ Would it be possible to…?).'},
+   {t:(t)=>/^\s*no[.,! ]|\b(i (will not|won't|refuse|will never)|not my job|no way|i do not care|i don't care)\b/i.test(t)?0:1,ok:'Em tránh từ chối cộc lốc.',no:'Có cách nói từ chối cộc lốc (No / I will not / not my job). Chuyên gia coi đây là thiếu chuyên nghiệp.'}
+  ],
+  flag:{re:/(^\s*no[.,! ])|\b(i will not|i won't|i refuse|not my job|no way|i do not care|i don't care)\b/,msg:'Có cách nói từ chối cộc lốc hoặc thiếu tôn trọng với cấp trên.'},
+  model:'Thank you for trusting me with this report. I am afraid I have an important family dinner tonight, so I cannot work late. However, would it be possible for me to send it to you by 8 am tomorrow? I can also finish the main part before I leave today. I really appreciate your understanding.',
+  why:'Bản mẫu: cảm ơn → nêu lý do → đề xuất thời hạn mới → cam kết hoàn thành một phần ngay, giúp quản lý vẫn yên tâm.',
+  coach:'Nếu báo cáo thật sự cần nộp trong đêm, em sẽ thương lượng thế nào mà vẫn giữ quan hệ tốt với quản lý?'}
+];
+
+/* Từ vựng chuyên nghiệp & liên kết ý để chấm ngôn ngữ */
+const PROF=/\b(respect|polite|professional|appropriate|respond|response|explain|explanation|suggest|suggestion|apologi[sz]e|apology|appreciate|calm|privately|feedback|deadline|priority|colleague|manager|communicate|communication|misunderstanding|solution|option|alternative|consider|discuss|discussion|opinion|reason|relationship|culture|honest|clarify|constructive|improve|commitment|available|arrange|schedule)\w*/;
+const CONN=/\b(because|since|so|however|but|although|while|if|first|firstly|then|next|after that|finally|also|for example|for instance|therefore|instead|in addition|as a result|on the other hand)\b/;
+/* Lỗi thường gặp của người Việt (phát hiện bằng regex) */
+const ERR=[
+ [/\b(am|'m|is|are) (not )?agree\b/,'“I am agree” là lỗi phổ biến. Agree là động từ thường: dùng “I agree” / “I do not agree”.'],
+ [/\bdiscuss about\b/,'“discuss about” sai. Discuss đã mang nghĩa “bàn về”: dùng “discuss the problem”.'],
+ [/\bexplain me\b/,'“explain me” sai. Dùng “explain it to me”.'],
+ [/\b(should|must|can|could|would|will|may|might|shall) to [a-z]+/,'Sau động từ khuyết thiếu (should, would, could…) dùng động từ nguyên mẫu, KHÔNG có “to”.'],
+ [/\bwould you mind (to|[a-z]+) [a-z]+/,null],
+ [/(^|[.!?,]\s*|\b(?:because|and|but|that|if|when|so)\s+)(he|she|it) (don't|do not)\b/,'Với he / she / it dùng “doesn’t”, không dùng “don’t”.'],
+ [/(^|[.!?,]\s*|\b(?:because|and|but|that|if|when|so)\s+)(he|she|it) (go|have|do|say|want|need|think|work|like|make|take|know|come|give)\b/,'Chủ ngữ he / she / it cần động từ thêm -s/-es (goes, has, does, says…).'],
+ [/\b(they|we|you|people) is\b/,'Chủ ngữ số nhiều dùng “are”: they are, we are, people are.'],
+ [/\b(they|we|you|people) was\b/,'Chủ ngữ số nhiều dùng “were”.'],
+ [/\bi very (like|love|enjoy|want|hate)\b/,'“I very like” sai. Dùng “I really like” hoặc “I like … very much”.'],
+ [/\b(informations|advices|feedbacks|knowledges|furnitures|equipments|homeworks)\b/,'Danh từ không đếm được, không thêm -s (information, advice, feedback…).'],
+ [/\b(an advice|a feedback|an information)\b/,'Danh từ không đếm được. Dùng “a piece of advice / feedback / information”.'],
+ [/\b(did not|didn't) (went|saw|came|did|said|had|made|took|got|gave|told)\b/,'Sau “did not / didn’t” dùng động từ nguyên mẫu (did not go, did not see…).'],
+ [/\bbecause of (i|we|you|they|he|she|it) (am|is|are|was|were|have|has|do|did|can)\b/,'“because of” + danh từ; trước mệnh đề dùng “because”.'],
+ [/\blook forward to (hear|see|meet|work|get)\b/,'“look forward to” + V-ing (looking forward to hearing).'],
+ [/\bdepends? of\b/,'Dùng “depend on”, không phải “depend of”.'],
+ [/\blisten (him|her|them|me|you|us)\b/,'Cần giới từ: “listen to him / her / them”.'],
+ [/\bmore (better|easier|cheaper|faster|bigger)\b/,'So sánh hơn của tính từ ngắn không dùng “more” (better, easier…).'],
+ [/\ba (employee|email|idea|opinion|example|answer|issue|offer|office|order|option|agreement|invitation|apology|explanation|exam|event|appointment)\b/,'Trước nguyên âm dùng “an” (an email, an idea, an opinion…).']
+];
+/* ===== DATA END ===== */
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const STEPS=[{id:'s1',n:'1 Từ vựng (8)'},{id:'s2',n:'2 Hồi đáp & yêu cầu (9)'},{id:'s3',n:'3 Tình huống (3)'},{id:'s4',n:'Kết quả'}];
+let S={name:'',a1:{},p2:{},p3:{},cur:0,skips:0};
+const KEY='ct:'+LESSON;
+function save(){try{localStorage.setItem(KEY+':'+S.name,JSON.stringify(S));localStorage.setItem(KEY+':last',S.name)}catch(e){}}
+function load(n){try{const r=localStorage.getItem(KEY+':'+n);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}}
+
+/* ---------- âm thanh + hộp thoại ---------- */
+let voices=[];
+function fillVoices(){voices=(speechSynthesis.getVoices()||[]).filter(v=>/^en/i.test(v.lang));const sel=$('#voice');sel.innerHTML=voices.map((v,i)=>`<option value="${i}">${esc(v.name)} (${v.lang})</option>`).join('')||'<option>Mặc định</option>';const uk=voices.findIndex(v=>/GB/i.test(v.lang));if(uk>=0)sel.value=uk}
+if('speechSynthesis' in window){fillVoices();speechSynthesis.onvoiceschanged=fillVoices}
+function speak(text,rate){if(!('speechSynthesis' in window))return;try{speechSynthesis.cancel()}catch(e){}const u=new SpeechSynthesisUtterance(text);const v=voices[+$('#voice').value];if(v){u.voice=v;u.lang=v.lang}else u.lang='en-GB';u.rate=rate||+$('#rate').value;speechSynthesis.speak(u)}
+function modal(html,btns){const b=$('#mbox');b.innerHTML=html+'<div class="row" id="mb"></div>';btns.forEach(x=>{const e=document.createElement('button');e.textContent=x.t;if(x.pri)e.className='pri';e.onclick=()=>{$('#modal').classList.remove('show');x.f&&x.f()};$('#mb').appendChild(e)});$('#modal').classList.add('show')}
+
+/* ---------- bộ phân tích văn bản ---------- */
+function analyze(t){
+  const raw=(t||'').trim(),low=' '+raw.toLowerCase().replace(/[’‘]/g,"'")+' ';
+  const words=raw?raw.split(/\s+/).length:0;
+  const sents=raw.split(/[.!?]+/).map(s=>s.trim()).filter(Boolean).length;
+  const errors=[];
+  if(raw){
+    if(!/^[A-Z“"']/.test(raw))errors.push({q:raw.slice(0,18),m:'Chữ cái đầu câu cần viết hoa.',fmt:true});
+    if(!/[.!?”"']$/.test(raw))errors.push({q:'…'+raw.slice(-14),m:'Thiếu dấu chấm (hoặc dấu hỏi) ở cuối câu.',fmt:true});
+    if(/(^|[^A-Za-z'’])i([^A-Za-z'’]|$)/.test(raw))errors.push({q:'i',m:'Đại từ “I” luôn viết hoa.',fmt:true});
+    ERR.forEach(([re,m])=>{const x=low.match(re);if(x){
+      if(m===null){ /* would you mind */
+        if(!/\bwould you mind (not )?([a-z]+ing|if i)\b/.test(x[0]+' '))errors.push({q:x[0].trim(),m:'Sau “Would you mind” dùng V-ing (Would you mind opening…?), không dùng “to” hay nguyên mẫu.'})
+      }else errors.push({q:x[0].trim(),m})}})
+  }
+  const structs=STR.filter(s=>s.re.test(low)).map(s=>s.id);
+  const conn=new Set((low.match(new RegExp(CONN.source,'g'))||[]).map(s=>s.trim()));
+  const prof=new Set((low.match(new RegExp(PROF.source,'g'))||[]).map(s=>s.trim()));
+  return {raw,low,words,sents,errors,structs,conn:[...conn],prof:[...prof]}
+}
+const grammarErrs=a=>a.errors.filter(e=>!e.fmt);
+
+/* ---------- tiến độ ---------- */
+const nOf=o=>Object.keys(o).length;
+function missing(i){
+  const m=[];
+  if(i===0){const n=P1.length-nOf(S.a1);if(n)m.push(`Còn ${n} câu từ vựng chưa trả lời.`)}
+  if(i===1){const n=P2.length-nOf(S.p2);if(n)m.push(`Còn ${n} câu chưa chấm.`)}
+  if(i===2){const n=P3.length-nOf(S.p3);if(n)m.push(`Còn ${n} câu chưa nhận xét.`)}
+  return m
+}
+function frac(i){if(i===0)return nOf(S.a1)/P1.length;if(i===1)return nOf(S.p2)/P2.length;if(i===2)return nOf(S.p3)/P3.length;return i===3&&S.sent?1:0}
+const isDone=i=>i===3?!!S.sent:missing(i).length===0;
+function refresh(){
+  const f=STEPS.map((_,i)=>frac(i));const p=Math.round(f.slice(0,3).reduce((a,b)=>a+b,0)/3*100);
+  $('#barfill').style.width=p+'%';$('#pct').textContent=`Tiến độ: ${p}% · ${S.cur<3?'phần '+(S.cur+1)+'/3':'kết quả'}`;
+  $('#chips').innerHTML=STEPS.map((s,i)=>`<button class="chip ${i===S.cur?'cur':''} ${isDone(i)?'done':''}" data-i="${i}">${isDone(i)?'✅ ':''}${s.n}</button>`).join('');
+  $$('#chips .chip').forEach(b=>b.onclick=()=>go(+b.dataset.i));
+  save()
+}
+function show(i){S.cur=i;STEPS.forEach((s,k)=>$('#'+s.id).classList.toggle('show',k===i));window.scrollTo({top:0,behavior:'smooth'});if(i===0)buildP1();if(i===1)buildP2();if(i===2)buildP3();if(i===3)buildResult();refresh()}
+function go(i){
+  if(i===S.cur)return;
+  const need=[];for(let k=0;k<Math.min(i,3);k++){const m=missing(k);if(m.length)need.push(`<b>${STEPS[k].n}</b><br>${m.join('<br>')}`)}
+  if(!need.length)return show(i);
+  modal(`<h3>⚠️ Em chưa hoàn thành phần trước</h3><ul class="ins"><li>${need.join('</li><li>')}</li></ul>`,[{t:'Quay lại làm tiếp',pri:1},{t:'Vẫn đi tiếp',f:()=>{S.skips++;show(i)}}])
+}
+$$('.next[data-next]').forEach(b=>b.onclick=()=>go(+b.dataset.next));
+
+/* ---------- Phần 1 ---------- */
+function buildP1(){
+  $('#p1').innerHTML=P1.map((c,i)=>{c._o=shuffle(c.o.map((t,j)=>({t,r:j===0})));const d=S.a1[i];
+    return `<div class="q" data-i="${i}"><div><b>${i+1}.</b> ${esc(c.q).replace('___','<b>_____</b>')}</div>${c._o.map((x,j)=>`<button class="opt ${d?(x.r?'ok':(d.pick===x.t?'no':'')):''}" data-j="${j}" ${d?'disabled':''}>${esc(x.t)}</button>`).join('')}<div class="fb ${d?(d.ok?'ok':'no'):''}">${d?(d.ok?'✔ ':'✘ ')+esc(c.x):''}</div></div>`}).join('');
+  $$('#p1 .q').forEach(el=>{const i=+el.dataset.i,c=P1[i],fb=el.querySelector('.fb');
+    el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(S.a1[i])return;const o=c._o[+b.dataset.j];S.a1[i]={ok:o.r,pick:o.t};
+      el.querySelectorAll('.opt').forEach((bb,k)=>{bb.disabled=true;if(c._o[k].r)bb.classList.add('ok')});if(!o.r)b.classList.add('no');
+      fb.className='fb '+(o.r?'ok':'no');fb.textContent=(o.r?'✔ ':'✘ ')+c.x;refresh();p1i()})
+  });p1i()
+}
+function p1i(){const ok=Object.values(S.a1).filter(x=>x.ok).length;$('#p1Info').textContent=`Đã trả lời ${nOf(S.a1)}/${P1.length} câu · đúng ${ok}.`;
+  $('#p1Table').innerHTML=nOf(S.a1)===P1.length?`<h3>📚 Bảng ôn: động từ ↔ danh từ</h3><table><tr><th>Động từ</th><th>Danh từ</th><th>Nghĩa</th><th></th></tr>${PAIRS.map((p,i)=>`<tr><td>${p[0]}</td><td>${p[1]}</td><td>${p[2]}</td><td><button class="sm" data-i="${i}">🔊</button></td></tr>`).join('')}</table>`:'';
+  $$('#p1Table button').forEach(b=>b.onclick=()=>speak(PAIRS[+b.dataset.i].slice(0,2).join('. ')))}
+
+/* ---------- Phần 2 ---------- */
+function bankCounts(){const c={};STR.forEach(s=>c[s.id]=[]);Object.entries(S.p2).forEach(([i,d])=>{(d.structs||[]).forEach(id=>c[id].push(+i+1+P1.length))});return c}
+function renderBank(){const c=bankCounts();
+  const open=[...document.querySelectorAll('#bank details[open]')].map(d=>d.dataset.i);
+  $('#bank').innerHTML=STR.map(s=>`<div><span class="goal">${esc(s.goal)}</span><br><b>${esc(s.name)}</b><br><span class="vi">🇻🇳 ${esc(s.vi)}</span><br><i>${esc(s.ex)}</i> <button class="sm" data-sp="${s.id}">🔊</button><br><span class="meta">Đã dùng ở câu:</span><span class="cnt ${c[s.id].length?'on':''}">${c[s.id].length?c[s.id].join(', '):'chưa dùng'}</span>
+  <details data-i="${s.id}" ${open.includes(String(s.id))?'open':''}><summary>Xem chi tiết</summary>
+   <div class="tpl">📐 ${esc(s.tpl)}</div>
+   <div><b>Dùng để làm gì:</b> ${esc(s.use)}</div>
+   ${s.exs.map((e,k)=>`<div class="exr">${esc(e[0])} <button class="sm" data-sp="${s.id}" data-k="${k}">🔊</button><br><small>🇻🇳 ${esc(e[1])} · ${esc(e[2])}</small></div>`).join('')}
+   <div><b>Trả lời lại:</b> ${esc(s.reply)}</div>
+   <div class="trap"><b>Lưu ý cho người Việt:</b> ${esc(s.trap)}</div>
+  </details></div>`).join('');
+  $$('#bank button[data-sp]').forEach(b=>b.onclick=()=>{const st=STR.find(s=>s.id===+b.dataset.sp);speak(b.dataset.k==null?st.ex:st.exs[+b.dataset.k][0])})}
+function p2eval(i,text){
+  const q=P2[i],a=analyze(text);
+  const fmt=a.errors.some(e=>e.fmt)?0:.1;
+  const polite=a.structs.length>0,informal=INFORMAL.test(a.low);
+  const struct=polite?.3:informal?.1:0;
+  const hits=q.k.map(([re])=>re.test(a.low));
+  const content=Math.round(.4*hits.filter(Boolean).length/q.k.length*100)/100;
+  const ge=grammarErrs(a).length;const acc=ge===0?.2:ge===1?.1:0;
+  const score=Math.round((fmt+struct+content+acc)*100)/100;
+  return {a,fmt,struct,content,acc,score,hits,polite,informal}
+}
+function p2html(i,r){
+  const q=P2[i],a=r.a;
+  const items=[];
+  items.push(r.polite?['ok',`Cấu trúc lịch sự: ${a.structs.map(id=>STR.find(s=>s.id===id).name).join(' · ')}`]:r.informal?['warn','Em dùng cách nói thân mật (Can you / I want…). Dùng được với bạn bè, nhưng trong môi trường chuyên nghiệp nên chọn một cấu trúc từ ngân hàng cấu trúc.']:['bad','Chưa dùng cấu trúc lịch sự nào từ ngân hàng cấu trúc.']);
+  q.k.forEach(([re,hint],k)=>items.push(r.hits[k]?['ok','Có ý: '+hint]:['bad','Thiếu ý: '+hint]));
+  a.errors.forEach(e=>items.push(['bad',`Lỗi “${esc(e.q)}”: ${e.m}`]));
+  if(!a.errors.length)items.push(['ok','Không phát hiện lỗi hình thức hoặc ngữ pháp thường gặp.']);
+  const pass=r.score>=P2_PASS&&r.polite;
+  return `<div class="res"><span class="sc" style="color:var(--${pass?'ok':'bad'})">${r.score.toFixed(2)}/1</span> · ${pass?'Đạt':(r.polite?'Chưa đạt':'Chưa đạt (cần dùng cấu trúc lịch sự)')}<ul>${items.map(x=>`<li class="${x[0]}">${x[0]==='ok'?'✔':x[0]==='warn'?'⚠':'✘'} ${esc(x[1]).replace(/“([^”]*)”/g,'“$1”')}</li>`).join('')}</ul>
+  <div class="model"><b>Câu mẫu:</b><br>1) ${esc(q.m[0])} <button class="sm" data-m="0">🔊</button><br><span class="vi">🇻🇳 ${esc(q.mv[0])}</span><br>2) ${esc(q.m[1])} <button class="sm" data-m="1">🔊</button><br><span class="vi">🇻🇳 ${esc(q.mv[1])}</span></div></div>`
+}
+function buildP2(){
+  renderBank();
+  $('#p2').innerHTML=P2.map((q,i)=>{const d=S.p2[i];
+    return `<div class="q" data-i="${i}"><div class="tg">${q.tag.map(t=>`<span>${t}</span>`).join('')}</div><div style="margin:4px 0"><b>${i+1+P1.length}.</b> ${esc(q.sit)}</div><div class="tools"><button class="sm" data-a="idea">💡 Gợi ý từ</button></div><div class="idea"></div><textarea rows="2" placeholder="Viết 1 câu tiếng Anh…">${d?esc(d.text):''}</textarea><div class="tools"><button class="sm pri" data-a="chk">Chấm</button></div><div class="out"></div></div>`}).join('');
+  $$('#p2 .q').forEach(el=>{const i=+el.dataset.i,q=P2[i],ta=el.querySelector('textarea'),out=el.querySelector('.out');
+    el.querySelector('[data-a=idea]').onclick=()=>{el.querySelector('.idea').innerHTML='<div class="meta" style="margin-top:4px">🧰 Cấu trúc nên dùng: '+q.sug.map(id=>{const st=STR.find(x=>x.id===id);return '<b>'+esc(st.name)+'</b> <span class="vi">('+esc(st.vi)+')</span>'}).join(' · ')+'</div>'+q.ideas.map(x=>{const [en,vi]=x.split('|');return `<span data-s="${esc(en)}">🔊 ${esc(en)} <small>(${esc(vi)})</small></span>`}).join('');el.querySelectorAll('.idea span').forEach(s=>s.onclick=()=>speak(s.dataset.s))};
+    const bindModel=()=>out.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>speak(q.m[+b.dataset.m]));
+    if(S.p2[i]){out.innerHTML=p2html(i,p2eval(i,S.p2[i].text));bindModel()}
+    el.querySelector('[data-a=chk]').onclick=()=>{
+      if(!ta.value.trim()){out.innerHTML='<div class="fb no">Em chưa viết gì.</div>';return}
+      const r=p2eval(i,ta.value),prev=S.p2[i];
+      S.p2[i]={text:ta.value,first:prev?prev.first:r.score,score:r.score,best:Math.max(prev?prev.best:0,r.score),ok:!!((prev&&prev.ok)||(r.polite&&r.score>=P2_PASS)),structs:r.a.structs};
+      out.innerHTML=p2html(i,r);bindModel();renderBank();refresh();p2i()}
+  });p2i()
+}
+function p2i(){const ok=Object.values(S.p2).filter(x=>x.ok).length;$('#p2Info').textContent=`Đã chấm ${nOf(S.p2)}/${P2.length} câu · đạt ${ok}.`}
+
+/* ---------- Phần 3: chuyên gia nhận xét ---------- */
+function p3eval(i,text){
+  const q=P3[i],a=analyze(text);
+  /* ngôn ngữ /5 */
+  const L=[];let ls=0;
+  if(a.words>=35){ls+=1;L.push(['ok',`Độ dài tốt (${a.words} từ), đủ để triển khai ý.`])}
+  else if(a.words>=20){ls+=.5;L.push(['warn',`Bài hơi ngắn (${a.words} từ). Hãy thêm lý do hoặc ví dụ để đạt 40–70 từ.`])}
+  else L.push(['bad',`Bài quá ngắn (${a.words} từ). Cần ít nhất 35 từ để chuyên gia đánh giá được.`]);
+  const e=a.errors.length;ls+=e===0?1.5:e===1?1:e===2?.5:0;
+  if(e===0)L.push(['ok','Không phát hiện lỗi hình thức hoặc ngữ pháp thường gặp. Rất tốt.']);
+  else a.errors.slice(0,6).forEach(x=>L.push(['bad',`Lỗi “${esc(x.q)}”: ${x.m}`]));
+  const feat={modal:/\b(should|would|could|might|may|must)\b/.test(a.low),cond:/\bif\b/.test(a.low),polite:a.structs.length>0,contrast:/\b(however|but|although|whereas|while|on the other hand)\b/.test(a.low)};
+  const fc=Object.values(feat).filter(Boolean).length;
+  ls+=fc>=2?1:fc===1?.5:0;
+  L.push(fc>=2?['ok',`Em dùng đa dạng cấu trúc (${[feat.modal&&'động từ khuyết',feat.cond&&'câu điều kiện',feat.polite&&'cấu trúc lịch sự',feat.contrast&&'tương phản'].filter(Boolean).join(', ')}).`]:['warn','Cấu trúc câu còn đơn điệu. Thêm câu điều kiện (If…), động từ khuyết (would, could) hoặc mẫu câu lịch sự (I am afraid…).']);
+  ls+=a.conn.length>=3?1:a.conn.length===2?.5:0;
+  L.push(a.conn.length>=3?['ok',`Liên kết ý tốt (${a.conn.slice(0,5).join(', ')}).`]:['warn',`Từ nối còn ít (${a.conn.length?a.conn.join(', '):'chưa có'}). Dùng because, however, for example, then, finally… để bài mạch lạc hơn.`]);
+  ls+=a.prof.length>=3?.5:a.prof.length>=1?.25:0;
+  L.push(a.prof.length>=3?['ok',`Từ vựng chuyên nghiệp: ${a.prof.slice(0,6).join(', ')}.`]:['warn','Từ vựng chuyên nghiệp còn ít. Thử dùng respect, professional, appropriate, solution, explain, appreciate…']);
+  /* cách xử lý /5 */
+  const H=[];let hs=0;
+  q.rub.forEach(r=>{const v=r.t(a.raw,a);hs+=v;H.push(v>=1?['ok',r.ok]:v>0?['warn','Mới đạt một phần: '+r.no]:['bad',r.no])});
+  let flag=null;
+  if(q.flag){const bad=q.flag.re.test(a.low)||q.flag.re.test(a.raw.toLowerCase());const real=q.flag.re.global?null:null;
+    let f=false;
+    if(q===P3[1])f=badWords(a.raw,q.flag.re).length>0;else f=bad;
+    if(f){flag=q.flag.msg;hs=Math.max(0,hs-1);H.push(['bad','⚠ '+flag])}}
+  ls=Math.min(5,Math.round(ls*10)/10);hs=Math.min(5,Math.round(hs*10)/10);
+  return {a,L,H,ls,hs,total:Math.round((ls+hs)*10)/10,flag}
+}
+function p3html(i,r){
+  const q=P3[i],t=r.total;
+  const lvl=t>=8?'Chuyên gia nhận xét: câu trả lời tốt, có thể dùng trong môi trường làm việc thực tế. Em chỉ cần tinh chỉnh vài chi tiết.':t>=5.5?'Chuyên gia nhận xét: câu trả lời khá, hướng xử lý đúng nhưng còn thiếu một số ý hoặc còn lỗi ngôn ngữ cần sửa.':'Chuyên gia nhận xét: câu trả lời cần phát triển thêm. Hãy làm theo khung gợi ý và sửa các lỗi bên dưới rồi nhận xét lại.';
+  const li=x=>`<li class="${x[0]}">${x[0]==='ok'?'✔':x[0]==='warn'?'⚠':'✘'} ${x[1]}</li>`;
+  const tips=[];
+  if(r.ls<3)tips.push('Về ngôn ngữ: viết chậm, đọc lại để sửa các lỗi đã nêu, và thêm từ nối (because, however, then).');
+  if(r.hs<3.5)tips.push('Về cách xử lý: bám theo khung “'+q.outline+'”.');
+  if(!tips.length)tips.push('Em có thể nâng cấp thêm bằng cách thêm một câu cân nhắc bối cảnh (ví dụ: “If the partner is Japanese, I would…”).');
+  return `<div class="res"><div><span class="sc">${t}/10</span> · Ngôn ngữ ${r.ls}/5 · Cách xử lý ${r.hs}/5</div>
+  <div class="expert">🎓 ${lvl}<br><span class="meta">${esc(q.principle)}</span></div>
+  <h3>① Ngôn ngữ (${r.ls}/5)</h3><ul>${r.L.map(li).join('')}</ul>
+  <h3>② Cách xử lý tình huống (${r.hs}/5)</h3><ul>${r.H.map(li).join('')}</ul>
+  <h3>💡 Gợi ý nâng cấp</h3><ul>${tips.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+  <div class="model"><b>Bản mẫu tham khảo:</b> ${esc(q.model)} <button class="sm" data-m="1">🔊</button><br><span class="meta">${esc(q.why)}</span></div>
+  <div class="expert">❓ <b>Câu hỏi để em nghĩ thêm:</b> ${esc(q.coach)}</div></div>`
+}
+function buildP3(){
+  $('#p3').innerHTML=P3.map((q,i)=>{const d=S.p3[i];
+    return `<div class="q" data-i="${i}"><div class="tg">${q.tag.map(t=>`<span>${t}</span>`).join('')}</div><div style="margin:4px 0"><b>${i+1+P1.length+P2.length}.</b> ${esc(q.prompt)}</div><div class="meta">${esc(q.vi)}</div><div class="meta">🧭 Khung gợi ý: ${esc(q.outline)}</div><textarea rows="6" placeholder="Viết câu trả lời của em bằng tiếng Anh…">${d?esc(d.text):''}</textarea><div class="meta wc"></div><div class="tools"><button class="sm pri" data-a="chk">🎓 Nhận xét của chuyên gia</button></div><div class="out"></div></div>`}).join('');
+  $$('#p3 .q').forEach(el=>{const i=+el.dataset.i,q=P3[i],ta=el.querySelector('textarea'),out=el.querySelector('.out'),wc=el.querySelector('.wc');
+    const upd=()=>{const n=ta.value.trim()?ta.value.trim().split(/\s+/).length:0;wc.textContent=`${n} từ (nên 40–70 từ)`};ta.oninput=upd;upd();
+    const bind=()=>out.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>speak(q.model));
+    if(S.p3[i]){out.innerHTML=p3html(i,p3eval(i,S.p3[i].text));bind()}
+    el.querySelector('[data-a=chk]').onclick=()=>{
+      if(ta.value.trim().split(/\s+/).filter(Boolean).length<10){out.innerHTML='<div class="fb no">Em hãy viết ít nhất vài câu (từ 10 từ trở lên) để chuyên gia nhận xét.</div>';return}
+      const r=p3eval(i,ta.value),prev=S.p3[i];
+      S.p3[i]={text:ta.value,first:prev?prev.first:r.total,ls:r.ls,hs:r.hs,score:r.total,best:Math.max(prev?prev.best:0,r.total),errs:r.a.errors.map(e=>e.q+': '+e.m),flag:r.flag||''};
+      out.innerHTML=p3html(i,r);bind();refresh()}
+  })
+}
+
+/* ---------- Kết quả + nộp bài ---------- */
+TOTAL=P1.length+P2.length+P3.length;
+function totals(){
+  const p1=Object.values(S.a1).filter(x=>x.ok).length;
+  const p2=Object.values(S.p2).reduce((a,x)=>a+x.best,0);
+  const p3=Object.values(S.p3).reduce((a,x)=>a+x.best/10,0);
+  const total=Math.round((p1+p2+p3)*100)/100;
+  return {p1,p2:Math.round(p2*100)/100,p3:Math.round(p3*100)/100,total}
+}
+function buildResult(){
+  $('#nm').textContent=S.name;const t=totals();
+  $('#result').innerHTML=`<div class="big">${t.total}/${TOTAL}</div><div class="meta">≈ ${Math.round(t.total/TOTAL*100)/10}/10 theo thang 10. Điểm tính theo lần tốt nhất của mỗi câu.</div>
+  <table><tr><th>Phần</th><th>Điểm</th></tr><tr><td>1 · Từ vựng (${P1.length} câu)</td><td>${t.p1}/${P1.length}</td></tr><tr><td>2 · Hồi đáp & yêu cầu (9 câu)</td><td>${t.p2}/9</td></tr><tr><td>3 · Tình huống (3 câu, mỗi câu quy về thang 1)</td><td>${t.p3}/3</td></tr></table>
+  <h3>Điểm cần xem lại</h3><ul>${[...(missing(0)),...missing(1),...missing(2)].map(x=>`<li>${x}</li>`).join('')||'<li>Em đã hoàn thành cả 3 phần.</li>'}</ul>`
+}
+async function post(o){const r=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)});return r.json()}
+async function doSubmit(){
+  const msg=$('#subMsg'),btn=$('#submit');btn.disabled=true;msg.textContent='Đang gửi bài…';
+  try{
+    const t=totals(),details=[];
+    P1.forEach((c,i)=>{const d=S.a1[i]||{};details.push({part:'Phần 1 – từ vựng',question:c.q,answer:d.pick||'',correct:c.o[0],result:d.pick?(d.ok?'đúng':'sai'):'chưa làm'})});
+    P2.forEach((q,i)=>{const d=S.p2[i]||{};details.push({part:'Phần 2 – hồi đáp/yêu cầu',question:q.sit,answer:d.text||'',correct:q.m[0],result:`lần đầu ${d.first==null?'-':d.first} · tốt nhất ${d.best||0} · cấu trúc: ${(d.structs||[]).map(id=>STR.find(s=>s.id===id).name).join('; ')||'không'}`})});
+    P3.forEach((q,i)=>{const d=S.p3[i]||{};details.push({part:'Phần 3 – tình huống',question:q.prompt,answer:d.text||'',correct:q.model,result:`lần đầu ${d.first==null?'-':d.first}/10 · tốt nhất ${d.best||0}/10 · ngôn ngữ ${d.ls||0}/5 · xử lý ${d.hs||0}/5${d.flag?' · CẢNH BÁO: '+d.flag:''}${d.errs&&d.errs.length?' · lỗi: '+d.errs.join(' | '):''}`})});
+    const allDone=[0,1,2].every(isDone);
+    const r=await post({type:'submit',name:S.name,lesson:LESSON,summary:{vocab:`Từ vựng ${t.p1}/${P1.length}`,gram:'',ctx:`Hồi đáp & yêu cầu ${t.p2}/9 · Tình huống ${t.p3}/3`,rec:'',para:`Tổng ${t.total}/${TOTAL} · ${allDone?'ĐẠT YÊU CẦU':'CHƯA ĐẠT YÊU CẦU'} · đã bỏ qua cảnh báo ${S.skips} lần`,feedback:'Cô xem lại bài và nhận xét sau.'},details});
+    if(!r.ok)throw new Error(r.error||'submit');
+    S.sent=true;refresh();
+    msg.innerHTML='<b style="color:var(--ok)">✅ Đã nộp bài! Cô sẽ xem lại và nhận xét cho em.</b>'
+  }catch(e){msg.textContent='⚠️ Chưa gửi được ('+e.message+'). Kiểm tra mạng rồi bấm Nộp bài lại.';btn.disabled=false}
+}
+$('#submit').onclick=()=>{
+  const need=[];for(let k=0;k<3;k++){const m=missing(k);if(m.length)need.push(`<b>${STEPS[k].n}</b><br>${m.join('<br>')}`)}
+  if(!need.length)return doSubmit();
+  modal(`<h3>⚠️ Bài chưa hoàn thành</h3><ul class="ins"><li>${need.join('</li><li>')}</li></ul>`,[{t:'Quay lại sửa',pri:1},{t:'Vẫn nộp',f:()=>{S.skips++;doSubmit()}}])
+};
+
+/* ---------- Khởi động ---------- */
+function start(){show(S.cur||0)}
+(function(){
+  let last='';try{last=localStorage.getItem(KEY+':last')||''}catch(e){}
+  modal(`<h3>Xin chào! 👋</h3><p class="ins">Em gõ họ và tên để cô nhận được bài.</p><input type="text" id="nameIn" style="width:100%" placeholder="Họ và tên" value="${esc(last)}">`,[{t:'Bắt đầu',pri:1}]);
+  $('#mb button').onclick=()=>{const v=$('#nameIn').value.trim();if(!v){$('#nameIn').focus();return}S.name=v;load(v);S.name=v;$('#modal').classList.remove('show');start()}
+})();
+</script>
+</body>
+</html>
