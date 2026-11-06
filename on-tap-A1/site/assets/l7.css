@@ -15,7 +15,7 @@
 .nc.done{border-color:var(--ok);background:var(--okSoft)}
 .nc.done .n{background:var(--ok);color:#fff}
 .nc.cur{outline:3px solid var(--coral);outline-offset:1px}
-@media (max-width:560px){.nc .l{display:none}.nc{padding:3px 4px}.nc.cur .l{display:inline}}
+@media (max-width:560px){.navchips{flex-wrap:wrap;overflow:visible}.nc{padding:3px 8px 3px 3px;font-size:12px}.nc .l{max-width:170px}}
 .pwarn{color:var(--ins);font-weight:700;font-size:14px;margin-top:2px}
 .ahead,.alert{background:var(--insBg);border:2px solid var(--ins);color:var(--ins);border-radius:12px;padding:10px 14px;font-weight:700;margin:0 0 10px}
 .ahead a,.alert a{color:var(--ins);text-decoration:underline;font-weight:800}
