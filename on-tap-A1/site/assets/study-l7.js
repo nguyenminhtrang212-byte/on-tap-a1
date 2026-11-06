@@ -57,7 +57,8 @@ function blocker(i){return null;}
 function earlier(i){const r=[];for(let k=0;k<i;k++){if(req(STEPS[k])&&!isDone(STEPS[k])&&STEPS[k].type!=='finish')r.push(k);}return r;}
 const short=s=>s.short||s.title;
 const VI=/[àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ]/i;
-const ACT=/\b(pick|picks|picking|clean|collect|plant|help|carry|ask|tell|put|throw|join|volunteer|donate|recycle|organi[sz]e|invite|talk|visit|give|make|bring|share|use|start|call|take|walk)\b/i;
+const ACT0=/\b(pick|picks|picking|clean|collect|plant|help|carry|ask|tell|put|throw|join|volunteer|donate|recycle|organi[sz]e|invite|talk|visit|give|make|bring|share|use|start|call|take|walk)\b/i;
+const ACT=D.act?new RegExp(D.act,'i'):ACT0;
 function solveOK(v){return !!v&&wc(v)>=3&&!VI.test(v);}
 function missing(s){
   if(s.type==='read')return isDone(s)?'':(s.id===(D.glossStep||'r-read')?'chưa tra đủ 5 từ và chưa tick “Em đã đọc kỹ”':'chưa tick “Em đã đọc kỹ”');
@@ -279,7 +280,7 @@ function buildSolve(s,b){
 }
 /* ---------- chấm phát âm bằng nhận diện giọng nói (Chrome); chỉ để tham khảo ---------- */
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-const SAMEW={neighborhood:'neighbourhood',colour:'color'};
+const SAMEW={neighborhood:'neighbourhood',colour:'color',practice:'practise',theater:'theatre',favorite:'favourite',colorful:'colourful'};
 function toks(t){return String(t).toLowerCase().replace(/[’]/g,"'").replace(/[^a-z0-9' ]+/g,' ').split(/\s+/).map(w=>w.replace(/^'+|'+$/g,'')).filter(Boolean).map(w=>SAMEW[w]||w);}
 function grade(target,heard){
   const T=toks(target),H=toks(heard),n=T.length,m=H.length;
