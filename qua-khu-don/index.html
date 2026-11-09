@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quá khứ đơn - Past Simple</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js" defer></script>
+<style>
+:root{
+  --bg:#EAF6F7; --paper:#FFFFFF; --ink:#10304A; --muted:#557085; --line:#CFE3E6;
+  --sea:#0E7C86; --sea2:#2BB3B1; --seaSoft:#D5F0EF; --coral:#EF5B43; --coralSoft:#FDE3DD;
+  --sun:#FFC24B; --sunSoft:#FFF1CF; --ok:#1E8F52; --okSoft:#DDF3E6; --bad:#D23B2A; --badSoft:#FBE1DD;
+  --head:"Baloo 2","Be Vietnam Pro",system-ui,sans-serif;
+  --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0B1E28; --paper:#12303D; --ink:#E4F2F4; --muted:#9DB8C4; --line:#24505F;
+  --sea:#43C6C4; --sea2:#2BB3B1; --seaSoft:#16434B; --coral:#FF7A63; --coralSoft:#4A2622;
+  --sun:#FFC24B; --sunSoft:#473a1b; --ok:#4FD08A; --okSoft:#173D2A; --bad:#FF7A6A; --badSoft:#4A2320;
+}}
+:root[data-theme="dark"]{
+  --bg:#0B1E28; --paper:#12303D; --ink:#E4F2F4; --muted:#9DB8C4; --line:#24505F;
+  --sea:#43C6C4; --sea2:#2BB3B1; --seaSoft:#16434B; --coral:#FF7A63; --coralSoft:#4A2622;
+  --sun:#FFC24B; --sunSoft:#473a1b; --ok:#4FD08A; --okSoft:#173D2A; --bad:#FF7A6A; --badSoft:#4A2320;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+img{max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding:16px}
+.hero{display:grid;grid-template-columns:1fr auto;gap:18px;background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:20px 22px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:repeating-linear-gradient(90deg,var(--sea2) 0 22px,var(--coral) 22px 44px)}
+.hero h1{font-family:var(--head);font-weight:800;font-size:clamp(24px,4.6vw,38px);line-height:1.08;margin:0 0 6px}
+.hero .sub{color:var(--muted);margin:0 0 8px}
+.hero ul{margin:4px 0 0;padding-left:20px;font-size:15px}
+.stamp{width:108px;height:128px;border:3px dashed var(--coral);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:var(--head);transform:rotate(4deg);background:var(--coralSoft);align-self:start}
+.stamp .e{font-size:40px;line-height:1}
+.stamp .t{font-weight:800;font-size:16px;color:var(--coral)}
+.stamp .s{font-size:12px;color:var(--muted)}
+@media (max-width:560px){.hero{grid-template-columns:1fr}.stamp{display:none}}
+.settings{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:14px 0 10px;font-size:14px;color:var(--muted)}
+.settings select,.settings input[type=range]{accent-color:var(--sea)}
+.settings select{max-width:230px;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.tabs{display:flex;gap:6px;overflow-x:auto;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:8px 0;margin-bottom:8px}
+.tab{flex:0 0 auto;border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 14px;font-weight:600;font-size:15px;white-space:nowrap}
+.tab[aria-selected=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.panel{display:none}
+.panel.on{display:block}
+h2{font-family:var(--head);font-weight:800;font-size:24px;margin:10px 0 4px}
+h3{font-family:var(--head);font-weight:700;font-size:19px;margin:18px 0 6px}
+.hint{color:var(--muted);font-size:14px;margin:0 0 12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:10px 0}
+.vgroup h3{display:flex;align-items:center;gap:8px}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.vcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.vtop{display:flex;gap:10px;align-items:flex-start}
+.vemo{font-size:28px;line-height:1}
+.vw{font-weight:700;font-size:16px}
+.ipa{font-family:"Lucida Sans Unicode","Arial Unicode MS",var(--body);color:var(--sea);font-size:14px}
+.vvi{font-size:14px}
+.vex{font-size:13px;color:var(--muted);font-style:italic;margin:6px 0}
+.pr{margin-top:8px}
+.pr-btns{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.b{border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:5px 10px;font-size:14px;font-weight:600;display:inline-flex;gap:5px;align-items:center}
+.b:hover:not(:disabled){border-color:var(--sea)}
+.b:disabled{opacity:.4;cursor:not-allowed}
+.b.rec{border-color:var(--coral);color:var(--coral)}
+.b.rec.on{background:var(--coral);color:#fff;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px var(--coralSoft)}}
+@media (prefers-reduced-motion:reduce){.b.rec.on{animation:none}}
+.b.primary{background:var(--sea);border-color:var(--sea);color:#fff}
+.timer{font-variant-numeric:tabular-nums;color:var(--coral);font-weight:700;font-size:14px}
+.live{font-size:14px;color:var(--muted);min-height:0}
+.live:not(:empty){margin-top:6px}
+.res:not(:empty){margin-top:8px;padding:10px 12px;border-radius:10px;background:var(--bg)}
+.score{display:inline-block;font-weight:800;border-radius:999px;padding:1px 10px;margin-right:6px;font-size:14px}
+.score.hi{background:var(--okSoft);color:var(--ok)}
+.score.mid{background:var(--sunSoft);color:#9a6700}
+.score.lo{background:var(--badSoft);color:var(--bad)}
+:root[data-theme="dark"] .score.mid{color:var(--sun)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .score.mid{color:var(--sun)}}
+.w-ok{color:var(--ok)}
+.w-no{color:var(--bad);text-decoration:underline wavy;text-underline-offset:3px;cursor:pointer;background:none;border:0;padding:0;font:inherit;font-weight:700}
+.diff{line-height:1.9}
+.tip{font-size:14px;margin-top:6px}
+.fixlist{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.fix{border:1px solid var(--bad);background:var(--badSoft);color:var(--bad);border-radius:8px;padding:2px 8px;font-size:14px}
+.q{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:10px 0}
+.q .qt{font-weight:600;margin-bottom:6px}
+.q label{display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-radius:8px;cursor:pointer}
+.q label:hover{background:var(--bg)}
+.q input{margin-top:5px;accent-color:var(--sea)}
+.q.right{border-color:var(--ok);background:var(--okSoft)}
+.q.wrong{border-color:var(--bad);background:var(--badSoft)}
+.expl{font-size:14px;margin-top:6px}
+.bigscore{font-family:var(--head);font-size:30px;font-weight:800;color:var(--sea)}
+input[type=text]{padding:9px 12px;border-radius:10px;border:1.5px solid var(--line);font:inherit;background:var(--paper);color:var(--ink);min-width:200px}
+textarea{width:100%;min-height:70px;border-radius:10px;border:1.5px solid var(--line);padding:8px 10px;font:inherit;background:var(--paper);color:var(--ink);resize:vertical}
+table{border-collapse:collapse;width:100%;font-size:14px}
+td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.tbl{overflow-x:auto}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:12px;font-size:14px;z-index:20;display:none;max-width:90%}
+.warn{background:var(--sunSoft);border-radius:10px;padding:8px 12px;font-size:14px}
+.cloud{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;z-index:15;box-shadow:0 2px 8px rgba(16,48,74,.12)}
+.gate{position:fixed;inset:0;background:rgba(11,30,40,.55);z-index:40;display:flex;align-items:center;justify-content:center;padding:16px}
+.gate[hidden]{display:none}
+.gate-box{background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:22px;max-width:380px;width:100%;text-align:center}
+.gate-box input{width:100%;font-size:18px;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.chip{border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:3px 10px;font-size:14px}
+.chip.ok{border-color:var(--ok);background:var(--okSoft);color:var(--ok)}
+.chip.no{border-color:var(--line);color:var(--muted)}
+details.model{border:1.5px dashed var(--sea2);border-radius:12px;padding:8px 12px;margin-top:10px}
+details.model summary{cursor:pointer;font-weight:700;color:var(--sea)}
+.cxrow{display:grid;grid-template-columns:120px 1fr 1fr 60px;gap:8px;align-items:center;margin:8px 0;font-size:14px}
+.cxrow input{width:100%;min-width:0}
+.cxrow .ok1{color:var(--ok);font-weight:800}
+.cxrow .no1{color:var(--bad);font-weight:800}
+@media (max-width:620px){.cxrow{grid-template-columns:1fr 1fr;grid-template-areas:"w w" "c c2" "s s"}}
+.compbox{overflow-x:auto}
+.wcount{font-size:13px;color:var(--muted);margin-top:4px}
+.dictrow{display:flex;align-items:center;gap:8px;padding:8px 4px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dictrow input{flex:1;min-width:140px}
+.step{font-family:var(--head);font-weight:700;color:var(--sea);margin:8px 0 2px;font-size:13px}
+
+/* ===== bổ sung cho bài Quá khứ đơn ===== */
+:root{--ins:#8B1A1A}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--ins:#FF9A8A} }
+:root[data-theme="dark"]{--ins:#FF9A8A}
+.ins{font-weight:700;color:var(--ins);margin:6px 0 10px}
+.hero{padding:14px 18px}
+.hero h1{font-size:clamp(22px,4.2vw,32px)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bg);padding:8px 0 6px;margin-bottom:6px}
+.pbar{display:flex;align-items:center;gap:10px}
+.pbar .track{flex:1;height:12px;background:var(--line);border-radius:999px;overflow:hidden}
+.pbar .track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sea2),var(--sea));transition:width .4s}
+.pbar b{font-family:var(--head);min-width:44px;text-align:right}
+.sc-row{display:flex;gap:6px;overflow-x:auto;margin-top:8px;padding-bottom:2px}
+.sc{flex:0 0 auto;border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px;font-weight:600;font-size:14px;white-space:nowrap}
+.sc.done{border-color:var(--ok);background:var(--okSoft)}
+.sc.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.nextrow{display:flex;justify-content:flex-end;margin:18px 0 6px}
+.nextrow .b{font-size:17px;padding:10px 18px}
+.opts{display:grid;gap:6px;margin-top:6px}
+.opt{text-align:left;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:9px 12px;font-weight:600;color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--sea)}
+.opt.right{border-color:var(--ok);background:var(--okSoft);color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:var(--badSoft);color:var(--bad)}
+.opt:disabled{cursor:default}
+.q.right,.q.wrong{background:var(--paper)}
+.tl{display:flex;align-items:stretch;gap:0;margin:10px 0;text-align:center;font-weight:700;font-size:14px}
+.tl div{flex:1;padding:10px 6px;border:2px solid var(--line)}
+.tl .p{background:var(--coralSoft);border-color:var(--coral);border-radius:12px 0 0 12px}
+.tl .n{background:var(--sunSoft);border-color:var(--sun)}
+.tl .f{background:var(--seaSoft);border-color:var(--sea2);border-radius:0 12px 12px 0}
+.tl small{display:block;font-weight:500;color:var(--muted)}
+.fm td:first-child{white-space:nowrap;font-weight:700}
+.fm b.v{color:var(--coral)}
+.skel{background:var(--sunSoft);border:2px dashed var(--sun);border-radius:12px;padding:10px 14px;font-size:15px;line-height:1.7}
+.skel .g{color:var(--muted);font-style:italic}
+.gtabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.gt{border:2px solid var(--line);background:var(--paper);border-radius:12px;padding:6px 10px;font-weight:700;font-size:14px}
+.gt.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.gt.done{border-color:var(--ok)}
+.gt:disabled{opacity:.45;cursor:not-allowed}
+.hud{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-weight:800;font-family:var(--head);font-size:17px}
+.dots{display:flex;gap:4px;margin:6px 0}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--line)}
+.dots i.d{background:var(--ok)}
+.dots i.c{background:var(--sun);outline:2px solid var(--ink)}
+.era{display:inline-block;background:var(--ink);color:var(--paper);border-radius:999px;padding:2px 12px;font-weight:700;font-size:14px}
+.sent{font-size:19px;font-weight:600;margin:10px 0 4px;line-height:1.45}
+.sent.lab{font-size:15px;color:var(--muted)}
+.vi{background:var(--seaSoft);border-radius:10px;padding:6px 10px;font-size:15px;margin:6px 0}
+.fact{background:var(--sunSoft);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:14px}
+.passage{background:var(--bg);border-left:4px solid var(--sea2);padding:8px 12px;border-radius:8px;margin:8px 0;line-height:1.7}
+.stars{font-size:34px}
+.vcard .vw span.sw{cursor:pointer;border-bottom:2px dotted var(--sea)}
+.vcard.heard{border-color:var(--ok)}
+.vtag{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:0 6px;background:var(--seaSoft);color:var(--sea);margin-left:6px}
+.listen-n{font-weight:800;font-family:var(--head)}
+.wc{font-weight:800}
+.wc.bad{color:var(--ins)}
+.wc.ok{color:var(--ok)}
+.fb h4{margin:14px 0 4px;font-family:var(--head)}
+.fb ul{margin:4px 0;padding-left:20px}
+.fb li{margin:3px 0}
+.fb .g{color:var(--ok)}.fb .r{color:var(--bad)}.fb .y{color:#9a6700}
+:root[data-theme="dark"] .fb .y{color:var(--sun)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fb .y{color:var(--sun)}}
+.mbox{max-width:460px;text-align:left}
+.mbox h3{margin-top:0}
+.mbox ul{padding-left:20px;margin:6px 0}
+.mbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-top:12px}
+.rd{display:flex;gap:6px;align-items:center;margin:8px 0 2px;font-size:14px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div>
+    <h1>Quá khứ đơn · Past Simple</h1>
+    <p class="sub">4 mục, từ dễ đến khó: <b>1 Lý thuyết</b> → <b>2 Game “Cỗ máy thời gian”</b> → <b>3 Từ vựng (25 động từ)</b> → <b>4 Viết thư cho Hannah</b>. Bài bám theo Unit 5 “A Perfect Day” (Close-up A1+). Các câu hỏi và bài đọc do Claude soạn.</p>
+  </div>
+  <div class="stamp" aria-hidden="true"><span class="e">⏳</span><span class="t">Past Simple</span><span class="s">4 mục</span></div>
+</header>
+
+<div class="settings">
+  <label>Giọng đọc: <select id="voiceSel"><option>Đang tải giọng…</option></select></label>
+  <label>Tốc độ: <input id="rate" type="range" min="0.6" max="1.15" step="0.05" value="0.9"> <span id="rateV">0.9</span></label>
+</div>
+
+<div class="top">
+  <div class="pbar"><div class="track"><i id="pfill"></i></div><b id="ppct">0%</b></div>
+  <div class="sc-row" id="scRow">
+    <button class="sc on" data-s="1">1 · Lý thuyết</button>
+    <button class="sc" data-s="2">2 · Game</button>
+    <button class="sc" data-s="3">3 · Từ vựng</button>
+    <button class="sc" data-s="4">4 · Viết thư</button>
+    <button class="sc" data-s="5">📨 Nộp bài</button>
+  </div>
+</div>
+
+<!-- ============ MỤC 1: LÝ THUYẾT ============ -->
+<section class="panel on" id="p1">
+  <h2>Mục 1 · Lý thuyết</h2>
+  <p class="ins">Đọc kỹ 4 thẻ dưới đây, rồi tick “Em đã đọc kỹ” để mở phần câu hỏi kiểm tra.</p>
+
+  <div class="card">
+    <h3 style="margin-top:0">1️⃣ Quá khứ đơn nói về điều gì?</h3>
+    <p>Quá khứ đơn (<b>Past Simple</b>) nói về một hành động <b>đã làm</b> hoặc <b>chưa từng làm (didn’t)</b> ở một <b>thời điểm cụ thể trong quá khứ</b>, và việc đó <b>đã kết thúc</b>.</p>
+    <div class="tl"><div class="p">⏪ Quá khứ<small>last weekend · yesterday · in 1945</small></div><div class="n">⏺ Bây giờ<small>now</small></div><div class="f">⏩ Tương lai<small>tomorrow · next week</small></div></div>
+    <p><b>Dấu hiệu nhận biết:</b> <i>yesterday</i> (hôm qua), <i>last night / week / weekend / summer</i> (tối / tuần / cuối tuần / mùa hè trước), <i>two days ago</i> (cách đây 2 ngày), <i>in 1945</i> (vào năm 1945), <i>when I was ten</i> (khi tôi 10 tuổi).</p>
+    <p>Ví dụ: <i>I visited Hue last summer.</i> = Tôi <b>đã</b> đến Huế mùa hè năm ngoái. <i>I didn’t visit Da Lat.</i> = Tôi <b>đã không</b> đến Đà Lạt.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">2️⃣ Công thức (cấu trúc)</h3>
+    <div class="tbl"><table class="fm">
+      <tr><th>Loại câu</th><th>Công thức</th><th>Ví dụ</th></tr>
+      <tr><td>Khẳng định</td><td>S + <b class="v">V2 / V-ed</b></td><td>She <b>visited</b> Hue. / She <b>went</b> to Hue.<br><small>Cô ấy đã đến Huế.</small></td></tr>
+      <tr><td>Phủ định</td><td>S + <b class="v">didn’t</b> + <b class="v">V1</b></td><td>She <b>didn’t go</b> to Da Lat.<br><small>Cô ấy đã không đi Đà Lạt.</small></td></tr>
+      <tr><td>Câu hỏi Yes/No</td><td><b class="v">Did</b> + S + <b class="v">V1</b> …?</td><td><b>Did</b> she <b>go</b> to Hue? — Yes, she <b>did</b>. / No, she <b>didn’t</b>.</td></tr>
+      <tr><td>Câu hỏi Wh-</td><td>Wh- + <b class="v">did</b> + S + <b class="v">V1</b> …?</td><td>Where <b>did</b> she <b>go</b>?<br><small>Cô ấy đã đi đâu?</small></td></tr>
+      <tr><td>To be</td><td>S + <b class="v">was / were</b> (+ not)<br><b class="v">Was / Were</b> + S …?</td><td>I/he/she/it <b>was</b>; you/we/they <b>were</b>.<br><i>Were they at school? — Yes, they were.</i></td></tr>
+    </table></div>
+    <p class="tip">⚠️ Sau <b>did / didn’t</b>, động từ <b>trở về nguyên mẫu (V1)</b>: <i>Did she go…? / She didn’t go…</i> — không nói <i>went</i> nữa vì <i>did</i> đã mang nghĩa quá khứ rồi.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">3️⃣ Vì sao tiếng Anh gọi là “Simple” (Đơn – đơn giản)?</h3>
+    <ul>
+      <li><b>Một từ – một dạng:</b> ở câu khẳng định chỉ cần <b>một động từ</b> đổi sang V2. Dùng <b>chung cho mọi chủ ngữ</b>: <i>I / you / he / she / we / they <b>went</b></i> (không có “-s” như hiện tại: <i>he goes</i>).</li>
+      <li><b>Một việc đơn giản đã xong:</b> chỉ nói “việc đó đã xảy ra” ở một mốc thời gian rõ ràng, không thêm ý “đang làm dở” hay “còn ảnh hưởng đến bây giờ”.</li>
+      <li><b>So với các thì phức tạp hơn</b> (em sẽ học sau): <i>was going</i> (đang làm) hay <i>had gone</i> (đã làm xong trước một việc khác) đều cần <b>2 từ</b> – còn <i>went</i> chỉ cần <b>1 từ</b>.</li>
+    </ul>
+    <p class="tip">💡 Nhớ nhanh: <b>Một từ · một việc · một mốc đã qua</b> = <b>Simple</b>.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">4️⃣ Cách tạo V2</h3>
+    <div class="tbl"><table>
+      <tr><td><b>Có quy tắc</b> (thêm -ed)</td><td>visit → visit<b>ed</b> · like → like<b>d</b> · stop → sto<b>pped</b> · study → stud<b>ied</b> · play → play<b>ed</b></td></tr>
+      <tr><td><b>Bất quy tắc</b> (phải học thuộc)</td><td>go → <b>went</b> · eat → <b>ate</b> · buy → <b>bought</b> · see → <b>saw</b> · have → <b>had</b> · be → <b>was / were</b> · do → <b>did</b></td></tr>
+    </table></div>
+    <p class="tip">Mục 3 sẽ giúp em học và nghe 25 động từ thường gặp.</p>
+  </div>
+
+  <div class="card"><label style="display:flex;gap:8px;align-items:center;font-weight:700"><input type="checkbox" id="readTick" style="width:20px;height:20px"> Em đã đọc kỹ phần lý thuyết</label></div>
+  <div id="tqWrap" hidden>
+    <h3>Kiểm tra lý thuyết</h3>
+    <p class="ins">Chọn đáp án đúng. Sai thì đọc giải thích rồi chọn lại.</p>
+    <div id="tqBox"></div>
+  </div>
+  <div class="nextrow"><button class="b primary" data-next="2">Tiếp tục ▶ Mục 2: Game</button></div>
+</section>
+
+<!-- ============ MỤC 2: GAME ============ -->
+<section class="panel" id="p2">
+  <h2>Mục 2 · Game “Cỗ máy thời gian” ⏳</h2>
+  <p class="ins">Đọc câu (bấm 🔊 để nghe, 🇻🇳 để xem nghĩa), rồi chọn đáp án. Qua 3 level: thời gian → chọn dạng đúng (có trộn hiện tại, tương lai) → đọc đoạn ngắn có dịch. Level sau sẽ mở khi em làm xong level trước.</p>
+  <div id="gameBox"></div>
+  <div class="nextrow"><button class="b primary" data-next="3">Tiếp tục ▶ Mục 3: Từ vựng</button></div>
+</section>
+
+<!-- ============ MỤC 3: TỪ VỰNG ============ -->
+<section class="panel" id="p3">
+  <h2>Mục 3 · Từ vựng: 25 động từ quá khứ</h2>
+  <p class="ins">Bước A: bấm 🔊 nghe từng từ (V1, V2, câu ví dụ). Em cần nghe <b>ít nhất 20 từ</b>. Bấm vào chữ tiếng Anh màu xanh để nghe + xem phiên âm và nghĩa.</p>
+  <div class="card"><span class="listen-n" id="listenN">🎧 Đã nghe 0/25 từ</span> <span class="hint">(cần ít nhất 20)</span></div>
+  <div id="vocabBox"></div>
+
+  <h3>Bước B · Luyện từ (dễ → khó)</h3>
+  <p class="ins">Làm từng bài. Sai thì xem giải thích rồi chọn lại.</p>
+  <h3 class="step" style="font-size:16px">B1 · Chọn dạng quá khứ đúng</h3><div id="vaBox"></div>
+  <h3 class="step" style="font-size:16px">B2 · Nghe rồi chọn từ em nghe được</h3><div id="vbBox"></div>
+  <h3 class="step" style="font-size:16px">B3 · Nghe âm đuôi -ed: /t/, /d/ hay /ɪd/?</h3>
+  <div class="card"><b>Mẹo:</b> sau âm vô thanh (p, k, f, s, ch, sh) → <b>/t/</b>; sau âm hữu thanh và nguyên âm → <b>/d/</b>; sau /t/ hoặc /d/ → <b>/ɪd/</b> (thêm một âm tiết).</div>
+  <div id="vcBox"></div>
+  <h3 class="step" style="font-size:16px">B4 · Gõ dạng quá khứ đúng vào câu</h3><div id="vdBox"></div>
+
+  <h3>Bước C · Đọc to và ghi âm</h3>
+  <p class="ins">Bấm 🔊 nghe mẫu, rồi 🎙 đọc cả nhóm. Từ nào đỏ thì bấm vào để nghe lại. Ghi lại bao nhiêu lần cũng được; bản ghi chỉ được gửi cho cô khi em bấm “Nộp bài” ở cuối.</p>
+  <div id="vrecBox"></div>
+  <div class="nextrow"><button class="b primary" data-next="4">Tiếp tục ▶ Mục 4: Viết thư</button></div>
+</section>
+
+<!-- ============ MỤC 4: VIẾT THƯ ============ -->
+<section class="panel" id="p4">
+  <h2>Mục 4 · Viết thư cho Hannah ✉️</h2>
+  <h3>Bước A · Ôn nhanh bố cục thư</h3>
+  <div class="card">
+    <p class="ins" style="margin-top:0">Một lá thư thân mật gồm 4 phần, mỗi phần nằm trên dòng riêng:</p>
+    <div class="skel">
+      <div>① <b>Lời chào</b> → <span class="g">Dear + tên (viết hoa) + dấu phẩy</span></div>
+      <div>② <b>Nội dung</b> → <span class="g">mỗi ý một câu: viết hoa chữ đầu câu, có dấu chấm (.) hoặc hỏi (?) ở cuối</span></div>
+      <div>③ <b>Lời kết</b> → <span class="g">một cụm kết thư + dấu phẩy, trên dòng riêng</span></div>
+      <div>④ <b>Tên của em</b> → <span class="g">dòng cuối cùng</span></div>
+    </div>
+    <p class="tip">Luôn viết hoa: <b>chữ đầu câu</b>, chữ <b>I</b>, <b>tên người, địa danh, thứ, tháng</b> (Hannah, Hue, Sunday, May).</p>
+  </div>
+  <div id="lqBox"></div>
+
+  <h3>Bước B · Viết thư kể về cuối tuần vừa rồi</h3>
+  <p class="ins">Em hãy viết thư cho bạn Hannah, kể về cuối tuần vừa rồi của em. Em cần viết <b>ít nhất 50 từ</b>; nếu thiếu, bài sẽ bị <b>điểm thấp</b>. Em tự nghĩ nội dung và tự chọn câu – cô không gợi ý trước.</p>
+  <div class="card">
+    <textarea id="letterBox" placeholder="Viết thư của em ở đây…" style="min-height:240px;font-size:16px" spellcheck="false"></textarea>
+    <div class="rd"><span class="wc bad" id="wc">0/50 từ</span> <button class="b" id="letterHear">🔊 Nghe máy đọc thư của em</button></div>
+    <div class="ins" id="wcMsg"></div>
+  </div>
+
+  <h3>Bước C · Đọc to lá thư và ghi âm</h3>
+  <p class="ins">Đọc to đúng lá thư em vừa viết. Máy sẽ cho biết % đọc đúng; bấm từ đỏ để nghe lại cách đọc. Bản ghi chỉ gửi khi em bấm “Nộp bài”.</p>
+  <div class="card"><div id="letterRec"></div></div>
+  <div class="nextrow"><button class="b primary" data-next="5">Tiếp tục ▶ Nộp bài</button></div>
+</section>
+
+<!-- ============ NỘP BÀI ============ -->
+<section class="panel" id="p5">
+  <h2>📨 Nộp bài cho cô</h2>
+  <p class="ins">Em kiểm tra lại các phần, rồi bấm nộp. Các bản ghi âm sẽ được gửi <b>lúc này</b>, không gửi trước.</p>
+  <div class="card">
+    <div class="rd" style="margin-bottom:10px">Tên em: <input type="text" id="stuName" placeholder="Họ và tên"></div>
+    <button class="b primary" id="submitBtn" style="font-size:18px;padding:10px 18px">📨 Nộp bài cho cô</button>
+    <div id="submitMsg" class="tip"></div>
+  </div>
+  <h3>Em đã làm được</h3>
+  <div id="sumBox"></div>
+  <div id="fbWrap" hidden>
+    <h3>💬 Nhận xét sơ bộ cho em</h3>
+    <div class="card fb" id="fbBox"></div>
+    <p class="hint">Đây là nhận xét tự động của máy để em biết mình cần phát huy gì. Cô sẽ xem lại bài và nhận xét chi tiết sau.</p>
+  </div>
+</section>
+
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="cloud" id="cloud" hidden></div>
+<div class="gate" id="gate" hidden>
+  <div class="gate-box">
+    <div style="font-size:48px">⏳</div>
+    <h2 style="margin:4px 0">Chào em!</h2>
+    <p>Em gõ họ và tên để cô nhận được bài nhé.</p>
+    <input type="text" id="gateName" placeholder="Họ và tên" autocomplete="name">
+    <button class="b primary" id="gateGo" style="font-size:18px;padding:10px 20px;margin-top:12px">Bắt đầu làm bài ▶</button>
+    <p class="tip" style="color:var(--muted)">🎙 Khi máy hỏi dùng micro, em bấm <b>Cho phép</b> (Allow).</p>
+  </div>
+</div>
+<div class="gate" id="modal" hidden><div class="gate-box mbox" id="mbox"></div></div>
+<div class="warn" id="noUrl" hidden style="position:fixed;top:0;left:0;right:0;z-index:30;border-radius:0;text-align:center">⚙️ Trang chưa được cài link nhận bài (SCRIPT_URL).</div>
+
+<script>
+/* ================= CÀI ĐẶT CỦA GIÁO VIÊN ================= */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnf8X3_Xfk9F_8HQtBwSFU_s28sRjxKb0aFaHCA4ybmMJvgaztBAbdvaFzITdbVXBt/exec';
+const LESSON = 'Past Simple - Tu hoc';
+
+/* ================= NỘI DUNG BÀI (Claude soạn; bám Close-up A1+ Unit 5 "A Perfect Day") ================= */
+
+/* ---------- MỤC 1: LÝ THUYẾT – 7 câu hỏi kiểm tra ---------- */
+const TQ = [
+ {q:"Câu nào nói về một hành động <b>đã xảy ra và đã kết thúc</b> vào một thời điểm cụ thể trong quá khứ?",
+  o:["I visit Hue every summer.","I visited Hue last summer.","I will visit Hue next summer."],a:1,
+  x:"<b>last summer</b> là mốc đã qua → quá khứ đơn (<i>visited</i>). <i>every summer</i> → hiện tại đơn; <i>next summer</i> → tương lai."},
+ {q:"Công thức <b>câu hỏi</b> (động từ thường) của quá khứ đơn là:",
+  o:["Did + S + V2 …?","Did + S + V1 …?","Do + S + V1 …?","S + did + V1 …?"],a:1,
+  x:"<b>Did + S + V1 …?</b> — <i>Did</i> đã mang nghĩa quá khứ nên động từ chính trở về nguyên mẫu (Did she <u>go</u>…?)."},
+ {q:"Chọn câu <b>phủ định</b> đúng:<br><i>She ___ to school yesterday.</i>",
+  o:["didn't went","didn't go","not go","doesn't go"],a:1,
+  x:"Sau <b>didn't</b> động từ trở về <b>nguyên mẫu</b> (V1): <i>didn't go</i>. Không nói <i>didn't went</i> vì <i>didn't</i> đã mang nghĩa quá khứ rồi."},
+ {q:"Chọn từ đúng để tạo <b>câu hỏi</b>:<br><i>___ you watch TV last night?</i>",
+  o:["Do","Are","Did","Were"],a:2,
+  x:"Câu hỏi quá khứ đơn (động từ thường): <b>Did + chủ ngữ + V1 …?</b> Trả lời: <i>Yes, I did. / No, I didn't.</i>"},
+ {q:"Vì sao tiếng Anh gọi thì này là <b>“Simple”</b> (đơn – đơn giản)?",
+  o:["Vì chỉ dùng được với những động từ ngắn","Vì ở câu khẳng định chỉ cần MỘT dạng động từ (V2) và dùng chung cho mọi chủ ngữ","Vì thì này luôn dễ hơn các thì khác","Vì thì này chỉ dùng ở câu phủ định"],a:1,
+  x:"“Simple” = đơn giản: chỉ <b>một từ động từ</b> đổi dạng (V2), dùng chung cho I/you/he/she/they (<i>he went</i>, không có -s). Không thêm ý “đang làm” (be + V-ing) hay “đã xong và còn liên quan hiện tại” (have + V3) – những thứ này em sẽ học sau."},
+ {q:"Cấu trúc câu <b>phủ định</b> (động từ thường) của quá khứ đơn là:",
+  o:["S + did not + V1","S + not + V2","S + didn't + V2","S + was not + V1"],a:0,
+  x:"S + <b>did not (didn't)</b> + <b>V1</b>. Ví dụ: <i>They didn't visit the museum.</i>"},
+ {q:"Cụm từ nào thường đi với quá khứ đơn?",
+  o:["tomorrow","every day","next week","two days ago"],a:3,
+  x:"<b>two days ago</b> (cách đây 2 ngày) chỉ thời điểm đã qua. Các cụm khác: yesterday, last night, last weekend, in 1945…"},
+ {q:"Chọn dạng đúng của <i>to be</i>:<br><i>They ___ at home last night.</i>",
+  o:["was","were","did","are"],a:1,
+  x:"<i>to be</i> quá khứ: <b>I / he / she / it → was</b>; <b>you / we / they → were</b>. Câu này chủ ngữ là <i>They</i> → <i>were</i>."}
+];
+
+/* ---------- MỤC 2: GAME “CỖ MÁY THỜI GIAN” (3 level, A1–A2) ---------- */
+const GATES = ["⏪ Quá khứ (Past)","⏺ Hiện tại (Present)","⏩ Tương lai (Future)"];
+const GAME_LEVELS = [
+ {id:'g1',name:'Level 1 · Cổng thời gian',desc:'Đọc câu rồi chọn câu này nói về <b>quá khứ, hiện tại hay tương lai</b>.',
+  rounds:[
+   {era:'🌾 Ngày xưa',s:'Long ago, people in Viet Nam grew rice.',vi:'Ngày xưa, người dân Việt Nam trồng lúa.',
+    q:'Câu này nói về thời gian nào?',o:GATES,a:0,x:'<i>Long ago</i> (ngày xưa) và <i>grew</i> (quá khứ của grow) → quá khứ.',f:'Lúa gạo là cây trồng quan trọng của người Việt từ rất lâu rồi.'},
+   {era:'🚲 Bây giờ',s:'Today, I go to school by bike.',vi:'Hôm nay, tôi đi học bằng xe đạp.',
+    q:'Câu này nói về thời gian nào?',o:GATES,a:1,x:'<i>Today</i> và <i>go</i> → hiện tại.',f:'Thói quen hằng ngày dùng hiện tại đơn.'},
+   {era:'🏯 Năm sau',s:'Next year, we will visit Hue.',vi:'Năm sau, chúng tôi sẽ đi thăm Huế.',
+    q:'Câu này nói về thời gian nào?',o:GATES,a:2,x:'<i>Next year</i> và <i>will visit</i> → tương lai.',f:'Huế từng là kinh đô của Việt Nam.'},
+   {era:'🏡 Ngày xưa',s:'Many years ago, my grandma lived in a small village.',vi:'Nhiều năm trước, bà tôi sống ở một ngôi làng nhỏ.',
+    q:'Câu này nói về thời gian nào?',o:GATES,a:0,x:'<i>Many years ago</i> và <i>lived</i> (V-ed) → quá khứ.',f:'Nhiều làng quê Việt Nam có cây đa, giếng nước và sân đình.'},
+   {era:'🏙️ Bây giờ',s:'Ha Noi is a big city.',vi:'Hà Nội là một thành phố lớn.',
+    q:'Câu này nói về thời gian nào?',o:GATES,a:1,x:'<i>is</i> → hiện tại (sự thật bây giờ).',f:'Hà Nội là thủ đô của Việt Nam.'},
+   {era:'🎬 Hôm qua',s:'Yesterday, we watched a film about Viet Nam.',vi:'Hôm qua, chúng tôi đã xem một bộ phim về Việt Nam.',
+    q:'Câu này nói về thời gian nào?',o:GATES,a:0,x:'<i>Yesterday</i> và <i>watched</i> → quá khứ.',f:'Xem phim bằng tiếng Anh giúp em nghe quen âm thanh.'}
+  ]},
+ {id:'g2',name:'Level 2 · Chọn dạng đúng',desc:'Chọn đáp án đúng. Chú ý <b>từ chỉ thời gian</b> trong câu!',
+  rounds:[
+   {era:'🌾 Ngày xưa',s:'Long ago, people ___ rice in the fields.',vi:'Ngày xưa, người ta trồng lúa ngoài đồng.',
+    q:'Chọn dạng đúng:',o:['grew','grow','will grow'],a:0,x:'<i>Long ago</i> → quá khứ. <i>grow</i> → <b>grew</b> (bất quy tắc).',f:'Ruộng lúa nước rất quen thuộc ở nông thôn Việt Nam.'},
+   {era:'🐃 Ngày xưa',s:'Many years ago, farmers ___ buffaloes to work in the fields.',vi:'Nhiều năm trước, nông dân dùng trâu để làm việc ngoài đồng.',
+    q:'Chọn dạng đúng:',o:['use','will use','used'],a:2,x:'<i>Many years ago</i> → quá khứ. <i>use</i> → <b>used</b> (thêm -d).',f:'Trâu giúp người nông dân cày ruộng.'},
+   {era:'🥮 Tết năm ngoái',s:'Last Tet, my family ___ banh chung.',vi:'Tết năm ngoái, gia đình tôi đã làm bánh chưng.',
+    q:'Chọn dạng đúng:',o:['makes','will make','made'],a:2,x:'<i>Last Tet</i> → quá khứ. <i>make</i> → <b>made</b> (bất quy tắc).',f:'Bánh chưng là món ăn truyền thống ngày Tết.'},
+   {era:'🎒 Ngày xưa',s:'Long ago, many children ___ to school on foot.',vi:'Ngày xưa, nhiều trẻ em đi bộ đến trường.',
+    q:'Chọn dạng đúng:',o:['went','go','goes'],a:0,x:'<i>Long ago</i> → quá khứ. <i>go</i> → <b>went</b>.',f:'Ngày nay nhiều em đi bằng xe đạp hoặc xe buýt.'},
+   {era:'🏍️ Bây giờ',s:'Today, many people ___ motorbikes in Viet Nam.',vi:'Ngày nay, nhiều người ở Việt Nam đi xe máy.',
+    q:'Chọn dạng đúng:',o:['rode','will ride','ride'],a:2,x:'<i>Today</i> → hiện tại. Chủ ngữ số nhiều → <b>ride</b>.',f:'Xe máy là phương tiện rất phổ biến ở Việt Nam.'},
+   {era:'🏖️ Mùa hè tới',s:'Next summer, we ___ to Da Nang.',vi:'Mùa hè tới, chúng tôi sẽ đi Đà Nẵng.',
+    q:'Chọn dạng đúng:',o:['went','will go','go'],a:1,x:'<i>Next summer</i> → tương lai → <b>will go</b>.',f:'Đà Nẵng có nhiều bãi biển đẹp.'},
+   {era:'📵 Ngày xưa',s:'Long ago, people ___ phones.',vi:'Ngày xưa, người ta không có điện thoại.',
+    q:'Chọn câu phủ định đúng:',o:["didn't have","didn't had","not have"],a:0,x:"Phủ định: <b>didn't + V1</b> → <i>didn't have</i>.",f:'Thư tay là cách liên lạc phổ biến ngày xưa.'},
+   {era:'❓ Hỏi đáp',s:'___ people have phones long ago? — No, they didn’t.',vi:'Ngày xưa người ta có điện thoại không? — Không, họ không có.',
+    q:'Chọn từ đúng để hỏi:',o:['Do','Was','Did'],a:2,x:'Câu hỏi quá khứ: <b>Did + chủ ngữ + V1</b>. Trả lời: <i>No, they didn’t.</i>',f:'Did … ? → trả lời bằng did / didn’t.'}
+  ]},
+ {id:'g3',name:'Level 3 · Đọc hiểu',desc:'Đọc đoạn ngắn (bấm 🔊 để nghe, 🇻🇳 để xem nghĩa), rồi trả lời câu hỏi.',
+  passages:{
+   A:{title:'Life long ago',
+      text:"Long ago, many Vietnamese people lived in small villages. They grew rice and caught fish in the rivers. They did not have phones or cars.",
+      vi:"Ngày xưa, nhiều người Việt Nam sống ở những ngôi làng nhỏ. Họ trồng lúa và bắt cá ở các con sông. Họ không có điện thoại hay ô tô."},
+   B:{title:'Going to school',
+      text:"Long ago, Vietnamese children walked to school. Today, many children go by bike or by bus. Tomorrow, I will go by bike too.",
+      vi:"Ngày xưa, trẻ em Việt Nam đi bộ đến trường. Ngày nay, nhiều em đi bằng xe đạp hoặc xe buýt. Ngày mai, tôi cũng sẽ đi bằng xe đạp."},
+   C:{title:'Our class trip',
+      text:"Last year, my class visited the Temple of Literature in Ha Noi. We saw old stone turtles and took many photos. Next month, we will visit Hue.",
+      vi:"Năm ngoái, lớp tôi đã thăm Văn Miếu ở Hà Nội. Chúng tôi đã nhìn thấy những con rùa đá cổ và chụp nhiều ảnh. Tháng sau, chúng tôi sẽ đi thăm Huế."}
+  },
+  rounds:[
+   {p:'A',era:'📖 Bài đọc 1',q:'What did people grow?',o:['Coffee','Rice','Tea'],a:1,x:'<i>They grew rice</i> = Họ trồng lúa.',f:'Lúa gạo là cây trồng quen thuộc ở Việt Nam.'},
+   {p:'A',era:'📖 Bài đọc 1',q:'Which sentence is TRUE?',o:['They had phones.','They did not have phones or cars.','They will have cars.'],a:1,x:'Đoạn văn: <i>They did not have phones or cars.</i>',f:'<i>did not + V1</i> = đã không …'},
+   {p:'B',era:'📖 Bài đọc 2',q:'How did children go to school long ago?',o:['By bus','On foot','By plane'],a:1,x:'<i>walked to school</i> = đi bộ đến trường.',f:'<i>walk</i> → <i>walked</i> (thêm -ed).'},
+   {p:'B',era:'📖 Bài đọc 2',q:'Which sentence is about the FUTURE?',o:['Children walked to school.','Many children go by bike or by bus.','I will go by bike.'],a:2,x:'<i>will go</i> + <i>Tomorrow</i> → tương lai.',f:'<i>will + V1</i> nói về tương lai.'},
+   {p:'C',era:'📖 Bài đọc 3',q:'Where did the class go last year?',o:['To Hue','To the Temple of Literature','To Ha Long Bay'],a:1,x:'<i>my class visited the Temple of Literature</i>.',f:'Văn Miếu ở Hà Nội là nơi thờ Khổng Tử và là trường học xưa.'},
+   {p:'C',era:'📖 Bài đọc 3',q:'Which sentence uses the PAST SIMPLE?',o:['We will visit Hue.','We saw old stone turtles.','We visit Hue every year.'],a:1,x:'<i>saw</i> là quá khứ của <i>see</i>.',f:'see → saw (bất quy tắc).'}
+  ]}
+];
+
+/* ---------- MỤC 3: 25 ĐỘNG TỪ ----------
+   g: 'be' (to be/do/have), 'irr' (bất quy tắc), 'reg' (có quy tắc); snd: âm đuôi -ed */
+const VERBS = [
+ {g:'be',e:'🧍',v1:'be',v2:'was / were',s1:'be',s2:'was',s2b:'were',i1:'/biː/',i2:'/wɒz/ · /wɜː/',vi:'thì, là, ở',ex:'The film was long, and the seats were old.',exvi:'Bộ phim dài, và những chiếc ghế thì cũ.',tip:'I/he/she/it → was; you/we/they → were.'},
+ {g:'be',e:'✅',v1:'do',v2:'did',s1:'do',s2:'did',i1:'/duː/',i2:'/dɪd/',vi:'làm',ex:'She did her homework after dinner.',exvi:'Cô ấy làm bài tập sau bữa tối.',tip:'do/does → did (cho mọi chủ ngữ).'},
+ {g:'be',e:'🎒',v1:'have',v2:'had',s1:'have',s2:'had',i1:'/hæv/ (has /hæz/)',i2:'/hæd/',vi:'có, ăn, uống',ex:'We had a test on Monday.',exvi:'Chúng tôi có một bài kiểm tra vào thứ Hai.',tip:'have/has → had (cho mọi chủ ngữ).'},
+ {g:'irr',e:'🚶',v1:'go',v2:'went',s1:'go',s2:'went',i1:'/ɡəʊ/',i2:'/went/',vi:'đi',ex:'My uncle went to Da Nang by train.',exvi:'Chú tôi đã đi Đà Nẵng bằng tàu hỏa.',tip:'Không có “goed”.'},
+ {g:'irr',e:'🍚',v1:'eat',v2:'ate',s1:'eat',s2:'ate',i1:'/iːt/',i2:'/et/ hoặc /eɪt/',vi:'ăn',ex:'The children ate all the cake.',exvi:'Bọn trẻ đã ăn hết cái bánh.',tip:'Không có “eated”.'},
+ {g:'irr',e:'👀',v1:'see',v2:'saw',s1:'see',s2:'saw',i1:'/siː/',i2:'/sɔː/',vi:'nhìn thấy',ex:'I saw a rainbow after the rain.',exvi:'Tôi đã nhìn thấy cầu vồng sau cơn mưa.',tip:'see → saw.'},
+ {g:'irr',e:'🛍️',v1:'buy',v2:'bought',s1:'buy',s2:'bought',i1:'/baɪ/',i2:'/bɔːt/',vi:'mua',ex:'Mum bought a new bag.',exvi:'Mẹ đã mua một chiếc túi mới.',tip:'Không có “buyed”.'},
+ {g:'irr',e:'🛠️',v1:'make',v2:'made',s1:'make',s2:'made',i1:'/meɪk/',i2:'/meɪd/',vi:'làm ra, tạo ra',ex:'He made a model boat.',exvi:'Cậu ấy đã làm một chiếc thuyền mô hình.',tip:'Không có “maked”.'},
+ {g:'irr',e:'🤝',v1:'meet',v2:'met',s1:'meet',s2:'met',i1:'/miːt/',i2:'/met/',vi:'gặp',ex:'We met a tourist at the lake.',exvi:'Chúng tôi đã gặp một du khách ở hồ.',tip:'meet → met (đọc ngắn hơn).'},
+ {g:'irr',e:'📸',v1:'take',v2:'took',s1:'take',s2:'took',i1:'/teɪk/',i2:'/tʊk/',vi:'lấy, chụp (ảnh), mang',ex:'She took a photo of the bridge.',exvi:'Cô ấy đã chụp một bức ảnh cây cầu.',tip:'take → took.'},
+ {g:'irr',e:'✍️',v1:'write',v2:'wrote',s1:'write',s2:'wrote',i1:'/raɪt/',i2:'/rəʊt/',vi:'viết',ex:'He wrote a short poem.',exvi:'Cậu ấy đã viết một bài thơ ngắn.',tip:'Không có “writed”.'},
+ {g:'irr',e:'😴',v1:'sleep',v2:'slept',s1:'sleep',s2:'slept',i1:'/sliːp/',i2:'/slept/',vi:'ngủ',ex:'The baby slept for two hours.',exvi:'Em bé đã ngủ hai tiếng.',tip:'sleep → slept.'},
+ {g:'irr',e:'🏫',v1:'come',v2:'came',s1:'come',s2:'came',i1:'/kʌm/',i2:'/keɪm/',vi:'đến',ex:'My teacher came to class early.',exvi:'Cô giáo tôi đã đến lớp sớm.',tip:'come → came.'},
+ {g:'reg',e:'🏛️',v1:'visit',v2:'visited',s1:'visit',s2:'visited',i1:'/ˈvɪzɪt/',i2:'/ˈvɪzɪtɪd/',snd:'id',vi:'thăm, tham quan',ex:'They visited the Temple of Literature.',exvi:'Họ đã thăm Văn Miếu.',tip:'Đuôi -ed đọc /ɪd/ (sau âm /t/).'},
+ {g:'reg',e:'📺',v1:'watch',v2:'watched',s1:'watch',s2:'watched',i1:'/wɒtʃ/',i2:'/wɒtʃt/',snd:'t',vi:'xem',ex:'We watched a film about history.',exvi:'Chúng tôi đã xem một bộ phim về lịch sử.',tip:'Đuôi -ed đọc /t/ (sau âm vô thanh /tʃ/).'},
+ {g:'reg',e:'⚽',v1:'play',v2:'played',s1:'play',s2:'played',i1:'/pleɪ/',i2:'/pleɪd/',snd:'d',vi:'chơi',ex:'The boys played football in the park.',exvi:'Các cậu bé đã chơi bóng đá trong công viên.',tip:'Nguyên âm + y → chỉ thêm -ed (không đổi y).'},
+ {g:'reg',e:'🧹',v1:'clean',v2:'cleaned',s1:'clean',s2:'cleaned',i1:'/kliːn/',i2:'/kliːnd/',snd:'d',vi:'dọn dẹp, lau chùi',ex:'I cleaned my desk.',exvi:'Tôi đã dọn bàn học.',tip:'Đuôi -ed đọc /d/ (sau âm hữu thanh /n/).'},
+ {g:'reg',e:'🍳',v1:'cook',v2:'cooked',s1:'cook',s2:'cooked',i1:'/kʊk/',i2:'/kʊkt/',snd:'t',vi:'nấu ăn',ex:'Grandma cooked a big dinner.',exvi:'Bà đã nấu một bữa tối thịnh soạn.',tip:'Đuôi -ed đọc /t/ (sau âm vô thanh /k/).'},
+ {g:'reg',e:'🤲',v1:'help',v2:'helped',s1:'help',s2:'helped',i1:'/help/',i2:'/helpt/',snd:'t',vi:'giúp đỡ',ex:'He helped his sister with her homework.',exvi:'Cậu ấy đã giúp em gái làm bài tập.',tip:'Đuôi -ed đọc /t/ (sau âm vô thanh /p/).'},
+ {g:'reg',e:'📚',v1:'study',v2:'studied',s1:'study',s2:'studied',i1:'/ˈstʌdi/',i2:'/ˈstʌdid/',snd:'d',vi:'học',ex:'She studied English for an hour.',exvi:'Cô ấy đã học tiếng Anh một tiếng.',tip:'Phụ âm + y → đổi y thành i rồi thêm -ed.'},
+ {g:'reg',e:'🏨',v1:'stay',v2:'stayed',s1:'stay',s2:'stayed',i1:'/steɪ/',i2:'/steɪd/',snd:'d',vi:'ở lại',ex:'We stayed in a small hotel.',exvi:'Chúng tôi đã ở trong một khách sạn nhỏ.',tip:'Nguyên âm + y → chỉ thêm -ed.'},
+ {g:'reg',e:'🚶‍♀️',v1:'walk',v2:'walked',s1:'walk',s2:'walked',i1:'/wɔːk/',i2:'/wɔːkt/',snd:'t',vi:'đi bộ',ex:'They walked along the river.',exvi:'Họ đã đi bộ dọc bờ sông.',tip:'Đuôi -ed đọc /t/ (sau âm vô thanh /k/).'},
+ {g:'reg',e:'😊',v1:'enjoy',v2:'enjoyed',s1:'enjoy',s2:'enjoyed',i1:'/ɪnˈdʒɔɪ/',i2:'/ɪnˈdʒɔɪd/',snd:'d',vi:'thích, tận hưởng',ex:'The tourists enjoyed the food.',exvi:'Du khách đã thích đồ ăn.',tip:'Nguyên âm + y → chỉ thêm -ed.'},
+ {g:'reg',e:'🎧',v1:'listen',v2:'listened',s1:'listen',s2:'listened',i1:'/ˈlɪsn/',i2:'/ˈlɪsnd/',snd:'d',vi:'nghe',ex:'I listened to the radio.',exvi:'Tôi đã nghe radio.',tip:'Đuôi -ed đọc /d/ (sau âm hữu thanh /n/).'},
+ {g:'reg',e:'🎁',v1:'want',v2:'wanted',s1:'want',s2:'wanted',i1:'/wɒnt/',i2:'/ˈwɒntɪd/',snd:'id',vi:'muốn',ex:'He wanted a new bike.',exvi:'Cậu ấy đã muốn một chiếc xe đạp mới.',tip:'Đuôi -ed đọc /ɪd/ (sau âm /t/).'}
+];
+const MIN_LISTEN = 20; // học ít nhất 20 từ
+
+/* 3B-1: chọn dạng quá khứ */
+const VA = [
+ {q:'<b>visit</b> (thăm) → quá khứ là gì?',o:['visit','visited','visiting'],a:1,x:'Động từ có quy tắc: thêm <b>-ed</b> → visited.'},
+ {q:'<b>go</b> (đi) → quá khứ là gì?',o:['goed','went','goes'],a:1,x:'<b>go → went</b> là động từ bất quy tắc (không có “goed”).'},
+ {q:'<b>watch</b> (xem) → quá khứ là gì?',o:['watchd','watching','watched'],a:2,x:'Tận cùng -ch → thêm <b>-ed</b>: watched.'},
+ {q:'<b>eat</b> (ăn) → quá khứ là gì?',o:['eated','ate','eats'],a:1,x:'<b>eat → ate</b> (bất quy tắc).'},
+ {q:'<b>study</b> (học) → quá khứ là gì?',o:['studied','studyed','studing'],a:0,x:'Phụ âm + y → đổi <b>y → i</b> rồi thêm <b>-ed</b>: studied.'},
+ {q:'<b>buy</b> (mua) → quá khứ là gì?',o:['buyed','boughted','bought'],a:2,x:'<b>buy → bought</b> (bất quy tắc).'},
+ {q:'<i>She ___ at home last night.</i> (be)',o:['were','was','is'],a:1,x:'<b>she</b> → <b>was</b>. (you/we/they → were)'},
+ {q:'<b>do</b> (làm) → quá khứ là gì?',o:['did','does','doed'],a:0,x:'<b>do/does → did</b> cho mọi chủ ngữ.'},
+ {q:'<b>play</b> (chơi) → quá khứ là gì?',o:['played','plaied','playd'],a:0,x:'Nguyên âm + y → chỉ thêm <b>-ed</b>: played (không đổi y).'},
+ {q:'<b>have</b> (có) → quá khứ là gì?',o:['haved','had','has'],a:1,x:'<b>have/has → had</b> cho mọi chủ ngữ.'},
+ {q:'<b>take</b> (chụp, lấy) → quá khứ là gì?',o:['taked','took','taking'],a:1,x:'<b>take → took</b> (bất quy tắc).'},
+ {q:'<i>They ___ happy yesterday.</i> (be)',o:['was','are','were'],a:2,x:'<b>they</b> → <b>were</b>.'}
+];
+/* 3B-2: nghe rồi chọn từ đúng */
+const VB = [
+ {say:'went',o:['went','want','wait'],a:0,x:'<b>went</b> /went/ = đã đi. <i>want</i> /wɒnt/ = muốn.'},
+ {say:'wanted',o:['walked','watched','wanted'],a:2,x:'<b>wanted</b> /ˈwɒntɪd/ có 2 âm tiết, đuôi /ɪd/.'},
+ {say:'stayed',o:['studied','stayed','started'],a:1,x:'<b>stayed</b> /steɪd/ (ở lại). <i>studied</i> /ˈstʌdid/ (đã học).'},
+ {say:'bought',o:['brought','boat','bought'],a:2,x:'<b>bought</b> /bɔːt/ (đã mua). <i>brought</i> có thêm âm /r/.'},
+ {say:'met',o:['made','met','meet'],a:1,x:'<b>met</b> /met/ ngắn; <i>meet</i> /miːt/ dài; <i>made</i> /meɪd/.'},
+ {say:'ate',o:['at','eat','ate'],a:2,x:'<b>ate</b> /et/ hoặc /eɪt/ (đã ăn). <i>at</i> /æt/.'},
+ {say:'saw',o:['see','saw','sit'],a:1,x:'<b>saw</b> /sɔː/ (đã nhìn thấy).'},
+ {say:'visited',o:['visited','wanted','listened'],a:0,x:'<b>visited</b> /ˈvɪzɪtɪd/ (3 âm tiết).'},
+ {say:'wrote',o:['wrote','road','write'],a:0,x:'<b>wrote</b> /rəʊt/ (đã viết). <i>write</i> /raɪt/.'},
+ {say:'cleaned',o:['climbed','closed','cleaned'],a:2,x:'<b>cleaned</b> /kliːnd/ (đã dọn dẹp).'}
+];
+/* 3B-3: âm đuôi -ed */
+const VC = [
+ {say:'watched',o:['/t/','/d/','/ɪd/'],a:0,x:'watch tận cùng âm vô thanh /tʃ/ → -ed đọc <b>/t/</b>.'},
+ {say:'played',o:['/t/','/d/','/ɪd/'],a:1,x:'play tận cùng bằng nguyên âm → -ed đọc <b>/d/</b>.'},
+ {say:'visited',o:['/t/','/d/','/ɪd/'],a:2,x:'visit tận cùng âm /t/ → -ed đọc <b>/ɪd/</b> (thêm một âm tiết).'},
+ {say:'cooked',o:['/t/','/d/','/ɪd/'],a:0,x:'cook tận cùng âm vô thanh /k/ → <b>/t/</b>.'},
+ {say:'cleaned',o:['/t/','/d/','/ɪd/'],a:1,x:'clean tận cùng âm hữu thanh /n/ → <b>/d/</b>.'},
+ {say:'wanted',o:['/t/','/d/','/ɪd/'],a:2,x:'want tận cùng âm /t/ → <b>/ɪd/</b>.'},
+ {say:'helped',o:['/t/','/d/','/ɪd/'],a:0,x:'help tận cùng âm vô thanh /p/ → <b>/t/</b>.'},
+ {say:'listened',o:['/t/','/d/','/ɪd/'],a:1,x:'listen tận cùng âm hữu thanh /n/ → <b>/d/</b>.'}
+];
+/* 3B-4: gõ dạng quá khứ trong câu */
+const VD = [
+ {vi:'Hôm qua tôi đã đi thư viện.',q:'Yesterday, I ___ (go) to the library.',a:['went'],x:'go → <b>went</b> (bất quy tắc).'},
+ {vi:'Tối qua chúng tôi đã xem một bộ phim.',q:'We ___ (watch) a film last night.',a:['watched'],x:'watch + <b>ed</b> → watched.'},
+ {vi:'Cách đây hai tiếng cô ấy đã học tiếng Anh.',q:'She ___ (study) English two hours ago.',a:['studied'],x:'Phụ âm + y → đổi y thành i + <b>ed</b>: studied.'},
+ {vi:'Trưa qua cậu ấy đã ăn cơm.',q:'He ___ (eat) rice for lunch yesterday.',a:['ate'],x:'eat → <b>ate</b> (bất quy tắc).'},
+ {vi:'Thứ Hai tuần trước họ đã ở trường.',q:'They ___ (be) at school last Monday.',a:['were'],x:'they → <b>were</b>.'},
+ {vi:'Tuần trước tôi bị cảm.',q:'I ___ (have) a cold last week.',a:['had'],x:'have → <b>had</b>.'},
+ {vi:'Chủ nhật chúng tôi đã mua ít trái cây.',q:'We ___ (buy) some fruit on Sunday.',a:['bought'],x:'buy → <b>bought</b> (bất quy tắc).'},
+ {vi:'Hôm qua bọn trẻ đã chơi ở công viên.',q:'The children ___ (play) in the park yesterday.',a:['played'],x:'play + <b>ed</b> → played (nguyên âm + y: không đổi y).'},
+ {vi:'Tối qua cô ấy đã làm bài tập.',q:'She ___ (do) her homework last night.',a:['did'],x:'do → <b>did</b>.'},
+ {vi:'Tuần trước cậu ấy đã viết một lá thư.',q:'He ___ (write) a letter last week.',a:['wrote'],x:'write → <b>wrote</b> (bất quy tắc).'}
+];
+/* 3C: ghi âm đọc to */
+const VREC = [
+ {key:'v-be', t:'1️⃣ be – do – have', target:'be, was, were. do, did. have, has, had.', max:25},
+ {key:'v-irr',t:'2️⃣ Động từ bất quy tắc', target:'go, went. eat, ate. see, saw. buy, bought. make, made. meet, met. take, took. write, wrote. sleep, slept. come, came.', max:45},
+ {key:'v-reg',t:'3️⃣ Động từ có quy tắc (-ed)', target:'visit, visited. watch, watched. play, played. clean, cleaned. cook, cooked. help, helped. study, studied. stay, stayed. walk, walked. enjoy, enjoyed. listen, listened. want, wanted.', max:55},
+ {key:'v-sent',t:'4️⃣ Đọc câu', target:'Yesterday, we visited the museum and watched a film. She went to the market and bought some fruit. They were happy because they had a good day.', max:35}
+];
+
+/* ---------- MỤC 4: THƯ CHO HANNAH ---------- */
+const LQ = [
+ {q:'Chọn <b>lời chào</b> viết đúng:',o:['dear hannah','Dear Hannah.','Dear Hannah,','Dear, Hannah'],a:2,
+  x:'Lời chào: <b>Dear + Tên (viết hoa) + dấu phẩy ( , )</b>.'},
+ {q:'Chọn câu viết hoa và chấm câu <b>đúng</b>:',o:['last weekend, i went to hue with my family','Last weekend, I went to Hue with my family.','Last weekend, i went to Hue with my family.','last Weekend, I went to hue with my family'],a:1,
+  x:'Viết hoa: <b>chữ đầu câu</b>, chữ <b>I</b>, tên riêng (Hue). Cuối câu có <b>dấu chấm ( . )</b>.'},
+ {q:'<b>Thứ tự</b> đúng của một lá thư thân mật là:',o:['Lời kết → Lời chào → Nội dung → Tên','Nội dung → Lời chào → Tên → Lời kết','Lời chào → Nội dung → Lời kết → Tên','Tên → Lời chào → Nội dung → Lời kết'],a:2,
+  x:'Thứ tự: <b>Lời chào → Nội dung → Lời kết (Best wishes,) → Tên em</b>. Mỗi phần thường nằm trên một dòng riêng.'},
+ {q:'Chọn câu có <b>dấu câu</b> đúng:',o:['Did you like the film.','Did you like the film?','Did you like the film,','Did you like the film'],a:1,
+  x:'Câu hỏi kết thúc bằng <b>dấu hỏi ( ? )</b>; câu kể kết thúc bằng <b>dấu chấm ( . )</b>.'},
+ {q:'Những chữ nào <b>phải</b> viết hoa?',o:['i','friday','hanoi','Cả ba chữ: i, friday, hanoi'],a:3,
+  x:'<b>I</b>, tên thứ trong tuần (<b>Friday</b>) và tên địa danh (<b>Hanoi</b>) đều luôn viết hoa.'}
+];
+const MIN_WORDS = 50;
+
+/* ================= HELPERS ================= */
+const $ = s=>document.querySelector(s);
+function h(tag,attrs={},html){const e=document.createElement(tag);for(const k in attrs){if(k==='class')e.className=attrs[k];else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function toast(msg,ms=3500){const t=$('#toast');t.textContent=msg;t.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>t.style.display='none',ms);}
+const SHARED_KEYS=['name','voice','rate'];
+function skey(k){return SHARED_KEYS.includes(k)?'spk:'+k:'spk:'+LESSON+':'+k;}
+function store(k,v){try{localStorage.setItem(skey(k),JSON.stringify(v));}catch(e){}}
+function load(k,d){try{const v=localStorage.getItem(skey(k));return v?JSON.parse(v):d;}catch(e){return d;}}
+
+/* ============ So sánh chuỗi đơn giản (nghe-chép từ) ============ */
+function normPhrase(s){return String(s||'').toLowerCase().trim().replace(/[^\p{L}\p{N}\s'-]/gu,'').replace(/\s+/g,' ');}
+
+/* ============ TEXT NORMALIZE & COMPARE (chấm phát âm từ vựng) ============ */
+const HOMO={'eight':'ate','8':'ate','maid':'made','rote':'wrote','meat':'meet','mete':'meet','where':'were','too':'to','two':'to','2':'to','their':'there','right':'write','rite':'write','know':'no','by':'buy','bye':'buy','sea':'see','new':'knew'};
+const CONTR={"i'd":"i would","i'm":"i am","it's":"it is","can't":"cannot","don't":"do not","didn't":"did not"};
+function normWord(w){w=w.toLowerCase().replace(/[’`]/g,"'").replace(/[^a-z0-9']/g,'');if(!w)return[];if(CONTR[w])return CONTR[w].split(' ');w=w.replace(/'/g,'');return w?[HOMO[w]||w]:[];}
+function tokenize(text){const disp=text.split(/\s+/).filter(Boolean);const toks=[];disp.forEach((d,i)=>{normWord(d).forEach(t=>toks.push({t,i}));});return {disp,toks};}
+function spokenTokens(text){const out=[];text.split(/\s+/).forEach(w=>normWord(w).forEach(t=>out.push(t)));return out;}
+function compare(target,spoken){
+  const {disp,toks}=tokenize(target);const sp=spokenTokens(spoken||'');
+  const n=toks.length,m=sp.length;
+  const L=Array.from({length:n+1},()=>new Uint16Array(m+1));
+  for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)L[i][j]=toks[i].t===sp[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+  const matched=new Array(n).fill(false);let i=0,j=0;
+  while(i<n&&j<m){if(toks[i].t===sp[j]){matched[i]=true;i++;j++;}else if(L[i+1][j]>=L[i][j+1])i++;else j++;}
+  const dispOk=disp.map(()=>true);const dispHas=disp.map(()=>false);
+  toks.forEach((tk,k)=>{dispHas[tk.i]=true;if(!matched[k])dispOk[tk.i]=false;});
+  const got=m?matched.filter(Boolean).length:0;
+  const score=n?Math.round(got/n*100):0;
+  const missed=[];
+  const html=disp.map((d,k)=>{if(!dispHas[k])return esc(d);if(dispOk[k])return `<span class="w-ok">${esc(d)}</span>`;missed.push(d);return `<span class="w-no" data-say="${esc(d.replace(/[^A-Za-z'’-]/g,''))}" title="Bấm để nghe từ này">${esc(d)}</span>`;}).join(' ');
+  return {score,html,missed};
+}
+
+/* ================= TTS ================= */
+let VOICES=[],EN_VOICE=null;
+const synth=window.speechSynthesis;
+function rankVoice(v){if(!/^en/i.test(v.lang))return -1;let s=0;const n=v.name;
+  if(/en[-_](US|GB)/i.test(v.lang))s+=10;
+  if(/Natural|Neural|Online|Premium|Enhanced/i.test(n))s+=30;
+  if(/Google/i.test(n))s+=18;
+  if(/Samantha|Ava|Allison|Serena|Daniel|Karen|Moira|Aria|Jenny|Guy|Libby|Sonia|Emma|Brian|Ryan/i.test(n))s+=15;
+  return s;}
+function loadVoices(){if(!synth)return;VOICES=synth.getVoices();const en=VOICES.filter(v=>rankVoice(v)>=0).sort((a,b)=>rankVoice(b)-rankVoice(a));
+  const sel=$('#voiceSel');const saved=load('voice',null);
+  if(!en.length){sel.innerHTML='<option>Không có giọng tiếng Anh</option>';return;}
+  sel.innerHTML=en.map((v,i)=>`<option value="${i}">${esc(v.name)} (${v.lang})</option>`).join('');
+  let idx=0;if(saved){const k=en.findIndex(v=>v.name===saved);if(k>=0)idx=k;}
+  sel.value=idx;EN_VOICE=en[idx];
+  sel.onchange=()=>{EN_VOICE=en[+sel.value];store('voice',EN_VOICE.name);speak("Hello!");};}
+if(synth){loadVoices();synth.onvoiceschanged=loadVoices;}
+function rate(){return +$('#rate').value;}
+$('#rate').value=load('rate',0.9);$('#rateV').textContent=$('#rate').value;
+$('#rate').oninput=e=>{$('#rateV').textContent=e.target.value;store('rate',+e.target.value);};
+function speak(text,{slow=false,onend}={}){
+  if(!synth){toast('Trình duyệt này không đọc được âm thanh. Hãy dùng Chrome hoặc Safari.');return;}
+  synth.cancel();const u=new SpeechSynthesisUtterance(text);
+  u.lang=EN_VOICE?EN_VOICE.lang:'en-US';if(EN_VOICE)u.voice=EN_VOICE;u.rate=slow?Math.max(0.5,rate()*0.7):rate();u.pitch=1;
+  if(onend)u.onend=onend;setTimeout(()=>synth.speak(u),40);}
+function stopSpeak(){synth&&synth.cancel();}
+
+/* ================= RECORDING ================= */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const RESULTS=load('results',{});
+const BLOBS={};
+const CLOUD_CB={}; // key -> hàm cập nhật trạng thái gửi trên từng thẻ, dùng khi bấm "Nộp bài"
+let STREAM=null,ACTIVE=null;
+async function getStream(){if(STREAM&&STREAM.active)return STREAM;STREAM=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}});return STREAM;}
+function pickMime(){if(!window.MediaRecorder)return'';for(const m of['audio/webm;codecs=opus','audio/mp4','audio/webm','audio/ogg'])if(MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(m))return m;return'';}
+async function startRec(ctx){
+  if(ACTIVE){const same=ACTIVE.ctx===ctx;stopRec();if(same)return;}
+  stopSpeak();
+  if(!navigator.mediaDevices||!window.MediaRecorder){ctx.ui.msg('Trình duyệt này chưa ghi âm được. Hãy mở bài bằng Chrome (máy tính/Android) hoặc Safari (iPhone).');return;}
+  let s;try{s=await getStream();}catch(e){ctx.ui.msg('Chưa mở được micro. Bấm vào biểu tượng 🔒 trên thanh địa chỉ → cho phép Micro, rồi thử lại.');return;}
+  const mime=pickMime();let mr;try{const o={audioBitsPerSecond:48000};if(mime)o.mimeType=mime;mr=new MediaRecorder(s,o);}catch(e){mr=new MediaRecorder(s);}
+  const st={ctx,mr,chunks:[],finals:[],interim:'',t0:Date.now(),stopping:false,mrDone:false,recDone:!SR};
+  mr.ondataavailable=e=>{if(e.data&&e.data.size)st.chunks.push(e.data);};
+  mr.onstop=()=>{st.blob=new Blob(st.chunks,{type:mr.mimeType||'audio/webm'});st.mrDone=true;finish(st);};
+  if(SR){
+    const r=new SR();r.lang='en-US';r.continuous=true;r.interimResults=true;r.maxAlternatives=1;
+    r.onresult=e=>{let inter='';for(let i=e.resultIndex;i<e.results.length;i++){const res=e.results[i];if(res.isFinal)st.finals.push(res[0].transcript);else inter+=res[0].transcript;}st.interim=inter;ctx.ui.live((st.finals.join(' ')+' '+inter).trim());};
+    r.onerror=e=>{if(['not-allowed','service-not-allowed','network','audio-capture','language-not-supported'].includes(e.error))st.srFail=true;};
+    r.onend=()=>{if(!st.stopping&&!st.srFail){try{r.start();}catch(_){}}else{st.recDone=true;finish(st);}};
+    st.r=r;try{r.start();}catch(_){st.srFail=true;st.recDone=true;}
+  }
+  mr.start();ACTIVE=st;ctx.ui.setRec(true);
+  st.tick=setInterval(()=>{const sec=(Date.now()-st.t0)/1000;ctx.ui.tick(sec);if(sec>=ctx.maxSec)stopRec();},250);
+}
+function stopRec(){
+  const st=ACTIVE;if(!st)return;ACTIVE=null;st.stopping=true;clearInterval(st.tick);st.dur=(Date.now()-st.t0)/1000;
+  st.ctx.ui.setRec(false);st.ctx.ui.live('Đang chấm…');
+  try{st.mr.stop();}catch(_){}
+  if(st.r&&!st.recDone){try{st.r.stop();}catch(_){}setTimeout(()=>{st.recDone=true;finish(st);},2500);}
+}
+function kwNorm(w){return String(w).split(/\s+/).flatMap(normWord);}
+function kwUsed(text,words){const toks=String(text||'').split(/\s+/).flatMap(normWord);
+  return words.map(w=>{const k=kwNorm(w);if(!k.length)return false;for(let i=0;i+k.length<=toks.length;i++){if(k.every((kk,j)=>toks[i+j]===kk))return true;}return false;});}
+function finish(st){
+  if(st.done||!st.mrDone||!st.recDone)return;st.done=true;
+  const c=st.ctx;const transcript=(st.finals.join(' ')+' '+(st.interim||'')).trim();
+  BLOBS[c.key]=st.blob;
+  const useSR=SR&&!st.srFail;
+  const r={label:c.label,target:c.target,transcript,dur:Math.round(st.dur*10)/10,score:null,t:Date.now()};
+  if(c.free){r.free=true;if(useSR){const u=kwUsed(transcript,c.free.words);r.used=u.filter(Boolean).length;r.score=Math.round(r.used/c.free.words.length*100);}}
+  else if(useSR){const cp=compare(c.target,transcript);r.score=cp.score;r.missed=cp.missed.map(w=>w.replace(/[^A-Za-z'’-]/g,'')).filter(Boolean);}
+  RESULTS[c.key]=r;store('results',RESULTS);
+  c.ui.done(r,useSR);
+  CLOUD_CB[c.key]=c.ui.cloud; // nhớ lại để cập nhật trạng thái khi bấm "Nộp bài" mới thật sự gửi
+  if(typeof onRecDone==='function')onRecDone(c.key,r);
+}
+function practice({key,label,target,maxSec=12,free,emptyMsg}){
+  const T=()=>typeof target==='function'?String(target()):target;
+  const el=h('div',{class:'pr'});
+  el.innerHTML=`<div class="pr-btns">
+    <button class="b" data-a="model">🔊 Nghe</button>
+    <button class="b" data-a="slow">🐢 Chậm</button>
+    <button class="b rec" data-a="rec">🎙 Ghi âm</button>
+    <button class="b" data-a="play" disabled>▶ Nghe lại</button>
+    <span class="timer"></span><span class="cl"></span></div><div class="live"></div><div class="res"></div>`;
+  const q=s=>el.querySelector(s);
+  if(free){q('[data-a=model]').remove();q('[data-a=slow]').remove();}
+  const clEl=q('.cl');const recB=q('[data-a=rec]'),playB=q('[data-a=play]'),timer=q('.timer'),live=q('.live'),res=q('.res');
+  let audio=null;
+  const ctx={key,label,target:T(),maxSec,free,ui:{
+    setRec(on){recB.classList.toggle('on',on);recB.innerHTML=on?'■ Dừng':'🎙 Ghi âm';if(on){res.innerHTML='';live.textContent=SR?'Đang nghe em nói…':'Đang ghi âm…';}else timer.textContent='';},
+    tick(sec){timer.textContent=Math.floor(sec)+'s / '+maxSec+'s';},
+    live(t){live.textContent=t;},
+    msg(t){live.textContent='';res.innerHTML=`<div class="tip">⚠️ ${esc(t)}</div>`;},
+    done(r,useSR){live.textContent='';showResult(r,useSR);enable();if(HAS_URL)this.cloud(r.sent?'ok':'ready');},
+    cloud(state){clEl.className='cl '+(state==='ok'?'':state==='bad'?'':'');clEl.textContent=state==='ok'?'✅ Đã gửi thầy/cô':state==='bad'?'⚠️ Chưa gửi được, đang thử lại…':state==='wait'?'☁️ Đang gửi…':'🎙️ Đã ghi âm (chưa gửi)';}
+  }};
+  function enable(){const has=!!BLOBS[key];playB.disabled=!has;}
+  function getAudio(){if(!BLOBS[key])return null;if(audio&&audio._blob===BLOBS[key])return audio;audio=new Audio(URL.createObjectURL(BLOBS[key]));audio._blob=BLOBS[key];return audio;}
+  function showResult(r,useSR){
+    if(free&&useSR&&r.score!=null){
+      const u=kwUsed(r.transcript,free.words);const n=u.filter(Boolean).length;
+      const cls=n>=3?'hi':n>=1?'mid':'lo';
+      res.innerHTML=`<span class="score ${cls}">Dùng ${n}/${free.words.length} liên từ</span>
+        <div class="chips">${free.words.map((w,i)=>`<span class="chip ${u[i]?'ok':'no'}">${u[i]?'✓':'○'} ${esc(w)}</span>`).join('')}</div>
+        <div class="tip">Máy nghe được: <i>${esc(r.transcript||'(không nghe rõ)')}</i></div>`;
+      return;
+    }
+    if(free){res.innerHTML=`<div class="tip">Đã ghi âm (${r.dur}s). Bấm ▶ Nghe lại để tự kiểm tra bài của em.</div>`;return;}
+    if(useSR&&r.score!=null){
+      const c=compare(r.target||T(),r.transcript);
+      const cls=c.score>=85?'hi':c.score>=60?'mid':'lo';
+      const msg=c.score>=85?'Rất tốt!':c.score>=60?'Khá rồi, nghe mẫu lại và đọc to hơn nhé.':'Nghe mẫu chậm 🐢 2–3 lần rồi ghi âm lại nhé.';
+      res.innerHTML=`<span class="score ${cls}">${c.score}%</span>${msg}<div class="diff">${c.html}</div>${c.missed.length?'<div class="tip">👆 Bấm vào <b>từ màu đỏ</b> để nghe máy đọc từ đó, rồi ghi âm lại.</div>':''}${r.transcript?'<div class="tip">Máy nghe được: <i>'+esc(r.transcript)+'</i></div>':''}`;
+    }else{
+      res.innerHTML=`<div class="tip">Đã ghi âm (${r.dur}s). Bấm ▶ Nghe lại để tự nghe bài của em.</div>`;
+    }
+  }
+  el.addEventListener('click',e=>{
+    const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
+    if(a==='model'){const t=T();if(!t.trim()){ctx.ui.msg(emptyMsg||'Chưa có nội dung để đọc.');return;}speak(t);}
+    if(a==='slow'){const t=T();if(!t.trim()){ctx.ui.msg(emptyMsg||'Chưa có nội dung để đọc.');return;}speak(t,{slow:true});}
+    if(a==='rec'){ctx.target=T();if(!ctx.target.trim()){ctx.ui.msg(emptyMsg||'Chưa có nội dung để đọc.');return;}startRec(ctx);}
+    if(a==='play'){const au=getAudio();if(au){stopSpeak();au.currentTime=0;au.play();}}
+  });
+  if(RESULTS[key]&&RESULTS[key].score!=null&&SR){showResult(RESULTS[key],true);enable();if(HAS_URL)ctx.ui.cloud(RESULTS[key].sent?'ok':'ready');}
+  return el;
+}
+
+
+async function toMp3(blob){
+  if(!window.lamejs)return null;
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;
+  const ac=new AC();
+  try{
+    const buf=await new Promise((res,rej)=>{blob.arrayBuffer().then(ab=>ac.decodeAudioData(ab,res,rej)).catch(rej);});
+    const rate=22050;const len=Math.ceil(buf.duration*rate);
+    const off=new OfflineAudioContext(1,len,rate);const src=off.createBufferSource();src.buffer=buf;src.connect(off.destination);src.start();
+    const out=await off.startRendering();const f=out.getChannelData(0);
+    const pcm=new Int16Array(f.length);for(let i=0;i<f.length;i++){const v=Math.max(-1,Math.min(1,f[i]));pcm[i]=v<0?v*0x8000:v*0x7FFF;}
+    const enc=new lamejs.Mp3Encoder(1,rate,48);const parts=[];
+    for(let i=0;i<pcm.length;i+=1152){const b=enc.encodeBuffer(pcm.subarray(i,i+1152));if(b.length)parts.push(new Uint8Array(b));}
+    const e=enc.flush();if(e.length)parts.push(new Uint8Array(e));
+    return new Blob(parts,{type:'audio/mpeg'});
+  }catch(err){return null;}finally{try{ac.close();}catch(_){}}
+}
+function b64(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(',')[1]);r.onerror=rej;r.readAsDataURL(blob);});}
+async function postJSON(obj){
+  const body=JSON.stringify(obj);
+  try{
+    const r=await fetch(SCRIPT_URL,{method:'POST',body,headers:{'Content-Type':'text/plain;charset=utf-8'},redirect:'follow'});
+    const j=await r.json();if(!j.ok)throw new Error(j.error||'fail');return j;
+  }catch(err){
+    if(err instanceof TypeError){
+      await fetch(SCRIPT_URL,{method:'POST',body,mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'}});return {ok:true};
+    }
+    throw err;
+  }
+}
+const QUEUE=[];let BUSY=false;const UI_CB={};
+function updateCloud(){const el=$('#cloud');const n=QUEUE.length+(BUSY?1:0);
+  if(n){el.hidden=false;el.textContent='☁️ Đang gửi '+n+' bản ghi âm cho thầy/cô…';}
+  else if(updateCloud.sent){el.hidden=false;el.textContent='✅ Đã gửi '+updateCloud.sent+' bản ghi âm';}
+  else el.hidden=true;}
+updateCloud.sent=0;
+function enqueueUpload(key,blob,r,cb){
+  if(!HAS_URL)return;
+  UI_CB[key]=cb;cb&&cb('wait');
+  const i=QUEUE.findIndex(q=>q.key===key);const job={key,blob,r,tries:0};
+  if(i>=0)QUEUE[i]=job;else QUEUE.push(job);
+  updateCloud();runQueue();
+}
+async function runQueue(){
+  if(BUSY||!QUEUE.length)return;BUSY=true;const job=QUEUE.shift();updateCloud();
+  const cb=UI_CB[job.key];
+  try{
+    let blob=await toMp3(job.blob),ext='mp3',mime='audio/mpeg';
+    if(!blob){blob=job.blob;mime=(blob.type||'audio/webm').split(';')[0];ext=mime.includes('mp4')?'m4a':mime.includes('ogg')?'ogg':'webm';}
+    await postJSON({type:'audio',name:stuName()||'Không tên',lesson:LESSON,file:fileBase(job.key)+'.'+ext,mime,label:job.r.label,target:job.r.target,transcript:job.r.transcript,score:job.r.score,dur:job.r.dur,audio:await b64(blob)});
+    RESULTS[job.key].sent=true;store('results',RESULTS);updateCloud.sent++;cb&&cb('ok');
+  }catch(err){
+    job.tries++;cb&&cb('bad');
+    if(job.tries<6){setTimeout(()=>{if(!QUEUE.some(q=>q.key===job.key))QUEUE.push(job);updateCloud();runQueue();},Math.min(30000,2000*2**job.tries));}
+  }finally{BUSY=false;updateCloud();runQueue();}
+}
+
+/* ================= LOGIC BÀI QUÁ KHỨ ĐƠN ================= */
+const HAS_URL=/^https:\/\/script\.google(usercontent)?\.com\//.test(SCRIPT_URL);
+if(!HAS_URL)$('#noUrl').hidden=false;
+function stuName(){return ($('#stuName').value||load('name','')).trim();}
+function strip(s){return String(s).replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();}
+
+/* ---- trạng thái ---- */
+const PROG=load('prog',{});            // 'pk:i' -> {n,f,d,p}
+const MISC=Object.assign({read:false,listened:{},skips:0,submitted:false},load('misc',{}));
+function saveP(){store('prog',PROG);}
+function saveM(){store('misc',MISC);}
+const gp=(pk,i)=>PROG[pk+':'+i]||null;
+function doneCount(pk,n){let d=0;for(let i=0;i<n;i++){const p=gp(pk,i);if(p&&p.d)d++;}return d;}
+function firstCount(pk,n){let d=0;for(let i=0;i<n;i++){const p=gp(pk,i);if(p&&p.f)d++;}return d;}
+const frac=(pk,n)=>n?doneCount(pk,n)/n:1;
+function record(pk,i,pick,ok){
+  const k=pk+':'+i;const p=PROG[k]||(PROG[k]={n:0,f:false,d:false,p:null});
+  if(p.n===0){p.f=ok;p.p=pick;}p.n++;if(ok)p.d=true;saveP();refresh();
+}
+
+/* ---- âm thanh bấm vào chữ ---- */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-say]');if(!t)return;
+  speak(t.dataset.say);
+  if(t.dataset.info)toast(t.dataset.info,4500);
+  if(t.dataset.idx!==undefined)markListened(+t.dataset.idx);
+});
+function markListened(i){if(MISC.listened[i])return;MISC.listened[i]=1;saveM();const c=document.querySelector('.vcard[data-vidx="'+i+'"]');if(c)c.classList.add('heard');refresh();}
+const listenN=()=>Object.keys(MISC.listened).length;
+
+/* ---- bộ máy câu hỏi lựa chọn ---- */
+function bindOptions(el,pk,i,it,cb={}){
+  const opts=el.querySelector('.opts'),expl=el.querySelector('.expl');
+  opts.innerHTML=it.o.map((t,k)=>`<button class="opt" data-k="${k}">${esc(t)}</button>`).join('');
+  const btns=[...opts.children];
+  function showDone(){
+    btns.forEach((b,k)=>{b.disabled=true;if(k===it.a)b.classList.add('right');});
+    expl.innerHTML='✅ <b>Đúng!</b> '+(it.x||'');
+    el.classList.add('right');cb.onRight&&cb.onRight();
+  }
+  const st=gp(pk,i);if(st&&st.d)showDone();
+  btns.forEach((b,k)=>b.onclick=()=>{
+    const s=gp(pk,i);if(s&&s.d)return;
+    const ok=k===it.a;record(pk,i,it.o[k],ok);
+    if(ok){showDone();}
+    else{b.classList.add('wrong');b.disabled=true;expl.innerHTML='❌ <b>Chưa đúng.</b> '+(it.x||'');cb.onWrong&&cb.onWrong();}
+  });
+}
+function mcqItem(pk,i,it,{label='',audio=null}={}){
+  const el=h('div',{class:'q'});
+  el.innerHTML=`<div class="qt">${label}${it.q||''}</div>${audio?`<div class="rd"><button class="b" data-au="1">🔊 Nghe</button><button class="b" data-au="2">🐢 Nghe chậm</button></div>`:''}<div class="opts"></div><div class="expl"></div>`;
+  if(audio){el.querySelectorAll('[data-au]').forEach(b=>b.onclick=()=>speak(audio,{slow:b.dataset.au==='2'}));}
+  bindOptions(el,pk,i,it);
+  return el;
+}
+function fillItem(pk,i,it){
+  const el=h('div',{class:'q'});
+  el.innerHTML=`<div class="qt">${i+1}. 🇻🇳 ${esc(it.vi)}<br>${esc(it.q)}</div><div class="rd"><input type="text" placeholder="gõ đáp án" autocomplete="off" autocapitalize="none" spellcheck="false"><button class="b primary">Kiểm tra</button></div><div class="expl"></div>`;
+  const inp=el.querySelector('input'),btn=el.querySelector('button'),expl=el.querySelector('.expl');
+  function done(){inp.disabled=true;btn.disabled=true;el.classList.add('right');expl.innerHTML='✅ <b>Đúng!</b> '+it.x;}
+  const st=gp(pk,i);if(st&&st.d){inp.value=it.a[0];done();}
+  function check(){
+    const s=gp(pk,i);if(s&&s.d)return;
+    const v=inp.value.trim().toLowerCase();if(!v){inp.focus();return;}
+    const ok=it.a.includes(v);record(pk,i,v,ok);
+    if(ok)done();else{expl.innerHTML='❌ <b>Chưa đúng.</b> '+it.x;inp.select();}
+  }
+  btn.onclick=check;inp.onkeydown=e=>{if(e.key==='Enter')check();};
+  return el;
+}
+
+/* ================= MỤC 1 ================= */
+(function(){
+  const box=$('#tqBox');TQ.forEach((it,i)=>box.appendChild(mcqItem('tq',i,it,{label:(i+1)+'. '})));
+  const tick=$('#readTick');tick.checked=!!MISC.read;$('#tqWrap').hidden=!MISC.read;
+  tick.onchange=()=>{MISC.read=tick.checked;saveM();$('#tqWrap').hidden=!MISC.read;refresh();};
+})();
+
+/* ================= MỤC 2: GAME ================= */
+let gL=0,gNext=false,streak=0;
+const lvlDone=li=>{const L=GAME_LEVELS[li];return doneCount(L.id,L.rounds.length)===L.rounds.length;};
+const lvlOpen=li=>{for(let k=0;k<li;k++)if(!lvlDone(k))return false;return true;};
+function xpTotal(){let x=0;GAME_LEVELS.forEach(L=>L.rounds.forEach((r,i)=>{const p=gp(L.id,i);if(p&&p.d)x+=p.f?10:3;}));return x;}
+function firstUndone(L){for(let i=0;i<L.rounds.length;i++){const p=gp(L.id,i);if(!p||!p.d)return i;}return L.rounds.length;}
+function renderGame(){
+  const box=$('#gameBox');const L=GAME_LEVELS[gL],n=L.rounds.length;
+  while(gL>0&&!lvlOpen(gL))gL--;
+  const r=firstUndone(L);
+  let html=`<div class="hud"><span>⭐ ${xpTotal()} điểm</span><span>🔥 ${streak} liên tiếp</span></div><div class="gtabs">`;
+  GAME_LEVELS.forEach((x,k)=>{html+=`<button class="gt ${k===gL?'on':''} ${lvlDone(k)?'done':''}" data-lv="${k}" ${lvlOpen(k)?'':'disabled'}>${lvlOpen(k)?(lvlDone(k)?'✅ ':''):'🔒 '}${esc(x.name.split(' · ')[0])}</button>`;});
+  html+='</div>';
+  box.innerHTML=html;
+  const wrap=h('div',{class:'card'});box.appendChild(wrap);
+  box.querySelectorAll('[data-lv]').forEach(b=>b.onclick=()=>{gL=+b.dataset.lv;renderGame();});
+  if(r>=n){
+    const f=firstCount(L.id,n),pc=f/n,st=pc>=0.9?3:pc>=0.6?2:1;
+    wrap.innerHTML=`<h3 style="margin-top:0">${esc(L.name)}</h3><div class="stars">${'⭐'.repeat(st)}${'☆'.repeat(3-st)}</div><p>Em đúng ngay lần đầu <b>${f}/${n}</b> vòng.</p>`;
+    if(gL<GAME_LEVELS.length-1){const b=h('button',{class:'b primary'},'Level tiếp theo ▶');b.onclick=()=>{gL++;renderGame();};wrap.appendChild(b);}
+    else wrap.insertAdjacentHTML('beforeend','<p><b>🎉 Em đã qua cả 3 level!</b> Bấm “Tiếp tục” để sang Mục 3.</p>');
+    return;
+  }
+  const R=L.rounds[r];
+  let h1=`<div class="dots">${L.rounds.map((_,i)=>`<i class="${gp(L.id,i)&&gp(L.id,i).d?'d':i===r?'c':''}"></i>`).join('')}</div>
+    <h3 style="margin:4px 0">${esc(L.name)}</h3><p class="hint">${L.desc}</p><span class="era">${esc(R.era)}</span>`;
+  const blank=/___/.test(R.s||'');
+  const isLab=!L.passages&&/^(Which sentence|Past \+)/.test(R.s||'');
+  const solved=()=>{const p=gp(L.id,r);return p&&p.d;};
+  const fullText=()=>L.passages?L.passages[R.p].text:(R.s||'').replace('___',R.o[R.a]);
+  let passHtml='';
+  if(L.passages){const P=L.passages[R.p];passHtml=`<div class="passage"><b>${esc(P.title)}</b><br>${esc(P.text)}</div><div class="vi" data-vi hidden>🇻🇳 ${esc(P.vi)}</div>`;}
+  else if(!isLab){passHtml=`<div class="sent">${esc(R.s)}</div><div class="vi" data-vi hidden>🇻🇳 ${esc(R.vi)}</div>`;}
+  else passHtml=`<div class="sent lab">${esc(R.vi)}</div>`;
+  wrap.innerHTML=h1+passHtml+`<div class="rd">${isLab?'':`<button class="b" data-g="say">🔊 Nghe</button><button class="b" data-g="vi">🇻🇳 Dịch</button>`}</div>
+    <div class="qt" style="margin-top:8px">${R.q}</div><div class="opts"></div><div class="expl"></div><div class="fact" hidden></div><div class="rd"><button class="b primary" data-g="next" hidden>Vòng tiếp ▶</button></div>`;
+  const q=s=>wrap.querySelector(s);
+  const sayB=q('[data-g=say]'),viB=q('[data-g=vi]');
+  if(sayB)sayB.onclick=()=>{if(blank&&!solved()){toast('Em chọn đáp án đúng trước, rồi mới nghe được cả câu nhé.');return;}speak(fullText());};
+  if(viB)viB.onclick=()=>{const v=q('[data-vi]');v.hidden=!v.hidden;};
+  const it={o:R.o,a:R.a,x:R.x};
+  bindOptions(wrap,L.id,r,it,{
+    onRight(){
+      streak++;const v=q('[data-vi]');if(v)v.hidden=false;
+      const fa=q('.fact');if(R.f){fa.hidden=false;fa.innerHTML='💡 <b>Bạn có biết?</b> '+R.f;}
+      const nb=q('[data-g=next]');nb.hidden=false;nb.textContent=(r+1>=n)?'Xem kết quả level ▶':'Vòng tiếp ▶';nb.onclick=()=>renderGame();
+      const hud=box.querySelector('.hud');hud.innerHTML=`<span>⭐ ${xpTotal()} điểm</span><span>🔥 ${streak} liên tiếp</span>`;
+    },
+    onWrong(){streak=0;const hud=box.querySelector('.hud');hud.innerHTML=`<span>⭐ ${xpTotal()} điểm</span><span>🔥 0 liên tiếp</span>`;}
+  });
+}
+renderGame();
+
+/* ================= MỤC 3: TỪ VỰNG ================= */
+(function(){
+  const box=$('#vocabBox');
+  const groups=[['be','1️⃣ be – do – have'],['irr','2️⃣ Động từ bất quy tắc (V2 không có -ed)'],['reg','3️⃣ Động từ có quy tắc (thêm -ed)']];
+  groups.forEach(([g,title])=>{
+    const sec=h('div',{class:'vgroup'});sec.appendChild(h('h3',{},esc(title)));
+    const grid=h('div',{class:'vgrid'});
+    VERBS.forEach((v,idx)=>{
+      if(v.g!==g)return;
+      const say2=v.s2b?v.s2+'. '+v.s2b:v.s2;
+      const c=h('div',{class:'vcard'+(MISC.listened[idx]?' heard':'')});c.dataset.vidx=idx;
+      c.innerHTML=`<div class="vtop"><span class="vemo">${v.e}</span><div>
+        <div class="vw"><span class="sw" data-say="${esc(v.s1)}" data-idx="${idx}" data-info="${esc(v.v1+' '+v.i1+' = '+v.vi)}">${esc(v.v1)}</span> → <span class="sw" data-say="${esc(say2)}" data-idx="${idx}" data-info="${esc(v.v2+' '+v.i2+' = '+v.vi+' (quá khứ)')}">${esc(v.v2)}</span></div>
+        <div class="ipa">${esc(v.i1)} → ${esc(v.i2)}</div><div class="vvi">🇻🇳 ${esc(v.vi)}</div></div></div>
+        <div class="vex">${esc(v.ex)}</div><div class="vex" data-exvi hidden>🇻🇳 ${esc(v.exvi)}</div>
+        <div class="pr-btns"><button class="b" data-say="${esc(v.s1)}" data-idx="${idx}">🔊 V1</button><button class="b" data-say="${esc(say2)}" data-idx="${idx}">🔊 V2</button><button class="b" data-say="${esc(v.ex)}" data-idx="${idx}">🔊 Câu</button><button class="b" data-tr="1">🇻🇳</button></div>
+        <div class="tip">💡 ${esc(v.tip)}</div>`;
+      c.querySelector('[data-tr]').onclick=()=>{const e=c.querySelector('[data-exvi]');e.hidden=!e.hidden;};
+      grid.appendChild(c);
+    });
+    sec.appendChild(grid);box.appendChild(sec);
+  });
+  const fill=(id,pk,arr,fn)=>{const b=$(id);arr.forEach((it,i)=>b.appendChild(fn(it,i)));};
+  fill('#vaBox','va',VA,(it,i)=>mcqItem('va',i,it,{label:(i+1)+'. '}));
+  fill('#vbBox','vb',VB,(it,i)=>mcqItem('vb',i,it,{label:(i+1)+'. 🔊 Em nghe được từ nào?',audio:it.say}));
+  fill('#vcBox','vc',VC,(it,i)=>mcqItem('vc',i,it,{label:(i+1)+'. 🔊 Âm đuôi -ed của từ em nghe là gì?',audio:it.say}));
+  fill('#vdBox','vd',VD,(it,i)=>fillItem('vd',i,it));
+  const rb=$('#vrecBox');
+  VREC.forEach(g=>{
+    const c=h('div',{class:'card'});c.innerHTML=`<div class="step" style="font-size:16px">${esc(g.t)}</div><div class="vex" style="font-size:15px">${esc(g.target)}</div>`;
+    c.appendChild(practice({key:g.key,label:'Từ vựng: '+g.t,target:g.target,maxSec:g.max}));
+    rb.appendChild(c);
+  });
+})();
+
+/* ================= MỤC 4: THƯ ================= */
+(function(){
+  const b=$('#lqBox');LQ.forEach((it,i)=>b.appendChild(mcqItem('lq',i,it,{label:(i+1)+'. '})));
+  const ta=$('#letterBox');ta.value=load('letter','');
+  let tm;ta.addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(()=>store('letter',ta.value),300);refresh();});
+  $('#letterHear').onclick=()=>{const t=ta.value.trim();if(!t){toast('Em viết thư trước rồi mới nghe nhé.');return;}speak(t);};
+  $('#letterRec').appendChild(practice({key:'letter',label:'Đọc to thư gửi Hannah',target:()=>ta.value,maxSec:120,emptyMsg:'Em viết thư ở Bước B trước, rồi mới đọc to nhé.'}));
+})();
+const letterText=()=>$('#letterBox').value;
+const wordsOf=t=>(String(t).match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g)||[]).length;
+
+/* ---- chấm sơ bộ thư (heuristic, không gợi ý câu) ---- */
+const PAST_SET=new Set(['was','were','did','had','went','ate','saw','bought','made','met','took','wrote','slept','came','got','said','felt','ran','drank','swam','sat','stood','gave','found','told','left','kept','sang','flew','rode','drew','won','lost','spent','paid','heard','thought','brought','taught','caught','knew','began','read']);
+VERBS.forEach(v=>v.v2.split('/').forEach(w=>PAST_SET.add(w.trim().toLowerCase())));
+const NOT_ED=new Set(['speed','breed','indeed','proceed','exceed','succeed','hundred','sacred','naked','wicked','embed','weekend']);
+function pastForms(text){
+  const out=new Set();(text.toLowerCase().match(/[a-z]+/g)||[]).forEach(w=>{
+    if(w==='read')return;
+    if(PAST_SET.has(w)||(/^[a-z]{3,}ed$/.test(w)&&!NOT_ED.has(w)))out.add(w);});
+  return [...out];
+}
+function gradeLetter(raw){
+  const text=String(raw||'').replace(/\r/g,'').trim();
+  const words=wordsOf(text);const items=[];let pts=0;
+  const add=(p,max,tag,msg,state)=>{pts+=p;items.push({tag,msg,state,p,max});};
+  if(!text){return {words:0,score:0,items:[{tag:'Bài viết',msg:'Em chưa viết thư.',state:'bad'}],capped:true};}
+  const lines=text.split(/\n+/).map(s=>s.trim()).filter(Boolean);
+  // 1 độ dài (2đ)
+  if(words>=MIN_WORDS)add(words>=70?2:1.5,2,'Độ dài','Đủ độ dài: '+words+' từ.','good');
+  else add(words/MIN_WORDS*1.5,2,'Độ dài','Chưa đủ '+MIN_WORDS+' từ (mới '+words+' từ) nên điểm bị giới hạn ở mức thấp. Lần sau viết thêm chi tiết: làm gì, ở đâu, với ai, cảm thấy thế nào.','bad');
+  // 2 bố cục (2đ)
+  const greet=/^(dear|hi|hello)\s+hannah\s*,\s*$/i.test(lines[0])||/^(dear|hi|hello)\s+hannah\s*,/i.test(lines[0]);
+  add(greet?0.75:0,0.75,'Lời chào',greet?'Có lời chào đúng dạng “Dear Hannah,”.':'Lời chào chưa đúng: cần Dear + Hannah (viết hoa) + dấu phẩy, ở dòng đầu.',greet?'good':'bad');
+  const CL=/^(best wishes|love|lots of love|your friend|yours|see you|take care|bye|write soon|all the best|with love)\b.*,?\s*$/i;
+  let ci=-1;lines.forEach((l,k)=>{if(k>0&&CL.test(l)&&wordsOf(l)<=5)ci=k;});
+  add(ci>=0?0.75:0,0.75,'Lời kết',ci>=0?'Có lời kết trên một dòng riêng.':'Thiếu lời kết (một cụm ngắn + dấu phẩy) trên dòng riêng trước phần tên.',ci>=0?'good':'bad');
+  const sig=ci>=0&&ci<lines.length-1&&wordsOf(lines[lines.length-1])<=3;
+  add(sig?0.5:0,0.5,'Tên cuối thư',sig?'Có ký tên ở dòng cuối.':'Thiếu tên của em ở dòng cuối cùng.',sig?'good':'bad');
+  // 3 viết hoa & dấu câu (2đ)
+  const body=lines.filter((l,k)=>!(k===0&&greet)&&!(ci>=0&&k>=ci));
+  const sents=body.join(' ').split(/(?<=[.!?])\s+/).map(s=>s.trim()).filter(Boolean);
+  const lowerStart=sents.filter(s=>/^[a-z]/.test(s)).length;
+  const sc=sents.length||1;
+  add(0.7*(1-lowerStart/sc),0.7,'Viết hoa đầu câu',lowerStart?'Có '+lowerStart+' câu bắt đầu bằng chữ thường. Nhớ viết hoa chữ đầu mỗi câu.':'Các câu đều bắt đầu bằng chữ hoa.',lowerStart?'bad':'good');
+  const lowI=(text.match(/(^|[^A-Za-z'’])i(?=[^A-Za-z']|$)/g)||[]).length+(text.match(/\bi['’](m|d|ll|ve)\b/g)||[]).length;
+  add(Math.max(0,0.5-0.1*lowI),0.5,'Chữ I',lowI?'Có '+lowI+' chỗ viết “i” thường. Chữ I (tôi) luôn viết hoa.':'Chữ I viết hoa đúng.',lowI?'bad':'good');
+  const runon=sents.filter(s=>wordsOf(s)>25).length;
+  const lastNo=body.length&&!/[.!?]\s*$/.test(body[body.length-1]);
+  const pm=runon+(lastNo?1:0);
+  add(Math.max(0,0.8-0.3*pm),0.8,'Dấu chấm câu',pm?'Có '+pm+' chỗ thiếu dấu chấm/dấu hỏi (câu quá dài hoặc câu cuối chưa có dấu). Hãy ngắt câu bằng dấu chấm.':'Dấu chấm câu ổn.',pm?'bad':'good');
+  // 4 quá khứ đơn (3đ)
+  const pf=pastForms(text);
+  const vp=Math.min(1,pf.length/6)*2;
+  add(vp,2,'Dùng quá khứ đơn',pf.length>=6?'Dùng tốt '+pf.length+' dạng quá khứ khác nhau (ví dụ: '+pf.slice(0,5).join(', ')+').':'Mới dùng '+pf.length+' dạng quá khứ'+(pf.length?' ('+pf.slice(0,5).join(', ')+')':'')+'. Hãy thử dùng thêm động từ quá khứ em đã học ở Mục 3.',pf.length>=6?'good':(pf.length>=3?'mid':'bad'));
+  const errs=[];
+  const bad1=text.match(/\b(goed|eated|buyed|maked|taked|writed|seed|comed|haved|doed|meeted|sleeped|runned|gived)\b/gi);
+  if(bad1)errs.push('dạng không có thật: '+[...new Set(bad1.map(s=>s.toLowerCase()))].join(', ')+' (động từ bất quy tắc phải dùng đúng V2)');
+  const bad2=text.match(/\bdid(?:n['’]t| not)\s+(went|ate|saw|bought|made|met|took|wrote|slept|came|had|was|were|[a-z]+ed)\b/gi);
+  if(bad2)errs.push('sau didn’t phải dùng V1: “'+bad2[0]+'”');
+  const bad3=text.match(/\b(I|he|she|it)\s+were\b|\b(you|we|they)\s+was\b/gi);
+  if(bad3)errs.push('was/were chưa đúng với chủ ngữ: “'+bad3[0]+'”');
+  const bad4=text.match(/\b(last (?:weekend|night|week|sunday|saturday)|yesterday)\b[^.!?\n]*?\b(?:I|we|they|he|she)\s+(go|eat|see|buy|make|meet|take|write|sleep|come|play|visit|watch|have|do|am|is|are|help|clean|cook|walk)\b/i);
+  if(bad4)errs.push('có mốc quá khứ nhưng động từ vẫn ở hiện tại: “'+bad4[2]+'”');
+  add(Math.max(0,1-0.34*errs.length),1,'Chính xác thì quá khứ',errs.length?'Cần sửa: '+errs.join('; ')+'.':'Không thấy lỗi dạng động từ rõ ràng.',errs.length?'bad':'good');
+  // 5 nội dung (1đ)
+  const tw=/\b(last weekend|on saturday|on sunday|yesterday|in the morning|in the afternoon|in the evening|at night|then|after that|first|finally|next)\b/i.test(text);
+  const cw=/\b(and|but|because|so)\b/i.test(text);
+  add(tw?0.5:0,0.5,'Mốc thời gian',tw?'Có từ chỉ thời gian giúp kể rõ thứ tự.':'Chưa có từ chỉ thời gian (ví dụ: last weekend, on Saturday, then…).',tw?'good':'mid');
+  add(cw?0.5:0,0.5,'Từ nối',cw?'Có dùng từ nối (and, but, because, so).':'Chưa dùng từ nối để nối ý (and, but, because, so).',cw?'good':'mid');
+  let score=Math.round(pts*10)/10;let capped=false;
+  if(words<MIN_WORDS){capped=true;score=Math.min(score,words<20?2:4);}
+  return {words,score,items,capped,pastForms:pf};
+}
+
+/* ================= TIẾN ĐỘ & ĐIỀU HƯỚNG ================= */
+const recOk=k=>!!(BLOBS[k]||(RESULTS[k]&&RESULTS[k].sent));
+const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
+function fracs(){
+  const lw=wordsOf(letterText());
+  return [
+    avg([MISC.read?1:0,frac('tq',TQ.length)]),
+    avg(GAME_LEVELS.map(L=>frac(L.id,L.rounds.length))),
+    avg([Math.min(1,listenN()/MIN_LISTEN),frac('va',VA.length),frac('vb',VB.length),frac('vc',VC.length),frac('vd',VD.length),VREC.filter(g=>recOk(g.key)).length/VREC.length]),
+    avg([frac('lq',LQ.length),Math.min(1,lw/MIN_WORDS),recOk('letter')?1:0])
+  ];
+}
+function missing(s){
+  const m=[];
+  if(s===1){
+    if(!MISC.read)m.push('Chưa tick “Em đã đọc kỹ phần lý thuyết”.');
+    const l=TQ.length-doneCount('tq',TQ.length);if(l)m.push('Còn '+l+' câu kiểm tra lý thuyết chưa đúng.');
+  }
+  if(s===2)GAME_LEVELS.forEach(L=>{const l=L.rounds.length-doneCount(L.id,L.rounds.length);if(l)m.push(L.name.split(' · ')[0]+': còn '+l+' vòng chưa xong.');});
+  if(s===3){
+    if(listenN()<MIN_LISTEN)m.push('Mới nghe '+listenN()+'/'+VERBS.length+' từ (cần ít nhất '+MIN_LISTEN+').');
+    [['va','B1',VA],['vb','B2',VB],['vc','B3',VC],['vd','B4',VD]].forEach(([k,n,a])=>{const l=a.length-doneCount(k,a.length);if(l)m.push('Bài '+n+': còn '+l+' câu.');});
+    const r=VREC.filter(g=>!recOk(g.key)).length;if(r)m.push('Còn '+r+'/'+VREC.length+' nhóm chưa ghi âm.');
+  }
+  if(s===4){
+    const l=LQ.length-doneCount('lq',LQ.length);if(l)m.push('Bố cục thư: còn '+l+' câu chưa đúng.');
+    const w=wordsOf(letterText());
+    if(w<MIN_WORDS)m.push('Thư mới có '+w+' từ — cần ít nhất '+MIN_WORDS+' từ, thiếu sẽ bị điểm thấp.');
+    if(!recOk('letter'))m.push('Chưa ghi âm đọc to lá thư.');
+  }
+  return m;
+}
+const NAMES=['','Mục 1 · Lý thuyết','Mục 2 · Game','Mục 3 · Từ vựng','Mục 4 · Viết thư'];
+let CUR=1;
+function refresh(){
+  const f=fracs();const pct=Math.round(avg(f)*100);
+  $('#pfill').style.width=pct+'%';$('#ppct').textContent=pct+'%';
+  document.querySelectorAll('#scRow .sc').forEach(b=>{const s=+b.dataset.s;b.classList.toggle('on',s===CUR);b.classList.toggle('done',s<=4&&f[s-1]>=1);
+    b.textContent=(s<=4&&f[s-1]>=1?'✅ ':'')+['','1 · Lý thuyết','2 · Game','3 · Từ vựng','4 · Viết thư','📨 Nộp bài'][s];});
+  $('#listenN').textContent='🎧 Đã nghe '+listenN()+'/'+VERBS.length+' từ';
+  const w=wordsOf(letterText());const wc=$('#wc');wc.textContent=w+'/'+MIN_WORDS+' từ';wc.className='wc '+(w>=MIN_WORDS?'ok':'bad');
+  $('#wcMsg').textContent=w>=MIN_WORDS?'':(w?'⚠️ Em cần viết ít nhất '+MIN_WORDS+' từ. Nếu thiếu, bài sẽ bị điểm thấp.':'');
+  if(CUR===5)renderSum();
+}
+function show(n){
+  CUR=n;document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id==='p'+n));
+  window.scrollTo({top:0,behavior:'smooth'});refresh();
+}
+function modal(title,html,btns){
+  const m=$('#modal'),b=$('#mbox');
+  b.innerHTML=`<h3>${title}</h3>${html}<div class="mbtns"></div>`;
+  const row=b.querySelector('.mbtns');
+  btns.forEach(x=>{const e=h('button',{class:'b '+(x.cls||'')},x.t);e.onclick=()=>{m.hidden=true;x.fn&&x.fn();};row.appendChild(e);});
+  m.hidden=false;
+}
+function warnList(miss){return '<ul>'+miss.map(([s,t])=>`<li><b>${NAMES[s]}:</b> ${esc(t)}</li>`).join('')+'</ul>';}
+function go(n){
+  if(n<=CUR){show(n);return;}
+  const miss=[];for(let s=CUR;s<n&&s<=4;s++)missing(s).forEach(t=>miss.push([s,t]));
+  if(!miss.length){show(n);return;}
+  modal('⚠️ Em chưa làm xong',warnList(miss)+'<p>Em có thể quay lại làm tiếp, hoặc vẫn sang phần sau (cô sẽ biết em đã bỏ qua).</p>',
+    [{t:'Quay lại làm tiếp',cls:'primary',fn:()=>show(miss[0][0])},{t:'Vẫn sang phần sau',fn:()=>{MISC.skips++;saveM();show(n);}}]);
+}
+document.querySelectorAll('#scRow .sc').forEach(b=>b.onclick=()=>go(+b.dataset.s));
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>go(+b.dataset.next));
+function onRecDone(){refresh();}
+
+/* ================= TỔNG KẾT & NHẬN XÉT ================= */
+function allSets(){
+  const s=[['1 Lý thuyết',TQ,'tq',null]];
+  GAME_LEVELS.forEach(L=>s.push(['2 Game – '+L.name,L.rounds,L.id,L]));
+  s.push(['3 B1 Chọn dạng',VA,'va',null],['3 B2 Nghe-chọn',VB,'vb',null],['3 B3 Âm -ed',VC,'vc',null],['3 B4 Gõ dạng',VD,'vd',null],['4 Bố cục thư',LQ,'lq',null]);
+  return s;
+}
+function recStats(){
+  const keys=[...VREC.map(g=>g.key),'letter'].filter(k=>RESULTS[k]&&RESULTS[k].score!=null&&(BLOBS[k]||RESULTS[k].sent));
+  const sc=keys.map(k=>RESULTS[k].score);
+  const missed={};keys.forEach(k=>(RESULTS[k].missed||[]).forEach(w=>{const x=w.toLowerCase();missed[x]=(missed[x]||0)+1;}));
+  return {n:keys.length,avg:sc.length?Math.round(avg(sc)):null,missed:Object.keys(missed).sort((a,b)=>missed[b]-missed[a]).slice(0,10)};
+}
+function renderSum(){
+  const g=gradeLetter(letterText());const rs=recStats();
+  const gameN=GAME_LEVELS.reduce((a,L)=>a+L.rounds.length,0);
+  const gameF=GAME_LEVELS.reduce((a,L)=>a+firstCount(L.id,L.rounds.length),0);
+  const row=(a,b)=>`<tr><td>${a}</td><td>${b}</td></tr>`;
+  $('#sumBox').innerHTML=`<div class="card tbl"><table>
+   ${row('1. Lý thuyết','đúng lần đầu '+firstCount('tq',TQ.length)+'/'+TQ.length+(MISC.read?'':' · chưa tick đã đọc'))}
+   ${row('2. Game','đúng lần đầu '+gameF+'/'+gameN+' · ⭐ '+xpTotal()+' điểm')}
+   ${row('3. Từ vựng','nghe '+listenN()+'/'+VERBS.length+' từ · B1 '+doneCount('va',VA.length)+'/'+VA.length+' · B2 '+doneCount('vb',VB.length)+'/'+VB.length+' · B3 '+doneCount('vc',VC.length)+'/'+VC.length+' · B4 '+doneCount('vd',VD.length)+'/'+VD.length)}
+   ${row('3. Ghi âm từ vựng',VREC.filter(x=>recOk(x.key)).length+'/'+VREC.length+' nhóm')}
+   ${row('4. Thư cho Hannah',g.words+' từ'+(g.words<MIN_WORDS?' (chưa đủ '+MIN_WORDS+')':'')+(recOk('letter')?' · đã đọc to':' · chưa ghi âm'))}
+  </table></div>`;
+}
+const cls3=(x,t)=>`<li class="${x}">${t}</li>`;
+function buildFeedback(){
+  const g=gradeLetter(letterText());const rs=recStats();
+  const tqF=firstCount('tq',TQ.length);
+  const lv=GAME_LEVELS.map(L=>({L,f:firstCount(L.id,L.rounds.length),n:L.rounds.length}));
+  const vs=[['B1',firstCount('va',VA.length),VA.length],['B2',firstCount('vb',VB.length),VB.length],['B3',firstCount('vc',VC.length),VC.length],['B4',firstCount('vd',VD.length),VD.length]];
+  const good=[],todo=[];
+  // Mục 1
+  const r1=tqF/TQ.length;
+  (r1>=0.8?good:todo).push('Lý thuyết: đúng ngay lần đầu '+tqF+'/'+TQ.length+(r1>=0.8?' — em nắm chắc công thức quá khứ đơn.':' — em nên đọc lại công thức (khẳng định / didn’t + V1 / Did + S + V1) và phần “Simple”.'));
+  // Mục 2
+  const names={g1:'phân biệt quá khứ – hiện tại – tương lai',g2:'chọn đúng dạng động từ, phủ định và câu hỏi',g3:'đọc hiểu'};
+  lv.forEach(x=>{const r=x.f/x.n;(r>=0.7?good:todo).push('Game '+x.L.name.split(' · ')[0]+' ('+names[x.L.id]+'): đúng lần đầu '+x.f+'/'+x.n+(r>=0.7?'.':' — nên luyện thêm phần này.'));});
+  // Mục 3
+  const ln=listenN();
+  (ln>=MIN_LISTEN?good:todo).push('Từ vựng: đã nghe '+ln+'/'+VERBS.length+' từ'+(ln>=MIN_LISTEN?'.':' — cần nghe thêm để quen âm thanh của động từ.'));
+  vs.forEach(([n,f,t])=>{if(f/t<0.6)todo.push('Bài '+n+' từ vựng: đúng lần đầu '+f+'/'+t+' — làm lại và nghe từng từ chậm 🐢.');});
+  if(rs.n){
+    const a=rs.avg;
+    (a>=75?good:todo).push('Phát âm (máy nghe được): trung bình '+a+'% trên '+rs.n+' bản ghi.'+(a>=75?' Em đọc khá rõ!':' Em nghe mẫu chậm rồi ghi âm lại các từ đỏ.'));
+  }else todo.push('Chưa có điểm phát âm tự động (trình duyệt không hỗ trợ nhận giọng hoặc em chưa ghi âm). Cô sẽ nghe bản ghi âm của em.');
+  // thư
+  g.items.forEach(it=>{if(it.state==='good')good.push('Thư – '+it.tag+': '+it.msg);else todo.push('Thư – '+it.tag+': '+it.msg);});
+  const html=`<div class="bigscore">Thư: ${g.score}/10</div>${g.capped?'<p class="ins">⚠️ Thư chưa đủ '+MIN_WORDS+' từ nên điểm bị giới hạn ở mức thấp.</p>':''}
+   <h4>👍 Em làm tốt</h4><ul class="g">${good.map(t=>`<li>${esc(t)}</li>`).join('')||'<li>Em đã bắt đầu làm bài — cố gắng thêm nhé!</li>'}</ul>
+   <h4>🌱 Em cần phát huy thêm</h4><ul class="r">${todo.map(t=>`<li>${esc(t)}</li>`).join('')||'<li>Chưa thấy điểm yếu rõ ràng. Tuyệt vời!</li>'}</ul>
+   ${rs.missed.length?`<h4>🔊 Từ em phát âm chưa rõ (bấm để nghe)</h4><div class="chips">${rs.missed.map(w=>`<button class="chip" data-say="${esc(w)}">🔊 ${esc(w)}</button>`).join('')}</div>`:''}`;
+  const text='THƯ '+g.score+'/10 ('+g.words+' từ)'+(g.capped?' [chưa đủ '+MIN_WORDS+' từ]':'')+'\nTỐT: '+good.join(' | ')+'\nCẦN PHÁT HUY: '+todo.join(' | ');
+  return {html,text,g,rs,tqF,lv,vs};
+}
+function buildSummary(){
+  const fb=buildFeedback();const g=fb.g;const rs=fb.rs;
+  const gameN=GAME_LEVELS.reduce((a,L)=>a+L.rounds.length,0),gameF=fb.lv.reduce((a,x)=>a+x.f,0);
+  const details=[];
+  allSets().forEach(([part,arr,pk,L])=>arr.forEach((it,i)=>{
+    const p=gp(pk,i);
+    const qtxt=strip((L&&it.s&&!L.passages?it.s+' — ':'')+(it.q||''));
+    const correct=Array.isArray(it.a)&&typeof it.a[0]==='string'?it.a.join(' / '):(it.o?it.o[it.a]:'');
+    const res=!p?'chưa làm':(p.f?'✅ đúng lần đầu':(p.d?'❌ sai lần đầu → sửa đúng sau '+p.n+' lần':'❌ chưa đúng'));
+    details.push({part,question:qtxt,answer:p?String(p.p):'',correct:String(correct),result:res});
+  }));
+  details.push({part:'3 Nghe từ',question:'Số từ đã nghe',answer:listenN()+'/'+VERBS.length,correct:'≥'+MIN_LISTEN,result:listenN()>=MIN_LISTEN?'✅ đạt':'⚠️ chưa đủ'});
+  details.push({part:'4 Thư cho Hannah',question:'Bài viết ('+g.words+' từ)',answer:letterText(),correct:'(chấm sơ bộ)',result:'Điểm sơ bộ '+g.score+'/10'+(g.capped?' · THIẾU TỪ':'')});
+  g.items.forEach(it=>details.push({part:'4 Thư – nhận xét máy',question:it.tag,answer:'',correct:'',result:(it.state==='good'?'✅ ':'⚠️ ')+it.msg}));
+  const nrec=Object.keys(BLOBS).length;
+  const vtxt='nghe '+listenN()+'/'+VERBS.length+' · B1 '+fb.vs[0][1]+'/'+fb.vs[0][2]+' · B2 '+fb.vs[1][1]+'/'+fb.vs[1][2]+' · B3 '+fb.vs[2][1]+'/'+fb.vs[2][2]+' · B4 '+fb.vs[3][1]+'/'+fb.vs[3][2];
+  return {summary:{
+    recordings:nrec,avg:rs.avg,
+    dictation:'Từ vựng '+vtxt,
+    full:'Lý thuyết '+fb.tqF+'/'+TQ.length+' · Game '+gameF+'/'+gameN,
+    writes:'Thư '+g.words+' từ · '+g.score+'/10'+(g.capped?' (thiếu từ)':''),
+    quiz:'Bố cục thư '+firstCount('lq',LQ.length)+'/'+LQ.length,
+    vocab:'Mục 3: '+vtxt,
+    gram:'Mục 1 Lý thuyết '+fb.tqF+'/'+TQ.length+' · Mục 2 Game '+gameF+'/'+gameN,
+    ctx:'Mục 3 ghi âm: '+VREC.filter(x=>recOk(x.key)).length+'/'+VREC.length+' nhóm',
+    rec:nrec+' bản ghi âm'+(rs.avg!=null?' · phát âm TB '+rs.avg+'%':''),
+    para:'['+(g.capped?'THIẾU TỪ · ':'')+'Điểm sơ bộ '+g.score+'/10 · '+g.words+' từ'+(MISC.skips?' · đã bỏ qua cảnh báo '+MISC.skips+' lần':'')+']\n'+letterText(),
+    feedback:fb.text
+  },details};
+}
+
+/* ================= GỬI BÀI ================= */
+function fileBase(key){
+  const m={'v-be':'3C1_be-do-have','v-irr':'3C2_bat-quy-tac','v-reg':'3C3_co-quy-tac','v-sent':'3C4_doc-cau','letter':'4_Thu-Hannah_doc-to'};
+  return m[key]||'ghiam_'+key;
+}
+function queueAllRecordings(){
+  Object.keys(BLOBS).forEach(key=>{
+    if(RESULTS[key]&&RESULTS[key].sent)return;
+    enqueueUpload(key,BLOBS[key],RESULTS[key],CLOUD_CB[key]);
+  });
+}
+async function sendSummary(){
+  const msg=$('#submitMsg');
+  if(!HAS_URL){msg.textContent='⚙️ Trang chưa được cài link nhận bài.';return;}
+  const name=stuName();if(!name){toast('Em ghi tên trước nhé.');$('#stuName').focus();return;}
+  const btn=$('#submitBtn');btn.disabled=true;btn.textContent='Đang gửi…';
+  queueAllRecordings();
+  try{
+    await postJSON(Object.assign({type:'submit',name,lesson:LESSON},buildSummary()));
+    MISC.submitted=true;saveM();
+    const pending=QUEUE.length+(BUSY?1:0);
+    msg.innerHTML='✅ <b>Đã nộp bài!</b> Cô đã nhận được bài của em.'+(pending?' (Còn '+pending+' bản ghi âm đang gửi, em đợi một chút trước khi đóng trang.)':'');
+    toast('✅ Đã nộp bài cho cô!',5000);
+    showFeedback();
+  }catch(e){msg.textContent='⚠️ Chưa gửi được (mạng yếu?). Em bấm nộp lại nhé.';}
+  finally{btn.disabled=false;btn.textContent='📨 Nộp bài cho cô';}
+}
+function showFeedback(){$('#fbBox').innerHTML=buildFeedback().html;$('#fbWrap').hidden=false;}
+$('#submitBtn').onclick=()=>{
+  const miss=[];for(let s=1;s<=4;s++)missing(s).forEach(t=>miss.push([s,t]));
+  if(!miss.length){sendSummary();return;}
+  modal('⚠️ Em chưa làm xong',warnList(miss)+'<p>Phần thiếu sẽ ảnh hưởng đến điểm. Em muốn làm tiếp hay nộp luôn?</p>',
+    [{t:'Quay lại làm tiếp',cls:'primary',fn:()=>show(miss[0][0])},{t:'Vẫn nộp bài',fn:()=>{MISC.skips++;saveM();sendSummary();}}]);
+};
+
+/* ---- hỏi tên khi mở bài ---- */
+(function(){
+  const g=$('#gate'),inp=$('#gateName');
+  if(!load('name',''))g.hidden=false;else $('#stuName').value=load('name','');
+  const go2=()=>{const v=inp.value.trim();if(!v){inp.focus();return;}store('name',v);$('#stuName').value=v;g.hidden=true;};
+  $('#gateGo').onclick=go2;inp.onkeydown=e=>{if(e.key==='Enter')go2();};
+  $('#stuName').addEventListener('change',()=>{if(!$('#stuName').value.trim())$('#stuName').value=load('name','');else store('name',$('#stuName').value.trim());});
+})();
+if(MISC.submitted)showFeedback();
+refresh();
+if(!SR){setTimeout(()=>toast('Máy này ghi âm được nhưng chưa tự chấm phát âm. Dùng Chrome để được chấm tự động.',6000),1500);}
+window.addEventListener('beforeunload',e=>{if(QUEUE.length||BUSY||ACTIVE){e.preventDefault();e.returnValue='';}});
+
+</script>
+</body>
+</html>
