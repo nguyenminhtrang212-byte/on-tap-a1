@@ -219,6 +219,8 @@ details.model summary{cursor:pointer;font-weight:700;color:var(--sea)}
 .model{background:var(--sunSoft);border:2px dashed var(--sun);border-radius:12px;padding:10px 14px;line-height:1.9}
 .topics label{display:flex;gap:8px;align-items:center;padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;font-weight:600;cursor:pointer;background:var(--paper)}
 .topics label:has(input:checked){border-color:var(--sea);background:var(--seaSoft)}
+.bigword{font-family:var(--head);font-size:44px;font-weight:800;margin:6px 0 0}
+.bigword .vpill{font-size:44px;padding:4px 18px;display:inline-block}
 </style>
 </head>
 <body>
@@ -518,8 +520,8 @@ function practice({key,label,target,maxSec=12,free,emptyMsg}){
   function showResult(r,useSR){
     if(free&&useSR&&r.score!=null){
       const u=kwUsed(r.transcript,free.words);const n=u.filter(Boolean).length;
-      const cls=n>=3?'hi':n>=1?'mid':'lo';
-      res.innerHTML=`<span class="score ${cls}">Dùng ${n}/${free.words.length} liên từ</span>
+      const cls=n>=(free.need||3)?'hi':n>=1?'mid':'lo';
+      res.innerHTML=`<span class="score ${cls}">Dùng ${n}/${free.words.length} ${free.unit||'liên từ'}</span>
         <div class="chips">${free.words.map((w,i)=>`<span class="chip ${u[i]?'ok':'no'}">${u[i]?'✓':'○'} ${esc(w)}</span>`).join('')}</div>
         <div class="tip">Máy nghe được: <i>${esc(r.transcript||'(không nghe rõ)')}</i></div>`;
       return;
@@ -538,7 +540,7 @@ function practice({key,label,target,maxSec=12,free,emptyMsg}){
     const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
     if(a==='model'){const t=T();if(!t.trim()){ctx.ui.msg(emptyMsg||'Chưa có nội dung để đọc.');return;}speak(t);}
     if(a==='slow'){const t=T();if(!t.trim()){ctx.ui.msg(emptyMsg||'Chưa có nội dung để đọc.');return;}speak(t,{slow:true});}
-    if(a==='rec'){ctx.target=T();if(!ctx.target.trim()){ctx.ui.msg(emptyMsg||'Chưa có nội dung để đọc.');return;}startRec(ctx);}
+    if(a==='rec'){ctx.target=T();if(!free&&!ctx.target.trim()){ctx.ui.msg(emptyMsg||'Chưa có nội dung để đọc.');return;}startRec(ctx);}
     if(a==='play'){const au=getAudio();if(au){stopSpeak();au.currentTime=0;au.play();}}
   });
   if(RESULTS[key]&&RESULTS[key].score!=null&&SR){showResult(RESULTS[key],true);enable();if(HAS_URL)ctx.ui.cloud(RESULTS[key].sent?'ok':'ready');}
